@@ -12,12 +12,12 @@
 - section / unit reviewed:
 - current stage: review
 - last updated:
-- source structure file: `03_structure/03a_manuscript-structure.md`
-- source writing file: `04_writing/04a_manuscript-draft.md`
+- source structure file: `03_structure/03_manuscript-structure.md`
+- source writing file: `04_writing/04_manuscript-draft.md`
 - supporting files:
   - `01_prepare/01a_project-brief.md`
   - `01_prepare/01b_evidence-inventory.md`
-  - `02_methods/02a_data-and-methods.md`
+  - `02_methods/02a_data.md and 02_methods/02b_methods.md`
 
 ## Review Pass Summary
 

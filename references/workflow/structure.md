@@ -30,7 +30,7 @@ Do **not** run structure when: prepare or methods are still in progress; the use
 
 **Prepare-stage files:** `01_prepare/01a_project-brief.md`, `01_prepare/01b_evidence-inventory.md`
 
-**Methods-stage file:** `02_methods/02a_data-and-methods.md`
+**Methods-stage file:** `02_methods/02a_data.md and 02_methods/02b_methods.md`
 
 **User input:** target journal (or willingness to choose); existing outline or section preference; central story direction preference.
 
@@ -41,7 +41,7 @@ Do **not** run structure when: prepare or methods are still in progress; the use
 Structure produces exactly one default user-facing file:
 
 ```
-03_structure/03a_manuscript-structure.md
+03_structure/03_manuscript-structure.md
 ```
 
 Do **not** create additional files unless the user explicitly asks.
@@ -61,7 +61,7 @@ The structure workflow proceeds through twelve phases:
  8. Assign figures          → build figure sequence table
  9. Plan supplement         → main text vs. supplementary material
 10. Flag conflicts          → [STRUCTURE CONFLICT] between outline and evidence
-11. Save materials          → generate 03a_manuscript-structure.md in conversation
+11. Save materials          → generate 03_manuscript-structure.md in conversation
 12. Confirm readiness       → assess readiness for writing stage
 ```
 
@@ -114,7 +114,7 @@ The architecture is built in this order:
 
 ## Resume and Update Mode
 
-When the user returns with existing `03_structure/03a_manuscript-structure.md`:
+When the user returns with existing `03_structure/03_manuscript-structure.md`:
 
 1. **Read** the existing file
 2. **Identify update points** — new evidence, revised claims, changed journal target
@@ -138,11 +138,11 @@ Needs: confirmed central story route, claim hierarchy (primary/secondary/not rea
 
 When generating structure-stage materials, use:
 
-- `references/templates/03a_manuscript-structure.md`
+- `references/templates/03_manuscript-structure.md`
 
 The user-facing output file should be saved as:
 
-- `03_structure/03a_manuscript-structure.md`
+- `03_structure/03_manuscript-structure.md`
 
 ## Guardrails
 

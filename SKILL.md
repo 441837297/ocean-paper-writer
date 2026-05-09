@@ -49,11 +49,12 @@ Each stage produces a fixed user-project output file. These are **user project f
 |-------|-------------|
 | 01 prepare | `01_prepare/01a_project-brief.md` |
 | 01 prepare | `01_prepare/01b_evidence-inventory.md` |
-| 02 methods | `02_methods/02a_data-and-methods.md` |
-| 03 structure | `03_structure/03a_manuscript-structure.md` |
-| 04 writing | `04_writing/04a_manuscript-draft.md` |
-| 05 review | `05_review/05a_review-report.md` |
-| 06 polish | `06_polish/06a_polish-log.md` |
+| 02 methods | `02_methods/02a_data.md` |
+| 02 methods | `02_methods/02b_methods.md` |
+| 03 structure | `03_structure/03_manuscript-structure.md` |
+| 04 writing | `04_writing/04_manuscript-draft.md` |
+| 05 review | `05_review/05_review-report.md` |
+| 06 polish | `06_polish/06_polish-log.md` |
 
 Do not generate stage output files for stages the user has not reached. Do not generate files for future stages preemptively.
 
@@ -64,11 +65,11 @@ Each stage has a workflow reference file (rules and guidance) and one or more te
 | Stage | Workflow reference | Template(s) |
 |-------|--------------------|-------------|
 | prepare | `references/workflow/prepare.md` | `references/templates/01a_project-brief.md`, `references/templates/01b_evidence-inventory.md` |
-| methods | `references/workflow/methods.md` | `references/templates/02a_data-and-methods.md` |
-| structure | `references/workflow/structure.md` | `references/templates/03a_manuscript-structure.md` |
-| writing | `references/workflow/writing.md` | `references/templates/04a_manuscript-draft.md` |
-| review | `references/workflow/review.md` | `references/templates/05a_review-report.md` |
-| polish | `references/workflow/polish.md` | `references/templates/06a_polish-log.md` |
+| methods | `references/workflow/methods.md` | `references/templates/02a_data.md`, `references/templates/02b_methods.md` |
+| structure | `references/workflow/structure.md` | `references/templates/03_manuscript-structure.md` |
+| writing | `references/workflow/writing.md` | `references/templates/04_manuscript-draft.md` |
+| review | `references/workflow/review.md` | `references/templates/05_review-report.md` |
+| polish | `references/workflow/polish.md` | `references/templates/06_polish-log.md` |
 
 Additional reference modules for writing: `references/writing/methods-and-data.md`, `references/writing/results-and-discussion.md`, `references/writing/introduction-and-gap.md`, `references/writing/conclusions-and-claims.md`, `references/writing/ocean-science-domain.md`, `references/writing/bilingual-output.md`.
 
@@ -95,6 +96,7 @@ Rules:
 - If the user explicitly asks for journal suggestions: offer 2–3 options with brief narrative-fit reasoning. End with "discuss with your advisor or coauthors."
 - Journal profiles are used for narrative architecture, claim depth, and voice — not for premature compression according to official limits. Length-limit checks only occur during late-stage submission polish if the user explicitly requests them.
 - Journal-fit concerns are separate from evidence and logic concerns. Do not use journal-fit reasoning to override evidence boundaries.
+- If the target journal is not in the built-in list, and the user provides a submission guide URL plus 3–4 recent papers from that journal, the skill can distill a journal profile on demand. See `references/journals/_distill.md` for the full distillation workflow. Only trigger this when the user explicitly requests it.
 
 ## Micro-drafting and Micro-polishing
 
@@ -114,7 +116,7 @@ Rules:
 - Full manuscript rewrite is not allowed by default. If the user requests full-manuscript polish, recommend unit-by-unit polish instead.
 - Manuscript-level polish is limited to consistency checks (terminology, abbreviations, recurring patterns, journal voice alignment) — not full-text rewriting.
 - Each polished unit requires user confirmation before it is marked as final.
-- Confirmed polished units can be assembled back into `04_writing/04a_manuscript-draft.md` or the user's own manuscript file.
+- Confirmed polished units can be assembled back into `04_writing/04_manuscript-draft.md` or the user's own manuscript file.
 
 ## Resume and Update Behavior
 

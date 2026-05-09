@@ -8,7 +8,7 @@
 - journal profile loaded: [yes / no — profile name if yes]
 - current stage: structure
 - last updated: [YYYY-MM-DD]
-- source files: `01_prepare/01a_project-brief.md`, `01_prepare/01b_evidence-inventory.md`, `02_methods/02a_data-and-methods.md`
+- source files: `01_prepare/01a_project-brief.md`, `01_prepare/01b_evidence-inventory.md`, `02_methods/02a_data.md and 02_methods/02b_methods.md`
 
 ## Structure Summary
 

@@ -39,7 +39,7 @@ Do **not** run methods when: no code or data description is available; prepare s
 Methods produces exactly one default user-facing file:
 
 ```
-02_methods/02a_data-and-methods.md
+02_methods/02a_data.md and 02_methods/02b_methods.md
 ```
 
 Do **not** create additional files unless the user explicitly asks. If information is insufficient, produce a draft with `[MISSING]`, `[UNCERTAIN]`, and `[CONFLICT]` markers.
@@ -57,7 +57,7 @@ The methods workflow proceeds through ten phases. Each phase can span multiple c
 6. Extract details            → populate template sections from code and user descriptions
 7. Flag gaps                  → mark as [MISSING], [UNCERTAIN], [CONFLICT], [CONFIRM WITH USER]
 8. Ask confirmation Qs        → present conflicts and gaps; 3–5 questions per turn
-9. Save materials             → generate 02a_data-and-methods.md in conversation
+9. Save materials             → generate 02a_data.md and 02b_methods.md in conversation
 10. Confirm readiness         → assess readiness for structure stage
 ```
 
@@ -124,7 +124,7 @@ If user description and code disagree: mark `[CONFLICT]`, present both versions,
 
 ## Resume and Update Mode
 
-When the user returns with existing `02_methods/02a_data-and-methods.md`:
+When the user returns with existing `02_methods/02a_data.md and 02_methods/02b_methods.md`:
 
 1. **Read** the existing file
 2. **Identify update points** — new code, revised descriptions, user corrections
@@ -153,11 +153,11 @@ When the user returns with existing `02_methods/02a_data-and-methods.md`:
 
 When generating methods-stage materials, use:
 
-- `references/templates/02a_data-and-methods.md`
+- `references/templates/02a_data.md, references/templates/02b_methods.md`
 
 The user-facing output file should be saved as:
 
-- `02_methods/02a_data-and-methods.md`
+- `02_methods/02a_data.md and 02_methods/02b_methods.md`
 
 ## Guardrails
 

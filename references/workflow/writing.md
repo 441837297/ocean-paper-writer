@@ -13,7 +13,7 @@ The writing workflow generates manuscript prose one writing unit at a time — a
 
 ## When to Use
 
-Run writing when: structure stage is complete with confirmed `03a_manuscript-structure.md`; the user has a target journal confirmed (or "not specified yet"); and the user is ready to draft manuscript prose.
+Run writing when: structure stage is complete with confirmed `03_manuscript-structure.md`; the user has a target journal confirmed (or "not specified yet"); and the user is ready to draft manuscript prose.
 
 Do **not** run writing when: structure stage is not complete; the user only wants to polish existing text (use polish workflow); or the user wants a full draft in one turn without section-by-section, paragraph-by-paragraph interaction.
 
@@ -32,9 +32,9 @@ Do **not** run writing when: structure stage is not complete; the user only want
 
 ## Required Inputs
 
-**Structure-stage file:** `03_structure/03a_manuscript-structure.md`
+**Structure-stage file:** `03_structure/03_manuscript-structure.md`
 
-**Supporting files:** `01_prepare/01a_project-brief.md`, `01_prepare/01b_evidence-inventory.md`, `02_methods/02a_data-and-methods.md`
+**Supporting files:** `01_prepare/01a_project-brief.md`, `01_prepare/01b_evidence-inventory.md`, `02_methods/02a_data.md and 02_methods/02b_methods.md`
 
 **Journal profile:** already loaded during structure stage; re-referenced during writing for voice guidance.
 
@@ -45,7 +45,7 @@ Do **not** run writing when: structure stage is not complete; the user only want
 Writing produces exactly one default user-facing file:
 
 ```
-04_writing/04a_manuscript-draft.md
+04_writing/04_manuscript-draft.md
 ```
 
 The file tracks: a Draft Unit Log (each paragraph or subsection as a row), an Active Draft Unit (the unit currently being written), and Section Draft Assembly (where confirmed units are assembled into full sections). The file is updated incrementally — after each writing unit is confirmed. Do **not** create per-section files unless the user explicitly asks.
@@ -85,7 +85,7 @@ Within each section, drafting proceeds one writing unit at a time — never the 
 
 These section-level guides are for **planning** the paragraph sequence — not for generating the entire section in one pass. Each section is broken into individual writing units (paragraphs or small subsections) and drafted one unit at a time.
 
-**Methods** — Source: `02a_data-and-methods.md`. Past tense. Break into units: data sources, preprocessing, derived variables, statistics. Follow journal profile for main-text vs. supplement depth.
+**Methods** — Source: `02a_data.md and 02b_methods.md`. Past tense. Break into units: data sources, preprocessing, derived variables, statistics. Follow journal profile for main-text vs. supplement depth.
 
 **Results** — Lead each paragraph with the finding, not the figure reference ("EKE increased by X%" not "Figure 2 shows..."). Follow figure sequence from structure. One paragraph per key finding or figure group. Secondary findings after primary, or in supplement.
 
@@ -149,7 +149,7 @@ Do not start drafting if these are unclear — ask first.
 
 ## Draft Unit Output Format
 
-When outputting a writing unit, include the following structure. If the user wants only the draft text, the evidence trace can be written into `04a_manuscript-draft.md` notes rather than displayed; but the workflow default includes it.
+When outputting a writing unit, include the following structure. If the user wants only the draft text, the evidence trace can be written into `04_manuscript-draft.md` notes rather than displayed; but the workflow default includes it.
 
 ```markdown
 ## Draft Unit
@@ -201,7 +201,7 @@ If requested: follow `references/writing/bilingual-output.md` format — English
 
 ## Resume and Update Mode
 
-When the user returns with existing `04_writing/04a_manuscript-draft.md`:
+When the user returns with existing `04_writing/04_manuscript-draft.md`:
 
 1. **Read** the existing draft, including the Draft Unit Log
 2. **Identify the last confirmed writing unit** — start from the next unconfirmed unit
@@ -226,11 +226,11 @@ Needs: all six sections drafted and confirmed by the user; citations integrated 
 
 When generating writing-stage materials, use:
 
-- `references/templates/04a_manuscript-draft.md`
+- `references/templates/04_manuscript-draft.md`
 
 The user-facing output file should be saved as:
 
-- `04_writing/04a_manuscript-draft.md`
+- `04_writing/04_manuscript-draft.md`
 
 ## Reference Modules
 

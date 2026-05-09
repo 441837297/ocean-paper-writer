@@ -31,11 +31,11 @@ Ask the user to choose scope. If unclear, recommend **unit-level polish**.
 
 ## Required Inputs
 
-**Core files:** `04_writing/04a_manuscript-draft.md`, `05_review/05a_review-report.md`
+**Core files:** `04_writing/04_manuscript-draft.md`, `05_review/05_review-report.md`
 
-**Supporting file:** `03_structure/03a_manuscript-structure.md`
+**Supporting file:** `03_structure/03_manuscript-structure.md`
 
-**Optional files:** `01_prepare/01a_project-brief.md`, `01_prepare/01b_evidence-inventory.md`, `02_methods/02a_data-and-methods.md`
+**Optional files:** `01_prepare/01a_project-brief.md`, `01_prepare/01b_evidence-inventory.md`, `02_methods/02a_data.md and 02_methods/02b_methods.md`
 
 **User-provided materials:** target journal, section or unit to polish, advisor comments, coauthor comments, desired tone, language mode (English / Chinese / bilingual), polish priority (clarity / concision / journal voice / de-AI / advisor feedback), output assertiveness (conservative or more assertive).
 
@@ -44,10 +44,10 @@ Ask the user to choose scope. If unclear, recommend **unit-level polish**.
 Polish produces exactly one default user-facing file:
 
 ```
-06_polish/06a_polish-log.md
+06_polish/06_polish-log.md
 ```
 
-Do **not** create additional files unless the user explicitly asks. The polish log records original text, polished version, change rationale, evidence boundary, and user confirmation status for each unit. Confirmed polished units can be assembled back into `04_writing/04a_manuscript-draft.md` or the user's own manuscript file.
+Do **not** create additional files unless the user explicitly asks. The polish log records original text, polished version, change rationale, evidence boundary, and user confirmation status for each unit. Confirmed polished units can be assembled back into `04_writing/04_manuscript-draft.md` or the user's own manuscript file.
 
 ## Interaction Flow
 
@@ -138,7 +138,7 @@ The goal is natural, accurate, authorial academic expression — not circumventi
 
 ## Resume and Update Mode
 
-When user returns with existing `06a_polish-log.md`: read existing polish log, identify the last polished unit, preserve previously confirmed units, add new polish pass for new units, generate changelog:
+When user returns with existing `06_polish-log.md`: read existing polish log, identify the last polished unit, preserve previously confirmed units, add new polish pass for new units, generate changelog:
 
 ```markdown
 ## Update Summary
@@ -159,7 +159,7 @@ When user returns with existing `06a_polish-log.md`: read existing polish log, i
 
 ## Template References
 
-When generating polish-stage materials, use: `references/templates/06a_polish-log.md`. Save user-facing output as `06_polish/06a_polish-log.md`.
+When generating polish-stage materials, use: `references/templates/06_polish-log.md`. Save user-facing output as `06_polish/06_polish-log.md`.
 
 ## Guardrails
 

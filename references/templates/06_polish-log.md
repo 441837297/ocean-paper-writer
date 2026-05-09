@@ -13,10 +13,10 @@
 - language mode: [English / Chinese / bilingual]
 - current stage: polish
 - last updated:
-- source draft file: `04_writing/04a_manuscript-draft.md`
-- source review file: `05_review/05a_review-report.md`
+- source draft file: `04_writing/04_manuscript-draft.md`
+- source review file: `05_review/05_review-report.md`
 - supporting files:
-  - `03_structure/03a_manuscript-structure.md`
+  - `03_structure/03_manuscript-structure.md`
 
 ## Polish Pass Summary
 
@@ -36,7 +36,7 @@
 - unit id:
 - section:
 - paragraph / subsection:
-- source draft unit: [ID from 04a_manuscript-draft Draft Unit Log]
+- source draft unit: [ID from 04_manuscript-draft Draft Unit Log]
 - target journal:
 - advisor / review comment addressed:
 - status: [in progress / awaiting feedback / polished / confirmed]

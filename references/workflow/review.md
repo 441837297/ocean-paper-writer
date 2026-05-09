@@ -28,9 +28,9 @@ Ask the user to choose scope. If unclear, recommend **section-level review**.
 
 ## Required Inputs
 
-**Core files:** `03_structure/03a_manuscript-structure.md`, `04_writing/04a_manuscript-draft.md`
+**Core files:** `03_structure/03_manuscript-structure.md`, `04_writing/04_manuscript-draft.md`
 
-**Supporting files:** `01_prepare/01a_project-brief.md`, `01_prepare/01b_evidence-inventory.md`, `02_methods/02a_data-and-methods.md`
+**Supporting files:** `01_prepare/01a_project-brief.md`, `01_prepare/01b_evidence-inventory.md`, `02_methods/02a_data.md and 02_methods/02b_methods.md`
 
 **Optional:** target journal profile (`references/journals/{journal}.md`), advisor/coauthor/reviewer comments, specific section to review, user-defined review priority (evidence / logic / journal fit / language).
 
@@ -39,7 +39,7 @@ Ask the user to choose scope. If unclear, recommend **section-level review**.
 Review produces exactly one default user-facing file:
 
 ```
-05_review/05a_review-report.md
+05_review/05_review-report.md
 ```
 
 Do **not** create additional files unless the user explicitly asks.
@@ -56,7 +56,7 @@ Do **not** create additional files unless the user explicitly asks.
  7. Classify each issue — severity (high/medium/low), type (evidence/claim/structure/methods/figure/journal fit/language/advisor feedback)
  8. Propose revision action per issue
  9. Ask user to confirm revision priorities
-10. Save review report to 05_review/05a_review-report.md
+10. Save review report to 05_review/05_review-report.md
 11. Decide handoff — back to writing/structure/methods/prepare or forward to polish
 ```
 
@@ -120,7 +120,7 @@ When provided: classify each comment by type (evidence/structure/methods/writing
 
 ## Resume and Update Mode
 
-When user returns with existing `05a_review-report.md`: read existing report, identify last review pass, preserve resolved items, add new review pass for new content, generate changelog:
+When user returns with existing `05_review-report.md`: read existing report, identify last review pass, preserve resolved items, add new review pass for new content, generate changelog:
 
 ```markdown
 ## Update Summary
@@ -132,14 +132,14 @@ When user returns with existing `05a_review-report.md`: read existing report, id
 ## Handoff to Writing or Polish
 
 - **Back to writing:** paragraph unclear, flow weak, claim placement wrong, missing transition. Action: revision instructions per issue; `[REVISION DRAFT]` if user requests.
-- **Back to structure:** section architecture wrong, figure order illogical, central story unclear, journal narrative mismatch. Action: update `03a_manuscript-structure.md`, then return to writing.
-- **Back to methods:** methods cannot support claim, processing unclear, statistical test missing. Action: update `02a_data-and-methods.md`, re-draft affected units.
+- **Back to structure:** section architecture wrong, figure order illogical, central story unclear, journal narrative mismatch. Action: update `03_manuscript-structure.md`, then return to writing.
+- **Back to methods:** methods cannot support claim, processing unclear, statistical test missing. Action: update `02a_data.md and 02b_methods.md`, re-draft affected units.
 - **Back to prepare:** research question unclear, evidence inventory incomplete, figure-to-claim matrix wrong. Action: update `01a_project-brief.md` and `01b_evidence-inventory.md`.
 - **Forward to polish:** issues primarily about language, style, AI-like phrasing, journal voice, advisor wording. Action: review report as diagnostic input for polish.
 
 ## Template References
 
-When generating review-stage materials, use: `references/templates/05a_review-report.md`. Save user-facing output as `05_review/05a_review-report.md`.
+When generating review-stage materials, use: `references/templates/05_review-report.md`. Save user-facing output as `05_review/05_review-report.md`.
 
 ## Guardrails
 
@@ -152,4 +152,4 @@ When generating review-stage materials, use: `references/templates/05a_review-re
 - **Do not overstate climate, mechanism, causation, or global implications.**
 - **Do not perform full manuscript review unless explicitly requested.**
 - **Do not mark an issue as resolved without user confirmation or revised text.**
-- **Do not generate per-section review reports** — a single `05a_review-report.md` covers all passes.
+- **Do not generate per-section review reports** — a single `05_review-report.md` covers all passes.

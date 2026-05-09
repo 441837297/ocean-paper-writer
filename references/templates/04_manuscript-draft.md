@@ -9,7 +9,7 @@
 - bilingual mode: [enabled / disabled]
 - current stage: writing
 - last updated: [YYYY-MM-DD]
-- source files: `01_prepare/01a_project-brief.md`, `01_prepare/01b_evidence-inventory.md`, `02_methods/02a_data-and-methods.md`, `03_structure/03a_manuscript-structure.md`
+- source files: `01_prepare/01a_project-brief.md`, `01_prepare/01b_evidence-inventory.md`, `02_methods/02a_data.md and 02_methods/02b_methods.md`, `03_structure/03_manuscript-structure.md`
 
 ## Draft Unit Log
 
@@ -79,13 +79,13 @@ Confirmed draft units are assembled here per section. Unconfirmed units remain i
 
 ### Methods
 
-*Drafting guidance: Use 02a_data-and-methods.md as primary source. Past tense. Break into units: data sources, preprocessing, derived variables, statistics. Follow journal profile depth.*
+*Drafting guidance: Use 02a_data.md and 02b_methods.md as primary source. Past tense. Break into units: data sources, preprocessing, derived variables, statistics. Follow journal profile depth.*
 
 [Confirmed units are assembled here in paragraph order.]
 
 ### Results
 
-*Drafting guidance: Follow figure sequence from 03a_manuscript-structure.md. Lead each paragraph with the finding. One paragraph per key finding or figure group.*
+*Drafting guidance: Follow figure sequence from 03_manuscript-structure.md. Lead each paragraph with the finding. One paragraph per key finding or figure group.*
 
 [Confirmed units are assembled here in paragraph order.]
 
