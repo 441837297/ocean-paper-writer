@@ -1,11 +1,11 @@
 # Ocean Paper Writer
 
-面向海洋科学研究者的 AI Skill：从项目书、图表、代码和 Zotero 文献库出发，分六个阶段逐步构建可投稿的期刊论文。
+面向海洋科学研究者的论文写作辅助工具：将项目书、图表、代码和文献等零散材料，分阶段整理为结构化的手稿与投稿素材。
 
-**核心思路：** 论文写作的起点很分散 — 项目书、论文图、分析代码、数据描述、Zotero 文献、导师反馈。
-把这些碎片拼成一篇连贯的论文，一步到位是不可能的。
-这个工具把工作拆成六个阶段，每个阶段产出你可以审阅、修改、反复打磨的具体文件。
-你控制节奏、内容和方向；工具负责整理、起草和检查。
+**核心思路：** 论文写作的起点很分散 — 项目书、论文图、分析代码、数据描述、文献笔记、导师反馈。
+把这些碎片拼成一篇连贯的论文，很难一步完成。
+这个工具把主体论文构建拆成六个阶段，另有一个可选阶段准备投稿说明材料。每个阶段产出可供你审阅、修改、反复打磨的中间文件。
+你控制研究内容、科学判断和最终文字；工具辅助整理材料、起草初稿、检查一致性。
 决定权始终在你手上。
 
 ## 安装
@@ -15,6 +15,12 @@ git clone https://github.com/441837297/ocean-paper-writer.git ~/.claude/skills/o
 ```
 
 重启 Claude Code 即可。详见 [INSTALL.md](INSTALL.md)。
+
+升级：
+
+```bash
+cd ~/.claude/skills/ocean-paper-writer && git pull
+```
 
 ## 环境配置
 
@@ -28,7 +34,7 @@ prepare / methods / structure 阶段不依赖 Zotero；writing / review / polish
 
 ## 工作流程
 
-分六个阶段，每次只推进一个阶段：
+主体论文构建分六个阶段；投稿前可进入第七阶段准备投稿说明材料。每次只推进一个阶段：
 
 1. **准备（Prepare）** — 你提供项目书、图表和研究想法。
    工具会问 3-5 个关键问题，然后生成项目简报和证据清单。
@@ -42,6 +48,7 @@ prepare / methods / structure 阶段不依赖 Zotero；writing / review / polish
 
 4. **写作（Writing）** — 逐段推进。工具起草，你审阅。每段之后你说：保留 / 修改 / 扩展 / 继续。
    默认顺序：Methods → Results → Introduction → Discussion → Conclusion → Abstract。
+   包含图表标题（caption）生成，遵循三部分结构：主题 → 关键内容 → 数据来源。
    需要文献支撑时，工具会先征求你的同意再检索 Zotero。
 
 5. **审查（Review）** — 工具诊断证据缺口、声明强度、逻辑问题和期刊适配度。
@@ -50,6 +57,10 @@ prepare / methods / structure 阶段不依赖 Zotero；writing / review / polish
 
 6. **润色（Polish）** — 推荐逐段精修已确认的文本，优化清晰度、流畅度和期刊语气。
    也可以在投稿前运行一次可选的 style naturalization audit：先扫描出高风险、中风险和可选修改项，用户选择后再改写，不会自动批量重写全文。
+
+7. **投稿说明材料（Cover Letter，可选）** — 在手稿核心声明和目标期刊基本确认后，整理给编辑的 cover letter 素材。
+   贡献声明对齐目标期刊 scope；包含数据可用性、利益冲突声明和通讯作者信息。
+   不新增科学结论；未确认目标期刊时不生成。
 
 任何阶段都可以暂停，稍后继续。
 也可以回到前面的阶段 — 审查可以回到写作或结构，润色可以回到写作。
@@ -96,6 +107,8 @@ manuscript/
 │   └── 05_review-report.md        # 诊断问题、严重程度、修改建议、交接方案
 └── 06_polish/
     └── 06_polish-log.md           # 原始文本 vs 润色后文本、修改理由、边界检查
+└── 07_cover-letter/
+    └── 07_cover-letter.md         # 投稿信，贡献声明对齐期刊 scope
 ```
 
 这些文件存放在你的论文项目目录中，不在 Skill 代码仓库内。
@@ -120,6 +133,8 @@ manuscript/
 
 如果你的目标期刊不在内置列表中，可以提供一个投稿指南网址 + 3-4 篇目标期刊近期论文，工具可以按需蒸馏出该期刊的写作规则。
 详见 `references/journals/_distill.md`。
+
+Cover letter 阶段必须基于已确认的目标期刊 profile 生成，不会在未确认期刊时生成投稿信。
 
 ## 已内置的期刊 Profile
 
@@ -189,3 +204,9 @@ docs/                        # 开发记录
 - 新增期刊 profile 使用 `references/journals/_template.md`。
 - 保留逐阶段推进和逐段起草/润色的设计。
 - 证据边界不可跨越 — 每个阶段的声明必须可追溯到证据。
+
+## 致谢
+
+本项目的工作流设计（分阶段推进、逐段起草与润色、style naturalization 审计）受到
+[Paper-Polish-Workflow-skill](https://github.com/Lylll9436/Paper-Polish-Workflow-skill)
+的启发。感谢作者的开源贡献和思路分享。

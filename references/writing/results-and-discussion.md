@@ -111,3 +111,64 @@ Better:
 > of 0.5 ± 0.1 ZJ yr⁻¹ over 1979–2022. This estimate combines
 > Argo observations with model dynamics and may underestimate
 > heat uptake in regions with sparse observational coverage.
+
+## Figure and Table Captions
+
+Captions are written during Results drafting when the figure/table sequence is confirmed.
+Each caption follows a three-part structure:
+
+subject → key content → data source
+
+### Figure captions
+
+```
+\caption{[Subject / study area]. [Key content description]. [Data source statement].}
+```
+
+- Lead with the content, not "Figure shows..."
+- Ocean/map figures: include study area, data source, resolution if known
+- Non-spatial figures (charts, schematics): include variables and comparison context
+- Title Case for noun phrases; Sentence case for complete sentences
+- Escape special LaTeX characters (%, _, &)
+- Do not insert `[MISSING]` placeholders in caption output — omit unknown clauses gracefully
+
+**Ocean figure example:**
+
+```latex
+\caption{Spatial distribution of sea surface temperature anomaly in the
+Kuroshio Extension region. Sea surface temperature from ERA5 reanalysis (2022).
+Bathymetry from GEBCO 2023.}
+```
+
+**Non-spatial figure example:**
+
+```latex
+\caption{Comparison of modeled vs. observed temperature profiles at three
+mooring stations. Root-mean-square errors shown. In situ data from the
+Argo float array.}
+```
+
+### Table captions
+
+```
+\caption{[Subject]. [Row/column semantics]. [Statistical context, units, data source].}
+```
+
+- Use standard openings: Comparison of, Statistics of, Summary of, Results from
+- Avoid showcase, depict — use show, compare, present
+
+**Table example:**
+
+```latex
+\caption{Seasonal statistics of mixed layer depth by region, 2015--2023.
+All areas reported in km\textsuperscript{2}. Data from the Argo float array
+and ship-based CTD casts.}
+```
+
+### Caption Writing Rules
+
+- Do not write captions before the figure/table sequence is confirmed in structure.
+- Do not fabricate resolution, data source, or spatial extent.
+- Do not insert `[MISSING]` stubs in final caption text — skip the clause.
+- Adapt caption length to journal style (GRL: tighter; JGR/JPO: full detail).
+- Re-read captions during polish for consistency with final figure content.

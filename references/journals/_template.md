@@ -6,7 +6,7 @@ Journal profiles are **not** a submission-rule checklist.
 They exist to help the AI understand what kind of story, reasoning, evidence, and writing voice the journal expects from an ocean science manuscript.
 Hard constraints (word limits, figure counts, formatting) are deferred to the final section and treated as late-stage compression notes, not drafting constraints.
 
-For the full manuscript-building workflow, see the six pipeline phases under `references/workflow/`.
+For the manuscript-building workflow, see the six core stages under `references/workflow/`; an optional cover-letter stage handles submission-facing publication materials (`references/workflow/cover-letter.md`).
 
 ---
 

@@ -7,19 +7,19 @@ directory. Every item should pass before considering the package "ready."
 
 - [ ] `SKILL.md` has valid YAML frontmatter (4 fields: `name`, `description`, `allowed-tools`, `model`)
 - [ ] `SKILL.md` frontmatter `name` matches the skill directory name
-- [ ] `SKILL.md` body describes all 6 stages in correct order
+- [ ] `SKILL.md` body describes all 7 stages in correct order (6 core manuscript-building + cover-letter)
 - [ ] `SKILL.md` guardrails section is present and complete
 - [ ] `README.md` (Chinese user guide) is consistent with `SKILL.md` stage descriptions
 
 ## 2. Path and Naming Consistency
 
-- [ ] All template file paths use v1.2 naming: `01a_project-brief.md`, `01b_evidence-inventory.md`,
+- [ ] All template file paths use v1.5 naming: `01a_project-brief.md`, `01b_evidence-inventory.md`,
   `02a_data.md`, `02b_methods.md`, `03_manuscript-structure.md`, `04_manuscript-draft.md`,
-  `05_review-report.md`, `06_polish-log.md`
+  `05_review-report.md`, `06_polish-log.md`, `07_cover-letter.md`
 - [ ] No old v1 paths remain: no `02a_data-and-methods.md`, `03a_*`, `04a_*`, `05a_*`, `06a_*`
 - [ ] `references/templates/` files match the names referenced in workflow `.md` files
-- [ ] `references/workflow/` has exactly 6 stage files: prepare, methods, structure, writing,
-  review, polish
+- [ ] `references/workflow/` has 7 stage files: prepare, methods, structure, writing,
+  review, polish, cover-letter
 
 ## 3. Reference Completeness
 

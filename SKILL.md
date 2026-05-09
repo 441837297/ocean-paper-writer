@@ -1,6 +1,6 @@
 ---
 name: ocean-paper-writer
-description: helps ocean science researchers turn proposals, figures, code, data descriptions, target-journal plans, Zotero-supported literature, and advisor feedback into staged manuscript materials through prepare, methods, structure, writing, review, and polish workflows.
+description: helps ocean science researchers build staged manuscript materials through six core manuscript-building workflows (prepare, methods, structure, writing, review, polish) plus an optional cover-letter workflow for publication materials.
 ---
 
 # Ocean Paper Writer
@@ -9,17 +9,18 @@ description: helps ocean science researchers turn proposals, figures, code, data
 
 This skill helps ocean science and ocean-climate researchers build manuscripts stage by stage —
 from raw materials (proposals, figures, code, data descriptions, Zotero literature,
-target-journal plans, and advisor feedback) through to submission-ready polished text.
+target-journal plans, and advisor feedback) through to submission-ready materials.
 
 It is designed for manuscripts in physical oceanography, biogeochemistry, ocean-climate dynamics,
 marine ecosystems, and related fields.
-The six-stage workflow (prepare → methods → structure → writing → review → polish) ensures that
-each stage builds on verified outputs from the previous one.
+Six core stages (prepare → methods → structure → writing → review → polish) handle manuscript
+building; an optional seventh stage (cover-letter) prepares submission-facing publication materials.
+Each stage builds on verified outputs from the previous one.
 The skill does not try to produce a full manuscript in one pass.
 
 ## Core Workflow
 
-The workflow has six stages, executed one at a time:
+Six core manuscript-building stages, plus one optional publication-material stage:
 
 | Stage | Function |
 |-------|----------|
@@ -28,7 +29,11 @@ The workflow has six stages, executed one at a time:
 | **03 structure** | Design manuscript architecture — central story, claim hierarchy, figure sequence, section roles |
 | **04 writing** | Draft manuscript prose one paragraph or subsection at a time, following the structure architecture |
 | **05 review** | Diagnose evidence, claims, logic, journal fit, and revision priorities — no rewriting by default |
-| **06 polish** | Refine confirmed text for clarity, flow, journal voice, and AI-like phrasing — no evidence creation |
+| **06 polish** | Refine confirmed text for clarity, flow, journal voice, and style naturalization — no evidence creation |
+| **07 cover-letter** | Prepare submission-facing cover letter material from confirmed manuscript claims and journal fit |
+
+Stage 07 is a publication-material stage, not a manuscript-building stage. It does not
+create new scientific claims, invent novelty, or substitute for a journal submission checklist.
 
 ## Stage Routing
 
@@ -43,10 +48,14 @@ Route the user's request to the correct stage:
   journal style, advisor language comments:** route to **polish**.
   If the user says "de-AI", interpret this as a request for style naturalization /
   AI-like phrasing check — the goal is authorial academic style, not AI-detection evasion.
+- **"Write a cover letter", "draft submission letter", "generate cover letter",
+  "投稿信", "cover letter for submission":** route to **cover-letter**.
+  If the manuscript's central claims and target journal are not yet confirmed,
+  recommend completing review or polish first.
 
 If the user's request is ambiguous or spans multiple stages, ask:
 
-> Which stage are you working on now: prepare, methods, structure, writing, review, or polish?
+> Which stage are you working on now: prepare, methods, structure, writing, review, polish, or cover-letter?
 
 If the user is new and has research materials but no structured outputs, default to **prepare**.
 
@@ -64,6 +73,7 @@ Each stage produces a fixed user-project output file. These are **user project f
 | 04 writing | `04_writing/04_manuscript-draft.md` |
 | 05 review | `05_review/05_review-report.md` |
 | 06 polish | `06_polish/06_polish-log.md` |
+| 07 cover-letter | `07_cover-letter/07_cover-letter.md` |
 
 Do not generate stage output files for stages the user has not reached. Do not generate files for future stages preemptively.
 
@@ -81,6 +91,7 @@ generating output files.
 | writing | `references/workflow/writing.md` | `references/templates/04_manuscript-draft.md` |
 | review | `references/workflow/review.md` | `references/templates/05_review-report.md` |
 | polish | `references/workflow/polish.md` | `references/templates/06_polish-log.md` |
+| cover-letter | `references/workflow/cover-letter.md` | `references/templates/07_cover-letter.md` |
 
 Additional reference modules for writing:
 `references/writing/methods-and-data.md`, `references/writing/results-and-discussion.md`,
@@ -109,7 +120,7 @@ Available journal profiles:
 
 Rules:
 
-- If the user provides a target journal: record it verbatim. Do not argue, override, or substitute. Load the corresponding journal profile during structure / writing / review / polish stages.
+- If the user provides a target journal: record it verbatim. Do not argue, override, or substitute. Load the corresponding journal profile during structure / writing / review / polish / cover-letter stages.
 - If the user does not provide one: write `target journal: not specified yet` in stage outputs. Proceed with general-purpose guidance.
 - If the user explicitly asks for journal suggestions: offer 2–3 options with brief narrative-fit reasoning. End with "discuss with your advisor or coauthors."
 - Journal profiles are used for narrative architecture, claim depth, and voice —
@@ -209,7 +220,8 @@ Each stage may hand off to one or more subsequent stages. Handoff is never autom
 | structure | writing |
 | writing | review |
 | review | writing, structure, methods, prepare, polish |
-| polish | writing, review, final assembly |
+| polish | writing, review, cover-letter |
+| cover-letter | polish, review, final assembly |
 
 After each stage completion, ask: "Do you want to pause, update the current stage, resume later, or advance to the next stage?"
 
@@ -258,3 +270,4 @@ Full Zotero integration reference: `references/zotero/README.md`
 - **Do not invent data, methods, figures, citations, literature references, or advisor comments.**
 - **Do not overcompress materials according to journal rules during early stages.** Compression happens in late-stage polish.
 - **Do not ignore missing or conflicting information.** Flag it with standard tags and ask the user.
+- **Do not generate a cover letter without a confirmed target journal profile.** The contribution statement must reference the journal's actual scope. Cover-letter material summarizes confirmed manuscript outputs only.
