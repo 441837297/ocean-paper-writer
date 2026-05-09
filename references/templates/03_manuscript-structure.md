@@ -1,4 +1,4 @@
-# 03a Manuscript Structure
+# 03 Manuscript Structure
 
 ## Project Metadata
 

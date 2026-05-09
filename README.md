@@ -8,6 +8,14 @@
 你控制节奏、内容和方向；工具负责整理、起草和检查。
 决定权始终在你手上。
 
+## 安装
+
+```bash
+git clone https://github.com/441837297/ocean-paper-writer.git ~/.claude/skills/ocean-paper-writer/
+```
+
+重启 Claude Code 即可。详见 [INSTALL.md](INSTALL.md)。
+
 ## 环境配置
 
 **Zotero 文献支持配置（可选）：**

@@ -1,4 +1,4 @@
-# 04a Manuscript Draft
+# 04 Manuscript Draft
 
 ## Project Metadata
 

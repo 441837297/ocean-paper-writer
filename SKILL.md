@@ -154,9 +154,6 @@ It is not AI-detection evasion.
 It does not hide weak evidence.
 It does not strengthen unsupported claims.
 
-If the user says "de-AI", interpret it as a request for style naturalization /
-AI-like phrasing check, not AI-detection evasion.
-
 ## Resume and Update Behavior
 
 When the user returns to a stage with an existing output file:

@@ -1,4 +1,4 @@
-# 06a Polish Log
+# 06 Polish Log
 
 *Polish refines supported prose; it does not create evidence.*
 *If claim support is unclear, use `[POLISH BLOCKER]`. If advisor request conflicts with evidence boundary, use `[POLISH CONFLICT]`.*
