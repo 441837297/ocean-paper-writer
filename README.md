@@ -1,219 +1,219 @@
-# Ocean Paper Builder
+# Ocean Paper Writer
 
-A ChatGPT skill for ocean science researchers who want to build manuscript materials stage by stage — from raw research inputs to polished, journal-aware text.
+面向海洋科学研究者的 ChatGPT Skill：从原始研究素材到可投稿的、符合期刊风格的手稿，分六个阶段逐步构建。
 
-**Why this skill exists:** Ocean science manuscripts start from many sources — proposals, figures, analysis code, data descriptions, Zotero libraries, advisor feedback. Turning these scattered inputs into a coherent manuscript is hard to do in one pass. This skill breaks the work into six stages. Each stage produces concrete files that you can review, edit, and revisit. You control the pace, the content, and the direction. The skill organizes, drafts, and checks — you decide what stays.
+**为什么存在这个工具：** 海洋科学论文的起点很分散 — 项目申请书、论文图、分析代码、数据描述、Zotero 文献库、导师反馈。把这些碎片化的输入变成一篇连贯的论文，不可能一步到位。这个工具把工作拆成六个阶段，每个阶段产出可以审阅、修改、反复打磨的具体文件。你控制节奏、内容和方向；工具负责整理、起草和检查 — 决定权始终在你手上。
 
-## How It Works
+## 工作流程
 
-The workflow runs in six stages, one at a time. Here is what a typical project feels like:
+整个流程分六个阶段，每次只推进一个阶段。一个典型的项目体验如下：
 
-1. **Prepare** — You share your proposal, figures, and research ideas. The skill asks a few focused questions (3–5 at most), then generates a project brief and an evidence inventory. These become the foundation for everything that follows.
+1. **准备（Prepare）** — 你提供项目申请书、论文图和研究想法。工具会问 3-5 个关键问题，然后生成项目简报和证据清单。这是后续所有内容的基础。
 
-2. **Methods** — The skill reads your code, data descriptions, and processing notes, then documents data sources, preprocessing steps, derived variables, and statistical methods. You confirm or correct each section.
+2. **方法（Methods）** — 工具读取你的代码、数据描述和处理笔记，记录数据来源、预处理步骤、衍生变量和统计方法。你逐项确认或修正。
 
-3. **Structure** — With your target journal (if you have one), the skill designs the manuscript architecture: central story, claim hierarchy, figure sequence, section roles. This is the blueprint, not the prose.
+3. **结构（Structure）** — 如果你已有目标期刊，工具会依据期刊风格设计手稿架构：核心故事线、声明层级、图表顺序、各节定位。这是蓝图，不是正文。
 
-4. **Writing** — One paragraph at a time. The skill drafts, you review. After each paragraph you say keep / revise / expand / continue. Default order: Methods → Results → Discussion → Introduction → Conclusion → Abstract. When a claim needs literature support, the skill asks before searching Zotero, then cites real papers from your library.
+4. **写作（Writing）** — 逐段推进。工具起草，你审阅。每段之后你说：保留 / 修改 / 扩展 / 继续下一段。默认顺序：方法 → 结果 → 讨论 → 引言 → 结论 → 摘要。需要文献支撑时，工具会先征求你的同意再搜索 Zotero，引用你库中的真实论文。
 
-5. **Review** — The skill diagnoses evidence gaps, claim strength, logic, and journal fit. It tells you what needs work, but does not rewrite anything by default. You decide what to fix and where to go next.
+5. **审查（Review）** — 工具诊断证据缺口、声明强度、逻辑问题和期刊适配度。它会告诉你哪里需要修改，但默认不改写任何内容。你决定修什么、往哪个方向走。
 
-6. **Polish** — Confirmed text is refined for clarity, flow, and journal voice — one unit at a time. Polish never creates new evidence or hides gaps. It makes supported claims read better.
+6. **润色（Polish）** — 对已确认的文本逐段精修，优化清晰度、流畅度和期刊语气。润色不制造新证据，不掩盖证据缺口。它只让有支撑的结论读起来更好。
 
-After any stage, you can pause and resume later. And you can always go back: review might send you back to writing or structure, polish might send you back to writing. This is by design. The workflow is not a one-way assembly line.
+任何阶段完成后，你可以暂停，稍后继续。而且你始终可以返回前面的阶段：审查可能让你回到写作或结构，润色可能让你回到写作。这是设计如此 — 工作流不是单向流水线。
 
-## What This Skill Does Not Do
+## 不做什么
 
-- **Does not write a full manuscript in one pass.** Manuscripts are built stage by stage, one paragraph at a time.
-- **Does not decide the target journal for the user.** The user always chooses. The skill records or suggests only when asked.
-- **Does not invent data, methods, citations, or advisor comments.** Missing information is flagged with clear markers.
-- **Does not turn weak evidence into strong claims.** Evidence boundaries are preserved at every stage — correlation is not presented as causation, regional results are not extended to global claims without support.
-- **Does not replace scientific judgment.** The skill organizes and refines; the researcher decides what is correct.
-- **Does not install or configure Zotero MCP automatically.** Zotero MCP (`cookjohn/zotero-mcp`) must be installed as a prerequisite. See `references/zotero/README.md` for setup details.
-- **Does not act as a journal submission checklist or formatting validator.**
+- **不会一次性生成全文。** 论文是逐阶段、逐段构建的。
+- **不会替用户决定目标期刊。** 用户始终掌控。工具只记录用户的选择，或被明确要求时才给出建议。
+- **不编造数据、方法、引用或导师意见。** 缺失信息用明确的标记注明。
+- **不把弱证据写成强结论。** 证据边界在每个阶段都被保留 — 相关性不写成因果性，区域结果不扩展为全球结论。
+- **不替代科学判断。** 工具整理和精炼；研究者决定什么是对的。
+- **不会自动安装或配置 Zotero MCP。** Zotero MCP（`cookjohn/zotero-mcp`）需要作为前置条件安装，详见 `references/zotero/README.md`。
+- **不作期刊投稿清单或格式校验工具。**
 
-## Who This Is For
+## 适合谁
 
-- **Ocean science researchers** — physical oceanography, biogeochemistry, ocean-climate dynamics, marine ecosystems
-- **Researchers using satellite data, Argo floats, reanalysis products, or ocean model output**
-- **Graduate students and postdocs** preparing journal manuscripts from code, figures, and research plans
-- **Researchers with a target journal in mind** who want narrative architecture and voice guidance
-- **Anyone who wants to work paragraph by paragraph** rather than generating a full draft in one go
+- **海洋科学研究者** — 物理海洋学、生物地球化学、海洋-气候动力学、海洋生态系统
+- **使用卫星数据、Argo 浮标、再分析产品或海洋模式输出的研究者**
+- **从代码、图表和研究计划开始准备期刊论文的研究生和博士后**
+- **有明确目标期刊、需要叙事架构和语气指导的研究者**
+- **希望逐段推进、而非一次生成全稿的任何人**
 
-## Collaboration Model
+## 协作模式
 
-The files generated by this skill are **yours to edit**. They are not read-only AI outputs.
+这个工具生成的 md 文件是**协作文件**，不是只读的 AI 输出。
 
-- The skill writes the first draft of each stage file.
-- You review it. You can **modify anything** — data descriptions, claim wording, method details, figure interpretations.
-- In the next stage (or when resuming), the skill **reads your edited file**, preserves what you confirmed, and only supplements areas marked `[MISSING]`, `[TODO]`, or `[CITATION NEEDED]`.
-- Your changes are never overwritten. Your knowledge takes priority over the skill's suggestions.
+- 工具为每个阶段生成初稿。
+- 你审阅。你**可以直接修改任何内容** — 数据描述、声明措辞、方法细节、图表解读。
+- 在下一个阶段（或恢复工作时），工具**读取你修改过的文件**，保留你已确认的内容，只补充标记为 `[MISSING]`、`[TODO]` 或 `[CITATION NEEDED]` 的部分。
+- 你的修改不会被覆盖。你的专业知识优先于工具的推测。
 
-This is a collaboration, not a passive generation pipeline.
+这是协作，不是被动的生成流水线。
 
-## Your Project Files
+## 项目文件
 
-When you start a project, the skill creates a directory with this structure. Each file has a single purpose:
+开始一个项目后，工具会在你的项目目录下生成以下结构。每个文件有单一明确的用途：
 
 ```
 my-paper/
 ├── 01_prepare/
-│   ├── 01a_project-brief.md       # Research question, context, study area, data overview
-│   └── 01b_evidence-inventory.md  # Figure-to-claim matrix, evidence strength, story routes
+│   ├── 01a_project-brief.md       # 研究问题、背景、研究区域、数据概览
+│   └── 01b_evidence-inventory.md  # 图→声明对应表、证据强度、故事路线
 ├── 02_methods/
-│   └── 02a_data-and-methods.md    # Data sources, preprocessing, derived variables, statistics
+│   └── 02a_data-and-methods.md    # 数据来源、预处理、衍生变量、统计方法
 ├── 03_structure/
-│   └── 03a_manuscript-structure.md # Section architecture, claim hierarchy, figure sequence
+│   └── 03a_manuscript-structure.md # 章节架构、声明层级、图表顺序
 ├── 04_writing/
-│   └── 04a_manuscript-draft.md    # Draft log, active unit, evidence trace, assembled sections
+│   └── 04a_manuscript-draft.md    # 起草日志、当前段落、证据追溯、章节汇编
 ├── 05_review/
-│   └── 05a_review-report.md       # Diagnosed issues, severity, revision actions, handoff plan
+│   └── 05a_review-report.md       # 诊断问题、严重程度、修改建议、交接方案
 └── 06_polish/
-    └── 06a_polish-log.md          # Original vs polished text, change rationale, boundary checks
+    └── 06a_polish-log.md          # 原始文本 vs 润色后文本、修改理由、边界检查
 ```
 
-These files live in your manuscript project directory, not inside the skill repository. They accumulate as you progress. At any point, you can open them, read them, and edit them directly.
+这些文件存放在你的论文项目目录中，不在 Skill 代码仓库内。随着推进逐步积累。任何时候你都可以打开、阅读、直接编辑它们。
 
-## Getting Started
+## 开始使用
 
-**If you are starting from scratch** — you have a proposal, figures, code, or just a research idea — begin with the **prepare** stage. Tell the skill:
+**如果你从零开始** — 手头有项目申请书、图表、代码或只是研究想法 — 从 **prepare** 阶段开始。告诉工具：
 
-- Your research proposal or project plan
-- A rough description of your study
-- Figures or figure descriptions
-- Code or data descriptions (if available)
-- Your target journal (if already decided)
-- Any advisor requirements or constraints
+- 你的研究计划或项目申请书
+- 研究的简要描述
+- 图表或图表描述
+- 代码或数据描述（如有）
+- 目标期刊（如已确定）
+- 导师的要求或限制
 
-The skill will ask **3–5 critical questions** to resolve missing information, then generate the project brief and evidence inventory. It will not jump ahead to drafting prose during prepare.
+工具会先问 **3-5 个关键问题** 来澄清缺失信息，然后生成项目简报和证据清单。在此阶段不会跳入正文起草。
 
-**If you already have project files from a previous session**, just open the project directory and tell the skill where you left off. The skill also detects which files already exist and can suggest which stage to resume. You do not need to remember exactly where you stopped.
+**如果你已有之前生成的项目文件**，打开项目目录，告诉工具你上次做到哪了。工具也能自动检测已有文件，判断当前应该从哪个阶段继续。你不需要记住精确的进度。
 
-## Going Back and Iterating
+## 返回修改与反复打磨
 
-Each stage can send you back to an earlier stage when needed:
+每个阶段都可以在需要时回到更早的阶段：
 
-| From | Can go back to | Typical reason |
+| 从 | 可以回到 | 常见原因 |
 |------|---------------|----------------|
-| review | writing, structure, methods, prepare | Evidence gap, structural flaw, missing data |
-| polish | writing, review | Claim needs rewriting, evidence boundary unclear |
-| writing | structure, methods | Section architecture doesn't fit, method detail missing |
+| 审查 | 写作、结构、方法、准备 | 证据缺失、结构缺陷、数据不足 |
+| 润色 | 写作、审查 | 声明需重写、证据边界不清晰 |
+| 写作 | 结构、方法 | 章节架构不匹配、方法细节缺失 |
 
-This means your manuscript is never locked in. Advisor feedback, new data, a revised figure — any of these can trigger a return to the right stage, update the relevant file, and continue forward. The skill preserves what was already confirmed and updates only what changed.
+这意味着你的论文不会被锁死。导师反馈、新数据、修改后的图表 — 任何变化都可以触发回到对应阶段，更新相关文件，然后继续前进。工具保留已确认的内容，只更新有变化的部分。
 
-## Core Workflow
+## 六个阶段总览
 
-| # | Stage | What it does |
+| # | 阶段 | 做什么 |
 |---|-------|-------------|
-| 01 | **prepare** | Turn proposals, figures, and code outputs into a project brief and evidence inventory |
-| 02 | **methods** | Document data sources, processing, derived variables, and statistical methods |
-| 03 | **structure** | Design the manuscript architecture — central story, claim hierarchy, figure sequence |
-| 04 | **writing** | Draft manuscript prose one paragraph or subsection at a time |
-| 05 | **review** | Diagnose evidence, claims, logic, journal fit, and revision priorities |
-| 06 | **polish** | Refine confirmed text for clarity, flow, journal voice, and natural academic expression |
+| 01 | **准备** | 把申请书、图表和代码产出转化为项目简报和证据清单 |
+| 02 | **方法** | 记录数据来源、处理流程、衍生变量和统计方法 |
+| 03 | **结构** | 设计手稿架构 — 核心故事、声明层级、图表顺序 |
+| 04 | **写作** | 逐段起草论文正文 |
+| 05 | **审查** | 诊断证据、声明、逻辑、期刊适配度，拟定修改优先级 |
+| 06 | **润色** | 精修已确认文本 — 优化清晰度、流畅度和期刊语气 |
 
-Each stage can be paused and resumed later. If you are unsure which stage to start from, just describe what you have (proposal, figures, partial draft, advisor comments) and the skill will route you to the right stage.
+每个阶段可以暂停和稍后继续。如果不确定从哪个阶段开始，只需描述你手头有什么材料（申请书、图表、部分草稿、导师意见），工具会帮你判断从哪个阶段切入。
 
-## Target Journal Handling
+## 目标期刊处理
 
-The skill follows a strict rule: **you decide the target journal**.
+工具遵循一条硬规则：**你决定目标期刊**。
 
-- If you provide a target journal, the skill records it and uses the corresponding journal profile for narrative architecture, claim depth, and voice.
-- If you have not chosen a journal, the skill writes `target journal: not specified yet` and proceeds with general-purpose guidance.
-- If you ask for journal suggestions, the skill offers 2–3 options with narrative-fit reasoning and recommends discussing with your advisor or coauthors.
-- Journal profiles shape narrative and voice — they are not used for premature compression. Length-limit checks only occur during late-stage polish if you request them.
+- 如果你给出了目标期刊，工具会如实记录，并在结构、写作、审查和润色阶段使用对应的期刊 profile 来指导叙事架构、声明深度和语气。
+- 如果你还没选定期刊，工具写上 `target journal: not specified yet`，按通用标准推进。
+- 如果你明确要求期刊建议，工具会给出 2-3 个选项，附带简要的叙事适配分析，并建议与导师或合作者讨论。
+- 期刊 profile 用于叙事和语气指导，不用于过早压缩内容。字数限制检查仅在后期润色阶段、你明确要求时执行。
 
-## Journal Profiles Included
+## 已内置的期刊 Profile
 
-| Journal | Narrative identity |
+| 期刊 | 叙事定位 |
 |---------|-------------------|
-| **GRL** (Geophysical Research Letters) | Single sharp message, concise, short discussion |
-| **JGR-Oceans** | Complete evidence chain, rigorous, methods-transparent |
-| **JPO** (Journal of Physical Oceanography) | Dynamics-first, mechanism-forward, physically precise |
-| **Nature Communications** | Broad significance, cross-disciplinary accessible, evidence-bounded |
-| **Nature Climate Change** | Climate-change-centered, Earth-system-relevant, consequence-focused |
+| **GRL**（Geophysical Research Letters） | 单一锐利结论、精炼、简短讨论 |
+| **JGR-Oceans** | 完整证据链、方法透明、论证严谨 |
+| **JPO**（Journal of Physical Oceanography） | 动力学优先、机制驱动、物理精确 |
+| **Nature Communications** | 广泛意义、跨学科可读、证据有边界 |
+| **Nature Climate Change** | 气候变化中心、地球系统关联、后果导向 |
 
-## Writing and Polishing Philosophy
+## 写作与润色理念
 
-Both writing and polish follow a **micro-unit approach** — small, confirmable pieces rather than large blocks.
+写作和润色都遵循**微单元原则** — 小块可确认的文字，而非大段一次性生成。
 
-### Writing (micro-drafting)
+### 写作（微起草）
 
-- **Default unit:** one paragraph.
-- **Maximum unit:** one subsection.
-- Full-section drafting is not the default. Provisional sketches are labeled `[provisional, not final prose]`.
-- Each unit is drafted, reviewed, and confirmed before moving to the next.
-- Default drafting order: Methods → Results → Discussion → Introduction → Conclusion → Abstract.
+- **默认单元：** 一段。
+- **最大单元：** 一个小节。
+- 全文起草不是默认选项。临时性的结构草图会标注 `[provisional, not final prose]`。
+- 每段起草后、你确认了，再推进到下一段。
+- 默认起草顺序：方法 → 结果 → 讨论 → 引言 → 结论 → 摘要。
 
-### Polish (micro-polishing)
+### 润色（微润色）
 
-- **Default unit:** one paragraph or draft unit.
-- **Maximum unit:** one subsection.
-- Full-manuscript rewriting is not the default. Unit-by-unit polish is recommended.
-- Manuscript-level polish is limited to consistency checks — not full-text rewriting.
-- Each polished unit requires your confirmation before it is marked as final.
+- **默认单元：** 一段或一个起草单元。
+- **最大单元：** 一个小节。
+- 全文重写不是默认选项。推荐逐单元润色。
+- 全文级润色仅限于一致性检查 — 不是全文重写。
+- 每单元润色后需要你确认才能标为最终版。
 
-Polish refines wording, style, and flow. It does **not** fix evidence gaps. If a claim is unsupported, the skill flags it and sends you back to an earlier stage.
+润色优化措辞、风格和流畅度。它**不修复**证据缺口。如果某条声明缺乏支撑，工具会标记它并把你送回检查点，而不是润色成它看起来更强的样子。
 
-## Zotero and Literature Support
+## Zotero 文献支持
 
-Zotero MCP (`cookjohn/zotero-mcp`) has been tested and connects the skill to your Zotero library.
+Zotero MCP（`cookjohn/zotero-mcp`）已测试通过，可以将工具连接到你的 Zotero 文献库。
 
-**When Zotero enters the workflow:**
+**Zotero 在什么阶段介入：**
 
-- **Writing stage (most common):** When drafting Introduction or Discussion, the skill identifies which claims need literature support and asks to search your Zotero library. You specify a collection, a topic, or key papers; the skill searches, reads, and grounds each claim in real references.
-- **Methods stage:** For canonical dataset or method citations.
-- **Review stage:** To check whether claims have adequate citation coverage.
+- **写作阶段（最常见）：** 起草引言或讨论时，工具会识别哪些声明需要文献支撑，并征求你的同意后搜索 Zotero。你指定合集名称、主题或关键论文；工具搜索、阅读，将每条声明锚定到真实文献上。
+- **方法阶段：** 查找数据产品或方法的标准引用。
+- **审查阶段：** 检查声明是否有足够的引用覆盖。
 
-**Before every Zotero search, the skill will:**
+**每次搜索 Zotero 之前，工具会：**
 
-- explain why it needs to access Zotero
-- specify what collection, query, or item it will read
-- confirm the operation is read-only
-- wait for your explicit confirmation
+- 说明为什么需要访问 Zotero
+- 说明要读取什么：合集、查询、条目、笔记、注释
+- 确认操作为只读
+- 等待你明确确认后才执行
 
-The skill operates in **read-only mode by default** — it never creates, edits, or deletes anything in your Zotero library unless you explicitly request a write operation.
+工具默认以**只读模式**运行 — 除非你明确要求并确认具体的写入操作，否则不会在你的 Zotero 库中创建、编辑或删除任何内容。
 
-Missing citations are marked as `[CITATION NEEDED]` — the skill never fabricates references.
+缺失的引用会标记为 `[CITATION NEEDED]` — 工具从不编造参考文献。
 
-Full integration reference: `references/zotero/README.md`
+完整集成文档：`references/zotero/README.md`
 
-## Repository Structure
+## 代码仓库结构
 
 ```
-SKILL.md                     # AI execution rules — loaded by the skill system
-README.md                    # This file — user-facing guide
+SKILL.md                     # AI 执行规则 — Skill 系统加载的主入口
+README.md                    # 本文件 — 用户使用说明
 references/
-  workflow/                  # Stage-by-stage workflow rules
-  templates/                 # Output format templates for each stage
-  journals/                  # Journal profiles (GRL, JGR, JPO, NC, NCC)
-  writing/                   # Section-specific writing guides
-  review/                    # Anti-AI phrasing references
-  zotero/                    # Zotero integration reference and setup record
-examples/                    # Stage-by-stage usage examples
-docs/                        # Migration and planning documents
+  workflow/                  # 分阶段的流程规则
+  templates/                 # 各阶段输出文件的格式模板
+  journals/                  # 期刊 profile（GRL、JGR、JPO、NC、NCC）
+  writing/                   # 各章节写作指南
+  review/                    # 反 AI 模式参考
+  zotero/                    # Zotero 集成说明与配置记录
+examples/                    # 分阶段使用示例
+docs/                        # 迁移与规划文档
 ```
 
-## Current Status
+## 当前状态
 
-All six workflow modules and their corresponding templates are implemented. Five journal profiles are complete. The skill is ready for real project testing.
+六个阶段的流程模块和对应模板全部完成。五个期刊 profile 完整。工具已准备就绪，可用于真实项目测试。
 
-- **Workflow modules:** prepare, methods, structure, writing, review, polish — complete
-- **Templates:** all seven output file templates — complete
-- **Journal profiles:** GRL, JGR-Oceans, JPO, Nature Communications, Nature Climate Change — complete
-- **Zotero integration:** MCP setup tested and documented (`cookjohn/zotero-mcp`); read-only by default; user confirmation required before each call
-- **Examples:** stage-by-stage usage examples are available in `examples/`
-- **Writing guides:** section-specific guides in `references/writing/`
+- **流程模块：** 准备、方法、结构、写作、审查、润色 — 全部完成
+- **模板：** 全部七个输出文件模板 — 全部完成
+- **期刊 profile：** GRL、JGR-Oceans、JPO、Nature Communications、Nature Climate Change — 全部完成
+- **Zotero 集成：** MCP 设置已测试并记录（`cookjohn/zotero-mcp`）；默认只读；每次调用前需用户确认
+- **示例：** 分阶段使用示例见 `examples/`
+- **写作指南：** 各章节写作指南见 `references/writing/`
 
-## Maintenance Notes
+## 维护说明
 
-When extending or maintaining this repository:
+扩展或维护此代码仓库时：
 
-- Keep workflow files compact and focused on a single stage.
-- Put large output structures in template files, not in workflow files.
-- Add new journal profiles using the narrative-oriented template at `references/journals/_template.md`.
-- Do not add too many default output files per stage — one or two per stage is the rule.
-- Preserve the stage-by-stage design. Do not merge stages or allow multi-stage jumps.
-- Preserve micro-drafting and micro-polishing rules. Units are small by design.
-- Preserve the target-journal user-decision rule. The skill never decides for the user.
-- Preserve evidence boundaries. Claims must be traceable to evidence at every stage.
+- 保持流程文件紧凑，每个文件聚焦单一阶段。
+- 较大篇幅的输出结构放在模板文件中，不放在流程文件中。
+- 新增期刊 profile 使用 `references/journals/_template.md` 的统一模板。
+- 每个阶段默认不超过 1-2 个输出文件。
+- 保留逐阶段推进的设计。不要合并阶段或允许多阶段跳转。
+- 保留微起草和微润色规则。小单元是设计意图。
+- 保留目标期刊由用户决定的规则。工具不替用户做选择。
+- 保留证据边界。每个阶段的声明必须可追溯到证据。
