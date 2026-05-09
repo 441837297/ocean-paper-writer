@@ -29,7 +29,7 @@
 
 ## Polish Priority
 
-[User-specified priority — e.g., clarity, concision, journal voice, de-AI, advisor feedback, or general refinement.]
+[User-specified priority — e.g., clarity, concision, journal voice, style naturalization, advisor feedback, or general refinement.]
 
 ## Active Polish Unit
 
@@ -57,7 +57,7 @@
 | flow | [abrupt transition] | [revision] | [why this improves flow] | yes |
 | claim strength | [verb too strong for evidence] | [revision] | [evidence boundary requires milder language] | yes |
 
-**Change types:** `clarity` / `flow` / `claim strength` / `journal voice` / `terminology` / `de-AI` / `hedging` / `citation` / `bilingual` / `advisor feedback`
+**Change types:** `clarity` / `flow` / `claim strength` / `journal voice` / `terminology` / `style naturalization` / `hedging` / `citation` / `bilingual` / `advisor feedback`
 
 ## Evidence Boundary Check
 
@@ -137,6 +137,29 @@
 
 - Destination:
 - Rationale:
+
+## Style Naturalization Audit Report
+
+*Only populated when audit mode is requested.*
+
+| ID | Text span | Category | Risk | Why it matters | User decision |
+|----|-----------|----------|------|----------------|---------------|
+| S01 | [quote] | [vocabulary / filler / transition / sentence / overclaim] | [high / medium / optional] | [reason] | [fix / defer / ignore] |
+
+## Style Naturalization Rewrite Log
+
+*Only populated after user-selected items are rewritten.*
+
+| ID | Original | Revised | Rationale | Boundary preserved |
+|----|----------|---------|-----------|--------------------|
+| S01 | [original text] | [revised text] | [why changed] | [yes / [POLISH BLOCKER]] |
+
+**Tracking mode:** [Markdown polish log / LaTeX comments / none]
+
+If LaTeX comments are used, label them as:
+```
+% [Style Naturalization] Original:
+```
 
 ## Update Summary
 

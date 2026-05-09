@@ -67,7 +67,8 @@ The primary claim is the central argument everything else serves. All sections b
 
 Default drafting order if the user has no preference: Methods → Results → Discussion → Introduction → Conclusion → Abstract.
 
-Reasoning: Write the most factual sections first (Methods, Results) so the narrative sections (Introduction, Discussion) can refer to established findings. Abstract is written last as it distills everything.
+Reasoning: Write the most factual sections first (Methods, Results) so the narrative sections (Introduction, Discussion) can refer to established findings.
+Abstract is written last as it distills everything.
 
 ## Figure Sequence
 

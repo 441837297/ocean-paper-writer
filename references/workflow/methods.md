@@ -2,7 +2,9 @@
 
 ## Purpose
 
-The methods workflow reconstructs data sources, preprocessing, analysis steps, statistical methods, and reproducibility details from code, notebooks, README files, data descriptions, and user explanations. Its goals are to:
+The methods workflow reconstructs data sources, preprocessing, analysis steps, statistical methods,
+and reproducibility details from code, notebooks, README files, data descriptions, and user
+explanations. Its goals are to:
 
 - Reconstruct and confirm the complete analysis chain before any methods prose is drafted
 - Cross-check user descriptions against code and README for consistency
@@ -11,7 +13,9 @@ The methods workflow reconstructs data sources, preprocessing, analysis steps, s
 
 ## When to Use
 
-Run methods when: prepare stage is complete; the user has code, notebooks, or data descriptions; the user needs to organize methods before story structuring; or the user wants to verify that the code does what they describe.
+Run methods when: prepare stage is complete; the user has code, notebooks, or data descriptions;
+the user needs to organize methods before story structuring; or the user wants to verify that the
+code does what they describe.
 
 Do **not** run methods when: no code or data description is available; prepare stage is not complete; or the user only wants to polish an existing methods section.
 

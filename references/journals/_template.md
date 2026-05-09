@@ -2,7 +2,9 @@
 
 This template defines the six-section structure that every journal profile in this repository follows.
 
-Journal profiles are **not** a submission-rule checklist. They exist to help the AI understand what kind of story, reasoning, evidence, and writing voice the journal expects from an ocean science manuscript. Hard constraints (word limits, figure counts, formatting) are deferred to the final section and treated as late-stage compression notes, not drafting constraints.
+Journal profiles are **not** a submission-rule checklist.
+They exist to help the AI understand what kind of story, reasoning, evidence, and writing voice the journal expects from an ocean science manuscript.
+Hard constraints (word limits, figure counts, formatting) are deferred to the final section and treated as late-stage compression notes, not drafting constraints.
 
 For the full manuscript-building workflow, see the six pipeline phases under `references/workflow/`.
 
@@ -31,7 +33,8 @@ This section answers:
 
 **Purpose:** Map the specific types of ocean science research that align with this journal.
 
-Each journal profile should select only the story types that genuinely fit. Example archetypes (choose relevant ones, not all):
+Each journal profile should select only the story types that genuinely fit.
+Example archetypes (choose relevant ones, not all):
 
 | Story Type | Description | Fits? |
 |-----------|-------------|-------|
@@ -47,7 +50,8 @@ Each journal profile should select only the story types that genuinely fit. Exam
 
 - State clearly which story types are preferred, tolerated, and discouraged.
 - For type "regional case": is the journal's bar for "broader significance" high or low?
-- For type "method/data": does the journal accept pure method papers, or must they demonstrate a scientific finding enabled by the method?
+- For type "method/data":
+does the journal accept pure method papers, or must they demonstrate a scientific finding enabled by the method?
 
 ---
 
@@ -172,11 +176,13 @@ Include only:
 - **What to cut first if over length:** secondary figures, extended discussion tangents, excessive methodological detail
 - **Hard constraints to verify:** approximate word count range, approximate abstract length, approximate figure count (if the journal is strict about these)
 - **Structural pitfalls:** common last-minute format mismatches (e.g., no separate Conclusion when the journal expects one, Results and Discussion separated when they should be combined)
-- **Submission checklist items** that are easy to forget: data availability statement, author contributions, competing interests, cover letter requirements
+- **Submission checklist items** that are easy to forget:
+data availability statement, author contributions, competing interests, cover letter requirements
 
 **Do not turn this section into a full submission guide.** Three to five bullet points are sufficient.
 
 ---
 
 *Template: references/journals/_template.md*
-*This file defines the canonical structure for all journal profiles in this repository. It should not be used as a writing guide itself.*
+*This file defines the canonical structure for all journal profiles in this repository.
+It should not be used as a writing guide itself.*

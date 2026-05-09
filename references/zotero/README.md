@@ -4,7 +4,8 @@
 
 Zotero supports literature retrieval, citation grounding, annotation reading, and claim-context comparison. It does not replace the user's evidence, figures, data, or scientific judgment.
 
-This integration is the **literature support layer** of the Ocean Paper Builder workflow — it feeds real, user-curated references into writing and review rather than relying on fabricated or generic citations.
+This integration is the **literature support layer** of the Ocean Paper Writer workflow —
+it feeds real, user-curated references into writing and review rather than relying on fabricated or generic citations.
 
 ## Default Mode: Read-only
 
@@ -27,7 +28,7 @@ The Zotero MCP exposes 22 tools including write-capable ones. By default, only r
 - add_items_to_collection / remove_items_from_collection
 - any write operation on the Zotero library
 
-Write operations are only considered if the user explicitly requests and confirms them. Ocean Paper Builder does not require write operations by default.
+Write operations are only considered if the user explicitly requests and confirms them. Ocean Paper Writer does not require write operations by default.
 
 **Important:** Before each Zotero MCP call, the AI must explain to the user:
 - why it needs to access Zotero

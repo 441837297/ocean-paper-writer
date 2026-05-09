@@ -35,7 +35,9 @@ Create one row per distinct claim. A "finding" that is better stated as two sepa
 
 ### Claim rules (do not violate these):
 
-- **A visual pattern is not a physical mechanism.** If the claim states a mechanism, verify that process-based diagnostics support it. Otherwise mark the claim strength as "suggestive" and note what diagnostics are missing.
+- **A visual pattern is not a physical mechanism.**
+  If the claim states a mechanism, verify that process-based diagnostics support it.
+  Otherwise mark the claim strength as "suggestive" and note what diagnostics are missing.
 - **A correlation is not causation.** If the claim implies causality (X drives Y, X controls Y), note that the evidence is correlative and alternative explanations have not been ruled out.
 - **A regional pattern is not a global implication.** If the claim generalizes beyond the study region, note what additional evidence would be needed.
 - **A short-record trend is not a climate trend.** If the claim involves a trend, note the record length and whether natural variability (ENSO, PDO, SAM, decadal modes) has been separated.
@@ -47,7 +49,9 @@ Create one row per distinct claim. A "finding" that is better stated as two sepa
 | C1 | Fig1, Fig3 | [specific support] | [limitations] | [what would strengthen the claim] |
 | C2 | Fig2 | [specific support] | [limitations] | [what would strengthen the claim] |
 
-This matrix is the most critical diagnostic tool in prepare. If a claim has no figure, mark the claim as unsupported. If a figure does not support any claim, the figure may be contextual or unnecessary.
+This matrix is the most critical diagnostic tool in prepare.
+If a claim has no figure, mark the claim as unsupported.
+If a figure does not support any claim, the figure may be contextual or unnecessary.
 
 ## Missing Evidence Checklist
 

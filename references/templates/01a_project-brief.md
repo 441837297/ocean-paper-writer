@@ -20,7 +20,9 @@ List what the user provided as input:
 
 ## Core Research Question
 
-[One clear sentence stating the central question the manuscript addresses. If the user gave multiple questions, list the primary question and secondary questions separately. If no clear question, mark as [MISSING].]
+[One clear sentence stating the central question the manuscript addresses.
+If the user gave multiple questions, list the primary question and secondary questions separately.
+If no clear question, mark as [MISSING].]
 
 ## Working Hypotheses or Expectations
 

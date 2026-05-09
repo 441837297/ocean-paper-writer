@@ -6,7 +6,9 @@ Journal of Geophysical Research: Oceans
 
 ## 1. Journal Narrative Identity
 
-JGR-Oceans is a **complete-evidence-chain** journal. It does not publish single-finding research letters or preliminary results. It publishes comprehensive studies where the evidence is sufficient to support the full chain from observation/experiment through analysis to physical interpretation.
+JGR-Oceans is a **complete-evidence-chain** journal.
+It does not publish single-finding research letters or preliminary results.
+It publishes comprehensive studies where the evidence is sufficient to support the full chain from observation/experiment through analysis to physical interpretation.
 
 In ocean science, JGR-Oceans is the right home when you have:
 
@@ -22,7 +24,9 @@ JGR-Oceans is **not** the right home when:
 - The mechanism is entirely speculative without process-oriented analysis
 - The contribution is primarily methodological without a clear scientific application
 
-The core narrative personality of JGR-Oceans is: **thorough, rigorous, complete**. A successful JGR-Oceans paper tells a complete story where each link in the evidence chain is documented and justified. The reader finishes knowing not just what was found, but why it is the correct interpretation and what its limitations are.
+The core narrative personality of JGR-Oceans is: **thorough, rigorous, complete**.
+A successful JGR-Oceans paper tells a complete story where each link in the evidence chain is documented and justified.
+The reader finishes knowing not just what was found, but why it is the correct interpretation and what its limitations are.
 
 ---
 
@@ -30,23 +34,29 @@ The core narrative personality of JGR-Oceans is: **thorough, rigorous, complete*
 
 ### Complete observational-mechanistic study
 
-The most natural fit for JGR-Oceans. A study that combines observational analysis with process-based diagnostics to explain a physical mechanism. The contribution lies in the complete chain: detection → characterization → mechanism → implication.
+The most natural fit for JGR-Oceans.
+A study that combines observational analysis with process-based diagnostics to explain a physical mechanism.
+The contribution lies in the complete chain: detection → characterization → mechanism → implication.
 
 ### Multi-evidence synthesis study
 
-A study that uses multiple independent data sources (satellite, in situ, reanalysis, model) to build a robust picture of a phenomenon or process. Each data type contributes a different piece of evidence, and the convergence across datasets strengthens the central claim.
+A study that uses multiple independent data sources (satellite, in situ, reanalysis, model) to build a robust picture of a phenomenon or process.
+Each data type contributes a different piece of evidence, and the convergence across datasets strengthens the central claim.
 
 ### Regional process study with broader relevance
 
-A detailed regional analysis that documents a process thoroughly enough that the findings inform understanding of analogous systems. Regional context, multiple data sources, and quantitative comparison with other regions strengthen this story type.
+A detailed regional analysis that documents a process thoroughly enough that the findings inform understanding of analogous systems.
+Regional context, multiple data sources, and quantitative comparison with other regions strengthen this story type.
 
 ### Method-enabled scientific study with validation
 
-A methodological advance (new algorithm, new retrieval, new assimilation technique) applied to a scientific question, with thorough validation. The method should be documented in sufficient detail for reproducibility, and the scientific finding should be clearly demonstrated.
+A methodological advance (new algorithm, new retrieval, new assimilation technique) applied to a scientific question, with thorough validation.
+The method should be documented in sufficient detail for reproducibility, and the scientific finding should be clearly demonstrated.
 
 ### Process-oriented modeling study
 
-A modeling study that tests a mechanism or quantifies a process, with sufficient sensitivity tests and uncertainty assessment. Pure description without mechanistic testing belongs in a different format.
+A modeling study that tests a mechanism or quantifies a process, with sufficient sensitivity tests and uncertainty assessment.
+Pure description without mechanistic testing belongs in a different format.
 
 ### Stories that belong elsewhere:
 
@@ -64,15 +74,20 @@ A modeling study that tests a mechanism or quantifies a process, with sufficient
 
 ### Claim structure
 
-JGR-Oceans accommodates a **primary claim supported by secondary claims**. Unlike journals that demand a single central message, JGR-Oceans allows the narrative to develop through multiple supporting findings that collectively establish the main conclusion. Each secondary claim should be independently supported, but the overall weight of evidence carries the argument.
+JGR-Oceans accommodates a **primary claim supported by secondary claims**.
+Unlike journals that demand a single central message, JGR-Oceans allows the narrative to develop through multiple supporting findings that collectively establish the main conclusion.
+Each secondary claim should be independently supported, but the overall weight of evidence carries the argument.
 
 ### How much evidence is enough
 
 JGR-Oceans requires **enough evidence to convince a skeptical specialist**. Key principles:
 
-- **Multiple lines of evidence are expected:** A claim supported by satellite data alone is weaker than one supported by satellite data, in situ observations, and process-based diagnostics. Convergence of independent evidence is the gold standard.
-- **Validation is not optional:** Claims based on new methods, algorithms, or model configurations must include validation against independent observations. Validation in supplementary material is acceptable for secondary points, but the primary validation of the central method belongs in the main text.
-- **Uncertainty quantification is expected:** Error bars, confidence intervals, ensemble spread, or sensitivity tests should accompany quantitative claims. If uncertainty cannot be quantified, the limitation must be acknowledged.
+- **Multiple lines of evidence are expected:** A claim supported by satellite data alone is weaker than one supported by satellite data, in situ observations, and process-based diagnostics.
+Convergence of independent evidence is the gold standard.
+- **Validation is not optional:** Claims based on new methods, algorithms, or model configurations must include validation against independent observations.
+Validation in supplementary material is acceptable for secondary points, but the primary validation of the central method belongs in the main text.
+- **Uncertainty quantification is expected:** Error bars, confidence intervals, ensemble spread, or sensitivity tests should accompany quantitative claims.
+If uncertainty cannot be quantified, the limitation must be acknowledged.
 
 ### Mechanism language
 
@@ -84,11 +99,18 @@ Mechanism language in JGR-Oceans should be matched to the evidence level:
 
 ### Ocean science-specific evidence logic
 
-- **Satellite-in situ consistency:** When satellite data form the basis of the central claim, in situ validation in the main text significantly strengthens the paper. For JGR-Oceans, a supplementary-only validation is generally insufficient for the central claim.
-- **Temporal coverage and trend attribution:** Trend claims require explicit demonstration that the record length is sufficient to separate the trend from natural variability. Multi-decadal records are expected for trend claims. Methods for trend estimation (linear regression, Mann-Kendall, etc.) should be justified.
-- **Spatial generalization:** A regional study should bound its generalization claims. Generalization to other regions is acceptable when supported by physical reasoning or by demonstrating similar patterns in additional regions. Claims of global relevance require global or basin-scale evidence.
-- **Model-observation comparison:** Model biases should be acknowledged and their impact on conclusions discussed. Systematic biases that affect the central claim must be addressed, not deferred.
-- **Seasonal cycle treatment:** Studies claiming long-term changes must demonstrate that the seasonal cycle, interannual variability, and trend have been properly separated. Seasonal decomposition should be documented.
+- **Satellite-in situ consistency:** When satellite data form the basis of the central claim, in situ validation in the main text significantly strengthens the paper.
+For JGR-Oceans, a supplementary-only validation is generally insufficient for the central claim.
+- **Temporal coverage and trend attribution:** Trend claims require explicit demonstration that the record length is sufficient to separate the trend from natural variability.
+Multi-decadal records are expected for trend claims.
+Methods for trend estimation (linear regression, Mann-Kendall, etc.) should be justified.
+- **Spatial generalization:** A regional study should bound its generalization claims.
+Generalization to other regions is acceptable when supported by physical reasoning or by demonstrating similar patterns in additional regions.
+Claims of global relevance require global or basin-scale evidence.
+- **Model-observation comparison:** Model biases should be acknowledged and their impact on conclusions discussed.
+Systematic biases that affect the central claim must be addressed, not deferred.
+- **Seasonal cycle treatment:** Studies claiming long-term changes must demonstrate that the seasonal cycle, interannual variability, and trend have been properly separated.
+Seasonal decomposition should be documented.
 
 ### Uncertainty handling
 
@@ -114,9 +136,16 @@ A comprehensive but not exhaustive literature review is appropriate, covering th
 
 ### Methods (Data and Methods)
 
-JGR-Oceans Methods should be **sufficient for reproducibility by a specialist**: data sources with access information; spatial/temporal coverage, resolution, and processing steps; statistical methods with justification; model configuration details; algorithm descriptions; and budget calculations or diagnostic methods with equations where appropriate.
+JGR-Oceans Methods should be **sufficient for reproducibility by a specialist**:
+data sources with access information;
+spatial/temporal coverage, resolution, and processing steps;
+statistical methods with justification;
+model configuration details;
+algorithm descriptions;
+and budget calculations or diagnostic methods with equations where appropriate.
 
-Methods can have subsections organized by data type or analytical step. Study area description can be a separate subsection or integrated into the data description.
+Methods can have subsections organized by data type or analytical step.
+Study area description can be a separate subsection or integrated into the data description.
 
 **What can move to supplementary:** Detailed tuning parameters, extended validation against multiple secondary datasets, derivations of standard equations, individual case studies that support but are not essential to the central argument.
 
@@ -148,11 +177,15 @@ The Discussion should not restate Results in detail but should build on them.
 
 ### Conclusion
 
-JGR-Oceans Conclusion should **summarize the complete story**: briefly restate the problem and approach, summarize key findings, state broader significance, and optionally include 1-2 forward-looking sentences. A separate Conclusion section is standard. It should not introduce new evidence or analysis.
+JGR-Oceans Conclusion should **summarize the complete story**: briefly restate the problem and approach, summarize key findings, state broader significance, and optionally include 1-2 forward-looking sentences.
+A separate Conclusion section is standard.
+It should not introduce new evidence or analysis.
 
 ### Abstract
 
-JGR-Oceans Abstracts communicate the full scope of the study: problem → gap → approach → key results → implication. They should be self-contained and accessible to a broad ocean science audience. Avoid excessive jargon and acronyms.
+JGR-Oceans Abstracts communicate the full scope of the study: problem → gap → approach → key results → implication.
+They should be self-contained and accessible to a broad ocean science audience.
+Avoid excessive jargon and acronyms.
 
 ---
 
@@ -160,10 +193,13 @@ JGR-Oceans Abstracts communicate the full scope of the study: problem → gap �
 
 ### Sentence and paragraph rhythm
 
-JGR-Oceans writing is **thorough but not verbose**. Paragraphs are 4-8 sentences, allowing one idea to develop with supporting evidence.
+JGR-Oceans writing is **thorough but not verbose**.
+Paragraphs are 4-8 sentences, allowing one idea to develop with supporting evidence.
 
-- Active voice is preferred: "We analyzed 15 years of satellite data" not "An analysis of 15 years of satellite data was conducted."
-- Transitions between paragraphs should be logical but can be explicit: "Having established the spatial patterns, we next examine the temporal evolution."
+- Active voice is preferred:
+"We analyzed 15 years of satellite data" not "An analysis of 15 years of satellite data was conducted."
+- Transitions between paragraphs should be logical but can be explicit:
+"Having established the spatial patterns, we next examine the temporal evolution."
 - Avoid padding: "It is worth noting that", "It should be mentioned that" — cut these. Let the evidence speak.
 
 ### Claim strength and hedging
@@ -176,11 +212,13 @@ JGR-Oceans claims are **strong but bounded by the evidence**:
 | Strong pattern with plausible mechanism | "indicates", "suggests", "is consistent with" | "The spatial pattern suggests that mesoscale strain controls frontal formation." |
 | Plausible but not tested | "may", "could", "possibly" | "This mechanism may also be active in the subtropical gyres." |
 
-Claims should be matched to evidence: direct quantitative analysis supports "demonstrates" or "establishes"; suggestive patterns support "indicates" or "suggests". Inflated claims without support weaken the paper regardless of journal.
+Claims should be matched to evidence: direct quantitative analysis supports "demonstrates" or "establishes"; suggestive patterns support "indicates" or "suggests".
+Inflated claims without support weaken the paper regardless of journal.
 
 ### Level of technicality
 
-JGR-Oceans is read by a **specialist ocean science audience** but includes non-specialist geoscientists. Domain terminology should be defined on first use, acronyms minimized, and equations accompanied by plain-language explanation of their physical meaning.
+JGR-Oceans is read by a **specialist ocean science audience** but includes non-specialist geoscientists.
+Domain terminology should be defined on first use, acronyms minimized, and equations accompanied by plain-language explanation of their physical meaning.
 
 ### Mechanism language — process diagnostics
 
@@ -195,7 +233,8 @@ Without process-oriented diagnostics, mechanism language should be limited to "s
 
 ### Broader significance framing
 
-JGR-Oceans significance should be **scientific first, societal second**. "These results provide a mechanistic basis for understanding how mesoscale eddies modulate the ocean carbon sink" is appropriate; "These results have direct policy implications" requires evidence to support.
+JGR-Oceans significance should be **scientific first, societal second**.
+"These results provide a mechanistic basis for understanding how mesoscale eddies modulate the ocean carbon sink" is appropriate; "These results have direct policy implications" requires evidence to support.
 
 ---
 
@@ -229,10 +268,13 @@ These constraints should only be applied during the late polishing pass, not dur
 
 ### Structure fit notes
 
-- **Introduction too short for scope:** JGR-Oceans expects enough context to position the study within the existing literature. An Introduction that jumps directly to the gap without establishing context underserves the readership.
-- **Methods insufficient for reproducibility:** JGR-Oceans reviewers expect enough detail to evaluate the approach independently. "Data were processed using standard methods" without specifying which methods or how parameters were set is insufficient.
+- **Introduction too short for scope:** JGR-Oceans expects enough context to position the study within the existing literature.
+An Introduction that jumps directly to the gap without establishing context underserves the readership.
+- **Methods insufficient for reproducibility:** JGR-Oceans reviewers expect enough detail to evaluate the approach independently.
+"Data were processed using standard methods" without specifying which methods or how parameters were set is insufficient.
 - **Discussion that focuses only on the study region:** JGR-Oceans expects the Discussion to connect regional findings to broader processes, including quantitative comparison with other regions where data exist.
-- **Missing limitation acknowledgment:** JGR-Oceans expects honest assessment of what the data and methods can and cannot support. A paper without any limitations section or paragraph reads as lacking critical self-assessment.
+- **Missing limitation acknowledgment:** JGR-Oceans expects honest assessment of what the data and methods can and cannot support.
+A paper without any limitations section or paragraph reads as lacking critical self-assessment.
 - **Overclaiming mechanism without supporting diagnostics:** If the mechanism claim uses "demonstrates" but the evidence is correlative, the narrative fit is weak — either strengthen the evidence or adjust the claim language.
 
 ---

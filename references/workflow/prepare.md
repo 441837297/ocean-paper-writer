@@ -26,7 +26,9 @@ Do **not** run prepare when:
 
 > Prepare is a material-building stage, not a drafting stage.
 
-The development philosophy follows the **少 → 多 → 少** (less → more → less) arc: the user starts with scattered inputs; prepare expands them into a structured evidence inventory; later stages compress them into a focused journal-ready narrative.
+The development philosophy follows the **少 → 多 → 少** (less → more → less) arc:
+the user starts with scattered inputs; prepare expands them into a structured evidence inventory;
+later stages compress them into a focused journal-ready narrative.
 
 ## Required Outputs
 

@@ -2,7 +2,9 @@
 
 ## Purpose
 
-The structure workflow decides the manuscript architecture — what story to tell, which claims to feature, how to sequence figures, and which sections carry the narrative. It is a manuscript architecture stage, not a drafting stage. Its goals are to:
+The structure workflow decides the manuscript architecture — what story to tell, which claims to
+feature, how to sequence figures, and which sections carry the narrative.
+It is a manuscript architecture stage, not a drafting stage. Its goals are to:
 
 - Select the central story route from prepare-stage options and user confirmation
 - Build a claim hierarchy: primary claims, secondary claims, and claims not ready for the main story
@@ -12,9 +14,13 @@ The structure workflow decides the manuscript architecture — what story to tel
 
 ## When to Use
 
-Run structure when: prepare and methods stages are complete; the user has a target journal (or is ready to choose one); the user has an outline or section preference to discuss; or the user needs architectural guidance before drafting begins.
+Run structure when: prepare and methods stages are complete; the user has a target journal
+(or is ready to choose one); the user has an outline or section preference to discuss; or the user
+needs architectural guidance before drafting begins.
 
-Do **not** run structure when: prepare or methods are still in progress; the user only wants to draft text without architectural planning; or the user already has a final structure and only needs writing support.
+Do **not** run structure when: prepare or methods are still in progress; the user only wants to
+draft text without architectural planning; or the user already has a final structure and only
+needs writing support.
 
 ## Core Principle
 
@@ -90,14 +96,19 @@ When a target journal is confirmed, load the matching profile:
 | Nature Communications | `references/journals/nc.md` |
 | Nature Climate Change | `references/journals/ncc.md` |
 
-The profile shapes: narrative architecture (sharp message vs. complete chain vs. dynamics-first vs. broad significance vs. climate-change-centered); section emphasis (whether Methods is main text or supplement, whether Discussion should be short or comprehensive); and claim depth (single central claim vs. multi-line evidence).
+The profile shapes: narrative architecture (sharp message vs. complete chain vs. dynamics-first
+vs. broad significance vs. climate-change-centered); section emphasis (whether Methods is main
+text or supplement, whether Discussion should be short or comprehensive); and claim depth (single
+central claim vs. multi-line evidence).
 
 ## Structure Design Logic
 
 The architecture is built in this order:
 
 1. **Central story route** — select one route from the evidence inventory's possible story routes. Confirm with user.
-2. **Claim hierarchy** — classify each claim as primary (must be in main narrative), secondary (supports primary but can be compressed), or not ready (insufficient evidence, move to supplement or defer).
+2. **Claim hierarchy** — classify each claim as primary (must be in main narrative), secondary
+   (supports primary but can be compressed), or not ready (insufficient evidence, move to
+   supplement or defer).
 3. **Section architecture** — design what each section does: Introduction sets up gap, Methods documents approach, Results presents evidence, Discussion interprets, Conclusion states significance.
 4. **Figure sequence** — assign each figure to a section and narrative position. Ensure figures build the story in logical order.
 5. **Main text vs. supplement** — decide which figures, methods details, and secondary analyses belong in supplement.
@@ -110,7 +121,9 @@ The architecture is built in this order:
 | `[MISSING]` | Information the user has not provided |
 | `[UNCERTAIN]` | Information that may change or needs verification |
 
-**Conflict handling:** If the user's outline claims something the evidence does not support, mark `[STRUCTURE CONFLICT]`, present both the outline claim and the evidence limitation, and ask the user to revise.
+**Conflict handling:** If the user's outline claims something the evidence does not support, mark
+`[STRUCTURE CONFLICT]`, present both the outline claim and the evidence limitation, and ask the
+user to revise.
 
 ## Resume and Update Mode
 

@@ -1,6 +1,7 @@
-# Sentence-Level AI Patterns
+# Sentence Naturalization
 
-Category focus: sentence templates that overstate certainty, flatten nuance, or package claims in a generic AI-writing cadence.
+Reduce repetitive sentence structures, generic openings, and template-style phrasing.
+Preserve evidence boundaries and scientific meaning in every rewrite.
 
 ## High Risk
 
@@ -30,4 +31,15 @@ Category focus: sentence templates that overstate certainty, flatten nuance, or 
 
 ---
 
-*Module: sentence-patterns*
+## Ocean-Science Examples
+
+### Risky patterns
+
+| Original | Problem | Better |
+|----------|---------|--------|
+| The results clearly demonstrate that ocean warming is reshaping the regional system. | Overstated mechanism + regional-to-system inflation | The results suggest a warming-related shift in [specific variable], although attribution requires further evidence. |
+| This study provides new insights into the role of mesoscale eddies in climate change. | Inflated novelty + climate-change framing without evidence | This analysis links mesoscale eddy variability to [specific process] during [period/region]. |
+| The model results reveal observed changes in mixed layer depth. | Model output conflated with observation | The model simulation indicates mixed layer depth changes under [forcing/configuration]. |
+| The findings have important implications for global ocean circulation. | Global implication from likely regional study + generic significance | These results suggest [specific regional change] may influence [specific downstream process]. |
+
+*Module: sentence-naturalization*

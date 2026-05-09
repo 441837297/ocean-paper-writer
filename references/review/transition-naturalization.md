@@ -1,6 +1,7 @@
-# Transition and Tone Patterns
+# Transition Naturalization
 
-Category focus: overly smooth transitions, polished filler, and tonal choices that make text sound generic rather than authorial.
+Replace formulaic transitions (Moreover, Furthermore, It is worth noting that) with content-driven logical connections.
+The goal is authorial academic flow, not generic smoothing.
 
 ## High Risk
 
@@ -29,4 +30,26 @@ Category focus: overly smooth transitions, polished filler, and tonal choices th
 
 ---
 
-*Module: transitions-and-tone*
+## Content-Driven Transitions
+
+Prefer content-driven transitions over generic ones.
+The link between ideas should come from the science, not from formulaic connectors.
+
+### Instead of generic transitions
+
+- Moreover, it is worth noting that...
+- Furthermore, the results show...
+- In addition, we find that...
+- Interestingly, the data reveal...
+
+### Use content-driven links
+
+- Because the anomaly is strongest in the western basin, ...
+- After removing the seasonal cycle, ...
+- In contrast to the satellite record, ...
+- This mechanism is consistent with ...
+- The spatial pattern mirrors the known frontal structure in ...
+- During the 2014–2016 warming period, however, ...
+- When the same analysis is applied to Argo float data, ...
+
+*Module: transition-naturalization*

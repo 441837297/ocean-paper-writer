@@ -43,7 +43,8 @@ List all scripts and notebooks relevant to the manuscript. Mark exploratory scri
 
 ### Step 3. Derived variables and metrics
 
-[How each key variable is computed: equations, parameters, baselines, reference periods. E.g., geostrophic velocity from SSH gradients, EKE from velocity anomalies, front detection from SST gradients, eddy tracking method, mixed-layer depth criterion.]
+[How each key variable is computed: equations, parameters, baselines, reference periods.
+E.g., geostrophic velocity from SSH gradients, EKE from velocity anomalies, front detection from SST gradients, eddy tracking method, mixed-layer depth criterion.]
 
 ### Step 4. Statistical analysis
 

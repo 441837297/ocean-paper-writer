@@ -3,13 +3,19 @@ name: ocean-paper-writer
 description: helps ocean science researchers turn proposals, figures, code, data descriptions, target-journal plans, Zotero-supported literature, and advisor feedback into staged manuscript materials through prepare, methods, structure, writing, review, and polish workflows.
 ---
 
-# Ocean Paper Builder
+# Ocean Paper Writer
 
 ## Purpose
 
-This skill helps ocean science and ocean-climate researchers build manuscripts stage by stage — from raw materials (proposals, figures, code, data descriptions, Zotero literature, target-journal plans, and advisor feedback) through to submission-ready polished text.
+This skill helps ocean science and ocean-climate researchers build manuscripts stage by stage —
+from raw materials (proposals, figures, code, data descriptions, Zotero literature,
+target-journal plans, and advisor feedback) through to submission-ready polished text.
 
-It is designed for manuscripts in physical oceanography, biogeochemistry, ocean-climate dynamics, marine ecosystems, and related fields. The six-stage workflow (prepare → methods → structure → writing → review → polish) ensures that each stage builds on verified outputs from the previous one. The skill does not try to produce a full manuscript in one pass.
+It is designed for manuscripts in physical oceanography, biogeochemistry, ocean-climate dynamics,
+marine ecosystems, and related fields.
+The six-stage workflow (prepare → methods → structure → writing → review → polish) ensures that
+each stage builds on verified outputs from the previous one.
+The skill does not try to produce a full manuscript in one pass.
 
 ## Core Workflow
 
@@ -33,7 +39,10 @@ Route the user's request to the correct stage:
 - **Outline, manuscript structure, target journal architecture, section planning:** route to **structure**. The user needs a narrative architecture before drafting.
 - **Draft paragraph, write a section, "write Results/Discussion/Introduction", "write the next paragraph":** route to **writing**. The user wants to generate manuscript prose.
 - "**Check my text", "review this", "critique", advisor comments, "does this hold up?", journal fit:** route to **review**. The user wants diagnosis and revision planning.
-- "**Polish this", "revise wording", "de-AI", "improve language", "make it flow better", journal style, advisor language comments:** route to **polish**. The user wants language refinement on already-confirmed text.
+- "**Polish this", "revise wording", "de-AI", "improve language", "make it flow better",
+  journal style, advisor language comments:** route to **polish**.
+  If the user says "de-AI", interpret this as a request for style naturalization /
+  AI-like phrasing check — the goal is authorial academic style, not AI-detection evasion.
 
 If the user's request is ambiguous or spans multiple stages, ask:
 
@@ -60,7 +69,9 @@ Do not generate stage output files for stages the user has not reached. Do not g
 
 ## How to Use Workflow References
 
-Each stage has a workflow reference file (rules and guidance) and one or more template files (output format). Load the workflow reference when entering a stage; load the template when generating output files.
+Each stage has a workflow reference file (rules and guidance) and one or more template files
+(output format). Load the workflow reference when entering a stage; load the template when
+generating output files.
 
 | Stage | Workflow reference | Template(s) |
 |-------|--------------------|-------------|
@@ -71,9 +82,16 @@ Each stage has a workflow reference file (rules and guidance) and one or more te
 | review | `references/workflow/review.md` | `references/templates/05_review-report.md` |
 | polish | `references/workflow/polish.md` | `references/templates/06_polish-log.md` |
 
-Additional reference modules for writing: `references/writing/methods-and-data.md`, `references/writing/results-and-discussion.md`, `references/writing/introduction-and-gap.md`, `references/writing/conclusions-and-claims.md`, `references/writing/ocean-science-domain.md`, `references/writing/bilingual-output.md`.
+Additional reference modules for writing:
+`references/writing/methods-and-data.md`, `references/writing/results-and-discussion.md`,
+`references/writing/introduction-and-gap.md`, `references/writing/conclusions-and-claims.md`,
+`references/writing/ocean-science-domain.md`, `references/writing/bilingual-output.md`.
 
-Additional reference modules for de-AI phrasing: `references/review/anti-ai-patterns.md`, `references/review/anti-ai-sentence.md`, `references/review/anti-ai-transitions.md`, `references/review/anti-ai-vocabulary.md`.
+Additional reference modules for style naturalization:
+`references/review/style-naturalization.md`,
+`references/review/sentence-naturalization.md`,
+`references/review/transition-naturalization.md`,
+`references/review/vocabulary-naturalization.md`.
 
 ## Journal Profile Handling
 
@@ -94,9 +112,15 @@ Rules:
 - If the user provides a target journal: record it verbatim. Do not argue, override, or substitute. Load the corresponding journal profile during structure / writing / review / polish stages.
 - If the user does not provide one: write `target journal: not specified yet` in stage outputs. Proceed with general-purpose guidance.
 - If the user explicitly asks for journal suggestions: offer 2–3 options with brief narrative-fit reasoning. End with "discuss with your advisor or coauthors."
-- Journal profiles are used for narrative architecture, claim depth, and voice — not for premature compression according to official limits. Length-limit checks only occur during late-stage submission polish if the user explicitly requests them.
+- Journal profiles are used for narrative architecture, claim depth, and voice —
+  not for premature compression according to official limits.
+  Length-limit checks only occur during late-stage submission polish if the user
+  explicitly requests them.
 - Journal-fit concerns are separate from evidence and logic concerns. Do not use journal-fit reasoning to override evidence boundaries.
-- If the target journal is not in the built-in list, and the user provides a submission guide URL plus 3–4 recent papers from that journal, the skill can distill a journal profile on demand. See `references/journals/_distill.md` for the full distillation workflow. Only trigger this when the user explicitly requests it.
+- If the target journal is not in the built-in list, and the user provides a submission guide URL
+  plus 3–4 recent papers from that journal, the skill can distill a journal profile on demand.
+  See `references/journals/_distill.md` for the full distillation workflow.
+  Only trigger this when the user explicitly requests it.
 
 ## Micro-drafting and Micro-polishing
 
@@ -104,19 +128,34 @@ Rules:
 
 - **Default writing unit:** one paragraph.
 - **Maximum writing unit:** one subsection.
-- Full section drafting is not allowed by default. If the user requests a full-section sketch, label it `[provisional, not final prose]`.
+- Larger requests should be handled as provisional outlines or section-by-section planning, not final prose.
 - Each writing unit is drafted in its own turn. After each unit, ask the user: keep / revise / expand / continue to next unit.
 - Do not cross section boundaries in one turn.
-- Drafting order: Methods → Results → Discussion → Introduction → Conclusion → Abstract (default).
+- Drafting order: Methods → Results → Introduction → Discussion → Conclusion → Abstract (default).
 
 ### Polish rules
 
 - **Default polish unit:** one paragraph or draft unit.
 - **Maximum polish unit:** one subsection.
-- Full manuscript rewrite is not allowed by default. If the user requests full-manuscript polish, recommend unit-by-unit polish instead.
 - Manuscript-level polish is limited to consistency checks (terminology, abbreviations, recurring patterns, journal voice alignment) — not full-text rewriting.
+- If the user requests full-manuscript polish, recommend unit-by-unit polish instead.
 - Each polished unit requires user confirmation before it is marked as final.
 - Confirmed polished units can be assembled back into `04_writing/04_manuscript-draft.md` or the user's own manuscript file.
+
+**Style naturalization audit** is an optional polish subworkflow.
+It has two steps:
+
+1. **Detect:** scan confirmed text for AI-like phrasing, generic academic filler,
+   inflated claim language, repetitive sentence rhythm, and ocean-science overclaim patterns.
+2. **Rewrite:** revise only the user-selected items, preserving scientific meaning,
+   claim strength, uncertainty, and citation gaps.
+
+It is not AI-detection evasion.
+It does not hide weak evidence.
+It does not strengthen unsupported claims.
+
+If the user says "de-AI", interpret it as a request for style naturalization /
+AI-like phrasing check, not AI-detection evasion.
 
 ## Resume and Update Behavior
 
@@ -185,7 +224,12 @@ After each stage completion, ask: "Do you want to pause, update the current stag
 - When generating stage output files, provide the complete Markdown content in the conversation. Give clear instructions on where to save it.
 - If the user wants to pause the workflow, summarize the current stage status, what files have been generated, and what the next step would be when they return.
 
-## Zotero MCP User Confirmation Rule
+## Zotero MCP (Optional Literature Support)
+
+Zotero MCP is an optional literature support layer.
+It is needed only when the user wants Zotero-integrated literature retrieval.
+prepare / methods / structure can proceed without Zotero.
+Zotero does not replace user evidence, data, or scientific judgment.
 
 When the user's workflow involves Zotero-integrated literature retrieval:
 
@@ -198,7 +242,10 @@ When the user's workflow involves Zotero-integrated literature retrieval:
 
 Wait for explicit user confirmation before calling Zotero MCP.
 
-**Write operations are prohibited by default.** Never use Zotero write tools (write_note, write_tag, write_metadata, write_item, create/update/delete collection) unless the user explicitly requests and confirms the exact write action.
+**Write operations are prohibited by default.**
+Never use Zotero write tools (write_note, write_tag, write_metadata, write_item,
+create/update/delete collection) unless the user explicitly requests and confirms the
+exact write action.
 
 Full Zotero integration reference: `references/zotero/README.md`
 
@@ -207,8 +254,8 @@ Full Zotero integration reference: `references/zotero/README.md`
 - **Do not generate a full manuscript in one pass.** Build it stage by stage.
 - **Do not complete multiple workflow stages at once.** Each stage produces its own output and requires user confirmation before advancing.
 - **Do not decide the target journal for the user.** Record, suggest only when asked, do not argue.
-- **Do not draft full sections by default.** Writing is one paragraph at a time.
-- **Do not polish full manuscripts by default.** Polish is one unit at a time.
+- **Default writing unit is one paragraph; maximum is one subsection.** Build prose incrementally.
+- **Default polish unit is one paragraph; maximum is one subsection.** Refine text incrementally.
 - **Do not rewrite during review by default.** Review diagnoses; rewriting only happens when the user explicitly requests a revision draft.
 - **Do not use polished language to hide evidence gaps.** If evidence is missing, return to review, writing, methods, or prepare.
 - **Do not invent data, methods, figures, citations, literature references, or advisor comments.**
