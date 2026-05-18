@@ -6,7 +6,7 @@ The writing workflow generates manuscript prose one writing unit at a time — a
 workflow — following the architecture defined in the structure stage. Its goals are to:
 
 - Draft each manuscript unit in a deliberate order:
-  Methods → Results → Discussion → Introduction → Conclusion → Abstract
+  Methods → Results → Introduction → Discussion → Conclusion → Abstract
 - Apply the target journal's voice, claim strength, and rhetorical style during drafting —
   not as a later rewrite
 - Ground every claim in the verified evidence from prepare, methods, and structure stages
@@ -93,6 +93,50 @@ user for confirmation before continuing to the next unit.
   with explicit user request and confirmation.
 - Do not cross section boundaries in one turn.
 - User confirmation on each unit: keep / revise / expand / continue to next unit.
+
+## Unit-Level Feedback Contract
+
+After each writing unit, provide a lightweight confirmation block. Do not turn every writing unit into a full review report.
+
+Default response structure for each writing unit:
+
+```markdown
+### Draft Text
+[English manuscript prose]
+
+### Evidence and Boundary
+- Evidence used: [figures / methods / data / references]
+- Claim served: [claim ID from structure]
+- Argument-chain link served: [need / gap / move / decisive evidence / bounded implication / limitation]
+- What this unit does not claim: [explicit boundary]
+
+### 中文核对 / Author Check
+- [用中文简要说明这段在论文中的作用]
+- [提醒用户需要确认的数据、方法、证据边界或措辞风险]
+- [如果有 [MISSING] / [CITATION NEEDED] / [UNCERTAIN]，用中文说明]
+
+### User Options
+请选择：保留 / 修改 / 扩展 / 继续下一单元
+```
+
+Only include the Chinese author check for Chinese-speaking users or when it helps clarify intent. The Chinese note is author-facing and must not add claims absent from the English draft.
+
+## Section-End Feedback
+
+At the end of a section, provide a concise section-level summary:
+
+```markdown
+## Section Completion Summary / 本节完成情况
+
+- Confirmed units: [list]
+- Main claim(s) served: [claim IDs]
+- Argument-chain links covered: [links]
+- Remaining issues: [MISSING / CITATION NEEDED / UNCERTAIN / none]
+- Risk before next section: [evidence / structure / citation / language / none]
+- Recommended next action: [continue writing / revise a unit / return to review / return to structure]
+```
+
+Do not provide this summary after every paragraph unless the user asks. Use it when a section or meaningful subsection is complete.
 
 ## Drafting Order
 
@@ -244,11 +288,9 @@ Reference the journal profile during each section for: sentence rhythm (short/di
 longer/nuanced); claim strength matching evidence level; domain jargon depth; mechanism language
 (causality vs. suggestion); broader significance framing.
 
-## Bilingual Output
+## Bilingual and Chinese-Friendly Output
 
-If requested: follow `references/writing/bilingual-output.md` format — English prose with
-`> **[Chinese]**` blockquote annotations. Opt-out keywords: `english only`, `no bilingual`,
-`only english`, `不要中文`. Do not enable unless the user explicitly requests it.
+Follow `references/writing/bilingual-output.md`. Default: English manuscript text with Chinese-friendly author interaction. Full bilingual manuscript comparison only when the user explicitly requests it. Opt-out keywords: `english only`, `no bilingual`, `only english`, `不要中文`, `只要英文`, `不需要中文解释`.
 
 ## Resume and Update Mode
 

@@ -5,7 +5,7 @@ directory. Every item should pass before considering the package "ready."
 
 ## 1. Skill Entry
 
-- [ ] `SKILL.md` has valid YAML frontmatter (4 fields: `name`, `description`, `allowed-tools`, `model`)
+- [ ] `SKILL.md` has valid YAML frontmatter with at least `name` and `description`
 - [ ] `SKILL.md` frontmatter `name` matches the skill directory name
 - [ ] `SKILL.md` body describes all 7 stages in correct order (6 core manuscript-building + cover-letter)
 - [ ] `SKILL.md` guardrails section is present and complete

@@ -20,7 +20,7 @@ Run prepare when:
 
 Do **not** run prepare when:
 - The user already has a complete draft and wants polishing or review
-- The user only needs figure captions or abstract writing — use a specific skill instead
+- The user only needs figure captions or abstract writing — route to the writing workflow instead
 
 ## Core Principle
 
@@ -61,6 +61,20 @@ Each turn should ask **3–5 questions maximum**. If more questions remain, defe
 
 - **Ready for methods:** data sources, code descriptions, processing workflow, key variables, and output figures are all documented. Missing details are non-critical.
 - **Ready for structure:** core research question, target journal (or explicit "not specified yet"), figure-to-claim matrix, and at least one possible story route are in place.
+
+## Figure Evidence Boundary Check
+
+When extracting figures and code outputs, treat each figure as a visual argument component, not merely an illustration.
+
+For each figure, answer:
+
+1. What does the figure show?
+2. Which claim does it support?
+3. What can it not support on its own?
+4. What additional evidence would be needed to strengthen the claim?
+5. What wording should be avoided in the caption, Results, or Discussion?
+
+Use these answers to populate the Figure Inventory and Figure-to-Claim Matrix. Do not infer mechanism, causation, climate trend, or global implication from visual pattern alone.
 
 ## Missing Information Handling
 

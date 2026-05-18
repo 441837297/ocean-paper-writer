@@ -38,15 +38,28 @@
 
 ## Issue Log
 
-| Issue ID | Severity | Type | Location | Problem | Evidence / reason | Recommended action | Status |
-|----------|----------|------|----------|---------|-------------------|-------------------|--------|
-| R01 | high | evidence | Results para 2 | [problem description] | [why it is a problem] | [specific revision action] | [TODO] |
-| R02 | medium | claim | Discussion para 1 | [...] | [...] | [...] | [TODO] |
-| R03 | low | language | Abstract | [...] | [...] | [...] | [TODO] |
+| Issue ID | Severity | Type | Action label | Workflow destination | Location | Problem | Evidence / reason | Recommended action | Status |
+|----------|----------|------|--------------|----------------------|----------|---------|-------------------|-------------------|--------|
+| R01 | high | evidence | BLOCKED_BY_EVIDENCE | prepare / methods | Results para 2 | [problem description] | [why evidence is insufficient] | [specific action] | [TODO] |
+| R02 | medium | claim | SOFTEN_CLAIM | writing / polish | Discussion para 1 | [...] | [...] | [...] | [TODO] |
+| R03 | low | language | POLISH_LANGUAGE | polish | Abstract | [...] | [...] | [...] | [TODO] |
 
-**Severity:** `high` = blocks manuscript credibility / `medium` = weakens the argument / `low` = improves clarity or polish
-**Type:** `evidence` / `claim` / `structure` / `methods` / `figure` / `citation` / `journal fit` / `language` / `advisor feedback`
-**Status:** `[TODO]` / `in progress` / `resolved` / `[CONFIRM WITH USER]`
+**Severity:**  
+- `high` = blocks manuscript credibility  
+- `medium` = weakens the argument  
+- `low` = improves clarity or polish  
+
+**Type:**  
+`evidence` / `claim` / `structure` / `methods` / `figure` / `citation` / `journal fit` / `language` / `advisor feedback`
+
+**Action label:**  
+`SOFTEN_CLAIM` / `ADD_EVIDENCE` / `ADD_METHOD_DETAIL` / `CHECK_STATISTICS` / `ADD_CITATION` / `REORDER_FIGURE_LOGIC` / `RESTRUCTURE_SECTION` / `REWRITE_UNIT` / `POLISH_LANGUAGE` / `AUTHOR_INPUT_NEEDED` / `BLOCKED_BY_EVIDENCE`
+
+**Workflow destination:**  
+`prepare` / `methods` / `structure` / `writing` / `review` / `polish` / `user`
+
+**Status:**  
+`[TODO]` / `in progress` / `resolved` / `[CONFIRM WITH USER]`
 
 ## Evidence Support Review
 
@@ -120,17 +133,13 @@
 ## Revision Priority Plan
 
 ### High priority
-
-- [Issue ID] — [recommended action]
-- [Issue ID] — [recommended action]
+- [Issue ID] — [Action label] — [recommended action] — destination: [workflow/user]
 
 ### Medium priority
-
-- [Issue ID] — [recommended action]
+- [Issue ID] — [Action label] — [recommended action] — destination: [workflow/user]
 
 ### Low priority
-
-- [Issue ID] — [recommended action]
+- [Issue ID] — [Action label] — [recommended action] — destination: [workflow/user]
 
 ## Handoff Recommendation
 

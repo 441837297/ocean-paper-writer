@@ -1,30 +1,48 @@
-# Writing Unit Example
+# 写作单元示例
 
-## Purpose of This Example
+## 目的
 
-This example shows how the **writing** stage micro-drafts one paragraph at a time. It demonstrates:
+本示例展示 **writing** 阶段如何在中文用户交互策略下逐段起草。演示内容包括：
 
-- The default drafting unit (one paragraph) with evidence trace
-- How `[CITATION NEEDED]` is used when references are missing
-- The "pattern ≠ mechanism" boundary: a spatial pattern is not automatically a physical mechanism
-- The Draft Unit Output Format from `references/workflow/writing.md`
-- How to confirm, revise, or continue after each unit
+- 默认起草单元（单段）及其证据追溯
+- `[CITATION NEEDED]` 的使用方式
+- "模式 ≠ 机制"边界：空间分布模式不能自动当作物理机制
+- 单元级反馈契约中的中文核对区块
+- 每个单元后的确认选项
 
-The example uses a fictional study on Kuroshio Extension EKE trends from satellite altimetry.
+示例使用一个虚构的黑潮延伸体 EKE 趋势研究（基于卫星高度计数据）。
 
-## Context (From Structure Stage)
+## 上下文（来自 structure 阶段）
 
-- **Section being drafted:** Results, Paragraph 2 — "EKE trend magnitude and spatial structure"
-- **Claim from structure:** C2 — "EKE in the Kuroshio Extension increased by 12 ± 4 cm² s⁻² per decade (1993–2022), concentrated in winter and in the 145°E–160°E band."
-- **Supporting figure:** Fig3a (EKE trend map), Fig3b (zonal-mean EKE trend time series)
-- **Data:** CMEMS SEALEVEL_GLO_PHY_L4_MY_008_047, geostrophic velocity anomalies
-- **Target journal:** JGR-Oceans
-- **Language mode:** English only
+- **正在起草的段落**：Results 第 2 段 — "EKE 趋势的量级与空间结构"
+- **服务的论断**：C2 — "黑潮延伸体 EKE 在 1993–2022 年间以 12 ± 4 cm² s⁻²/十年的速率增加，集中于冬季和 145°E–160°E 范围内。"
+- **支持图表**：Fig3a（EKE 趋势图）、Fig3b（纬向平均 EKE 趋势时间序列）
+- **数据**：CMEMS SEALEVEL_GLO_PHY_L4_MY_008_047，地转速度异常
+- **目标期刊**：JGR-Oceans
+- **语言模式**：英文正文 + 中文用户交互
 
-## Draft Unit (Assistant Output)
+## 用户请求
+
+> 帮我起草 Results 的第二段，关于黑潮延伸体 EKE 趋势的量级和空间结构。
+
+用户用中文提出请求，助手用中文进行交互确认，但正文草稿保持英文。
+
+## 起草前确认
+
+助手在起草前用中文确认关键信息：
+
+> 好的。在起草之前确认几点：
+>
+> - **段落位置**：Results 第 2 段，紧接概述段之后
+> - **服务的主论断**：C2 — EKE 趋势量级和空间结构
+> - **支持证据**：Fig3a（EKE 趋势图）、Fig3b（纬向平均时间序列）
+> - **目标期刊语气**：JGR-Oceans（严谨、完整证据链）
+> - **前人文献**：是否有该区域已有的 EKE 趋势估计需要引用？目前标记为 `[CITATION NEEDED]`
+
+## 起草单元（助手输出）
 
 ```markdown
-## Draft Unit — Results, Paragraph 2
+### Draft Text
 
 Eddy kinetic energy (EKE) in the Kuroshio Extension increased by
 12 ± 4 cm² s⁻² per decade over 1993–2022 (Fig. 3a). The increase
@@ -35,61 +53,55 @@ acceleration is broadly consistent with enhanced baroclinic energy
 conversion, though direct instability diagnostics are presented
 separately (Section 3.4).
 
-## Evidence Used
-- Figures: Fig3a, Fig3b
-- Data/methods: CMEMS altimetry, geostrophic velocity anomalies,
-  EKE = (ug'² + vg'²) / 2
-- References: [CITATION NEEDED] — prior EKE trend estimates for
-  Kuroshio Extension region
-- Claim supported: C2
+### Evidence and Boundary
+- Evidence used: Fig3a, Fig3b; CMEMS altimetry geostrophic velocity anomalies; EKE = (ug'² + vg'²) / 2
+- Claim served: C2
+- Argument-chain link served: decisive evidence
+- References: [CITATION NEEDED] — prior EKE trend estimates for Kuroshio Extension region
+- What this unit does not claim: This unit reports an EKE trend and its spatial structure. It does NOT assert that baroclinic instability is the confirmed mechanism — "broadly consistent with" signals that the instability diagnostics are handled elsewhere (Section 3.4). The EKE trend is not attributed to any specific forcing (wind stress, buoyancy forcing, or intrinsic variability).
 
-## Boundaries / Cautions
-- What this unit does not claim: This unit reports an EKE trend and
-  its spatial structure. It does NOT assert that baroclinic instability
-  is the confirmed mechanism — the phrase "broadly consistent with"
-  signals that the instability diagnostics are handled elsewhere.
-  The EKE trend is not attributed to any specific forcing (wind stress,
-  buoyancy forcing, or intrinsic variability).
-- Uncertainty or citation needed: Prior EKE trend studies for this
-  region need to be cited for comparison. The altimeter-only record
-  (1993 onward) does not constrain pre-satellite variability.
+### 中文核对 / Author Check
+- 这一段报告了黑潮延伸体 EKE 的十年际趋势（12 ± 4 cm² s⁻²/十年），并描述了其季节和空间特征。
+- 用词 "broadly consistent with" 是刻意选择：空间分布与斜压转换机制方向一致，但机制验证留在 Section 3.4。这里没有声称因果关系。
+- **需要确认**：该区域是否有前人发表的 EKE 趋势文献需要引用？目前标记为 `[CITATION NEEDED]`。
+- **边界提醒**：仅基于 1993–2022 卫星高度计记录，不能外推为更长时间尺度的气候趋势。
 
-## User Confirmation
-- [ ] keep as drafted
-- [ ] revise
-- [ ] expand
-- [ ] continue to next unit
+### 请选择
+保留 / 修改 / 扩展 / 继续下一单元
 ```
 
-## Notes on This Example
+## 为什么用 "broadly consistent with" 而不是 "demonstrates"
 
-**Why "broadly consistent with" and not "demonstrates":**
-The claim strength ladder (`conclusions-and-claims.md`) maps
-"demonstrates" to the strongest evidence tier — requiring robust
-evidence, tests, and alternatives addressed. This paragraph only
-reports a spatial pattern. The mechanism diagnostics are deferred
-to Section 3.4. Using "demonstrates" here would overclaim.
+论断强度阶梯中 "demonstrates" 对应最高证据等级，需要稳健的统计检验、排除替代解释。这一段只报告空间分布模式，机制诊断在 Section 3.4。此处用 "demonstrates" 属于过度声称。
 
-**Why [CITATION NEEDED] instead of fabricating:**
-The guardrails in `writing.md` prohibit fabricating citations.
-If the user has not provided Zotero references or a DOI list,
-the marker `[CITATION NEEDED]` is used and the draft continues.
+## 为什么标记 [CITATION NEEDED] 而不是编造引用
 
-**Image pattern ≠ mechanism:**
-Fig3a shows a spatial map where EKE trends overlap with mean-flow
-trends. That spatial correspondence is a *pattern*, not a *mechanism*.
-The instability diagnostics (Section 3.4) provide the mechanism
-evidence. The Results paragraph confines itself to reporting what
-the figure shows, not what physically caused it.
+skill 的 guardrails 明确禁止编造引用和 DOI。如果用户未提供 Zotero 导出或文献列表，则标记 `[CITATION NEEDED]` 并继续起草。
 
-## What Happens Next
+## 模式 ≠ 机制
 
-After the user chooses one of the four confirmation options:
-- **keep** → the unit is locked into `04_manuscript-draft.md` and
-  the assistant moves to Results Paragraph 3
-- **revise** → the assistant adjusts the paragraph based on user
-  feedback and re-presents for confirmation
-- **expand** → the paragraph is split or extended with additional
-  quantitative detail
-- **continue to next unit** → same as keep, moving to the next
-  paragraph
+Fig3a 展示的是 EKE 趋势与平均流趋势的空间重叠——这是**模式**，不是**机制**。Results 段落只报告图展示了什么，不声称物理成因。因果关系由 Section 3.4 的稳定性诊断提供。
+
+## 段尾汇总示例
+
+完成 Results 所有段落后，助手给出段尾汇总：
+
+```markdown
+## Section Completion Summary / 本节完成情况
+
+- Confirmed units: Results P1 (overview), P2 (EKE trend magnitude), P3 (seasonality), P4 (spatial structure)
+- Main claim(s) served: C1, C2
+- Argument-chain links covered: decisive evidence
+- Remaining issues: [CITATION NEEDED] × 3（前人 EKE 趋势文献、区域海洋学背景、统计方法引用）
+- Risk before next section: citation gaps only, no evidence or structure risk
+- Recommended next action: continue to Discussion section
+```
+
+## 后续步骤
+
+| 用户选择 | 动作 |
+|---------|------|
+| 保留 | 锁定写入 `04_manuscript-draft.md`，进入下一段 |
+| 修改 | 根据反馈调整段落，重新提交确认 |
+| 扩展 | 拆分或扩展段落，补充定量细节 |
+| 继续下一单元 | 同"保留"，进入下一个写作单元 |

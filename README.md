@@ -105,8 +105,8 @@ manuscript/
 │   └── 04_manuscript-draft.md     # 起草日志、当前段落、证据追溯、章节汇编
 ├── 05_review/
 │   └── 05_review-report.md        # 诊断问题、严重程度、修改建议、交接方案
-└── 06_polish/
-    └── 06_polish-log.md           # 原始文本 vs 润色后文本、修改理由、边界检查
+├── 06_polish/
+│   └── 06_polish-log.md           # 原始文本 vs 润色后文本、修改理由、边界检查
 └── 07_cover-letter/
     └── 07_cover-letter.md         # 投稿信，贡献声明对齐期刊 scope
 ```

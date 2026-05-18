@@ -26,6 +26,24 @@
 - Why this route: [user's rationale or structural reasoning]
 - Alternative route considered but not selected: [if applicable, with reasons]
 
+## Ocean Paper Argument Chain / 论文主论证链
+
+| Chain link | English manuscript logic | Evidence source | Boundary / caution | 中文核对 |
+|------------|--------------------------|-----------------|--------------------|----------|
+| Ocean/system need | [Why this topic matters scientifically] | [project brief / literature / journal profile] | [avoid generic background] | [这篇论文为什么值得写？是否过宽？] |
+| Unresolved process/data/method gap | [Specific unresolved gap] | [project brief / literature / evidence inventory] | [avoid unsupported novelty claims] | [这个 gap 是否真实、具体、可由本文回应？] |
+| This paper's move | [What this paper does] | [methods + figure inventory] | [do not claim analyses not performed] | [本文实际做了什么？是否与方法和图一致？] |
+| Decisive evidence | [Main evidence chain supporting the primary claim] | [figures / datasets / statistics] | [direct vs suggestive evidence] | [哪几张图最关键？证据强度够不够？] |
+| Bounded implication | [What the finding means within evidence limits] | [claim hierarchy + journal profile] | [avoid overextending to global/climate/causal claims] | [意义是否被限定在合理尺度内？] |
+| Explicit limitation | [What this paper cannot claim] | [missing evidence checklist] | [must remain visible in writing] | [哪些话不能写得太强？] |
+
+**Argument-chain status:** [complete / partial / blocked]
+
+**If partial or blocked:**  
+- Missing link: [which link]  
+- Reason: [missing evidence / unclear method / unsupported implication / user confirmation needed]  
+- Required action: [what the user or previous stage must resolve]
+
 ## Core Research Question
 
 [One clear sentence restated from project brief. Confirm it is still current.]

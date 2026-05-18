@@ -25,6 +25,31 @@ Identify issues first, classify severity (high/medium/low), explain why each mat
 specific revision action, and ask the user before rewriting. If the user requests a revision draft,
 label it `[REVISION DRAFT — NOT FINAL]`.
 
+## Review Action Labels
+
+Each review issue must receive one action label. The label should make the next revision step unambiguous.
+
+| Action label | Meaning | Typical handoff |
+|-------------|---------|-----------------|
+| `SOFTEN_CLAIM` | Claim is directionally valid but wording is too strong for the evidence | writing / polish |
+| `ADD_EVIDENCE` | Claim may be important but needs additional figure, analysis, validation, or result support | prepare / methods / writing |
+| `ADD_METHOD_DETAIL` | Reader cannot evaluate the result because method/data processing details are missing | methods |
+| `CHECK_STATISTICS` | Statistical test, uncertainty, significance, autocorrelation, sample size, or robustness check is unclear | methods / review |
+| `ADD_CITATION` | Claim depends on prior literature, data source, or method reference not yet cited | writing / review |
+| `REORDER_FIGURE_LOGIC` | Figure order does not support the manuscript argument chain | structure / writing |
+| `RESTRUCTURE_SECTION` | Section performs the wrong narrative job or mixes Results/Discussion/Introduction functions | structure / writing |
+| `REWRITE_UNIT` | The unit is conceptually valid but needs redrafting, not just polishing | writing |
+| `POLISH_LANGUAGE` | The issue is language, flow, tone, or journal voice after evidence is already sound | polish |
+| `AUTHOR_INPUT_NEEDED` | The AI cannot resolve the issue without user expertise, data confirmation, advisor preference, or coauthor decision | user |
+| `BLOCKED_BY_EVIDENCE` | The current evidence does not support the claim; do not rewrite around the gap | prepare / methods / structure |
+
+### Rules
+
+- Do not use `POLISH_LANGUAGE` for unsupported claims.
+- Do not use `REWRITE_UNIT` when the issue is missing data or method detail.
+- Use `AUTHOR_INPUT_NEEDED` when the next step requires scientific judgment from the user.
+- Use `BLOCKED_BY_EVIDENCE` when the manuscript should not make the claim unless new evidence is added.
+
 ## Review Scope
 
 Ask the user to choose scope. If unclear, recommend **section-level review**.
@@ -69,9 +94,8 @@ Do **not** create additional files unless the user explicitly asks.
  4. Confirm target journal and review priority
  5. Identify which review dimensions apply
  6. Diagnose issues — claims, evidence, structure, figure logic, journal fit, uncertainty
- 7. Classify each issue — severity (high/medium/low),
-    type (evidence/claim/structure/methods/figure/journal fit/language/advisor feedback)
- 8. Propose revision action per issue
+ 7. Classify each issue — severity, type, action label, workflow destination
+ 8. Propose revision action per issue, using the action label to make the next step explicit
  9. Ask user to confirm revision priorities
 10. Save review report to 05_review/05_review-report.md
 11. Decide handoff — back to writing/structure/methods/prepare or forward to polish

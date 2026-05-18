@@ -32,6 +32,40 @@ needs writing support.
 - Journal profile shapes narrative scope, claim depth, and section emphasis
 - A well-structured outline prevents wasted drafting of text that will be cut later
 
+## Ocean Paper Argument Chain
+
+During the structure stage, compress the manuscript into one explicit, checkable argument chain:
+
+```text
+ocean/system need
+→ unresolved process/data/method gap
+→ this paper's move
+→ decisive evidence
+→ bounded implication
+→ explicit limitation
+```
+
+This chain must be derived from the prepare-stage evidence inventory, methods materials, target journal profile, and user-confirmed research direction.
+
+### What Each Link Means
+
+| Link                               | Meaning                                                                                                                | Common failure                                        |
+| ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| Ocean/system need                  | Why the topic matters in ocean science, ocean-climate dynamics, biogeochemistry, marine ecosystems, or related domains | Background is too broad or generic                    |
+| Unresolved process/data/method gap | What is still unknown, unresolved, poorly quantified, or methodologically limited                                      | Gap is a literature slogan, not tied to this study    |
+| This paper's move                  | What this manuscript does: observation, analysis, diagnosis, comparison, synthesis, or method application              | The move is vague or disconnected from evidence       |
+| Decisive evidence                  | The figure/data/result chain that most directly supports the primary claim                                             | Evidence is only suggestive but written as conclusive |
+| Bounded implication                | What the result means, within the domain and scale supported by the data                                               | Regional or short-record result is overstated         |
+| Explicit limitation                | What the manuscript cannot claim without additional evidence                                                           | Limitations are hidden or postponed too late          |
+
+### Rules
+
+* Do not introduce a separate paper-type or story-archetype classification.
+* Do not force the manuscript into a Nature-style narrative if the evidence or target journal does not support it.
+* If the user-provided outline conflicts with the argument chain, mark `[STRUCTURE CONFLICT]`.
+* If the evidence inventory does not support a link in the chain, mark `[EVIDENCE GAP]` or `[MISSING]`.
+* The argument chain should guide claim hierarchy, section architecture, figure sequence, and later writing units.
+
 ## Required Inputs
 
 **Prepare-stage files:** `01_prepare/01a_project-brief.md`, `01_prepare/01b_evidence-inventory.md`
@@ -54,7 +88,7 @@ Do **not** create additional files unless the user explicitly asks.
 
 ## Interaction Flow
 
-The structure workflow proceeds through twelve phases:
+The structure workflow proceeds through thirteen phases:
 
 ```
  1. Intake materials        → read prepare, methods, evidence inventory
@@ -62,13 +96,14 @@ The structure workflow proceeds through twelve phases:
  3. Confirm target journal  → ask if missing, confirm if specified
  4. Load journal profile    → from references/journals/{journal}.md
  5. Identify central story  → from evidence inventory routes and claims
- 6. Build claim hierarchy   → primary / secondary / not ready for main story
- 7. Design architecture     → what each section contains and accomplishes
- 8. Assign figures          → build figure sequence table
- 9. Plan supplement         → main text vs. supplementary material
-10. Flag conflicts          → [STRUCTURE CONFLICT] between outline and evidence
-11. Save materials          → generate 03_manuscript-structure.md in conversation
-12. Confirm readiness       → assess readiness for writing stage
+ 6. Build ocean paper argument chain → need / gap / move / decisive evidence / bounded implication / limitation
+ 7. Build claim hierarchy   → primary / secondary / not ready for main story
+ 8. Design architecture     → what each section contains and accomplishes
+ 9. Assign figures          → build figure sequence table
+10. Plan supplement         → main text vs. supplementary material
+11. Flag conflicts          → [STRUCTURE CONFLICT] between outline, argument chain, and evidence
+12. Save materials          → generate 03_manuscript-structure.md in conversation
+13. Confirm readiness       → assess readiness for writing stage
 ```
 
 ### Pacing
@@ -106,12 +141,13 @@ central claim vs. multi-line evidence).
 The architecture is built in this order:
 
 1. **Central story route** — select one route from the evidence inventory's possible story routes. Confirm with user.
-2. **Claim hierarchy** — classify each claim as primary (must be in main narrative), secondary
+2. **Argument chain** — build the ocean paper argument chain: need → gap → move → decisive evidence → bounded implication → limitation. Mark any missing or weak links.
+3. **Claim hierarchy** — classify each claim as primary (must be in main narrative), secondary
    (supports primary but can be compressed), or not ready (insufficient evidence, move to
    supplement or defer).
-3. **Section architecture** — design what each section does: Introduction sets up gap, Methods documents approach, Results presents evidence, Discussion interprets, Conclusion states significance.
-4. **Figure sequence** — assign each figure to a section and narrative position. Ensure figures build the story in logical order.
-5. **Main text vs. supplement** — decide which figures, methods details, and secondary analyses belong in supplement.
+4. **Section architecture** — design what each section does: Introduction sets up gap, Methods documents approach, Results presents evidence, Discussion interprets, Conclusion states significance.
+5. **Figure sequence** — assign each figure to a section and narrative position. Ensure figures build the story in logical order.
+6. **Main text vs. supplement** — decide which figures, methods details, and secondary analyses belong in supplement.
 
 ## Missing and Conflicting Information
 

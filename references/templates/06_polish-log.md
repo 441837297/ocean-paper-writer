@@ -41,6 +41,22 @@
 - advisor / review comment addressed:
 - status: [in progress / awaiting feedback / polished / confirmed]
 
+## Failure-Mode Diagnosis
+
+| Diagnostic item | Assessment |
+|-----------------|------------|
+| Primary failure mode | [STRUCTURE_PROBLEM / EVIDENCE_PROBLEM / PARAGRAPH_LOGIC_PROBLEM / LANGUAGE_PROBLEM / JOURNAL_VOICE_PROBLEM / CHINESE_INTENT_TRANSFER_PROBLEM] |
+| Is the claim supported? | [yes / partial / no] |
+| Is the section role correct? | [yes / partial / no] |
+| Can this be fixed within the current unit? | [yes / no] |
+| Should polishing proceed? | [yes / no — if no, mark [POLISH BLOCKER]] |
+| Recommended handoff if blocked | [review / writing / structure / methods / prepare] |
+
+### 中文核对 / Author Check
+- [用中文说明这次修改到底是在解决什么问题]
+- [如果不是语言问题，说明为什么不能直接润色]
+- [提醒作者需要补充或确认的信息]
+
 ## Original Text
 
 [The confirmed draft text before polishing.]
@@ -51,11 +67,11 @@
 
 ## Change Rationale
 
-| Change type | Original issue | Revision made | Reason | Evidence boundary preserved? |
-|-------------|---------------|---------------|--------|------------------------------|
-| clarity | [vague phrase / unclear subject] | [revision] | [why this improves the text] | [yes / [POLISH BLOCKER] / [POLISH CONFLICT]] |
-| flow | [abrupt transition] | [revision] | [why this improves flow] | yes |
-| claim strength | [verb too strong for evidence] | [revision] | [evidence boundary requires milder language] | yes |
+| Change type | Original issue | Revision made | Reason | Failure mode addressed | Evidence boundary preserved? |
+|-------------|---------------|---------------|--------|-------------------------|------------------------------|
+| clarity | [vague phrase / unclear subject] | [revision] | [why this improves the text] | [LANGUAGE_PROBLEM] | [yes / [POLISH BLOCKER] / [POLISH CONFLICT]] |
+| flow | [abrupt transition] | [revision] | [why this improves flow] | [LANGUAGE_PROBLEM] | yes |
+| claim strength | [verb too strong for evidence] | [revision] | [evidence boundary requires milder language] | [LANGUAGE_PROBLEM] | yes |
 
 **Change types:** `clarity` / `flow` / `claim strength` / `journal voice` / `terminology` / `style naturalization` / `hedging` / `citation` / `bilingual` / `advisor feedback`
 

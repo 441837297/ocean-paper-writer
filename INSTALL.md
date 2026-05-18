@@ -1,33 +1,33 @@
-# Install Ocean Paper Writer
+# 安装 Ocean Paper Writer
 
-## One command
+## 一行安装
 
 ```bash
 git clone https://github.com/441837297/ocean-paper-writer.git ~/.claude/skills/ocean-paper-writer/
 ```
 
-That's it. Restart Claude Code, then say **"start ocean paper writer"** or describe your research materials — the skill will auto-activate.
+重启 Claude Code 即可。之后输入 **"start ocean paper writer"** 或直接描述你的研究材料，skill 会自动激活。
 
-## Verify
+## 验证
 
-Start Claude Code and type:
+启动 Claude Code 后输入：
 
 ```
 I want to write a paper. I have figures, code, and a target journal in mind.
 ```
 
-If the assistant responds by routing you to the **prepare** stage and asking 3–5 clarifying questions about your materials, the skill is working.
+如果助手将你路由到 **prepare** 阶段并询问 3-5 个关于材料的澄清问题，说明 skill 正常工作。
 
-## Optional: Zotero literature support
+## 可选：Zotero 文献支持
 
-If you want citation integration from your Zotero library:
+如需从你的 Zotero 文献库检索引用：
 
-1. Install [cookjohn/zotero-mcp](https://github.com/cookjohn/zotero-mcp) following its upstream guide.
-2. Import your project-relevant papers into a Zotero collection.
+1. 按上游文档安装 [cookjohn/zotero-mcp](https://github.com/cookjohn/zotero-mcp)。
+2. 将项目相关论文导入一个 Zotero 集合。
 
-The skill works fully without Zotero. Missing citations are marked `[CITATION NEEDED]` and you can fill them in later.
+Skill 完全可以在没有 Zotero 的情况下工作。缺失引用标记为 `[CITATION NEEDED]`，你可稍后手动补上。
 
-## Update
+## 升级
 
 ```bash
 cd ~/.claude/skills/ocean-paper-writer && git pull

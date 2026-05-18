@@ -33,10 +33,10 @@ This section answers:
 
 **Purpose:** Map the specific types of ocean science research that align with this journal.
 
-Each journal profile should select only the story types that genuinely fit.
+Each journal profile should select only the contribution patterns that genuinely fit.
 Example archetypes (choose relevant ones, not all):
 
-| Story Type | Description | Fits? |
+| Contribution pattern | Description | Fits? |
 |-----------|-------------|-------|
 | Short, sharp discovery | A single clear finding with limited but sufficient evidence | Depends on journal |
 | Complete observational-mechanistic study | Full chain from data through analysis to physical interpretation | Depends on journal |
@@ -48,7 +48,7 @@ Example archetypes (choose relevant ones, not all):
 
 **Guidance:**
 
-- State clearly which story types are preferred, tolerated, and discouraged.
+- State clearly which contribution patterns are preferred, tolerated, and discouraged.
 - For type "regional case": is the journal's bar for "broader significance" high or low?
 - For type "method/data":
 does the journal accept pure method papers, or must they demonstrate a scientific finding enabled by the method?

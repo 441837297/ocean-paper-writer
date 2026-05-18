@@ -31,6 +31,31 @@ completed for the relevant section (run review first); the user wants evidence o
 - Polish must preserve uncertainty and evidence boundaries.
 - Do not use polished language to hide missing evidence or inflate weak claims.
 
+## Failure-Mode-First Diagnosis
+
+Before polishing any unit, diagnose what kind of problem the user is actually asking to solve. Do not assume every "polish", "revise", "make it smoother", or "de-AI" request is a language-only problem.
+
+Classify the issue first:
+
+| Failure mode | Meaning | Action |
+|-------------|---------|--------|
+| `STRUCTURE_PROBLEM` | The paragraph is in the wrong section, performs the wrong section job, or disrupts the argument chain | Return to writing or structure; do not polish as-is |
+| `EVIDENCE_PROBLEM` | The claim is unsupported, overstates mechanism/causation/trend/climate implication, or lacks required citation | Mark `[POLISH BLOCKER]`; return to review, methods, prepare, or writing |
+| `PARAGRAPH_LOGIC_PROBLEM` | The paragraph has unclear topic sentence, mixed functions, weak internal sequence, or poor connection to adjacent units | If fixable within the unit, revise; if it requires new evidence or reordering, return to writing/review |
+| `LANGUAGE_PROBLEM` | The claim is supported but wording is unclear, verbose, repetitive, awkward, or overly generic | Polish the unit |
+| `JOURNAL_VOICE_PROBLEM` | The prose is supported but does not match the target journal's voice or level of accessibility | Polish with journal profile guidance |
+| `CHINESE_INTENT_TRANSFER_PROBLEM` | The user's Chinese expression contains valid scientific intent but the English phrasing needs restructuring | Translate intent, not syntax; preserve claim/evidence/boundary |
+
+### Polish Decision Rule
+
+Proceed to rewriting only if:
+- the target unit's claim is supported;
+- the section role is correct or fixable within the unit;
+- the requested change can be solved at language, paragraph, or journal-voice level;
+- evidence boundaries will remain visible.
+
+If not, stop and explain why polishing would be misleading.
+
 ## Polish Scope
 
 Ask the user to choose scope. If unclear, recommend **unit-level polish**.
@@ -81,15 +106,14 @@ the user's own manuscript file.
  2. Intake draft unit or section and review report (core materials)
  3. Confirm target journal and language mode
  4. Confirm polish priority — clarity, concision, journal voice, style naturalization, advisor feedback
- 5. Check whether the claim in the target unit is already supported —
-    if not, flag [POLISH BLOCKER]
- 6. Identify style, clarity, voice, and AI-like issues in the current unit
- 7. Produce polished version for the current unit only
- 8. Explain key changes and evidence boundaries preserved
- 9. Ask user to confirm — keep / revise / compare alternatives / continue
-10. Save polish log entry
-11. Decide next action — continue polishing next unit, return to writing/review,
-    or prepare final assembly
+ 5. Run failure-mode-first diagnosis — structure / evidence / paragraph logic / language / journal voice / Chinese intent transfer
+ 6. If blocked, mark `[POLISH BLOCKER]` or `[POLISH CONFLICT]` and recommend the correct handoff
+ 7. If polishable, identify style, clarity, voice, and AI-like issues in the current unit
+ 8. Produce polished version for the current unit only
+ 9. Explain key changes and evidence boundaries preserved
+10. Ask user to confirm — keep / revise / compare alternatives / continue
+11. Save polish log entry
+12. Decide next action — continue polishing next unit, return to writing/review, or prepare final assembly
 ```
 
 ### Pacing
@@ -339,5 +363,5 @@ Save user-facing output as `06_polish/06_polish-log.md`.
 - **Do not perform style naturalization rewriting as generic paraphrasing** — the goal is authorial accuracy,
   not evasion.
 - **Do not erase the author's intended meaning or scientific caution.**
-- **Do not mark a polished unit as final without user confirmation.
-- **Do not compress according to journal submission limits unless explicitly requested.
+- **Do not mark a polished unit as final without user confirmation.**
+- **Do not compress according to journal submission limits unless explicitly requested.**

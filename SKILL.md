@@ -35,6 +35,35 @@ Six core manuscript-building stages, plus one optional publication-material stag
 Stage 07 is a publication-material stage, not a manuscript-building stage. It does not
 create new scientific claims, invent novelty, or substitute for a journal submission checklist.
 
+## Global Manuscript Logic
+
+Before drafting, reviewing, or polishing major manuscript material, keep the manuscript anchored to a checkable argument chain:
+
+**ocean/system need → unresolved process/data/method gap → this paper's move → decisive evidence → bounded implication → explicit limitation**
+
+This argument chain is a control surface for scientific coherence. It is not a new stage, not a paper-type classifier, and not a replacement for the user's research plan or target-journal decision.
+
+Use the chain to check:
+- whether the central claim follows from the available evidence;
+- whether each section serves the manuscript's main argument;
+- whether a figure, paragraph, or claim is being asked to support more than it can;
+- whether broader ocean, climate, or ecosystem implications remain bounded by the evidence.
+
+If a link in the chain is missing or weak, mark it explicitly with `[MISSING]`, `[UNCERTAIN]`, `[EVIDENCE GAP]`, `[STRUCTURE CONFLICT]`, `[REVIEW BLOCKER]`, or `[POLISH BLOCKER]` depending on the active stage.
+
+## Chinese-Friendly Interaction Policy
+
+This skill is designed for Chinese-speaking ocean science researchers preparing English-language manuscripts.
+
+Default behavior:
+- User-facing interaction follows the user's language. If the user writes in Chinese, ask questions, explain reasoning, and provide confirmation notes in Chinese.
+- Manuscript-facing text defaults to English unless the user explicitly asks for Chinese manuscript text.
+- English remains the default language for draft manuscript prose, figure captions, abstracts, cover letters, journal-facing statements, and polished submission text.
+- Chinese explanations are author-facing aids. They may explain intent, structure, evidence boundaries, and items requiring user confirmation, but they must not add scientific claims absent from the English manuscript text.
+- When helpful, include a short `中文核对 / Author Check` block after substantial stage outputs, draft units, review passes, or polish passes.
+
+Do not turn every output into full bilingual manuscript text by default. Chinese-friendly interaction is not the same as bilingual manuscript drafting.
+
 ## Stage Routing
 
 Route the user's request to the correct stage:
@@ -184,6 +213,7 @@ When the user returns to a stage with an existing output file:
 
 | Tag | Meaning |
 |-----|---------|
+| `[EVIDENCE GAP]` | Existing evidence does not support the proposed claim or argument-chain link |
 | `[MISSING]` | Information not provided |
 | `[UNCERTAIN]` | Information that may change |
 | `[TODO]` | Action item for the user |

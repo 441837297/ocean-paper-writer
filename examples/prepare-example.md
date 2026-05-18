@@ -1,45 +1,52 @@
-# Prepare Example
+# Prepare 阶段示例
 
-## Purpose of This Example
+## 目的
 
-This example shows how a new user starts the **prepare** stage from a proposal-like research idea. It demonstrates:
+本示例展示一位中文用户如何从研究计划开始进入 **prepare** 阶段。演示内容包括：
 
-- How the skill routes the user's request to the prepare stage
-- What clarifying questions it asks (3–5 maximum)
-- What the two output files look like: `01a_project-brief.md` and `01b_evidence-inventory.md`
-- How missing information is marked with `[MISSING]`, `[UNCERTAIN]`, and `[TODO]`
-- How the skill avoids drafting manuscript prose during prepare
+- skill 如何将用户请求路由到 prepare 阶段
+- 中文交互模式：助手用中文沟通，输出材料默认英文
+- 每轮 3–5 个确认问题的节奏控制
+- 两份输出文件的完整内容：`01a_project-brief.md` 和 `01b_evidence-inventory.md`
+- `[MISSING]`、`[UNCERTAIN]`、`[TODO]` 标记的使用方式
+- prepare 阶段不生成稿件正文的边界
 
-The example uses a fictional study on Southern Ocean fronts, chlorophyll, and air–sea CO₂ flux.
+示例使用一个虚构的南大洋锋面、叶绿素与海气 CO₂ 通量研究。
 
-## User Starts with This Message
+## 用户初始消息
 
-> I have a research proposal for a study on changing Southern Ocean fronts. I want to look at how frontal shifts might affect chlorophyll distribution and air–sea CO₂ flux. I have some preliminary figures from satellite data, and the analysis code is in Python, but I haven't organized it yet. I'm thinking Nature Climate Change as a target journal, but I'm not sure yet. Can you help me prepare the materials?
+> 我有一个关于南大洋锋面变化的研究计划。我想看看锋面移动如何影响叶绿素分布和海气 CO₂ 通量。我有一些卫星数据的初步图，分析代码是 Python 写的，但还没整理好。我考虑投 Nature Climate Change，但还没确定。你能帮我准备材料吗？
 
-## Assistant Should Route to Prepare
+## 路由决策
 
-The assistant recognizes this as a **prepare** stage request because:
+助手将这条消息识别为 **prepare** 阶段请求，理由：
 
-- The user has a proposal/idea but no structured manuscript inputs yet
-- The user mentions figures and code but asks to "prepare the materials," not to draft text
-- The target journal is mentioned as a consideration, not a final decision
-- No draft text exists — the user is not asking to write Introduction, Results, or other sections
+- 用户有研究计划但没有结构化的稿件输入材料
+- 用户提到了图和代码，但说的是"准备材料"，不是起草正文
+- 目标期刊是考虑中状态，不是最终决定
+- 还没有任何草稿文本存在
 
-The assistant does **not** route to writing, structure, or review. It does not generate manuscript prose.
+助手**不会**路由到 writing、structure 或 review。不会生成稿件正文。
 
-## First Clarifying Questions
+助手的首次回应：
 
-The assistant asks 3–5 critical questions to fill gaps:
+> 你的研究方向很清晰。我们现在从 **prepare** 阶段开始，先把所有材料整理成结构化的项目简介和证据清单，为后面的写作打好基础。我先问几个关键问题。
 
-1. What is the exact study area and time period? (e.g., "Southern Ocean south of 40°S, 1993–2020")
-2. Which specific datasets are you using for front detection, chlorophyll, and CO₂ flux?
-3. What figures do you already have? What does each figure show?
-4. Which Python scripts produced those figures? Can you share the code path?
-5. Is Nature Climate Change your intended target, or are you still considering other options?
+## 第一轮确认问题
 
-The assistant does not ask more than 5 questions in one turn. Remaining gaps are marked `[MISSING]` in the output files.
+助手用中文提出 3–5 个关键问题：
 
-## Example Output: 01a_project-brief.md
+> 1. 研究区域和时段具体是什么？（例如"南大洋 40°S 以南，1993–2020"）
+> 2. 锋面检测、叶绿素和 CO₂ 通量分别用的是哪个卫星数据集？
+> 3. 你现在有哪些图？每张图大致展示了什么？
+> 4. 生成这些图的 Python 脚本在哪个目录下？可以分享路径吗？
+> 5. Nature Climate Change 是你的首选目标期刊，还是仍在多个选项中考虑？
+
+每轮不超过 5 个问题。剩余信息缺口在输出文件中标记 `[MISSING]`。
+
+## 输出文件一：01a_project-brief.md
+
+*以下文件由助手在对话中生成，供用户保存到项目目录 `01_prepare/` 下。正文为英文，用户交互为中文。*
 
 ```markdown
 # 01a Project Brief
@@ -50,7 +57,7 @@ The assistant does not ask more than 5 questions in one turn. Remaining gaps are
 - working title: [MISSING]
 - target journal: Nature Climate Change [UNCERTAIN: user mentioned as possible target but not confirmed]
 - current stage: prepare
-- last updated: 2026-05-08
+- last updated: 2026-05-18
 
 ## Source Materials Provided
 
@@ -113,9 +120,9 @@ How have Southern Ocean frontal positions and intensities changed over the satel
 
 ## Possible Story Routes
 
-- Route 1: Observational detection — document frontal shifts first, then show chlorophyll and CO₂ flux correspondence
-- Route 2: Mechanism-focused — diagnose why frontal changes affect biology and carbon uptake in one region, then generalize
-- Route 3: Climate attribution — frame around frontal change as a climate response and its biogeochemical implications (requires stronger evidence, [TODO])
+- Route 1: Lead with the frontal-position evidence, then use chlorophyll and CO₂ flux patterns as bounded supporting context.
+- Route 2: Focus on the strongest region-specific evidence first, then discuss whether the biogeochemical patterns are consistent with the frontal analysis.
+- Route 3: Use frontal change as the central result, but treat climate-change attribution as an unresolved limitation unless additional attribution evidence is provided.
 
 ## Target Journal Notes
 
@@ -150,7 +157,19 @@ How have Southern Ocean frontal positions and intensities changed over the satel
 **methods** — after the user provides dataset details, code paths, and figure files.
 ```
 
-## Example Output: 01b_evidence-inventory.md
+## Prepare 阶段输出后的中文核对
+
+助手在生成输出文件后，附带中文核对说明：
+
+> **中文核对 / Author Check**
+>
+> - 项目简介和证据清单已生成，正文为英文。这两个文件是你的写作素材库，不是稿件正文。
+> - 核心研究问题目前是草稿版本：*"How have Southern Ocean frontal positions and intensities changed..."*。请确认这个表述是否准确反映了你想回答的科学问题。
+> - 三个假设（H1-H3）是从你的描述中提取的，请检查是否符合你的实际研究设计。
+> - 三条 story route 是备选方案。Route 1 对证据要求最可控；Route 3 涉及气候变化归因，当前只能作为限制或待补证据，不能作为主张。建议在 structure 阶段再决定。
+> - **仍需你提供**：数据集名称和版本、代码路径、图片文件、确切的研究时段和空间范围。
+
+## 输出文件二：01b_evidence-inventory.md
 
 ```markdown
 # 01b Evidence Inventory
@@ -162,6 +181,16 @@ How have Southern Ocean frontal positions and intensities changed over the satel
 | Fig1 | [MISSING] | Map of frontal positions from satellite SSH, with multi-year mean | Illustrates frontal locations | contextual | Does not show change over time |
 | Fig2 | [MISSING] | Time series of frontal latitude index | Suggestive of poleward shift | suggestive | [MISSING] trend significance, uncertainty bounds |
 | Fig3 | [MISSING] | Map of mean chlorophyll-a with frontal positions overlaid | Spatial overlap between fronts and chlorophyll | suggestive | Correlation does not prove frontal control of chlorophyll |
+
+## Figure Evidence Boundary Check
+
+*每张图作为视觉论证组件，而非仅仅是插图。以下问题用于填充 Figure Inventory 和 Figure-to-Claim Matrix。*
+
+| Figure | 1. What it shows | 2. Claim supported | 3. What it cannot support | 4. Additional evidence needed | 5. Caption/results wording to avoid |
+|--------|-------------------|-------------------|--------------------------|------------------------------|-------------------------------------|
+| Fig1 | Frontal positions from SSH | contextual: where fronts are located | Frontal change over time, climate attribution | Multi-year time series | "Fronts are shifting due to climate change" |
+| Fig2 | Frontal latitude index time series | Suggestive of poleward shift | Confirmed trend with significance, mechanism, attribution | Trend significance test, uncertainty bounds, record-length context | "Fronts are moving poleward in response to warming" |
+| Fig3 | Mean chlorophyll-a with fronts overlaid | Spatial overlap | Frontal-driven mechanism, causality | Temporal correlation, mixed-layer/nutrient analysis | "Fronts control chlorophyll distribution" |
 
 ## Data Inventory
 
@@ -214,17 +243,19 @@ How have Southern Ocean frontal positions and intensities changed over the satel
 - Story routes are provisional — they depend on what the data actually show
 ```
 
-## What Happens Next
+## 后续步骤
 
-After the prepare stage produces these two files, the user can choose to:
+助手用中文总结 prepare 阶段的完成状态：
 
-- **Pause here** — the project brief and evidence inventory are saved for later use
-- **Update prepare files** — if the user provides additional materials (figures, code paths, dataset names), the files can be revised
-- **Continue to methods** — if the user is ready to share code paths, data descriptions, and figure files
+> prepare 阶段的材料已经准备好了。你目前有三个选择：
+>
+> - **暂停** — 项目简介和证据清单已保存，随时可以回来继续
+> - **补充材料** — 如果你有更多数据集信息、代码路径或图片，我可以更新这两个文件
+> - **进入 methods 阶段** — 如果你准备好分享代码路径、数据描述和图片文件
+>
+> 如果要进入 methods，你接下来需要提供：代码目录路径和关键脚本、每张图由哪个脚本生成、数据集名称/版本/获取方式/时段、哪些是最终版图 vs 探索性图。
 
-If the user continues to methods, the next session would need:
-
-- The code directory path and key scripts or notebooks
-- A description of each figure: which script produced it, what dataset it uses, what processing was applied
-- Dataset names, versions, access information, and time ranges
-- Which figures are final versions versus exploratory plots
+本示例展示的核心交互模式：
+- **用户用中文交流** → 助手用中文回应、引导工作流
+- **输出文件为英文** → 面向投稿的材料始终为英文
+- **中文核对区块** → 用中文解释意图和证据边界，帮助作者确认，但不添加英文正文中没有的科学声明
