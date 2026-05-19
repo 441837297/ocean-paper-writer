@@ -197,11 +197,13 @@ Recommended user input:
 Search priority:
 1. Project-specific collection first
 2. User-provided key papers
-3. User notes and annotations
-4. Abstracts and metadata
-5. Full text if needed and available
+3. `search_library` → candidate titles (fast, token-minimal)
+4. `get_item_details(mode="preview")` → abstract filtering (cheap per paper)
+5. `output.md` + Haiku subagent → targeted evidence extraction (only when depth needed)
+6. PDF full text (only on explicit user request, not routine)
 
 Always explain the search intent to the user before querying.
+Confirm after each level before going deeper.
 
 ## Citation Handling Rules
 
