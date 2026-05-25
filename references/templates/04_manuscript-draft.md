@@ -1,117 +1,46 @@
-# 04 Manuscript Draft
+# 04 Manuscript Draft (Template)
 
 ## Project Metadata
 
 - project name: [from project brief]
 - working title: [from project brief]
 - target journal: [from project brief]
-- journal profile: [name — e.g., grl.md]
-- bilingual mode: [enabled / disabled]
-- current stage: writing
 - last updated: [YYYY-MM-DD]
-- source files: `01_prepare/01a_project-brief.md`, `01_prepare/01b_evidence-inventory.md`, `02_methods/02a_data.md and 02_methods/02b_methods.md`, `03_structure/03_manuscript-structure.md`
 
-## Draft Unit Log
-
-Each row records one confirmed writing unit. Units are drafted one at a time — never an entire section in one pass.
-
-| Unit ID | Section | Paragraph / Subsection | Purpose / Function | Evidence used | Status | Last updated |
-|---------|---------|-----------------------|-------------------|---------------|--------|-------------|
-| M1 | Methods | para 1 — data sources | describe satellite SSH data | AVISO, 1993-2020 | confirmed | YYYY-MM-DD |
-| M2 | Methods | para 2 — preprocessing | QC flags and gridding | [method] | confirmed | YYYY-MM-DD |
-| — | — | — | — | — | — | — |
-| — | — | — | — | — | — | — |
-
-Status values: `confirmed` / `provisional` / `revising` / `pending`.
-Unconfirmed units are not moved into Section Draft Assembly.
-
-## Active Draft Unit
-
-The unit currently being written:
-
-- **unit id:** [e.g., M3]
-- **section:** [Methods / Results / Discussion / Introduction / Conclusion / Abstract]
-- **paragraph/subsection:** [description]
-- **target journal:** [journal name]
-- **language mode:** [english / chinese / bilingual]
-- **evidence used:** [figures, data, methods, references]
-- **status:** [in progress / awaiting feedback / confirmed]
-
-### Draft Text
-
-[The current paragraph or subsection prose]
-
-### Evidence Trace
-
-- Figures: [IDs]
-- Data/methods: [sources]
-- References: [citations or [CITATION NEEDED]]
-- Claim supported: [claim ID from structure]
-
-### Boundaries / Cautions
-
-- What this unit does not claim: [explicit boundary]
-- Uncertainty or citation needed: [if applicable]
-
-### User Feedback
-
-[Record user feedback per unit — keep / revise / expand / continue]
-
-### Revision Notes
-
-[Record what changed and why]
+> **引用格式**: `Author et al., Year [ZOTERO_KEY]`。最终在 Word 中用 Zotero 插件插入。Key 速查表见 `04_writing-log.md`。
+> **写作跟踪**: Draft Unit Log / Revision Notes / Update Summary 见 `04_writing-log.md`。
 
 ---
 
-## Title
+## Introduction
 
-[Working title — may evolve during drafting]
+*NCC climate-first arc — broad context (§1.1) → known changes + gap (§1.2) → chain as missing link (§1.3) → Here we show (§1.4). Terms defined for broad climate-science audience.*
 
-## Authors
-
-[To be filled by user — not drafted by AI]
+[Confirmed units are assembled here in paragraph order.]
 
 ---
 
-## Section Draft Assembly
+## Results
 
-Confirmed draft units are assembled here per section. Unconfirmed units remain in the Draft Unit Log only.
-
-### Methods
-
-*Drafting guidance: Use 02a_data.md and 02b_methods.md as primary source. Past tense. Break into units: data sources, preprocessing, derived variables, statistics. Follow journal profile depth.*
+*Follow figure sequence from 03_manuscript-structure.md. Lead each paragraph with the finding. One paragraph per key finding or figure group.*
 
 [Confirmed units are assembled here in paragraph order.]
 
-### Results
+---
 
-*Drafting guidance: Follow figure sequence from 03_manuscript-structure.md. Lead each paragraph with the finding. One paragraph per key finding or figure group.*
+## Discussion
 
-[Confirmed units are assembled here in paragraph order.]
-
-### Discussion
-
-*Drafting guidance: Arc — restate primary finding → interpret → compare → implicate → bound. One paragraph per discussion point.*
+*Arc: restate primary finding → interpret physically → compare with prior work → broader implications → bound what cannot be concluded. One paragraph per discussion point.*
 
 [Confirmed units are assembled here in paragraph order.]
 
-### Introduction
+---
 
-*Drafting guidance: Arc — broad context (para 1) → specific gap (para 2) → what this paper does/finds (para 3).*
+## Methods (Online Methods)
 
-[Confirmed units are assembled here in paragraph order.]
+*Four subsections. Past tense. Follow journal profile depth. Data → identification → diagnostics → aggregation/trends.*
 
-### Conclusion
-
-*Drafting guidance: Central finding + significance + one forward-looking sentence if warranted. Typically 1–2 paragraphs. No new evidence.*
-
-[Confirmed units are assembled here.]
-
-### Abstract
-
-*Drafting guidance: Written last. Journal-specific structure (problem → approach → finding → implication). Single short unit.*
-
-[Abstract text when confirmed.]
+[Confirmed units are assembled here in subsection order.]
 
 ---
 
@@ -120,21 +49,8 @@ Confirmed draft units are assembled here per section. Unconfirmed units remain i
 | Figure/Table | Section | Caption | Status |
 |-------------|---------|---------|--------|
 | Fig 1 | [section] | [caption text] | [to be drafted / drafted] |
-| Fig 2 | ... | ... | ... |
-| Table 1 | ... | ... | ... |
 
-*Figure captions should be self-contained — interpretable without reading the main text. Follow journal conventions for caption style.*
-
----
-
-## References
-
-- [CITATION NEEDED] — [citation context, e.g., "data source citation for AVISO SSH dataset"]
-- [CITATION NEEDED] — [citation context, e.g., "prior trend estimate for comparison in Discussion"]
-- [Reference 1 — to be filled from Zotero or user-provided list]
-- [Reference 2 — ...]
-
-*Do not fabricate references. Mark missing citations as [CITATION NEEDED] with context for the user to fill.*
+*Captions should be self-contained. Follow journal conventions.*
 
 ---
 
@@ -144,7 +60,7 @@ Confirmed draft units are assembled here per section. Unconfirmed units remain i
 
 ## Data Availability Statement
 
-[Template text — to be completed by user]
+[To be filled by user]
 
 ## Author Contributions
 
@@ -160,20 +76,5 @@ Confirmed draft units are assembled here per section. Unconfirmed units remain i
 
 | Item | Content | Status |
 |------|---------|--------|
-| Figure S1 | [description] | [to be drafted / drafted] |
-| Table S1 | [description] | [to be drafted / drafted] |
-| Text S1 | [supplementary methods detail] | [to be drafted / drafted] |
-
-*Supplementary materials are designed during structure stage and drafted alongside the corresponding main-text section.*
-
----
-
-## Revision Notes
-
-| Date | Section | Change | Reason |
-|------|---------|--------|--------|
-| [YYYY-MM-DD] | [section] | [description of change] | [user revision request or material update] |
-
-## Update Summary
-
-[Populated only during resume mode. See writing workflow for format.]
+| Text S1 | [supplementary methods] | [to be drafted] |
+| Figure S1 | [description] | [to be drafted] |

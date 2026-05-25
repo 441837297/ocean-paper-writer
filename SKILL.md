@@ -64,9 +64,18 @@ Default behavior:
 
 Do not turn every output into full bilingual manuscript text by default. Chinese-friendly interaction is not the same as bilingual manuscript drafting.
 
-## Stage Routing
+## Session Start
 
-Route the user's request to the correct stage:
+Skill 启动时先问：
+
+> 从头开始还是接续工作？如果接续，请提供项目目录路径。
+
+- **接续** → 扫描目录下已有 stage 输出，报告进度，询问下一步。
+- **从头开始** → 请用户提供项目目录路径，默认进入 **prepare**。
+
+所有 stage 输出文件存放在用户指定的项目目录下，不同项目互不干扰。
+
+## Stage Routing
 
 - **Proposal, research plan, figures, figures + code, "from scratch":** route to **prepare**. The user has materials but no structured manuscript inputs yet.
 - **Code, notebooks, data processing, methods description:** route to **methods**. The user wants to document what was done.
@@ -99,10 +108,20 @@ Each stage produces a fixed user-project output file. These are **user project f
 | 02 methods | `02_methods/02a_data.md` |
 | 02 methods | `02_methods/02b_methods.md` |
 | 03 structure | `03_structure/03_manuscript-structure.md` |
-| 04 writing | `04_writing/04_manuscript-draft.md` |
-| 05 review | `05_review/05_review-report.md` |
+| 04 writing | `04_writing/04_manuscript-draft.md` (初稿) |
+| 04 writing | `04_writing/04_manuscript-reviewN.md` (第 N 轮 05 审查后修改稿) |
+| 04 writing | `04_writing/04_manuscript-polishN.md` (第 N 轮 06 润色后修改稿) |
+| 05 review | `05_review/05_gpt-review-roundN.md` (第 N 轮审查) |
 | 06 polish | `06_polish/06_polish-log.md` |
 | 07 cover-letter | `07_cover-letter/07_cover-letter.md` |
+
+**Versioning rule:** `04_manuscript-draft.md` is the initial complete first draft (04 阶段产出).
+N is a global monotonic counter shared by review and polish rounds — it increments regardless of
+whether the round was a review or a polish pass. After each round, the revised manuscript is saved
+as `04_manuscript-reviewN.md` (if the round was a 05 review) or `04_manuscript-polishN.md`
+(if the round was a 06 polish). The suffix maps to the stage that produced the changes; the number
+tells you the absolute sequence. Example: review1 → review2 → polish3 → review4.
+The writing log (`04_writing-log.md`) tracks which round each unit was last modified in.
 
 Do not generate stage output files for stages the user has not reached. Do not generate files for future stages preemptively.
 
@@ -249,9 +268,19 @@ Each stage may hand off to one or more subsequent stages. Handoff is never autom
 | methods | structure |
 | structure | writing |
 | writing | review |
-| review | writing, structure, methods, prepare, polish |
-| polish | writing, review, cover-letter |
+| review | writing (→ `04_manuscript-reviewN.md`), structure, methods, prepare, polish |
+| polish | writing (→ `04_manuscript-polishN.md`), review, cover-letter |
 | cover-letter | polish, review, final assembly |
+
+**Review→Writing handoff:** Each review round produces `05_review/05_gpt-review-roundN.md`.
+To incorporate feedback into the manuscript:
+1. Copy the base manuscript to `04_writing/04_manuscript-reviewN.md` (for N=1, the base is `04_manuscript-draft.md`; for N>1, the base is the most recent `04_manuscript-review{N-1}.md` or `04_manuscript-polish{N-1}.md`).
+2. Apply targeted edits to the copy — never edit the base manuscript directly.
+3. Update `04_writing/04_writing-log.md` with the revision summary.
+**Polish→Writing handoff:** Same copy-then-edit rule: copy the base manuscript to
+`04_writing/04_manuscript-polishN.md`, then edit the copy.
+N is shared globally across review and polish —
+review1 → review2 → polish3 → review4 is a valid sequence.
 
 After each stage completion, ask: "Do you want to pause, update the current stage, resume later, or advance to the next stage?"
 
@@ -288,6 +317,10 @@ exact write action.
 
 Full Zotero integration reference: `references/zotero/README.md`
 
+**Hard rule — full-text Zotero searches:** Before pulling full-text content (PDFs, Methods/Results paragraphs), explicitly ask the user whether to use subagent + haiku to avoid flooding the main context window. See README for detail.
+
+**Hard rule — PDF reading prohibited for style reference:** When the skill needs to reference actual paper text (e.g., for writing style comparison, method phrasing, or narrative structure), **never use Zotero MCP `get_content` with `include pdf:true`** to extract paper text. Instead: (1) ask the user whether they have pre-converted MD files (from zotero-mineru-plugin or similar PDF→MD pipeline); (2) use the mineru-converted `output.md` files in Zotero storage (these are complete full-text MD, produced by zotero-mineru-plugin); (3) never attempt to read PDF binary via MCP for text extraction. The user's zotero-mineru-plugin pipeline produces clean MD files that should be the primary source for paper text.
+
 ## Do Not Do
 
 - **Do not generate a full manuscript in one pass.** Build it stage by stage.
@@ -296,6 +329,7 @@ Full Zotero integration reference: `references/zotero/README.md`
 - **Default writing unit is one paragraph; maximum is one subsection.** Build prose incrementally.
 - **Default polish unit is one paragraph; maximum is one subsection.** Refine text incrementally.
 - **Do not rewrite during review by default.** Review diagnoses; rewriting only happens when the user explicitly requests a revision draft.
+- **Do not edit the base manuscript directly when incorporating review or polish feedback.** Copy it to `04_manuscript-reviewN.md` or `04_manuscript-polishN.md` first, then edit the copy. The base manuscript (`04_manuscript-draft.md` or the previous round's output) is immutable.
 - **Do not use polished language to hide evidence gaps.** If evidence is missing, return to review, writing, methods, or prepare.
 - **Do not invent data, methods, figures, citations, literature references, or advisor comments.**
 - **Do not overcompress materials according to journal rules during early stages.** Compression happens in late-stage polish.

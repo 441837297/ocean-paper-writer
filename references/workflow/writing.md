@@ -53,15 +53,16 @@ voice guidance.
 
 ## Required Output
 
-Writing produces exactly one default user-facing file:
+Writing produces two default user-facing files:
 
 ```
-04_writing/04_manuscript-draft.md
+04_writing/04_manuscript-draft.md   ← clean manuscript text only (Section Draft Assembly)
+04_writing/04_writing-log.md        ← Draft Unit Log, Reference Key Lookup, Revision Notes, Update Summary
 ```
 
-The file tracks: a Draft Unit Log (each paragraph or subsection as a row), an Active Draft Unit
-(the unit currently being written), and Section Draft Assembly (where confirmed units are assembled
-into full sections). The file is updated incrementally — after each writing unit is confirmed.
+The draft file contains confirmed manuscript prose in Author-Year + Zotero key citation format,
+ready for copy-paste into Word. The log file tracks all writing metadata: unit status, revision
+history, reference lookup table, and update summaries. Both files are updated incrementally.
 Do **not** create per-section files unless the user explicitly asks.
 
 ## Interaction Flow
@@ -294,9 +295,9 @@ Follow `references/writing/bilingual-output.md`. Default: English manuscript tex
 
 ## Resume and Update Mode
 
-When the user returns with existing `04_writing/04_manuscript-draft.md`:
+When the user returns with existing `04_writing/04_manuscript-draft.md` and `04_writing/04_writing-log.md`:
 
-1. **Read** the existing draft, including the Draft Unit Log
+1. **Read** the existing draft and log, including the Draft Unit Log
 2. **Identify the last confirmed writing unit** — start from the next unconfirmed unit
 3. **Preserve** confirmed units. Do not rewrite them unless the user requests revision
 4. **If underlying materials changed** (revised methods, new figures), note which units
