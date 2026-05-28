@@ -52,10 +52,10 @@ prepare / methods / structure 阶段不依赖 Zotero；writing / review / polish
    包含图表标题（caption）生成，遵循三部分结构：主题 → 关键内容 → 数据来源。
    需要文献支撑时，工具会先征求你的同意再检索 Zotero。
 
-5. **审查（Review）** — 工具诊断证据缺口、声明强度、逻辑问题和期刊适配度。
-   每轮审查产出 `05_gpt-review-roundN.md`，修改后的手稿保存为 `04_manuscript-reviewN.md`。
+5. **审查（Review）** — 处理外部审查输入（作者自审 / 导师反馈 / 外部 LLM 审查），将其归类、映射为可执行的修改任务。
+   可选：生成审查提示词，供你发给 GPT / Gemini 等外部 LLM 进行审查。
+   每轮审查产出 `05_review-roundN.md`，修改后的手稿保存为 `04_manuscript-reviewN.md`。
    多轮审查的 N 全局递增（review1 → review2 → polish3 → review4 合法）。
-   默认不改写任何内容，你决定修什么、往哪个方向走。
 
 6. **润色（Polish）** — 推荐逐段精修已确认的文本，优化清晰度、流畅度和期刊语气。
    每轮润色后修改稿保存为 `04_manuscript-polishN.md`，N 与审查共享全局计数器。
@@ -68,6 +68,30 @@ prepare / methods / structure 阶段不依赖 Zotero；writing / review / polish
 任何阶段都可以暂停，稍后继续。
 也可以回到前面的阶段 — 审查可以回到写作或结构，润色可以回到写作。
 这不是单向流水线。
+
+### 流程图
+
+```mermaid
+flowchart TD
+    P[[01 Prepare<br>项目简报 + 证据清单]]
+    M[[02 Methods<br>数据来源 + 分析方法]]
+    S[[03 Structure<br>手稿架构 + 声明层级]]
+    W[[04 Writing<br>逐段起草正文]]
+    R[[05 Review<br>处理外部审查输入<br>映射为修改任务]]
+    POL[[06 Polish<br>逐段精修语言]]
+    CL[[07 Cover Letter<br>投稿信素材]]
+
+    P --> M --> S --> W --> R --> POL --> CL
+    R -.->|审查后回到写作| W
+    POL -.->|润色后可回写作| W
+
+    style R fill:#f9f,stroke:#333
+    style W fill:#bbf,stroke:#333
+```
+
+> 主流程从左到右单向推进。两个虚线回路：Review 完成后回到 Writing 修改正文，
+> Polish 完成后也可回到 Writing 继续调整。更大幅度的回退（如 Review → Structure
+> 或 Review → Methods）在实际使用中较少发生，由 Skills 根据问题类型自动判断。
 
 ## 不做什么
 
@@ -110,7 +134,7 @@ manuscript/
 │   ├── 04_manuscript-polishN.md   # 第 N 轮润色后修改稿（N 与审查共享）
 │   └── 04_writing-log.md          # 起草日志、单元状态、文献速查、修订记录
 ├── 05_review/
-│   └── 05_gpt-review-roundN.md    # 第 N 轮审查报告（诊断 + 修改建议）
+│   └── 05_review-roundN.md         # 第 N 轮审查报告（审查意见分类 + 修改任务映射）
 ├── 06_polish/
 │   └── 06_polish-log.md           # 原始文本 vs 润色后文本、修改理由、边界检查
 └── 07_cover-letter/

@@ -28,7 +28,7 @@ Six core manuscript-building stages, plus one optional publication-material stag
 | **02 methods** | Document data sources, processing workflows, derived variables, and statistical methods |
 | **03 structure** | Design manuscript architecture — central story, claim hierarchy, figure sequence, section roles |
 | **04 writing** | Draft manuscript prose one paragraph or subsection at a time, following the structure architecture |
-| **05 review** | Diagnose evidence, claims, logic, journal fit, and revision priorities — no rewriting by default |
+| **05 review** | Process external review input (author / advisor / external LLM) into structured, actionable revision tasks; optionally generate review prompts for external LLMs |
 | **06 polish** | Refine confirmed text for clarity, flow, journal voice, and style naturalization — no evidence creation |
 | **07 cover-letter** | Prepare submission-facing cover letter material from confirmed manuscript claims and journal fit |
 
@@ -81,7 +81,7 @@ Skill 启动时先问：
 - **Code, notebooks, data processing, methods description:** route to **methods**. The user wants to document what was done.
 - **Outline, manuscript structure, target journal architecture, section planning:** route to **structure**. The user needs a narrative architecture before drafting.
 - **Draft paragraph, write a section, "write Results/Discussion/Introduction", "write the next paragraph":** route to **writing**. The user wants to generate manuscript prose.
-- "**Check my text", "review this", "critique", advisor comments, "does this hold up?", journal fit:** route to **review**. The user wants diagnosis and revision planning.
+- "**Check my text", "review this", "critique", advisor comments, "does this hold up?", journal fit:** route to **review**. The user has external review input to process, or wants to generate a prompt for external LLM review.
 - "**Polish this", "revise wording", "de-AI", "improve language", "make it flow better",
   journal style, advisor language comments:** route to **polish**.
   If the user says "de-AI", interpret this as a request for style naturalization /
@@ -111,7 +111,7 @@ Each stage produces a fixed user-project output file. These are **user project f
 | 04 writing | `04_writing/04_manuscript-draft.md` (初稿) |
 | 04 writing | `04_writing/04_manuscript-reviewN.md` (第 N 轮 05 审查后修改稿) |
 | 04 writing | `04_writing/04_manuscript-polishN.md` (第 N 轮 06 润色后修改稿) |
-| 05 review | `05_review/05_gpt-review-roundN.md` (第 N 轮审查) |
+| 05 review | `05_review/05_review-roundN.md` (第 N 轮审查) |
 | 06 polish | `06_polish/06_polish-log.md` |
 | 07 cover-letter | `07_cover-letter/07_cover-letter.md` |
 
@@ -272,15 +272,12 @@ Each stage may hand off to one or more subsequent stages. Handoff is never autom
 | polish | writing (→ `04_manuscript-polishN.md`), review, cover-letter |
 | cover-letter | polish, review, final assembly |
 
-**Review→Writing handoff:** Each review round produces `05_review/05_gpt-review-roundN.md`.
+**Review→Writing handoff:** Each review round processes external input and produces `05_review/05_review-roundN.md`.
 To incorporate feedback into the manuscript:
-1. Copy the base manuscript to `04_writing/04_manuscript-reviewN.md` (for N=1, the base is `04_manuscript-draft.md`; for N>1, the base is the most recent `04_manuscript-review{N-1}.md` or `04_manuscript-polish{N-1}.md`).
-2. Apply targeted edits to the copy — never edit the base manuscript directly.
-3. Update `04_writing/04_writing-log.md` with the revision summary.
-**Polish→Writing handoff:** Same copy-then-edit rule: copy the base manuscript to
-`04_writing/04_manuscript-polishN.md`, then edit the copy.
-N is shared globally across review and polish —
-review1 → review2 → polish3 → review4 is a valid sequence.
+1. Copy the base manuscript to `04_writing/04_manuscript-reviewN.md` (for N=1, the base is `04_manuscript-draft.md`; for N>1, the base is the most recent `04_manuscript-review{N-1}.md` or `04_manuscript-polish{N-1}.md`). **This step is mandatory — never edit the base manuscript directly, even for a one-word fix.**
+2. Apply targeted edits to the copy.
+3. Update `04_writing/04_writing-log.md`: append new entries to the Revision Notes table (newest first). **Never replace or delete existing entries.** Read the current last lines of the log before editing to confirm boundaries.
+**Polish→Writing handoff:** Same copy-then-edit rule; same append-only rule for the log.
 
 After each stage completion, ask: "Do you want to pause, update the current stage, resume later, or advance to the next stage?"
 

@@ -2,32 +2,104 @@
 
 ## Purpose
 
-The review workflow is a diagnostic and revision-planning stage — not a rewriting stage.
-It checks manuscript claims against the established evidence chain, assesses whether structure
-decisions were correctly executed in writing, identifies overclaiming and evidence gaps, evaluates
-journal-fit issues, converts all problems into actionable revision tasks, and prepares for targeted
-writing revision or polish.
+The review workflow turns external review input — from the author, advisor, coauthors, or an
+external LLM — into structured, actionable revision tasks. It does **not** produce a review by
+itself. The order is:
+
+> **External reviewer reads manuscript → produces review comments → Skills reads the review → classifies, maps, prioritizes → hands off to writing.**
+
+Skills can optionally generate a review prompt for the user to send to an external LLM
+(GPT, Gemini, etc.). But the core job of Stage 05 is processing review input, not creating it.
 
 ## When to Use
 
-Run review when: writing has produced confirmed draft units; the user wants to check a section's
-validity; advisor/coauthor/reviewer comments need mapping to revision actions; the user wants
-readiness assessment before polish; or the user wants a simulated target-journal reader perspective.
+Run review when: a draft exists; the user has read the manuscript and has notes; advisor or
+coauthor feedback has arrived; the user wants to send the manuscript to an external LLM for
+review; or the user has review comments from any source and wants them turned into a revision plan.
 
-Do **not** run review when: no draft text exists (run writing first); the user only wants language
-polishing (use polish); or the user only wants structural planning (use structure).
+Do **not** run review when: no draft text exists (run writing first); no external review input
+exists yet and the user does not want LLM review; the user only wants language polishing
+(use polish); the user wants structural planning without a draft (use structure).
 
 ## Core Principle
 
-> Review diagnoses and prioritizes; it does not rewrite by default.
+> Review processes external input; it does not originate review judgments.
 
-Identify issues first, classify severity (high/medium/low), explain why each matters, propose a
-specific revision action, and ask the user before rewriting. If the user requests a revision draft,
-label it `[REVISION DRAFT — NOT FINAL]`.
+The skill does not read the manuscript and form its own opinion. Instead, it:
+1. Reads review comments from any source (author, advisor, LLM).
+2. Classifies each comment by type, severity, and workflow destination.
+3. Maps each comment to a specific action label.
+4. Prioritizes revision tasks.
+5. Hands off to writing for actual manuscript changes.
+
+If the user wants an external LLM to review the manuscript, the skill generates a prompt —
+but the LLM's response is external input that the skill then processes like any other review.
+
+## Prompt Generation for External LLM Review (Optional)
+
+Before processing review input, the user may want an external LLM (GPT, Gemini, etc.) to
+read the manuscript and produce review comments. The skill can generate a review prompt for
+this purpose.
+
+### Two review modes
+
+| Mode | What happens |
+|------|-------------|
+| **Directed review** | User specifies review focus: own concerns, advisor feedback, specific questions, or particular sections to scrutinize. The prompt incorporates these directions. |
+| **Template-guided review** | User provides no specific direction. The skill builds the prompt around the distilled literature template (`_distill.md`) as the review framework — checking evidence chain, claim strength, section function, figure logic, and ocean-science overclaiming patterns. |
+
+### Prompt generation flow
+
+1. User confirms: want to send manuscript to external LLM for review.
+2. User chooses directed or template-guided mode.
+3. If directed: user provides review focus (own notes, advisor comments, specific concerns).
+4. Skill gathers required materials:
+   - Current manuscript (`04_manuscript-draft.md` or latest `04_manuscript-reviewN.md` / `04_manuscript-polishN.md`)
+   - Structure file (`03_manuscript-structure.md`)
+   - Methods files (`02a_data.md`, `02b_methods.md`)
+   - Evidence inventory (`01b_evidence-inventory.md`)
+   - Target journal profile (if specified)
+   - Distilled literature template (if template-guided mode)
+5. Skill assembles a complete review prompt including:
+   - Manuscript text (or relevant sections)
+   - Review framework and dimensions to check
+   - Specific questions or focus areas (if directed)
+   - Output format expectations (structured review comments)
+6. Prompt is saved to `05_review/05_review-roundN.md`.
+7. User copies the prompt to GPT / Gemini / other LLM.
+8. User brings the LLM's response back.
+9. Skill reads the LLM response and processes it as review input (see "Processing Review Input" below).
+
+**Hard rule:** The skill never sends prompts to external LLMs directly. The user controls
+which LLM to use and does the sending. The skill only generates the prompt text.
+
+## Processing Review Input
+
+Once review comments exist (from author, advisor, or external LLM), the skill processes them.
+
+### Interaction Flow
+
+```
+ 1. Confirm review source: author self-review / advisor feedback / external LLM review
+ 2. Load the review comments
+ 3. Load manuscript and supporting files
+ 4. Classify each comment — type, severity, action label, workflow destination
+ 5. Identify conflicts between comments (e.g., advisor vs. evidence, or multiple reviewers)
+ 6. Present classified issues to user, grouped by priority
+ 7. Ask user to confirm which issues to act on
+ 8. Save structured review report to 05_review/05_review-roundN.md
+ 9. Hand off to writing for manuscript revision
+```
+
+### Pacing
+
+Each turn asks **3–5 questions maximum**. If 10+ issues, group by severity and present highest
+first. Do not dump all issues at once unless the user requests it. **Do not rewrite manuscript
+prose during this stage.**
 
 ## Review Action Labels
 
-Each review issue must receive one action label. The label should make the next revision step unambiguous.
+Each review comment must receive one action label. The label makes the next revision step unambiguous.
 
 | Action label | Meaning | Typical handoff |
 |-------------|---------|-----------------|
@@ -62,52 +134,40 @@ Ask the user to choose scope. If unclear, recommend **section-level review**.
 - **Manuscript-level review** — full draft or assembled manuscript. Checks: central story,
   cross-section consistency, repeated claims, evidence completeness, target-journal fit.
 
-**Hard rule:** Do not perform full manuscript review unless explicitly requested.
+**Hard rule:** Do not process manuscript-level review unless explicitly requested.
 
 ## Required Inputs
 
-**Core files:** `03_structure/03_manuscript-structure.md`, `04_writing/04_manuscript-draft.md`
+**Core files:** `03_structure/03_manuscript-structure.md`,
+current manuscript (`04_writing/04_manuscript-draft.md` or latest `04_manuscript-reviewN.md`
+/ `04_manuscript-polishN.md`)
 
 **Supporting files:** `01_prepare/01a_project-brief.md`, `01_prepare/01b_evidence-inventory.md`,
 `02_methods/02a_data.md and 02_methods/02b_methods.md`
 
-**Optional:** target journal profile (`references/journals/{journal}.md`), advisor/coauthor/reviewer
-comments, specific section to review, user-defined review priority (evidence / logic / journal fit /
-language).
+**External review input (required):** review comments from author, advisor, coauthors, or
+external LLM response. Without this, the skill has nothing to process.
+
+**Optional:** target journal profile (`references/journals/{journal}.md`),
+distilled literature template (for template-guided LLM review prompt generation).
 
 ## Required Output
 
-Review produces exactly one default user-facing file:
+Review produces exactly one default user-facing file per round:
 
 ```
-05_review/05_review-report.md
+05_review/05_review-roundN.md
 ```
+
+This file contains either:
+- A **review prompt** ready to send to an external LLM (if prompt generation was requested), OR
+- A **structured review report** classifying external review input and mapping it to revision actions.
+
+N is the global monotonic counter shared with polish rounds.
 
 Do **not** create additional files unless the user explicitly asks.
 
-## Interaction Flow
-
-```
- 1. Ask user to choose review scope
- 2. Intake structure and writing files (core)
- 3. Intake supporting files if needed
- 4. Confirm target journal and review priority
- 5. Identify which review dimensions apply
- 6. Diagnose issues — claims, evidence, structure, figure logic, journal fit, uncertainty
- 7. Classify each issue — severity, type, action label, workflow destination
- 8. Propose revision action per issue, using the action label to make the next step explicit
- 9. Ask user to confirm revision priorities
-10. Save review report to 05_review/05_review-report.md
-11. Decide handoff — back to writing/structure/methods/prepare or forward to polish
-```
-
-### Pacing
-
-Each turn asks **3–5 questions maximum**. If 10+ issues, group by severity and present highest
-first. Ask if user wants lower-severity items. Do not propose all revision actions at once unless
-requested. **Do not rewrite manuscript prose by default.**
-
-## Review Dimensions
+## Review Dimensions (for processing and prompt generation)
 
 ### Evidence support
 
@@ -164,7 +224,7 @@ excessive hedging, undefined jargon, overused intensifiers ("very", "highly").
 
 **Hard rule:** Do not decide the target journal for the user.
 Use the user-specified journal as a review lens; do not substitute, reject, or override.
-If no journal is specified, perform general evidence/logic review without journal-specific fit checks.
+If no journal is specified, skip journal-specific fit checks.
 Journal-fit concerns are separate from evidence/logic — present as a distinct dimension in the
 review report.
 
@@ -179,29 +239,57 @@ present both sides, and ask user to decide priority.
 ## Missing and Conflicting Information
 
 **Marking conventions:** `[MISSING]` = not provided, `[UNCERTAIN]` = may change, `[TODO]` = action
-item, `[REVIEW BLOCKER]` = prevents meaningful review, `[REVIEW CONFLICT]` = advisor/evidence
-conflict, `[CONFIRM WITH USER]` = needs user input.
+item, `[REVIEW BLOCKER]` = prevents meaningful processing, `[REVIEW CONFLICT]` = conflicting
+review input, `[CONFIRM WITH USER]` = needs user input.
 
-**Critical blockers:** no draft text, no structure file for section/manuscript review,
+**Critical blockers:** no draft text, no structure file, no review input to process,
 user-specified journal profile unavailable, claims untraceable to evidence, unclear advisor
 comments, inaccessible cited literature.
 
-**Conflict handling:** do not silently resolve conflicts — present both sides and ask user to
-decide priority. Record resolution in review report.
+**Conflict handling:** do not silently resolve conflicts between review inputs — present both
+sides and ask user to decide priority. Record resolution in review report.
 
 ## Resume and Update Mode
 
-When user returns with existing `05_review-report.md`: read existing report, identify last review
+When user returns with existing `05_review-roundN.md`: read existing report, identify last review
 pass, preserve resolved items, add new review pass for new content, generate changelog:
 
 ```markdown
 ## Update Summary
-- Review pass added: [date / scope / section reviewed]
+- Review pass added: [date / scope / section reviewed / review source]
 - Issues resolved: [list], Issues remaining: [list], New issues: [list]
 - Recommended next action: [handoff destination]
 ```
 
 ## Handoff to Writing or Polish
+
+### Before You Touch Any File — Mandatory Checklist
+
+When the user asks to apply review feedback to the manuscript, complete these steps
+**in order** before any Edit or Write call:
+
+```
+[ ] 1. Identify the base manuscript file.
+       For round N: if N=1, base = 04_manuscript-draft.md.
+       If N>1, base = the most recent 04_manuscript-review{N-1}.md
+       (or 04_manuscript-polish{N-1}.md if the previous round was polish).
+
+[ ] 2. Copy the base to the new round file.
+       cp base_file 04_manuscript-reviewN.md
+       Do NOT skip this step. Even a one-word change requires a new file.
+       The base manuscript is immutable once its round is complete.
+
+[ ] 3. Edit ONLY the new file (04_manuscript-reviewN.md).
+       Never open an Edit targeting the base file.
+
+[ ] 4. When updating 04_writing-log.md:
+       a. Read the current last 5-10 lines of the Revision Notes table first.
+       b. Add new entries at the TOP of the table (newest first).
+       c. Never use an old_string that spans multiple existing entries.
+       d. Match only the table header or the current top entry as your anchor.
+```
+
+### Handoff Destinations
 
 - **Back to writing:** paragraph unclear, flow weak, claim placement wrong, missing transition.
   Action: revision instructions per issue; `[REVISION DRAFT]` if user requests.
@@ -217,12 +305,13 @@ pass, preserve resolved items, add new review pass for new content, generate cha
 ## Template References
 
 When generating review-stage materials, use: `references/templates/05_review-report.md`.
-Save user-facing output as `05_review/05_review-report.md`.
+Save user-facing output as `05_review/05_review-roundN.md`.
 
 ## Guardrails
 
-- **Do not rewrite manuscript prose by default** — only when explicitly requested as a
-  `[REVISION DRAFT]`.
+- **Do not form independent review judgments.** The skill classifies and maps external review
+  input; it does not originate critiques of the manuscript.
+- **Do not rewrite manuscript prose** — revision happens in the writing stage.
 - **Do not decide the target journal for the user.**
 - **Do not invent evidence, citations, reviewer comments, or advisor comments.**
 - **Do not treat journal-profile fit as a rejection decision** — flag fit issues as
@@ -230,7 +319,8 @@ Save user-facing output as `05_review/05_review-report.md`.
 - **Do not hide unsupported claims** — mark explicitly, do not soften or remove silently.
 - **Do not turn language polish into evidence correction** — flag evidence gaps separately.
 - **Do not overstate climate, mechanism, causation, or global implications.**
-- **Do not perform full manuscript review unless explicitly requested.**
+- **Do not process manuscript-level review unless explicitly requested.**
 - **Do not mark an issue as resolved without user confirmation or revised text.**
-- **Do not generate per-section review reports** — a single `05_review-report.md` covers
+- **Do not send prompts to external LLMs directly.**
+- **Do not generate per-section review reports** — a single `05_review-roundN.md` covers
   all passes.

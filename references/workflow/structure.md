@@ -66,6 +66,40 @@ This chain must be derived from the prepare-stage evidence inventory, methods ma
 * If the evidence inventory does not support a link in the chain, mark `[EVIDENCE GAP]` or `[MISSING]`.
 * The argument chain should guide claim hierarchy, section architecture, figure sequence, and later writing units.
 
+## Results Evidence Ladder
+
+Results should be planned as an evidence ladder, not as a figure-by-figure report.
+The ladder is a planning tool for ordering the Results section so that evidence
+builds toward the primary claim, with each figure earning the reader's trust for the next.
+
+### Default Ladder
+
+| Step | Name | What it covers |
+|------|------|----------------|
+| 1 | System / data / workflow setup | What system, dataset, region, or diagnostic framework is being examined |
+| 2 | Validation / credibility | Why the data, method, or diagnostic is trustworthy enough for the main claim |
+| 3 | Main result | The primary observation, trend, pattern, or diagnostic result |
+| 4 | Comparison / robustness | Comparison with baseline, independent dataset, sensitivity test, null hypothesis, or confounding factor |
+| 5 | Mechanism / diagnostic evidence | Physical, statistical, or process-based analysis that explains or constrains the result |
+| 6 | Consequence / generalization | What the result implies within the evidence boundary |
+
+### Ocean-Specific Journal Adaptation
+
+| Journal | Map the ladder to |
+|---------|-------------------|
+| Nature Climate Change | detection → robustness/confounders → attribution → consequence |
+| Nature Communications | core finding → supporting evidence → mechanism/pathway → broader context |
+| JGR / JPO / GRL | Keep the ladder but compress or expand according to journal profile |
+
+### Rules
+
+* The ladder is a planning tool, not a requirement that every paper must have all six steps.
+* Missing steps must be marked as missing rather than written around.
+* If mechanism or consequence evidence is absent, the structure should not promise mechanism or consequence in Results.
+* Figure order should follow the evidence ladder, not the order in which analyses were performed.
+* The ladder must not contradict the ocean paper argument chain; it is a subordinate planning tool
+  that helps populate the "decisive evidence" link with a well-sequenced figure set.
+
 ## Required Inputs
 
 **Prepare-stage files:** `01_prepare/01a_project-brief.md`, `01_prepare/01b_evidence-inventory.md`
@@ -146,7 +180,7 @@ The architecture is built in this order:
    (supports primary but can be compressed), or not ready (insufficient evidence, move to
    supplement or defer).
 4. **Section architecture** — design what each section does: Introduction sets up gap, Methods documents approach, Results presents evidence, Discussion interprets, Conclusion states significance.
-5. **Figure sequence** — assign each figure to a section and narrative position. Ensure figures build the story in logical order.
+5. **Figure sequence** — assign each figure to a section and narrative position. Order figures according to the Results Evidence Ladder (not the chronological order of analysis). Ensure figures build the story in logical order.
 6. **Main text vs. supplement** — decide which figures, methods details, and secondary analyses belong in supplement.
 
 ## Missing and Conflicting Information

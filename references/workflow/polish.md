@@ -99,6 +99,21 @@ text, polished version, change rationale, evidence boundary, and user confirmati
 unit. Confirmed polished units can be assembled back into `04_writing/04_manuscript-draft.md` or
 the user's own manuscript file.
 
+Each polish log entry should include:
+
+```markdown
+### Hard checks
+- Sentence length: [passed / revised / exception]
+- Paragraph role: [single role / mixed role fixed / returned to writing]
+- Results vs Discussion boundary: [passed / issue marked]
+- Claim strength preserved: [yes / issue marked]
+- Chinese intent transfer, if applicable: [not applicable / checked]
+```
+
+Hard checks record key issues only — do not expand into a full review.
+If a hard check reveals an evidence or structure problem, stop polish and follow existing handoff
+rules back to writing / review / structure / methods / prepare.
+
 ## Interaction Flow
 
 ```
@@ -177,6 +192,46 @@ AI-detection evasion.
 
 If the user uses terms like "de-AI", interpret this as a request for style naturalization /
 AI-like phrasing check, not AI-detection evasion.
+
+## Sentence and Paragraph Hard Checks
+
+Apply these checks after failure-mode diagnosis and before producing the polished version.
+
+### Sentence control
+
+- Aim for 10–30 words per sentence in polished English prose.
+- Keep every sentence at or below 30 words unless a technical definition or journal-required wording makes this impossible.
+- If a sentence exceeds 20 words, check whether it contains more than one main proposition.
+- Split overloaded sentences rather than polishing them cosmetically.
+- Prefer one core subject–verb proposition per sentence.
+- Check the final sentence of each paragraph explicitly; it often becomes the longest, weakest, or most overclaimed sentence.
+
+### Paragraph control
+
+- Each paragraph should have one controlling idea.
+- If a paragraph mixes result reporting, mechanism interpretation, literature comparison, and implication, split it or return to writing.
+- Use content-specific transitions rather than generic transitions such as "Moreover", "Furthermore", "Notably", or "Importantly".
+- Do not polish a paragraph into smoothness if its section role is wrong.
+
+### Results vs Discussion language check
+
+- Results sentences should mainly report what was observed, measured, detected, compared, or quantified.
+- Discussion sentences should interpret what the result may mean, how it relates to mechanisms or prior work, and where the interpretation may fail.
+- If a Results paragraph uses unsupported mechanism language such as "driven by", "caused by", or "attributable to" without diagnostic evidence, mark `[POLISH BLOCKER]` or revise to bounded language.
+- If a Discussion paragraph only repeats figure descriptions, return to writing or review.
+
+### Chinese-to-English intent transfer
+
+When polishing Chinese or Chinese-influenced English:
+
+- Extract the core scientific propositions first.
+- Do not translate clause-by-clause.
+- Rebuild explicit logical links: contrast, cause, implication, limitation.
+- Preserve terminology, causality level, hedging, and disciplinary nuance.
+- Do not replace precise ocean-science terms with generic academic wording.
+
+Hard rule:
+These checks improve clarity; they must not strengthen claims beyond the evidence.
 
 ## Target Journal Voice
 

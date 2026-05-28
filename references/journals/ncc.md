@@ -211,6 +211,20 @@ This is the "so what" of the NCC story.
 
 Each figure should serve one narrative purpose. Self-contained captions. Quantitative results with uncertainties.
 
+### NCC Results evidence ladder
+
+For Nature Climate Change, the generic Results evidence ladder should usually be mapped as:
+
+1. **Climate-relevant system setup** — define the climate-system problem, ocean variable, dataset, time period, and diagnostic frame.
+2. **Detection** — establish the observed change, trend, spatial pattern, magnitude, and statistical significance.
+3. **Robustness and confounders** — test whether the signal could arise from data artifacts, record length, sampling, interannual variability, or methodological choices.
+4. **Attribution or causal-chain evidence** — connect the detected change to a climate driver, forcing, or physical pathway when evidence allows.
+5. **Consequence** — quantify or bound what the change means for the Earth system, such as heat, carbon, sea level, cryosphere, ecosystems, or feedbacks.
+6. **Boundary** — state what cannot be attributed, generalized, or projected from the available evidence.
+
+Hard rule:
+Do not write an NCC Results section as a list of figures. Each Results subsection should advance detection, robustness, attribution, or consequence.
+
 ### Discussion
 
 NCC Discussion should **elevate the finding to its broader climate significance**:

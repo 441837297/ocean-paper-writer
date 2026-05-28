@@ -148,6 +148,63 @@ Within each section, drafting proceeds one writing unit at a time — never the 
 one pass. After completing all units in a section and receiving user confirmation, move to the
 next section.
 
+## Section Default Architecture
+
+These patterns guide paragraph planning. They do not authorize full-section drafting.
+
+### Abstract
+
+Default movement:
+context/problem → gap → approach → key result → implication → boundary
+
+Rules:
+- Write Abstract last.
+- Include quantitative or comparative detail only when provided.
+- End with what the work enables or implies within evidence limits, not a generic importance claim.
+
+### Introduction
+
+Default movement:
+field/system scale → bottleneck → prior attempts → unresolved gap → present study
+
+Rules:
+- Do not summarize all Results.
+- Do not write an exhaustive literature review.
+- The final paragraph should state what this paper does and how it addresses the gap.
+
+### Results
+
+Default movement:
+system/data/workflow setup → validation/credibility → main result → comparison/robustness → mechanism/diagnostic evidence → consequence/generalization
+
+Rules:
+- Lead with findings, not figure numbers.
+- Keep mechanism interpretation bounded.
+- Do not include unsupported broader implications.
+
+### Discussion
+
+Default movement:
+central advance → evidence meaning → relation to prior work → constraints/uncertainty → future use or bounded implication
+
+Rules:
+- Do not repeat Results figure by figure.
+- Interpret selectively.
+- State limitations as claim boundaries, not as generic weakness.
+
+### Conclusion
+
+Default movement:
+central contribution → decisive evidence → broader significance → boundary
+
+Rules:
+- No new data.
+- No new mechanism.
+- No unsupported promise.
+
+Hard rule:
+Journal profiles may override or specialize these patterns, but not in a way that weakens evidence boundaries.
+
 ## Section-by-Section Planning
 
 These section-level guides are for **planning** the paragraph sequence — not for generating the
@@ -158,9 +215,7 @@ small subsections) and drafted one unit at a time.
 sources, preprocessing, derived variables, statistics. Follow journal profile for main-text vs.
 supplement depth.
 
-**Results** — Lead each paragraph with the finding, not the figure reference ("EKE increased by
-X%" not "Figure 2 shows..."). Follow figure sequence from structure. One paragraph per key finding
-or figure group. Secondary findings after primary, or in supplement.
+**Results** — Lead each paragraph with the finding, not the figure reference. Follow the Results Evidence Ladder Plan from structure: setup / validation / main result / comparison or robustness / mechanism or diagnostic evidence / consequence or generalization. One paragraph should serve one key finding and one ladder step. Secondary findings should appear after the primary evidence chain or move to supplement.
 
 **Introduction** — Arc: broad context (para 1) → specific gap (para 2) → what this paper does/finds
 (para 3). Three paragraphs, drafted one at a time. Essential references only.
@@ -227,6 +282,7 @@ user (3–5 questions max):
 4. **What evidence supports it?** (figure, dataset, method, reference)
 5. **What target journal voice** should be applied?
 6. **What language mode?** (English / Chinese / bilingual)
+7. **Which Results ladder step does this unit serve?** Required for Results units only: setup / validation / main result / robustness / diagnostic / consequence.
 
 Do not start drafting if these are unclear — ask first.
 
@@ -246,6 +302,7 @@ but the workflow default includes it.
 - Data/methods: [sources]
 - References: [citations or [CITATION NEEDED]]
 - Claim supported: [claim ID from structure]
+- Results ladder step: [if applicable — setup / validation / main result / robustness / diagnostic / consequence]
 
 ## Boundaries / Cautions
 - What this unit does not claim: [explicit boundary statement]

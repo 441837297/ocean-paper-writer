@@ -37,6 +37,7 @@ If the user provides only one of the two inputs (URL or papers, but not both), a
    - How Introductions are structured (Context → Known → Gap → Approach pattern vs. alternatives)
    - Claim density and depth — how many claims per section, how deeply each is supported
    - Evidence-to-claim ratio — how much supporting material precedes each conclusion
+   - Results evidence ladder — how the paper sequences setup, validation, main result, comparison/robustness, mechanism/diagnostic evidence, and implication/consequence; note whether the journal favors figure-by-figure reporting or claim-driven evidence progression
    - Discussion style — comparison-heavy vs. mechanism-heavy vs. implications-heavy
    - Paragraph length, sentence rhythm, voice
    - Section ordering conventions (e.g., Methods before or after Results)
@@ -55,6 +56,7 @@ If the user provides only one of the two inputs (URL or papers, but not both), a
 ## 2. Best-fit Ocean Science Stories
 ## 3. Preferred Reasoning and Evidence Logic
 ## 4. Section-level Story Strategy
+   - Results ladder mapping: [journal-specific mapping of the generic evidence ladder]
 ## 5. Writing Voice and Rhetorical Style
 ## 6. Late-stage Compression and Submission Notes
 ```

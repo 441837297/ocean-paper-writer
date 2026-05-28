@@ -88,6 +88,24 @@ Default drafting order if the user has no preference: Methods → Results → Di
 Reasoning: Write the most factual sections first (Methods, Results) so the narrative sections (Introduction, Discussion) can refer to established findings.
 Abstract is written last as it distills everything.
 
+## Results Evidence Ladder Plan
+
+| Ladder step | Result subsection / paragraph | Claim served | Evidence source | Figure/Table | Boundary / caution |
+|-------------|------------------------------|--------------|-----------------|--------------|--------------------|
+| System / data / workflow setup | [what system, dataset, region, or diagnostic framework is introduced] | [claim ID] | [data/method/source] | [figure/table] | [avoid over-framing] |
+| Validation / credibility | [validation, data quality, method check, independent support] | [claim ID] | [evidence] | [figure/table] | [what this validation does not prove] |
+| Main result | [primary result] | [claim ID] | [evidence] | [figure/table] | [direct vs suggestive] |
+| Comparison / robustness | [baseline, sensitivity, confounder, null, independent dataset] | [claim ID] | [evidence] | [figure/table] | [remaining uncertainty] |
+| Mechanism / diagnostic evidence | [diagnostic or process evidence] | [claim ID] | [evidence] | [figure/table] | [mechanism cannot exceed diagnostics] |
+| Consequence / generalization | [bounded implication or consequence] | [claim ID] | [evidence/reasoning] | [figure/table] | [scale, region, time, causality boundary] |
+
+**Ladder status:** [complete / partial / mechanism missing / consequence missing / validation missing]
+
+**Usage notes:**
+- If a ladder step is not supported, mark it as `[MISSING]` or `[NOT CLAIMED]`.
+- Do not force unsupported mechanism or consequence into the Results plan.
+- Use this table to guide Results drafting order.
+
 ## Figure Sequence
 
 | Figure | Section | What it shows | Claim supported | Main or supplement? | Notes |

@@ -174,6 +174,20 @@ Key principles:
 - Figures should have self-contained captions interpretable without the main text
 - Quantitative results should include uncertainties where relevant
 
+### NC Results evidence ladder
+
+For Nature Communications, the generic Results evidence ladder should usually be mapped as:
+
+1. **Entry result** — the central observation, discovery, or pattern that opens the story.
+2. **Credibility evidence** — validation, independent dataset support, benchmark, uncertainty, or sensitivity analysis.
+3. **Main finding** — the strongest result that supports the central claim.
+4. **Mechanism or pathway** — diagnostic evidence showing how or why the result occurs, if supported.
+5. **Broader connection** — evidence or reasoning that links the specific ocean finding to the broader scientific problem.
+6. **Boundary** — what the evidence does not show, especially for regional-to-global, correlation-to-causation, or climate-relevance claims.
+
+Hard rule:
+The broader significance claim must have its own evidence or reasoning chain. Do not rely on aspirational language.
+
 ### Discussion
 
 NC Discussion should **elevate the finding to its broader significance while remaining evidence-bounded**:
