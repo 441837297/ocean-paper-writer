@@ -74,9 +74,10 @@ section-by-section or unit-by-unit polish instead.
 
 ## Required Inputs
 
-**Core files:** `04_writing/04_manuscript-draft.md`, `05_review/05_review-report.md`
+**Core files:** `04_writing/04_manuscript-draft.md` (or latest `04_manuscript-reviewN.md`),
+`05_review/05_review-roundN.md` (or latest review)
 
-**Supporting file:** `03_structure/03_manuscript-structure.md`
+**Supporting file:** `03_structure/03_project-brief.md`, `03_structure/03_terminology.md`
 
 **Optional files:** `01_prepare/01a_project-brief.md`, `01_prepare/01b_evidence-inventory.md`,
 `02_methods/02a_data.md and 02_methods/02b_methods.md`
@@ -88,31 +89,15 @@ assertive).
 
 ## Required Output
 
-Polish produces exactly one default user-facing file:
+Polish does **not** produce a separate output file. Instead:
 
-```
-06_polish/06_polish-log.md
-```
+- **Modified manuscript:** Polish edits are applied to `04_writing/04_manuscript-reviewN-polishM.md`
+  (copied from the latest review or polish base following the mandatory version copy rule).
+- **Change record:** All polish modifications are recorded in `04_writing/04_writing-log.md`
+  Revision Notes (same format as review revisions; each polish entry notes the M counter).
 
-Do **not** create additional files unless the user explicitly asks. The polish log records original
-text, polished version, change rationale, evidence boundary, and user confirmation status for each
-unit. Confirmed polished units can be assembled back into `04_writing/04_manuscript-draft.md` or
-the user's own manuscript file.
-
-Each polish log entry should include:
-
-```markdown
-### Hard checks
-- Sentence length: [passed / revised / exception]
-- Paragraph role: [single role / mixed role fixed / returned to writing]
-- Results vs Discussion boundary: [passed / issue marked]
-- Claim strength preserved: [yes / issue marked]
-- Chinese intent transfer, if applicable: [not applicable / checked]
-```
-
-Hard checks record key issues only — do not expand into a full review.
-If a hard check reveals an evidence or structure problem, stop polish and follow existing handoff
-rules back to writing / review / structure / methods / prepare.
+Do **not** create a `06_polish/06_polish-log.md` file. The unified writing-log is the single
+source of truth for all manuscript change history.
 
 ## Interaction Flow
 
@@ -120,15 +105,18 @@ rules back to writing / review / structure / methods / prepare.
  1. Ask user to choose polish scope — unit / section / manuscript consistency check
  2. Intake draft unit or section and review report (core materials)
  3. Confirm target journal and language mode
- 4. Confirm polish priority — clarity, concision, journal voice, style naturalization, advisor feedback
- 5. Run failure-mode-first diagnosis — structure / evidence / paragraph logic / language / journal voice / Chinese intent transfer
- 6. If blocked, mark `[POLISH BLOCKER]` or `[POLISH CONFLICT]` and recommend the correct handoff
- 7. If polishable, identify style, clarity, voice, and AI-like issues in the current unit
- 8. Produce polished version for the current unit only
- 9. Explain key changes and evidence boundaries preserved
-10. Ask user to confirm — keep / revise / compare alternatives / continue
-11. Save polish log entry
-12. Decide next action — continue polishing next unit, return to writing/review, or prepare final assembly
+ 4. **(Optional) If user has 2–3 mineru-converted MD full-text papers from the target journal,
+    offer to run journal prose benchmark first.** See `references/polish/journal-prose-benchmark.md`.
+    Produces a one-page style card; skip if card already exists for this journal.
+ 5. Confirm polish priority — clarity, concision, journal voice, style naturalization, advisor feedback
+ 6. Run failure-mode-first diagnosis — structure / evidence / paragraph logic / language / journal voice / Chinese intent transfer
+ 7. If blocked, mark `[POLISH BLOCKER]` or `[POLISH CONFLICT]` and recommend the correct handoff
+ 8. If polishable, identify style, clarity, voice, and AI-like issues in the current unit
+ 9. Produce polished version for the current unit only
+10. Explain key changes and evidence boundaries preserved
+11. Ask user to confirm — keep / revise / compare alternatives / continue
+12. After confirmation, record changes in `04_writing-log.md` Revision Notes
+13. Decide next action — continue polishing next unit, return to writing/review, or prepare final assembly
 ```
 
 ### Pacing
@@ -165,6 +153,11 @@ Avoid overstating mechanisms, causation, trends, climate implications, or global
 - **Nature Communications:** accessible, broad-significance, evidence-bounded, readable by
   non-specialist.
 - **Nature Climate Change:** climate-change-centered, Earth-system-relevant, consequence-focused.
+
+For sentence-level journal style alignment beyond general voice, use the optional
+**journal prose benchmark**: `references/polish/journal-prose-benchmark.md`.
+This extracts a one-page style card from 2–3 published papers (mineru-converted MD)
+before unit-level polish begins.
 
 ### Ocean science terminology
 
@@ -404,8 +397,9 @@ generate changelog:
 
 ## Template References
 
-When generating polish-stage materials, use: `references/templates/06_polish-log.md`.
-Save user-facing output as `06_polish/06_polish-log.md`.
+Polish does not use a standalone template. Change records follow the same Revision Notes format
+as `04_writing-log.md`. The deprecated `references/templates/06_polish-log.md` is retained for
+reference only.
 
 ## Guardrails
 
@@ -420,3 +414,4 @@ Save user-facing output as `06_polish/06_polish-log.md`.
 - **Do not erase the author's intended meaning or scientific caution.**
 - **Do not mark a polished unit as final without user confirmation.**
 - **Do not compress according to journal submission limits unless explicitly requested.**
+- **Do not create a separate polish log file.** All polish records go into `04_writing-log.md`.

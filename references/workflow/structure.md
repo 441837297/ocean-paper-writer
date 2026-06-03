@@ -10,7 +10,8 @@ It is a manuscript architecture stage, not a drafting stage. Its goals are to:
 - Build a claim hierarchy: primary claims, secondary claims, and claims not ready for the main story
 - Design section architecture with figure sequence and main-text-versus-supplement decisions
 - Load the target journal profile so narrative decisions are journal-aware from the start
-- Produce a reusable structure file for the writing stage
+- Produce living documents (`03_project-brief.md`, `03_figure-outline.md`) that evolve across stages
+- Initialize the terminology dictionary (`03_terminology.md`) for cross-stage consistency
 
 ## When to Use
 
@@ -112,11 +113,23 @@ builds toward the primary claim, with each figure earning the reader's trust for
 
 ## Required Output
 
-Structure produces exactly one default user-facing file:
+Structure produces the following files in the user's project directory:
 
 ```
-03_structure/03_manuscript-structure.md
+03_structure/03_project-brief.md       ← 活文档：项目书，跨阶段持续更新（旧版进 old/）
+03_structure/03_figure-outline.md      ← 活文档：图表蓝图，与项目书同步更新
+03_structure/03_terminology.md         ← 术语字典，review/polish 阶段维护
+03_structure/reference_papers/         ← 参考论文全文（用于风格参照与术语对齐）
 ```
+
+**Living document convention:** `03_project-brief.md` and `03_figure-outline.md` are not one-time
+snapshots. They are updated throughout the project lifecycle as evidence, figures, and narrative
+decisions evolve. When a major revision occurs, the previous version is moved to `03_structure/old/`
+with a date suffix (e.g., `03_project-brief_v0601.md`).
+
+The legacy `03_manuscript-structure.md` (single-file manuscript architecture document) is deprecated.
+When migrating an existing project, move it to `03_structure/old/` and split its content into
+`03_project-brief.md` and `03_figure-outline.md`.
 
 Do **not** create additional files unless the user explicitly asks.
 
@@ -135,9 +148,10 @@ The structure workflow proceeds through thirteen phases:
  8. Design architecture     → what each section contains and accomplishes
  9. Assign figures          → build figure sequence table
 10. Plan supplement         → main text vs. supplementary material
-11. Flag conflicts          → [STRUCTURE CONFLICT] between outline, argument chain, and evidence
-12. Save materials          → generate 03_manuscript-structure.md in conversation
-13. Confirm readiness       → assess readiness for writing stage
+11. Initialize terminology  → create 03_terminology.md with initial term entries
+12. Flag conflicts          → [STRUCTURE CONFLICT] between outline, argument chain, and evidence
+13. Save materials          → generate 03_project-brief.md, 03_figure-outline.md, 03_terminology.md
+14. Confirm readiness       → assess readiness for writing stage
 ```
 
 ### Pacing
@@ -197,16 +211,17 @@ user to revise.
 
 ## Resume and Update Mode
 
-When the user returns with existing `03_structure/03_manuscript-structure.md`:
+When the user returns with existing `03_structure/` files:
 
-1. **Read** the existing file
+1. **Read** the existing files (`03_project-brief.md`, `03_figure-outline.md`, `03_terminology.md`)
 2. **Identify update points** — new evidence, revised claims, changed journal target
 3. **Preserve** confirmed architecture. Update only changed sections
-4. **Generate changelog:**
+4. **Archive** the previous version to `03_structure/old/` with a date suffix before major revisions
+5. **Generate changelog:**
 
 ```markdown
 ## Update Summary
-- Updated sections: [list]
+- Updated files: [list]
 - New evidence or claims: [list]
 - Changed journal or profile: [if applicable]
 - Remaining structural issues: [list]
@@ -221,11 +236,17 @@ Needs: confirmed central story route, claim hierarchy (primary/secondary/not rea
 
 When generating structure-stage materials, use:
 
-- `references/templates/03_manuscript-structure.md`
+- `references/templates/03_project-brief.md` — project brief template
+- `references/templates/03_figure-outline.md` — figure outline template
+- `references/templates/03_terminology.md` — terminology dictionary template
 
-The user-facing output file should be saved as:
+The user-facing output files should be saved as:
 
-- `03_structure/03_manuscript-structure.md`
+- `03_structure/03_project-brief.md`
+- `03_structure/03_figure-outline.md`
+- `03_structure/03_terminology.md`
+
+The legacy `references/templates/03_manuscript-structure.md` is deprecated and retained for reference only.
 
 ## Guardrails
 

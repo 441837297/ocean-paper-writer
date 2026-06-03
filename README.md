@@ -43,8 +43,11 @@ prepare / methods / structure 阶段不依赖 Zotero；writing / review / polish
 2. **方法（Methods）** — 工具读取你的代码和数据描述，分两块记录：数据来源与预处理（`02a_data.md`），以及分析流程与统计方法（`02b_methods.md`）。
    你逐项确认或修正。
 
-3. **结构（Structure）** — 如果你已有目标期刊，工具会依据期刊风格设计手稿架构：核心故事线、声明层级、图表顺序、各节定位。
-   这是蓝图，不是正文。
+3. **结构（Structure）** — 产出手稿架构文件，作为后续所有阶段的蓝图。
+   - `03_project-brief.md`（活文档）：核心故事线、声明层级、论证链、各节定位。随项目推进持续更新，旧版进 `old/`。
+   - `03_figure-outline.md`（活文档）：图表顺序、每张图的科学问题与 caption 骨架、图-声明映射。与项目书同步更新。
+   - `03_terminology.md`（术语字典）：标准术语与禁止变体对照表，review/polish 阶段维护，确保全文术语一致。
+   - `reference_papers/`：参考论文全文（建议预先转为 MD），用于风格参照与术语对齐。
 
 4. **写作（Writing）** — 逐段推进。工具起草，你审阅。每段之后你说：保留 / 修改 / 扩展 / 继续。
    默认顺序：Methods → Results → Introduction → Discussion → Conclusion → Abstract。
@@ -52,14 +55,16 @@ prepare / methods / structure 阶段不依赖 Zotero；writing / review / polish
    包含图表标题（caption）生成，遵循三部分结构：主题 → 关键内容 → 数据来源。
    需要文献支撑时，工具会先征求你的同意再检索 Zotero。
 
-5. **审查（Review）** — 处理外部审查输入（作者自审 / 导师反馈 / 外部 LLM 审查），将其归类、映射为可执行的修改任务。
+5. **审查（Review）** — 统一工作流，不区分审查来源（导师反馈 / GPT 审查 / 自审）：
+   提交稿件 → 审查反馈写入 `05_review-roundN.md` → 与用户逐条讨论确认修改方案 → 复制 base manuscript → 在副本上修改。
    可选：生成审查提示词，供你发给 GPT / Gemini 等外部 LLM 进行审查。
-   每轮审查产出 `05_review-roundN.md`，修改后的手稿保存为 `04_manuscript-reviewN.md`。
-   多轮审查的 N 全局递增（review1 → review2 → polish3 → review4 合法）。
+   每轮审查后修改稿保存为 `04_manuscript-reviewN.md`（N 全局递增）。
+   **修改前强制复制 base manuscript，永远不直接编辑旧版本。**
 
-6. **润色（Polish）** — 推荐逐段精修已确认的文本，优化清晰度、流畅度和期刊语气。
-   每轮润色后修改稿保存为 `04_manuscript-polishN.md`，N 与审查共享全局计数器。
-   也可以在投稿前运行一次可选的 style naturalization audit：先扫描出高风险、中风险和可选修改项，用户选择后再改写，不会自动批量重写全文。
+6. **润色（Polish）** — 逐段精修已确认的文本，优化清晰度、流畅度和期刊语气。
+   润色修改保存为 `04_manuscript-reviewN-polishM.md`（M 为 polish 子编号，随新 review 重置）。
+   **没有独立的润色日志文件** — 所有修改记录写入 `04_writing-log.md` 的 Revision Notes，与审查修改共享同一记录格式。
+   可选：投稿前运行 style naturalization audit，先扫描 AI-like phrasing 再逐项改写。
 
 7. **投稿说明材料（Cover Letter，可选）** — 在手稿核心声明和目标期刊基本确认后，整理给编辑的 cover letter 素材。
    贡献声明对齐目标期刊 scope；包含数据可用性、利益冲突声明和通讯作者信息。
@@ -75,10 +80,10 @@ prepare / methods / structure 阶段不依赖 Zotero；writing / review / polish
 flowchart TD
     P[[01 Prepare<br>项目简报 + 证据清单]]
     M[[02 Methods<br>数据来源 + 分析方法]]
-    S[[03 Structure<br>手稿架构 + 声明层级]]
+    S[[03 Structure<br>项目书 + 图表蓝图<br>术语字典 + 参考论文]]
     W[[04 Writing<br>逐段起草正文]]
-    R[[05 Review<br>处理外部审查输入<br>映射为修改任务]]
-    POL[[06 Polish<br>逐段精修语言]]
+    R[[05 Review<br>统一审查流程<br>反馈→讨论→修改]]
+    POL[[06 Polish<br>逐段精修语言<br>修改记录写入 Writing-Log]]
     CL[[07 Cover Letter<br>投稿信素材]]
 
     P --> M --> S --> W --> R --> POL --> CL
@@ -121,24 +126,27 @@ flowchart TD
 ```
 manuscript/
 ├── 01_prepare/
-│   ├── 01a_project-brief.md       # 研究问题、背景、研究区域、数据概览
-│   └── 01b_evidence-inventory.md  # 图→声明对应表、证据强度、故事路线
+│   ├── 01a_project-brief.md         # 研究问题、背景、数据概览（prepare 阶段快照）
+│   └── 01b_evidence-inventory.md    # 图→声明对应表、证据强度、故事路线
 ├── 02_methods/
-│   ├── 02a_data.md                # 数据来源、预处理、坐标系、版本信息
-│   └── 02b_methods.md             # 分析流程、代码清单、统计方法、不确定性
+│   ├── 02a_data.md                  # 数据来源、预处理、版本信息
+│   └── 02b_methods.md               # 分析流程、变量定义、统计方法
 ├── 03_structure/
-│   └── 03_manuscript-structure.md  # 章节架构、声明层级、图表顺序
+│   ├── 03_project-brief.md          # 活文档：核心故事线、声明层级、论证链、各节定位
+│   ├── 03_figure-outline.md         # 活文档：图表顺序、科学问题、caption 骨架、图-声明映射
+│   ├── 03_terminology.md            # 术语字典：标准术语/禁止变体对照表，全文一致性检查
+│   ├── reference_papers/            # 参考论文全文（建议预先转为 MD），用于风格参照与术语对齐
+│   └── old/                         # 旧版项目书与图表蓝图的归档
 ├── 04_writing/
-│   ├── 04_manuscript-draft.md     # 初稿（04 阶段直接产出）
-│   ├── 04_manuscript-reviewN.md   # 第 N 轮审查后修改稿（N 全局递增）
-│   ├── 04_manuscript-polishN.md   # 第 N 轮润色后修改稿（N 与审查共享）
-│   └── 04_writing-log.md          # 起草日志、单元状态、文献速查、修订记录
+│   ├── 04_manuscript-draft.md       # 初稿（04 阶段直接产出）
+│   ├── 04_manuscript-reviewN.md     # 第 N 轮审查后修改稿（N 全局递增）
+│   ├── 04_manuscript-reviewN-polishM.md  # Review N 的第 M 轮润色修改稿
+│   └── 04_writing-log.md            # 统一日志：起草单元状态、文献速查、修订记录（含审查+润色）
 ├── 05_review/
-│   └── 05_review-roundN.md         # 第 N 轮审查报告（审查意见分类 + 修改任务映射）
-├── 06_polish/
-│   └── 06_polish-log.md           # 原始文本 vs 润色后文本、修改理由、边界检查
+│   └── 05_review-roundN.md          # 第 N 轮审查（外部反馈原文 + 与用户讨论确认的修改方案）
+├── 06_polish/                       # 无独立输出文件（修改记录在 writing-log 中）
 └── 07_cover-letter/
-    └── 07_cover-letter.md         # 投稿信，贡献声明对齐期刊 scope
+    └── 07_cover-letter.md           # 投稿信，贡献声明对齐期刊 scope
 ```
 
 这些文件存放在你的论文项目目录中，不在 Skill 代码仓库内。
@@ -221,7 +229,7 @@ references/
   templates/                 # 各阶段输出文件的格式模板
   journals/                  # 期刊 profile（含 _distill.md 按需蒸馏规则）
   writing/                   # 各章节写作指南
-  review/                    # 审查与作者化风格自然化参考
+  review/                    # 审查与风格自然化参考
   zotero/                    # Zotero MCP 集成说明与配置记录
 examples/                    # 分阶段使用示例
 docs/                        # 开发记录

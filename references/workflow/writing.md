@@ -40,10 +40,10 @@ section-by-section, paragraph-by-paragraph interaction.
 
 ## Required Inputs
 
-**Structure-stage file:** `03_structure/03_manuscript-structure.md`
+**Structure-stage file:** `03_structure/03_project-brief.md`, `03_structure/03_figure-outline.md`
 
 **Supporting files:** `01_prepare/01a_project-brief.md`, `01_prepare/01b_evidence-inventory.md`,
-`02_methods/02a_data.md and 02_methods/02b_methods.md`
+`02_methods/02a_data.md and 02_methods/02b_methods.md`, `03_structure/03_terminology.md`
 
 **Journal profile:** already loaded during structure stage; re-referenced during writing for
 voice guidance.
@@ -57,12 +57,18 @@ Writing produces two default user-facing files:
 
 ```
 04_writing/04_manuscript-draft.md   ← clean manuscript text only (Section Draft Assembly)
-04_writing/04_writing-log.md        ← Draft Unit Log, Reference Key Lookup, Revision Notes, Update Summary
+04_writing/04_writing-log.md        ← Draft Unit Log, Reference Key Lookup, Discussion Notes, Revision Notes, Update Summary
 ```
 
 The draft file contains confirmed manuscript prose in Author-Year + Zotero key citation format,
 ready for copy-paste into Word. The log file tracks all writing metadata: unit status, revision
-history, reference lookup table, and update summaries. Both files are updated incrementally.
+history, reference lookup table, discussion notes, and update summaries.
+
+**The writing-log is the unified revision record for the entire project.** Review→writing and
+polish→writing modifications are both recorded here. Each revision entry should capture the
+*round* of change (e.g., "Review 7", "Polish 2"), not every individual line edit.
+Entries are grouped by major unit (section or subsection), and each entry describes what changed
+and why. Both files are updated incrementally.
 Do **not** create per-section files unless the user explicitly asks.
 
 ## Interaction Flow

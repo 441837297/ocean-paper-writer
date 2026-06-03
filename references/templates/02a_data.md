@@ -11,11 +11,20 @@
 
 ## Data Sources
 
-| Dataset | Variable(s) | Source / Provider | Version | Time range | Spatial coverage | Resolution | Role in analysis | Confirmation status |
-|---------|-------------|-------------------|---------|------------|-----------------|------------|-----------------|---------------------|
-| [name] | [list] | [provider] | [ver.] | [start-end] | [region] | [spatial/temporal] | [central / validation / context] | [confirmed / [MISSING] / [UNCERTAIN]] |
+| Dataset | Variable(s) | Source / Provider | Version | Time range | Spatial coverage | Resolution | Role in analysis | Confirmation |
+|---------|-------------|-------------------|---------|------------|-----------------|------------|-----------------|-------------|
+| [name] | [list] | [provider] | [ver.] | [start–end] | [region] | [spatial / temporal] | [central / validation / context] | [✓ / [MISSING]] |
 
-Add rows for each dataset. Mark missing details as `[MISSING]`.
+## Data Availability & References
+
+每个数据集必须包含访问地址和/或 DOI。格式：
+
+| Dataset | Data Availability (URL or DOI) | 简介 (1–2 句) | Reference (if applicable) |
+|---------|-------------------------------|---------------|---------------------------|
+| [name] | [https://doi.org/... or product URL] | [产品简介] | [Author, Year / DOI] |
+
+**注意：** 这是材料整理阶段的数据清单，不是手稿中的 "Data Availability Statement"。
+手稿的 Data Availability 段落留到 writing 阶段按目标期刊格式撰写。
 
 ## Raw and Processed Data
 

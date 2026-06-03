@@ -25,15 +25,13 @@ exists yet and the user does not want LLM review; the user only wants language p
 
 > Review processes external input; it does not originate review judgments.
 
-The skill does not read the manuscript and form its own opinion. Instead, it:
-1. Reads review comments from any source (author, advisor, LLM).
-2. Classifies each comment by type, severity, and workflow destination.
-3. Maps each comment to a specific action label.
-4. Prioritizes revision tasks.
-5. Hands off to writing for actual manuscript changes.
+The skill does not read the manuscript and form its own opinion. Instead, the
+unified review workflow is:
 
-If the user wants an external LLM to review the manuscript, the skill generates a prompt —
-but the LLM's response is external input that the skill then processes like any other review.
+> **提交稿件 → 外部审阅（导师 / GPT / 自审）→ 反馈写入 `05_review-roundN.md` → 与用户逐条讨论确认修改方案 → 复制 base manuscript → 在副本上执行修改 → 记录到 writing-log**
+
+The review source (advisor, external LLM, or self-review) does not change this workflow.
+All feedback goes through the same pipeline: record, discuss, confirm, revise.
 
 ## Prompt Generation for External LLM Review (Optional)
 
@@ -41,55 +39,54 @@ Before processing review input, the user may want an external LLM (GPT, Gemini, 
 read the manuscript and produce review comments. The skill can generate a review prompt for
 this purpose.
 
-### Two review modes
-
-| Mode | What happens |
-|------|-------------|
-| **Directed review** | User specifies review focus: own concerns, advisor feedback, specific questions, or particular sections to scrutinize. The prompt incorporates these directions. |
-| **Template-guided review** | User provides no specific direction. The skill builds the prompt around the distilled literature template (`_distill.md`) as the review framework — checking evidence chain, claim strength, section function, figure logic, and ocean-science overclaiming patterns. |
-
 ### Prompt generation flow
 
 1. User confirms: want to send manuscript to external LLM for review.
-2. User chooses directed or template-guided mode.
-3. If directed: user provides review focus (own notes, advisor comments, specific concerns).
-4. Skill gathers required materials:
-   - Current manuscript (`04_manuscript-draft.md` or latest `04_manuscript-reviewN.md` / `04_manuscript-polishN.md`)
-   - Structure file (`03_manuscript-structure.md`)
+2. User specifies review focus (own notes, specific concerns, specific sections) or chooses
+   template-guided mode (uses `_distill.md` framework — evidence chain, claim strength,
+   section function, figure logic, overclaiming patterns).
+3. Skill gathers required materials:
+   - Current manuscript
+   - Structure files (`03_project-brief.md`, `03_figure-outline.md`)
    - Methods files (`02a_data.md`, `02b_methods.md`)
    - Evidence inventory (`01b_evidence-inventory.md`)
    - Target journal profile (if specified)
-   - Distilled literature template (if template-guided mode)
-5. Skill assembles a complete review prompt including:
-   - Manuscript text (or relevant sections)
-   - Review framework and dimensions to check
-   - Specific questions or focus areas (if directed)
-   - Output format expectations (structured review comments)
-6. Prompt is saved to `05_review/05_review-roundN.md`.
-7. User copies the prompt to GPT / Gemini / other LLM.
-8. User brings the LLM's response back.
-9. Skill reads the LLM response and processes it as review input (see "Processing Review Input" below).
+   - Reference papers in `03_structure/reference_papers/` (if available, for style/structure benchmarking)
+4. Skill assembles a complete review prompt and saves it to `05_review/05_review-roundN.md`.
+5. User copies the prompt to GPT / Gemini / other LLM.
+6. User brings the LLM's response back.
+7. The response is discussed with the user to determine revision actions, then the standard
+   review→writing handoff applies.
 
 **Hard rule:** The skill never sends prompts to external LLMs directly. The user controls
 which LLM to use and does the sending. The skill only generates the prompt text.
 
 ## Processing Review Input
 
-Once review comments exist (from author, advisor, or external LLM), the skill processes them.
+Once review comments exist (from advisor, external LLM, or self-review), the skill processes them
+through a unified workflow:
 
 ### Interaction Flow
 
 ```
- 1. Confirm review source: author self-review / advisor feedback / external LLM review
- 2. Load the review comments
- 3. Load manuscript and supporting files
- 4. Classify each comment — type, severity, action label, workflow destination
- 5. Identify conflicts between comments (e.g., advisor vs. evidence, or multiple reviewers)
- 6. Present classified issues to user, grouped by priority
- 7. Ask user to confirm which issues to act on
- 8. Save structured review report to 05_review/05_review-roundN.md
- 9. Hand off to writing for manuscript revision
+ 1. Confirm review source and load the review comments into 05_review/05_review-roundN.md
+ 2. Load manuscript and supporting files
+ 3. Discuss each comment with user — classify, assess impact, determine revision approach
+ 4. Identify conflicts between comments (e.g., advisor vs. evidence, or multiple reviewers)
+ 5. Agree on final revision plan with user
+ 6. **CREATE VERSION COPY — hard gate before any manuscript edit**
+    a. Identify base manuscript (the latest 04_manuscript-*.md the user confirmed)
+    b. Determine next N from the review round or log
+    c. Copy base → 04_manuscript-reviewN.md (or 04_manuscript-reviewN-polishM.md if polish)
+    d. Report the new file path to user
+    e. ALL subsequent edits MUST target this new file only
+ 7. Apply edits to the new file
+ 8. Append revision entries to 04_writing-log.md Revision Notes (newest first, never overwrite)
 ```
+
+**Step 6 is non-negotiable.** Even if the user says "just change one word in the base file," create the
+new version first. The base manuscript is immutable once its round is complete. Skipping this step
+is the single most common versioning error and will corrupt the manuscript history.
 
 ### Pacing
 
@@ -138,12 +135,12 @@ Ask the user to choose scope. If unclear, recommend **section-level review**.
 
 ## Required Inputs
 
-**Core files:** `03_structure/03_manuscript-structure.md`,
+**Core files:** `03_structure/03_project-brief.md`, `03_structure/03_figure-outline.md`,
 current manuscript (`04_writing/04_manuscript-draft.md` or latest `04_manuscript-reviewN.md`
-/ `04_manuscript-polishN.md`)
+/ `04_manuscript-reviewN-polishM.md`)
 
 **Supporting files:** `01_prepare/01a_project-brief.md`, `01_prepare/01b_evidence-inventory.md`,
-`02_methods/02a_data.md and 02_methods/02b_methods.md`
+`02_methods/02a_data.md and 02_methods/02b_methods.md`, `03_structure/03_terminology.md`
 
 **External review input (required):** review comments from author, advisor, coauthors, or
 external LLM response. Without this, the skill has nothing to process.
@@ -159,9 +156,9 @@ Review produces exactly one default user-facing file per round:
 05_review/05_review-roundN.md
 ```
 
-This file contains either:
-- A **review prompt** ready to send to an external LLM (if prompt generation was requested), OR
-- A **structured review report** classifying external review input and mapping it to revision actions.
+This file contains:
+- The review input (GPT prompt + response, advisor comments, or self-review notes)
+- The user discussion summary and agreed revision actions
 
 N is the global monotonic counter shared with polish rounds.
 
@@ -272,29 +269,32 @@ When the user asks to apply review feedback to the manuscript, complete these st
 [ ] 1. Identify the base manuscript file.
        For round N: if N=1, base = 04_manuscript-draft.md.
        If N>1, base = the most recent 04_manuscript-review{N-1}.md
-       (or 04_manuscript-polish{N-1}.md if the previous round was polish).
+       (or 04_manuscript-review{N-1}-polishM.md if the previous round ended with polish).
 
 [ ] 2. Copy the base to the new round file.
-       cp base_file 04_manuscript-reviewN.md
+       cp base_file 04_writing/04_manuscript-reviewN.md
        Do NOT skip this step. Even a one-word change requires a new file.
        The base manuscript is immutable once its round is complete.
 
-[ ] 3. Edit ONLY the new file (04_manuscript-reviewN.md).
+[ ] 3. Edit ONLY the new file (04_writing/04_manuscript-reviewN.md).
        Never open an Edit targeting the base file.
 
-[ ] 4. When updating 04_writing-log.md:
+[ ] 4. When updating 04_writing/04_writing-log.md:
        a. Read the current last 5-10 lines of the Revision Notes table first.
        b. Add new entries at the TOP of the table (newest first).
        c. Never use an old_string that spans multiple existing entries.
        d. Match only the table header or the current top entry as your anchor.
 ```
 
+This checklist applies identically to polish→writing handoffs (producing
+`04_manuscript-reviewN-polishM.md` instead of `04_manuscript-reviewN.md`).
+
 ### Handoff Destinations
 
 - **Back to writing:** paragraph unclear, flow weak, claim placement wrong, missing transition.
   Action: revision instructions per issue; `[REVISION DRAFT]` if user requests.
 - **Back to structure:** section architecture wrong, figure order illogical, central story unclear,
-  journal narrative mismatch. Action: update `03_manuscript-structure.md`, then return to writing.
+  journal narrative mismatch. Action: update `03_structure/03_project-brief.md`, then return to writing.
 - **Back to methods:** methods cannot support claim, processing unclear, statistical test missing.
   Action: update `02a_data.md and 02b_methods.md`, re-draft affected units.
 - **Back to prepare:** research question unclear, evidence inventory incomplete, figure-to-claim

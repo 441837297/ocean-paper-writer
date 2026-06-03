@@ -28,7 +28,7 @@ Six core manuscript-building stages, plus one optional publication-material stag
 | **02 methods** | Document data sources, processing workflows, derived variables, and statistical methods |
 | **03 structure** | Design manuscript architecture — central story, claim hierarchy, figure sequence, section roles |
 | **04 writing** | Draft manuscript prose one paragraph or subsection at a time, following the structure architecture |
-| **05 review** | Process external review input (author / advisor / external LLM) into structured, actionable revision tasks; optionally generate review prompts for external LLMs |
+| **05 review** | Submit manuscript for external review (advisor / external LLM / self-review), record feedback, discuss revisions with user, then hand off to writing or polish |
 | **06 polish** | Refine confirmed text for clarity, flow, journal voice, and style naturalization — no evidence creation |
 | **07 cover-letter** | Prepare submission-facing cover letter material from confirmed manuscript claims and journal fit |
 
@@ -73,6 +73,37 @@ Skill 启动时先问：
 - **接续** → 扫描目录下已有 stage 输出，报告进度，询问下一步。
 - **从头开始** → 请用户提供项目目录路径，默认进入 **prepare**。
 
+### 接续时必做：现状简报
+
+扫描项目目录后，用以下格式简要汇总现状（控制在 10 行以内）：
+
+```
+## 项目现状 / Project Status
+
+- 项目：[project name]
+- 目标期刊：[journal or "未指定"]
+- 当前阶段：[stage]
+- 已完成：
+  - 01 prepare: [✓] project-brief, evidence-inventory
+  - 02 methods: [✓] data, methods
+  - 03 structure: [✓] project-brief, figure-outline, terminology
+  - 04 writing: [N] 轮 review, [M] 轮 polish — 最新: 04_manuscript-reviewX-polishY.md
+  - 05 review: [N] 轮审查完成
+- 手稿状态：[M] methods units + [R] results units + [D] discussion units + [I] introduction units + [A] abstract + [C] conclusion，其中 [X]/[Y] confirmed / [Z] provisional
+- 建议下一步：[具体行动]
+```
+
+此简报帮助用户快速回忆进度、确认上下文，再进入具体工作。
+
+### 修改后必问：同步上游
+
+每次对项目文件做完实质性修改（手稿文本、术语字典、项目书、图表蓝图）后，**必须**询问用户：
+
+> 是否需要同步到上游（HPC / 远程服务器 / Obsidian vault）？
+
+如果用户确认，根据项目配置执行同步操作（如 `sync_files(direction="up")` 到 HPC）。
+不自动同步，但必须提醒。
+
 所有 stage 输出文件存放在用户指定的项目目录下，不同项目互不干扰。
 
 ## Stage Routing
@@ -107,21 +138,28 @@ Each stage produces a fixed user-project output file. These are **user project f
 | 01 prepare | `01_prepare/01b_evidence-inventory.md` |
 | 02 methods | `02_methods/02a_data.md` |
 | 02 methods | `02_methods/02b_methods.md` |
-| 03 structure | `03_structure/03_manuscript-structure.md` |
+| 03 structure | `03_structure/03_project-brief.md` (活文档，跨阶段持续更新) |
+| 03 structure | `03_structure/03_figure-outline.md` (活文档，与项目书同步更新) |
+| 03 structure | `03_structure/03_terminology.md` (术语字典，review/polish 阶段维护) |
+| 03 structure | `03_structure/reference_papers/` (参考论文全文，用于风格参照与术语对齐) |
 | 04 writing | `04_writing/04_manuscript-draft.md` (初稿) |
 | 04 writing | `04_writing/04_manuscript-reviewN.md` (第 N 轮 05 审查后修改稿) |
-| 04 writing | `04_writing/04_manuscript-polishN.md` (第 N 轮 06 润色后修改稿) |
-| 05 review | `05_review/05_review-roundN.md` (第 N 轮审查) |
-| 06 polish | `06_polish/06_polish-log.md` |
+| 04 writing | `04_writing/04_manuscript-reviewN-polishM.md` (Review N 的第 M 轮 06 润色后修改稿) |
+| 04 writing | `04_writing/04_writing-log.md` (写作日志 + 修订记录 + polish 记录) |
+| 05 review | `05_review/05_review-roundN.md` (第 N 轮审查：外部反馈原文 + 与用户讨论的修改方案) |
+| 06 polish | **无独立输出文件** — 修改直接写入 `04_manuscript-reviewN-polishM.md`，修改记录写入 `04_writing-log.md` 的 Revision Notes |
 | 07 cover-letter | `07_cover-letter/07_cover-letter.md` |
 
 **Versioning rule:** `04_manuscript-draft.md` is the initial complete first draft (04 阶段产出).
-N is a global monotonic counter shared by review and polish rounds — it increments regardless of
-whether the round was a review or a polish pass. After each round, the revised manuscript is saved
-as `04_manuscript-reviewN.md` (if the round was a 05 review) or `04_manuscript-polishN.md`
-(if the round was a 06 polish). The suffix maps to the stage that produced the changes; the number
-tells you the absolute sequence. Example: review1 → review2 → polish3 → review4.
-The writing log (`04_writing-log.md`) tracks which round each unit was last modified in.
+N is a global monotonic review counter — it increments with each new review round.
+M is a polish sub-counter that resets to 1 for each new review round.
+After each review round, the revised manuscript is saved as `04_manuscript-reviewN.md`.
+Polish passes following review N are saved as `04_manuscript-reviewN-polishM.md` (e.g., review6-polish1, review6-polish2).
+When a new review round begins, it uses the latest polish (or the base review if no polish) as input,
+and produces `04_manuscript-review{N+1}.md`. Example: review6 → review6-polish1 → review6-polish2 → review7 → review7-polish1.
+The writing log (`04_writing-log.md`) tracks which round each unit was last modified in, and also serves as the unified revision record for both review→writing and polish→writing modifications.
+
+**Polish tracking:** There is no separate polish log file. All polish modifications are recorded in `04_writing-log.md` Revision Notes (same format as review revisions). Each polish entry notes the polish round (M counter) in the Change description.
 
 Do not generate stage output files for stages the user has not reached. Do not generate files for future stages preemptively.
 
@@ -135,10 +173,10 @@ generating output files.
 |-------|--------------------|-------------|
 | prepare | `references/workflow/prepare.md` | `references/templates/01a_project-brief.md`, `references/templates/01b_evidence-inventory.md` |
 | methods | `references/workflow/methods.md` | `references/templates/02a_data.md`, `references/templates/02b_methods.md` |
-| structure | `references/workflow/structure.md` | `references/templates/03_manuscript-structure.md` |
-| writing | `references/workflow/writing.md` | `references/templates/04_manuscript-draft.md` |
+| structure | `references/workflow/structure.md` | `references/templates/03_project-brief.md`, `references/templates/03_figure-outline.md`, `references/templates/03_terminology.md` |
+| writing | `references/workflow/writing.md` | `references/templates/04_manuscript-draft.md`, `references/templates/04_writing-log.md` |
 | review | `references/workflow/review.md` | `references/templates/05_review-report.md` |
-| polish | `references/workflow/polish.md` | `references/templates/06_polish-log.md` |
+| polish | `references/workflow/polish.md` | (无独立模板 — polish 修改记录写入 `04_writing-log.md`) |
 | cover-letter | `references/workflow/cover-letter.md` | `references/templates/07_cover-letter.md` |
 
 Additional reference modules for writing:
@@ -199,7 +237,7 @@ Rules:
 - Manuscript-level polish is limited to consistency checks (terminology, abbreviations, recurring patterns, journal voice alignment) — not full-text rewriting.
 - If the user requests full-manuscript polish, recommend unit-by-unit polish instead.
 - Each polished unit requires user confirmation before it is marked as final.
-- Confirmed polished units can be assembled back into `04_writing/04_manuscript-draft.md` or the user's own manuscript file.
+- Polish modifications are saved as `04_manuscript-reviewN-polishM.md` (copy-then-edit from the latest review or polish base). Polish change records are written to `04_writing-log.md` Revision Notes.
 
 **Style naturalization audit** is an optional polish subworkflow.
 It has two steps:
@@ -269,7 +307,7 @@ Each stage may hand off to one or more subsequent stages. Handoff is never autom
 | structure | writing |
 | writing | review |
 | review | writing (→ `04_manuscript-reviewN.md`), structure, methods, prepare, polish |
-| polish | writing (→ `04_manuscript-polishN.md`), review, cover-letter |
+| polish | writing (→ `04_manuscript-reviewN-polishM.md`), review, cover-letter |
 | cover-letter | polish, review, final assembly |
 
 **Review→Writing handoff:** Each review round processes external input and produces `05_review/05_review-roundN.md`.
@@ -277,7 +315,19 @@ To incorporate feedback into the manuscript:
 1. Copy the base manuscript to `04_writing/04_manuscript-reviewN.md` (for N=1, the base is `04_manuscript-draft.md`; for N>1, the base is the most recent `04_manuscript-review{N-1}.md` or `04_manuscript-polish{N-1}.md`). **This step is mandatory — never edit the base manuscript directly, even for a one-word fix.**
 2. Apply targeted edits to the copy.
 3. Update `04_writing/04_writing-log.md`: append new entries to the Revision Notes table (newest first). **Never replace or delete existing entries.** Read the current last lines of the log before editing to confirm boundaries.
+
 **Polish→Writing handoff:** Same copy-then-edit rule; same append-only rule for the log.
+
+### Mandatory Version Copy Rule
+
+**此规则适用于 review 和 polish 两个阶段，无例外：**
+
+1. 确定 base manuscript（最新的已确认版本）。
+2. 将 base 复制到新版本文件（`04_manuscript-reviewN.md` 或 `04_manuscript-reviewN-polishM.md`）。
+3. 仅编辑新文件。**永远不要直接编辑 base manuscript。**
+4. 将修改记录追加到 `04_writing-log.md` Revision Notes（最新在前，不覆盖旧条目）。
+
+违反此规则是手稿版本管理中最常见的错误。Base manuscript 在其轮次完成后是不可变的。
 
 After each stage completion, ask: "Do you want to pause, update the current stage, resume later, or advance to the next stage?"
 
@@ -326,7 +376,8 @@ Full Zotero integration reference: `references/zotero/README.md`
 - **Default writing unit is one paragraph; maximum is one subsection.** Build prose incrementally.
 - **Default polish unit is one paragraph; maximum is one subsection.** Refine text incrementally.
 - **Do not rewrite during review by default.** Review diagnoses; rewriting only happens when the user explicitly requests a revision draft.
-- **Do not edit the base manuscript directly when incorporating review or polish feedback.** Copy it to `04_manuscript-reviewN.md` or `04_manuscript-polishN.md` first, then edit the copy. The base manuscript (`04_manuscript-draft.md` or the previous round's output) is immutable.
+- **Do not edit the base manuscript directly when incorporating review or polish feedback.** Copy it to `04_manuscript-reviewN.md` or `04_manuscript-reviewN-polishM.md` first, then edit the copy. The base manuscript (`04_manuscript-draft.md` or the previous round's output) is immutable. This rule applies to both review and polish stages with no exceptions.
+- **Do not create a separate polish log file.** All polish change records go into `04_writing-log.md` Revision Notes.
 - **Do not use polished language to hide evidence gaps.** If evidence is missing, return to review, writing, methods, or prepare.
 - **Do not invent data, methods, figures, citations, literature references, or advisor comments.**
 - **Do not overcompress materials according to journal rules during early stages.** Compression happens in late-stage polish.

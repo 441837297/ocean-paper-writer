@@ -40,11 +40,15 @@ Do **not** run methods when: no code or data description is available; prepare s
 
 ## Required Output
 
-Methods produces exactly one default user-facing file:
+Methods produces two default user-facing files:
 
 ```
-02_methods/02a_data.md and 02_methods/02b_methods.md
+02_methods/02a_data.md   ← 数据来源表 + Data Availability（URL/DOI/简介/参考文献）
+02_methods/02b_methods.md ← 分析流程、变量定义、统计方法
 ```
+
+**02a_data.md** 必须包含 Data Availability 表格（每行一个数据集，含访问地址/DOI、1-2 句简介、参考文献）。
+这是材料整理阶段的数据清单，不是手稿中的 "Data Availability Statement"——后者留到 writing 阶段按目标期刊格式撰写。
 
 Do **not** create additional files unless the user explicitly asks. If information is insufficient, produce a draft with `[MISSING]`, `[UNCERTAIN]`, and `[CONFLICT]` markers.
 
@@ -172,4 +176,5 @@ The user-facing output file should be saved as:
 - **Do not silently resolve conflicts between code and user description.** Always present both sides.
 - **Do not omit hard-coded thresholds, masks, filters, baselines, or manual choices.** These affect reproducibility.
 - **Do not overcompress methods details according to journal style during methods.** Compression comes later.
+- **Do not write a formal "Data Availability Statement" in methods stage.** Record data access info in the 02a data table; the journal-formatted statement is written during the writing stage.
 - **Preserve enough detail for reproducibility.** `[MISSING]`, `[UNCERTAIN]`, `[CONFLICT]`, and `[CONFIRM WITH USER]` flags are features, not bugs.
