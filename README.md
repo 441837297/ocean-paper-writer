@@ -48,14 +48,17 @@ prepare / methods / structure 阶段不依赖 Zotero；writing / review / polish
 
 4. **写作（Writing）** — 逐段推进。工具起草，你审阅。每段之后你说：保留 / 修改 / 扩展 / 继续。
    默认顺序：Methods → Results → Introduction → Discussion → Conclusion → Abstract。
+   产出 `04_manuscript-draft.md`（初稿）。
    包含图表标题（caption）生成，遵循三部分结构：主题 → 关键内容 → 数据来源。
    需要文献支撑时，工具会先征求你的同意再检索 Zotero。
 
 5. **审查（Review）** — 工具诊断证据缺口、声明强度、逻辑问题和期刊适配度。
-   它会告诉你哪里需要修改，但默认不改写任何内容。
-   你决定修什么、往哪个方向走。
+   每轮审查产出 `05_gpt-review-roundN.md`，修改后的手稿保存为 `04_manuscript-reviewN.md`。
+   多轮审查的 N 全局递增（review1 → review2 → polish3 → review4 合法）。
+   默认不改写任何内容，你决定修什么、往哪个方向走。
 
 6. **润色（Polish）** — 推荐逐段精修已确认的文本，优化清晰度、流畅度和期刊语气。
+   每轮润色后修改稿保存为 `04_manuscript-polishN.md`，N 与审查共享全局计数器。
    也可以在投稿前运行一次可选的 style naturalization audit：先扫描出高风险、中风险和可选修改项，用户选择后再改写，不会自动批量重写全文。
 
 7. **投稿说明材料（Cover Letter，可选）** — 在手稿核心声明和目标期刊基本确认后，整理给编辑的 cover letter 素材。
@@ -102,9 +105,12 @@ manuscript/
 ├── 03_structure/
 │   └── 03_manuscript-structure.md  # 章节架构、声明层级、图表顺序
 ├── 04_writing/
-│   └── 04_manuscript-draft.md     # 起草日志、当前段落、证据追溯、章节汇编
+│   ├── 04_manuscript-draft.md     # 初稿（04 阶段直接产出）
+│   ├── 04_manuscript-reviewN.md   # 第 N 轮审查后修改稿（N 全局递增）
+│   ├── 04_manuscript-polishN.md   # 第 N 轮润色后修改稿（N 与审查共享）
+│   └── 04_writing-log.md          # 起草日志、单元状态、文献速查、修订记录
 ├── 05_review/
-│   └── 05_review-report.md        # 诊断问题、严重程度、修改建议、交接方案
+│   └── 05_gpt-review-roundN.md    # 第 N 轮审查报告（诊断 + 修改建议）
 ├── 06_polish/
 │   └── 06_polish-log.md           # 原始文本 vs 润色后文本、修改理由、边界检查
 └── 07_cover-letter/

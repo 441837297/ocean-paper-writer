@@ -14,6 +14,8 @@ Each Results paragraph follows:
 finding → figure evidence → quantitative detail → spatial/temporal pattern → bounded interpretation
 
 - **finding:** state what was observed, not what it means.
+  **For NCC: the finding must be a specific quantified result, not an abstract statement.**
+  The first sentence must give the observed change with its key number.
 - **figure evidence:** reference the specific figure/table that supports the finding.
 - **quantitative detail:** include numbers, units, magnitudes, trends.
 - **spatial/temporal pattern:** where and when the pattern occurs.

@@ -35,22 +35,6 @@ Six core manuscript-building stages, plus one optional publication-material stag
 Stage 07 is a publication-material stage, not a manuscript-building stage. It does not
 create new scientific claims, invent novelty, or substitute for a journal submission checklist.
 
-## Global Manuscript Logic
-
-Before drafting, reviewing, or polishing major manuscript material, keep the manuscript anchored to a checkable argument chain:
-
-**ocean/system need → unresolved process/data/method gap → this paper's move → decisive evidence → bounded implication → explicit limitation**
-
-This argument chain is a control surface for scientific coherence. It is not a new stage, not a paper-type classifier, and not a replacement for the user's research plan or target-journal decision.
-
-Use the chain to check:
-- whether the central claim follows from the available evidence;
-- whether each section serves the manuscript's main argument;
-- whether a figure, paragraph, or claim is being asked to support more than it can;
-- whether broader ocean, climate, or ecosystem implications remain bounded by the evidence.
-
-If a link in the chain is missing or weak, mark it explicitly with `[MISSING]`, `[UNCERTAIN]`, `[EVIDENCE GAP]`, `[STRUCTURE CONFLICT]`, `[REVIEW BLOCKER]`, or `[POLISH BLOCKER]` depending on the active stage.
-
 ## Chinese-Friendly Interaction Policy
 
 This skill is designed for Chinese-speaking ocean science researchers preparing English-language manuscripts.
@@ -64,9 +48,18 @@ Default behavior:
 
 Do not turn every output into full bilingual manuscript text by default. Chinese-friendly interaction is not the same as bilingual manuscript drafting.
 
-## Stage Routing
+## Session Start
 
-Route the user's request to the correct stage:
+Skill 启动时先问：
+
+> 从头开始还是接续工作？如果接续，请提供项目目录路径。
+
+- **接续** → 扫描目录下已有 stage 输出，报告进度，询问下一步。
+- **从头开始** → 请用户提供项目目录路径，默认进入 **prepare**。
+
+所有 stage 输出文件存放在用户指定的项目目录下，不同项目互不干扰。
+
+## Stage Routing
 
 - **Proposal, research plan, figures, figures + code, "from scratch":** route to **prepare**. The user has materials but no structured manuscript inputs yet.
 - **Code, notebooks, data processing, methods description:** route to **methods**. The user wants to document what was done.
@@ -99,10 +92,20 @@ Each stage produces a fixed user-project output file. These are **user project f
 | 02 methods | `02_methods/02a_data.md` |
 | 02 methods | `02_methods/02b_methods.md` |
 | 03 structure | `03_structure/03_manuscript-structure.md` |
-| 04 writing | `04_writing/04_manuscript-draft.md` |
-| 05 review | `05_review/05_review-report.md` |
+| 04 writing | `04_writing/04_manuscript-draft.md` (初稿) |
+| 04 writing | `04_writing/04_manuscript-reviewN.md` (第 N 轮 05 审查后修改稿) |
+| 04 writing | `04_writing/04_manuscript-polishN.md` (第 N 轮 06 润色后修改稿) |
+| 05 review | `05_review/05_gpt-review-roundN.md` (第 N 轮审查) |
 | 06 polish | `06_polish/06_polish-log.md` |
 | 07 cover-letter | `07_cover-letter/07_cover-letter.md` |
+
+**Versioning rule:** `04_manuscript-draft.md` is the initial complete first draft (04 阶段产出).
+N is a global monotonic counter shared by review and polish rounds — it increments regardless of
+whether the round was a review or a polish pass. After each round, the revised manuscript is saved
+as `04_manuscript-reviewN.md` (if the round was a 05 review) or `04_manuscript-polishN.md`
+(if the round was a 06 polish). The suffix maps to the stage that produced the changes; the number
+tells you the absolute sequence. Example: review1 → review2 → polish3 → review4.
+The writing log (`04_writing-log.md`) tracks which round each unit was last modified in.
 
 Do not generate stage output files for stages the user has not reached. Do not generate files for future stages preemptively.
 
@@ -157,6 +160,8 @@ Rules:
   Length-limit checks only occur during late-stage submission polish if the user
   explicitly requests them.
 - Journal-fit concerns are separate from evidence and logic concerns. Do not use journal-fit reasoning to override evidence boundaries.
+- Length-limit compression only during late-stage polish if the user explicitly requests it. Do not compress during early stages.
+- Cover letter requires a confirmed target journal profile; do not generate one without it.
 - If the target journal is not in the built-in list, and the user provides a submission guide URL
   plus 3–4 recent papers from that journal, the skill can distill a journal profile on demand.
   See `references/journals/_distill.md` for the full distillation workflow.
@@ -166,6 +171,7 @@ Rules:
 
 ### Writing rules
 
+- Build one stage at a time, one paragraph per unit. Do not generate a full manuscript in one pass or complete multiple stages before user confirmation.
 - **Default writing unit:** one paragraph.
 - **Maximum writing unit:** one subsection.
 - Larger requests should be handled as provisional outlines or section-by-section planning, not final prose.
@@ -224,20 +230,27 @@ Stage-specific tags: `[STRUCTURE CONFLICT]`, `[REVIEW BLOCKER]`, `[REVIEW CONFLI
 
 - Do not guess, fabricate, or invent missing information.
 
-## Evidence and Claim Guardrails
+## Writing Principles
 
-These boundaries apply at every stage:
+These apply at every stage:
 
-- Do not convert visual patterns into confirmed mechanisms without supporting evidence.
-- Do not treat correlation as causation.
-- Do not extend regional results to global implications without evidence.
-- Do not treat short observational records as climate trends.
-- Do not frame climate relevance as climate-change evidence.
-- Do not present model output as observed fact.
-- Do not equate statistical significance with physical significance.
-- Do not invent data sets, methods, figures, citations, or advisor comments.
-- Preserve uncertainty. Hedging is a feature, not a bug.
-- If a claim is not supported by the evidence, flag it — do not polish it into sounding stronger.
+**Name the variable, not the category.**
+Say "temperature and salinity anomalies", not "thermohaline signatures". Say "heat and salt transport magnitude", not "transport dimension". If the variable has a name, use it.
+
+**Open with the finding.**
+Every paragraph's first sentence states the observed result with its key number: "Global eddy nonlinearity increased by 2.76% per decade..." Not: "Across the global eddy population, stronger nonlinearity is accompanied by..."
+
+**State limitations once, factually.**
+Essential caveats belong in Methods or Extended Data captions. Never use defensive disclaimers in Results or Discussion: "not a causal estimate", "not a closed estimate", "does not close the budget", "need not vary identically", "consistent with" as a recurring hedge.
+
+**Match claim strength to evidence.**
+Robust detection → "We show that". Attribution suggestive → "This is consistent with". Quantified consequence → give the number. Never inflate.
+
+**Keep evidence and claim in the same container.**
+Regional data → regional conclusion. Observational record → observed trend, not climate regime. Correlation is not causation. Statistical significance is not physical significance. Model output is not observed fact.
+
+**Do not fabricate.**
+Mark missing evidence as `[EVIDENCE GAP]` or `[CITATION NEEDED]`. Do not polish unsupported claims into sounding stronger.
 
 ## Handoff Rules
 
@@ -249,8 +262,8 @@ Each stage may hand off to one or more subsequent stages. Handoff is never autom
 | methods | structure |
 | structure | writing |
 | writing | review |
-| review | writing, structure, methods, prepare, polish |
-| polish | writing, review, cover-letter |
+| review | writing (→ `04_manuscript-reviewN.md`), structure, methods, prepare, polish |
+| polish | writing (→ `04_manuscript-polishN.md`), review, cover-letter |
 | cover-letter | polish, review, final assembly |
 
 After each stage completion, ask: "Do you want to pause, update the current stage, resume later, or advance to the next stage?"
@@ -288,16 +301,7 @@ exact write action.
 
 Full Zotero integration reference: `references/zotero/README.md`
 
-## Do Not Do
+**Hard rule — full-text Zotero searches:** Before pulling full-text content (PDFs, Methods/Results paragraphs), explicitly ask the user whether to use subagent + haiku to avoid flooding the main context window. See README for detail.
 
-- **Do not generate a full manuscript in one pass.** Build it stage by stage.
-- **Do not complete multiple workflow stages at once.** Each stage produces its own output and requires user confirmation before advancing.
-- **Do not decide the target journal for the user.** Record, suggest only when asked, do not argue.
-- **Default writing unit is one paragraph; maximum is one subsection.** Build prose incrementally.
-- **Default polish unit is one paragraph; maximum is one subsection.** Refine text incrementally.
-- **Do not rewrite during review by default.** Review diagnoses; rewriting only happens when the user explicitly requests a revision draft.
-- **Do not use polished language to hide evidence gaps.** If evidence is missing, return to review, writing, methods, or prepare.
-- **Do not invent data, methods, figures, citations, literature references, or advisor comments.**
-- **Do not overcompress materials according to journal rules during early stages.** Compression happens in late-stage polish.
-- **Do not ignore missing or conflicting information.** Flag it with standard tags and ask the user.
-- **Do not generate a cover letter without a confirmed target journal profile.** The contribution statement must reference the journal's actual scope. Cover-letter material summarizes confirmed manuscript outputs only.
+**Hard rule — PDF reading prohibited for style reference:** When the skill needs to reference actual paper text (e.g., for writing style comparison, method phrasing, or narrative structure), **never use Zotero MCP `get_content` with `include pdf:true`** to extract paper text. Instead: (1) ask the user whether they have pre-converted MD files (from zotero-mineru-plugin or similar PDF→MD pipeline); (2) use the mineru-converted `output.md` files in Zotero storage (these are complete full-text MD, produced by zotero-mineru-plugin); (3) never attempt to read PDF binary via MCP for text extraction. The user's zotero-mineru-plugin pipeline produces clean MD files that should be the primary source for paper text.
+

@@ -156,22 +156,27 @@ A single clear bounded statement is more credible than a paragraph of "may possi
 
 NCC Introduction must **open with the climate problem, not the oceanographic problem**.
 The first paragraph should establish why the climate-system question matters — heat uptake, carbon cycle, sea-level rise, cryosphere stability, biogeochemical cycles, climate feedbacks.
-The oceanographic context is introduced in the second paragraph, framed as the vehicle through which a climate-relevant finding will be revealed.
+The oceanographic context is introduced in subsequent paragraphs, framed as the vehicle through which a climate-relevant finding will be revealed.
 
 Strong Introduction arc:
 - **Paragraph 1:** Open with the climate problem.
-What Earth-system process is poorly understood, changing, or consequential?
-Why does this matter for the climate?
-The opening should be accessible to climate scientists across subfields.
-- **Paragraph 2:** Narrow to the specific ocean process.
-What role does this ocean process play in the climate problem?
-What is known, and what is the critical knowledge gap that prevents understanding of the climate-system response?
-- **Paragraph 3:** State the contribution.
-What does this study do?
-What data, approach, and analysis?
-What is the central finding?
-What is the climate significance?
-The key finding and its climate implication should both be stated here.
+  What Earth-system process is poorly understood, changing, or consequential?
+  Why does this matter for the climate?
+  The opening should be accessible to climate scientists across subfields.
+- **Paragraph 2:** Known changes under climate forcing.
+  What has already been observed to change in the relevant ocean system under recent warming?
+  Establish the factual basis: this system is already responding to climate forcing.
+- **Paragraph 3:** Prior work organized by scientific question → gap.
+  Group prior studies by what scientific question they answered, not by method.
+  End with the specific unresolved question that this paper addresses.
+- **Paragraph 4:** This study's contribution.
+  What data and approach are used? What is the central finding? What is the climate significance?
+
+**Hard rule — no mechanism chain in Introduction:**
+Introduction must not pre-sell the paper's internal mechanism chain.
+Do not introduce the core mechanism (nonlinearity, method framework, causal pathway) as part of the narrative setup.
+Mechanisms belong in Results and Discussion.
+Introduction leads with the climate question and the unresolved gap.
 
 Avoid: opening with a regional oceanographic description ("The Kuroshio Extension is a region of high eddy kinetic energy...") — that framing is for JGR or JPO.
 For NCC, the opening must be about the climate system.
@@ -210,6 +215,14 @@ Show what the change means for the climate system: heat flux, carbon uptake, sea
 This is the "so what" of the NCC story.
 
 Each figure should serve one narrative purpose. Self-contained captions. Quantitative results with uncertainties.
+
+**Results subheading style:** Use short parallel phrases, not full sentences or abstract concept labels.
+Each subheading should be a concrete descriptive label that a non-specialist can parse.
+Examples: "Global mesoscale eddy trends" / "Spatial patterns of ocean mesoscale trends" / "Eddy heat and salt anomalies strengthen" — not "Thermohaline signatures and their spatial reorganization."
+
+**Paragraph opening rule:** Every Results paragraph must open with a specific quantified finding, not with framing or background.
+First sentence states the observed result and its key number; explanation and context follow after.
+Example: "Global eddy nonlinearity increased by 2.76% per decade for anticyclones..." not "Across the global eddy population, stronger nonlinearity is accompanied by..."
 
 ### Discussion
 
@@ -282,6 +295,19 @@ NCC claims must be **confident for the detection, careful for the attribution, a
 Do not inflate detection claims beyond what the data support.
 If the record is too short to separate the trend from decadal variability, say so.
 Do not inflate attribution claims beyond what the causal evidence supports.
+
+### Forbidden defensive phrasings
+
+The following phrasings are common in oceanography but undermine NCC narrative confidence.
+They weaken the claim without providing useful information. **Do not use them in main text or Discussion:**
+
+- "This is a population-level association, not a causal estimate"
+- "This is not a closed material-trapping estimate"
+- "This does not close the budget"
+- "X and Y need not vary identically"
+- "Consistent with..." used as a hedge for every finding (use specific comparison instead)
+
+If a limitation is scientifically essential, state it once in Methods or Extended Data caption as a factual statement, not as a recurring disclaimer in Results or Discussion.
 
 ### Level of technicality
 

@@ -68,6 +68,8 @@ Every Zotero call requires explicit user confirmation before querying.
   accessible to non-specialist.
 - **Nature Climate Change:** climate-change consequence framing or Earth-system relevance
   must be supported by a connection chain, not assumed.
+  Use 4-paragraph structure: P1=climate problem → P2=known changes under forcing → P3=prior work by question → gap → P4=this study.
+  **Do not pre-sell the mechanism chain** — save core mechanisms (nonlinearity, method framework) for Results/Discussion.
 
 ## Introduction paragraph architecture
 

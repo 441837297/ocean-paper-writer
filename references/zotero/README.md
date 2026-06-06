@@ -199,11 +199,17 @@ Search priority:
 2. User-provided key papers
 3. `search_library` → candidate titles (fast, token-minimal)
 4. `get_item_details(mode="preview")` → abstract filtering (cheap per paper)
-5. `output.md` + Haiku subagent → targeted evidence extraction (only when depth needed)
+5. Haiku subagent → targeted evidence extraction (only when depth needed)
 6. PDF full text (only on explicit user request, not routine)
 
 Always explain the search intent to the user before querying.
 Confirm after each level before going deeper.
+
+**Hard rule — full-text searches require user opt-in for subagent + haiku:**
+Before any operation that would pull full-text content (get_content on PDFs, search_fulltext with large context, or extracting Methods/Results paragraphs), explicitly ask the user: "是否使用 subagent + haiku 调研此文？" State what will be read and why. Do not proceed without confirmation. This prevents full papers from entering the main conversation context.
+
+**Hard rule — prefer user's mineru MD over MCP PDF extraction:**
+When the skill needs paper text for style reference, method comparison, or narrative analysis, **do not use `get_content` with `include pdf:true`**. Instead: (1) ask the user if they have pre-converted MD files from zotero-mineru-plugin; (2) mineru-converted `output.md` files in Zotero storage are the primary source (complete full-text MD from zotero-mineru-plugin); (3) PDF binary reading via MCP is prohibited for text extraction. The user's established pipeline (zotero-mineru-plugin → MD → Zotero attachment) produces clean full-text MD that should be the primary source.
 
 ## Citation Handling Rules
 
