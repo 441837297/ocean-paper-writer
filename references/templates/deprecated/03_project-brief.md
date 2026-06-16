@@ -43,6 +43,16 @@
 
 [One clear sentence. Confirm it is still current.]
 
+## Protagonist Lock
+
+*Review 阶段若 protagonist 改变，必须更新此区块。此锁确保全文主语一致，防止叙事焦点漂移。*
+
+- **Paper protagonist:** [这个论文的主角是什么？一个过程、一个机制、一个指标、一个区域？]
+- **Not protagonist:** [明确不是主角的是什么？防止 reviewer/合作者误读]
+- **Supporting diagnostics:** [哪些诊断量/指标是配角，服务于 protagonist？]
+- **Main consequence:** [主角变化带来的最主要结论]
+- **Forbidden narrative moves:** [禁区：不能把配角当主角写；不能把相关性当机制；不能把 regional 当 global]
+
 ## Claim Hierarchy
 
 ### Primary Claims

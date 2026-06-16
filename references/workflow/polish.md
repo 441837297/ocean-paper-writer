@@ -39,12 +39,48 @@ Classify the issue first:
 
 | Failure mode | Meaning | Action |
 |-------------|---------|--------|
-| `STRUCTURE_PROBLEM` | The paragraph is in the wrong section, performs the wrong section job, or disrupts the argument chain | Return to writing or structure; do not polish as-is |
+| `STRUCTURE_PROBLEM` | The paragraph is in the wrong section, performs the wrong section job, or disrupts the argument chain | **STOP. Do not polish.** Return to review (→ Backpropagation Gate → update 03 files) or structure. 结构性问题是上游问题，润色无法修复。 |
 | `EVIDENCE_PROBLEM` | The claim is unsupported, overstates mechanism/causation/trend/climate implication, or lacks required citation | Mark `[POLISH BLOCKER]`; return to review, methods, prepare, or writing |
 | `PARAGRAPH_LOGIC_PROBLEM` | The paragraph has unclear topic sentence, mixed functions, weak internal sequence, or poor connection to adjacent units | If fixable within the unit, revise; if it requires new evidence or reordering, return to writing/review |
 | `LANGUAGE_PROBLEM` | The claim is supported but wording is unclear, verbose, repetitive, awkward, or overly generic | Polish the unit |
 | `JOURNAL_VOICE_PROBLEM` | The prose is supported but does not match the target journal's voice or level of accessibility | Polish with journal profile guidance |
 | `CHINESE_INTENT_TRANSFER_PROBLEM` | The user's Chinese expression contains valid scientific intent but the English phrasing needs restructuring | Translate intent, not syntax; preserve claim/evidence/boundary |
+
+## Universal Style Rules
+
+*以下 4 条规则适用于所有目标期刊。润色时若发现违反，必须修正。若违反涉及 structure，标记 `STRUCTURE_PROBLEM` 并返回 review。*
+
+### 1. Result-first rule
+
+Results 段落第一句必须报告一个发现，最好包含方向、变量、区域或数字。
+
+| Bad | Good |
+|-----|------|
+| "Figure 3 shows the temporal evolution of EKE in the Kuroshio Extension." | "EKE in the Kuroshio Extension increased by 12% per decade over 1993–2020 (Figure 3)." |
+
+### 2. Physical-link rule
+
+不要用文献引用代替物理论证。
+
+| Bad | Good |
+|-----|------|
+| "Previous studies showed NL is important for transport (Smith 2020, Jones 2021)." | "When rotation exceeds translation, an eddy is more likely to retain core property anomalies during propagation." |
+
+### 3. Defensive-language quarantine
+
+Caveats 是必要的，但必须集中放置在 Methods、Extended Data captions 或 Discussion 的一个边界段落中。不要在 Results 中反复散布相同的 caveat。若发现散布式 caveat，标记并建议集中。
+
+### 4. Abstract-noun replacement
+
+用具体的变量和动作替换模糊的名词链。
+
+| Vague | Concrete |
+|-------|----------|
+| thermohaline signatures | heat and salt anomalies |
+| transport dimension | heat and salt transport response |
+| boundary-crossing redistribution | boundary-crossing heat and salt transport |
+| directional recombination | after combining eddy polarity and crossing direction |
+| linked eddy-level properties | eddy kinematics, anomalies and transports |
 
 ### Polish Decision Rule
 
@@ -54,7 +90,7 @@ Proceed to rewriting only if:
 - the requested change can be solved at language, paragraph, or journal-voice level;
 - evidence boundaries will remain visible.
 
-If not, stop and explain why polishing would be misleading.
+If `STRUCTURE_PROBLEM`: **stop immediately.** Do not attempt to polish. Mark `[POLISH BLOCKER]` and hand off to review (→ Backpropagation Gate → update 03 files → then writing). 结构性问题是架构问题，不是语言问题。
 
 ## Polish Scope
 
@@ -75,9 +111,9 @@ section-by-section or unit-by-unit polish instead.
 ## Required Inputs
 
 **Core files:** `04_writing/04_manuscript-draft.md` (or latest `04_manuscript-reviewN.md`),
-`05_review/05_review-roundN.md` (or latest review)
+`05_review/05_review-round{N}B_report.md` (or latest review)
 
-**Supporting file:** `03_structure/03_project-brief.md`, `03_structure/03_terminology.md`
+**Supporting file:** `03_structure/03_section-architecture.md`, `03_structure/03_terminology.md`
 
 **Optional files:** `01_prepare/01a_project-brief.md`, `01_prepare/01b_evidence-inventory.md`,
 `02_methods/02a_data.md and 02_methods/02b_methods.md`
@@ -96,7 +132,7 @@ Polish does **not** produce a separate output file. Instead:
 - **Change record:** All polish modifications are recorded in `04_writing/04_writing-log.md`
   Revision Notes (same format as review revisions; each polish entry notes the M counter).
 
-Do **not** create a `06_polish/06_polish-log.md` file. The unified writing-log is the single
+Do **not** create any standalone polish log. The unified writing-log is the single
 source of truth for all manuscript change history.
 
 ## Interaction Flow
@@ -146,6 +182,8 @@ Preserve hedging where the evidence requires it.
 Avoid overstating mechanisms, causation, trends, climate implications, or global significance.
 
 ### Journal voice
+
+Loading a journal profile for polish: load `## Shared` + `## {current section}` + `## Late-stage Polish` from the journal profile.
 
 - **GRL:** concise, single sharp message, short paragraphs, direct claims.
 - **JGR-Oceans:** rigorous, complete, transparent, methods depth visible in language.
@@ -341,7 +379,7 @@ Rewrite only the selected items.
 
 ### Optional LaTeX tracking
 
-Default tracking is the Markdown polish log.
+Default tracking is `04_writing-log.md` Revision Notes.
 
 If the user is working in LaTeX and explicitly asks for source-level tracking, use:
 
@@ -365,11 +403,11 @@ advisor comment unclear; citation needed for a claim that cannot be polished saf
 claim that polish cannot strengthen.
 
 **Conflict handling:** do not silently resolve conflicts — present both sides and ask user to
-decide priority. Record resolution in polish log.
+decide priority. Record resolution in `04_writing-log.md`.
 
 ## Resume and Update Mode
 
-When user returns with existing `06_polish-log.md`: read existing polish log, identify the last
+When user returns with an existing polish session: read the current manuscript and writing-log, identify the last
 polished unit, preserve previously confirmed units, add new polish pass for new units,
 generate changelog:
 
@@ -388,7 +426,7 @@ generate changelog:
 - **Back to review:** claim support uncertain, reviewer/advisor issue not classified, language
   issue may actually be evidence issue.
 - **Back to structure:** section order or narrative role wrong, polished language cannot fix
-  architecture problem.
+  architecture problem. **必须先经过 review 的 Backpropagation Gate 更新 03 文件，不能直接从 polish 改 structure 而不留记录。**
 - **Back to methods:** method details unclear, statistical or processing wording cannot be
   safely polished.
 - **Back to prepare:** core research question or evidence inventory incomplete.
@@ -398,8 +436,7 @@ generate changelog:
 ## Template References
 
 Polish does not use a standalone template. Change records follow the same Revision Notes format
-as `04_writing-log.md`. The deprecated `references/templates/06_polish-log.md` is retained for
-reference only.
+as `04_writing-log.md`.
 
 ## Guardrails
 
@@ -415,3 +452,4 @@ reference only.
 - **Do not mark a polished unit as final without user confirmation.**
 - **Do not compress according to journal submission limits unless explicitly requested.**
 - **Do not create a separate polish log file.** All polish records go into `04_writing-log.md`.
+- **Do not let GPT or external LLM perform full-manuscript polish.** GPT is a decision-support tool, not the version controller. GPT outputs review + patch instructions; ClaudeCode executes. Candidate rewrites from GPT allowed only for Abstract, Introduction P1, Results lead sentences, title, or conclusion sentences. All formal incorporation by ClaudeCode, recorded in writing-log. 若 GPT 指出结构问题，返回 review → Backpropagation Gate。决策（GPT）和执行（CC）分离。

@@ -28,10 +28,16 @@ exists yet and the user does not want LLM review; the user only wants language p
 The skill does not read the manuscript and form its own opinion. Instead, the
 unified review workflow is:
 
-> **提交稿件 → 外部审阅（导师 / GPT / 自审）→ 反馈写入 `05_review-roundN.md` → 与用户逐条讨论确认修改方案 → 复制 base manuscript → 在副本上执行修改 → 记录到 writing-log**
+> **提交稿件 → 外部审阅（导师 / GPT / 自审）→ 反馈写入 `05_review-round{N}A_source.md` → GPT 输出 `05_review-round{N}B_report.md` → ClaudeCode 依据 B_report 执行修改 → 记录到 writing-log**
 
 The review source (advisor, external LLM, or self-review) does not change this workflow.
 All feedback goes through the same pipeline: record, discuss, confirm, revise.
+
+**Exception — Lightweight Unit Review:** For single-paragraph or single-unit review
+without external input, the skill may originate a local diagnostic judgment
+(Logic → Domain → Language). This exception does NOT create 05 files and does
+NOT replace the full review pipeline for section-level or manuscript-level review.
+See [Lightweight Unit Review](#lightweight-unit-review).
 
 ## Prompt Generation for External LLM Review (Optional)
 
@@ -47,12 +53,12 @@ this purpose.
    section function, figure logic, overclaiming patterns).
 3. Skill gathers required materials:
    - Current manuscript
-   - Structure files (`03_project-brief.md`, `03_figure-outline.md`)
+   - Structure files (`03_section-architecture.md`, `03_writing-blueprint.md`, `03_figure-outline.md`)
    - Methods files (`02a_data.md`, `02b_methods.md`)
    - Evidence inventory (`01b_evidence-inventory.md`)
    - Target journal profile (if specified)
    - Reference papers in `03_structure/reference_papers/` (if available, for style/structure benchmarking)
-4. Skill assembles a complete review prompt and saves it to `05_review/05_review-roundN.md`.
+4. Skill assembles a complete review prompt and saves it to `05_review/05_review-round{N}A_source.md`.
 5. User copies the prompt to GPT / Gemini / other LLM.
 6. User brings the LLM's response back.
 7. The response is discussed with the user to determine revision actions, then the standard
@@ -63,30 +69,68 @@ which LLM to use and does the sending. The skill only generates the prompt text.
 
 ## Processing Review Input
 
-Once review comments exist (from advisor, external LLM, or self-review), the skill processes them
-through a unified workflow:
+**分工原则：GPT 做决策，ClaudeCode 做执行。**
+
+导师/用户/合作者的原始意见 → ClaudeCode 编译为 `A_source` → 发给 GPT → GPT 输出 `B_report`（Issue Log + Revision Contract + Patch List）→ ClaudeCode 按 B_report 执行修改。
+
+ClaudeCode 不替代 GPT 做判断。ClaudeCode 的职责是：编译原始材料、打包发送、执行 Patch List、管理版本、记录日志、自检。
 
 ### Interaction Flow
 
 ```
- 1. Confirm review source and load the review comments into 05_review/05_review-roundN.md
- 2. Load manuscript and supporting files
- 3. Discuss each comment with user — classify, assess impact, determine revision approach
- 4. Identify conflicts between comments (e.g., advisor vs. evidence, or multiple reviewers)
- 5. Agree on final revision plan with user
+ 1. ClaudeCode collects raw review input → compiles 05_review/05_review-round{N}A_source.md
+    (advisor feedback / user self-review notes / coauthor comments)
+    → ClaudeCode 组织整理，保留原始语气，不做分类、不做决策
+
+ 2. ClaudeCode packages materials for GPT:
+    - A_source file
+    - Current manuscript (04_manuscript-*.md)
+    - 03_section-architecture.md, 03_writing-blueprint.md, 03_figure-outline.md, 03_terminology.md
+    - Target journal profile (references/journals/{journal}.md)
+    - 2–4 reference papers (from 03_structure/reference_papers/)
+    → ClaudeCode 打包为 GPT Journal Audit Packet（见模板），user 发送给 GPT
+
+ 3. GPT analyzes and outputs 05_review/05_review-round{N}B_report.md:
+    a. Issue Log — classify each issue, assign Accept / Defer / Reject
+    b. Revision Contract — fill all fields
+    c. 03 Update Requirements — derived from Revision Contract
+    d. Patch List — concrete edit instructions, grouped by section
+    e. Optional candidate rewrites — only for Abstract, Introduction P1,
+       Results lead sentences, title, conclusion sentences
+    f. GPT does NOT produce full rewritten manuscript
+
+ 4. User reviews GPT's B_report, confirms or adjusts decisions with ClaudeCode
+
+ 5. **REVIEW BACKPROPAGATION GATE — classify before editing**
+
+    a. Classify each accepted issue as Hard / Soft / None per `## Review Backpropagation Gate` below.
+
+    b. Hard Backpropagation: update 01/02/03 → user confirms → then modify 04.
+       Soft Blueprint Update: update only affected P-ID(s) in `03_writing-blueprint.md`.
+       No Backpropagation: proceed directly to writing / polish.
+
+    c. User confirms the selected level before any file edit.
+
+    d. Archive rules: only archive old 03 files for Hard Backpropagation.
+       Soft updates do not require archival unless the user requests it.
+
  6. **CREATE VERSION COPY — hard gate before any manuscript edit**
-    a. Identify base manuscript (the latest 04_manuscript-*.md the user confirmed)
-    b. Determine next N from the review round or log
-    c. Copy base → 04_manuscript-reviewN.md (or 04_manuscript-reviewN-polishM.md if polish)
-    d. Report the new file path to user
-    e. ALL subsequent edits MUST target this new file only
- 7. Apply edits to the new file
- 8. Append revision entries to 04_writing-log.md Revision Notes (newest first, never overwrite)
+    a. Identify base manuscript
+    b. Copy base → 04_manuscript-reviewN.md
+    c. ALL subsequent edits MUST target this new file only
+
+ 7. ClaudeCode executes Patch List on 04_manuscript-reviewN.md
+
+ 8. ClaudeCode appends all revision entries to 04_writing-log.md Revision Notes (newest first)
+
+ 9. ClaudeCode runs Revision Unit Done When self-check on each modified unit
 ```
 
 **Step 6 is non-negotiable.** Even if the user says "just change one word in the base file," create the
 new version first. The base manuscript is immutable once its round is complete. Skipping this step
 is the single most common versioning error and will corrupt the manuscript history.
+
+**Step 5e (User Confirmation Gate) is equally non-negotiable.** 若 03 文件被修改，用户必须确认结构蓝图后才能进入 manuscript 修改。跳过此步是 "正文写得很顺但主语漂移" 的根本原因。
 
 ### Pacing
 
@@ -133,32 +177,96 @@ Ask the user to choose scope. If unclear, recommend **section-level review**.
 
 **Hard rule:** Do not process manuscript-level review unless explicitly requested.
 
+## Lightweight Unit Review
+
+When the user asks to review a single paragraph or draft unit **without external review input**
+(e.g., "review this paragraph", "check this Results unit", "does this claim hold up?"),
+use lightweight review. It does NOT create 05 files and does NOT require GPT.
+
+### When to use
+
+- User asks for a quick check of one paragraph or one draft unit
+- No advisor/coauthor/external LLM feedback is involved
+- The review scope is a single unit, not a full section
+
+### When NOT to use
+
+- External review input exists (→ full review pipeline with A_source/B_report)
+- The issue spans multiple sections (→ section-level or manuscript-level review)
+- The user explicitly wants GPT analysis
+
+### Process
+
+```
+1. Logic pass    → Does the claim follow from the evidence?
+                   Is the paragraph performing the correct section function?
+2. Domain pass   → Are terms consistent with 03_terminology?
+                   Are concepts used correctly?
+3. Language pass → Is the prose clear, precise, and journal-aligned?
+                   (Only if Logic and Domain pass clean)
+```
+
+### Output format
+
+```
+## Lightweight Review — [P-ID]
+
+### Logic
+[诊断结果。如有问题，给出具体建议和 handoff destination]
+
+### Domain
+[诊断结果。术语是否一致、概念是否正确]
+
+### Language
+[诊断结果。仅当 Logic + Domain 通过后才进入]
+
+### Recommended action
+- Handoff: [writing / polish / structure / methods]
+- Severity: [high / medium / low]
+- Backpropagation: [hard / soft-blueprint-only / none]
+```
+
+### Rules
+
+- Do NOT create `05_review/` files for lightweight review.
+- Do NOT generate A_source or B_report.
+- If Logic identifies a structural issue (protagonist, section function, figure logic), recommend Backpropagation Gate but do NOT execute it — ask the user first.
+- Language pass is skipped if Logic or Domain issues are unresolved.
+- If the user confirms a structural change, classify it as hard / soft-blueprint-only / none, then follow the corresponding Backpropagation level.
+
 ## Required Inputs
 
-**Core files:** `03_structure/03_project-brief.md`, `03_structure/03_figure-outline.md`,
+**Core files:** `03_structure/03_section-architecture.md`, `03_structure/03_writing-blueprint.md`, `03_structure/03_figure-outline.md`,
 current manuscript (`04_writing/04_manuscript-draft.md` or latest `04_manuscript-reviewN.md`
 / `04_manuscript-reviewN-polishM.md`)
 
 **Supporting files:** `01_prepare/01a_project-brief.md`, `01_prepare/01b_evidence-inventory.md`,
 `02_methods/02a_data.md and 02_methods/02b_methods.md`, `03_structure/03_terminology.md`
 
-**External review input (required):** review comments from author, advisor, coauthors, or
-external LLM response. Without this, the skill has nothing to process.
+**External review input:**
+- **Required for full review pipeline.** Review comments from author, advisor, coauthors, or external LLM response.
+- **Not required for Lightweight Unit Review.** Single-unit diagnostics run directly from the manuscript text and 03 files.
 
 **Optional:** target journal profile (`references/journals/{journal}.md`),
 distilled literature template (for template-guided LLM review prompt generation).
 
 ## Required Output
 
-Review produces exactly one default user-facing file per round:
+Review produces exactly two user-facing files per round:
 
 ```
-05_review/05_review-roundN.md
+05_review/05_review-round{N}A_source.md   ← ClaudeCode 编译整理（原始意见，保留原文语气，不做决策）
+05_review/05_review-round{N}B_report.md   ← GPT 分析报告（Issue Log + Revision Contract + Patch List）
 ```
 
-This file contains:
-- The review input (GPT prompt + response, advisor comments, or self-review notes)
-- The user discussion summary and agreed revision actions
+**Naming convention:**
+- `A_source` = ClaudeCode 编译整理。收集导师/用户/合作者的原始意见，组织为统一格式。保留原始语气。不分类、不评估、不做 Accept/Defer/Reject 决策。
+- `B_report` = GPT 填写。GPT 读取 A_source + manuscript + 03 文件 + journal profile + reference papers，输出分析报告。ClaudeCode 只能依据此文件进入 03 更新和 04 修改。ClaudeCode 不在此文件中做决策。
+- A/B 表达天然顺序：ClaudeCode 先编译原始输入，GPT 再分析输出报告。
+
+**分工原则：**
+- **GPT = 决策者。** 解读导师意见、判断期刊对齐、分类 issue、决定 Accept/Defer/Reject、填写 Revision Contract、生成 Patch List。
+- **ClaudeCode = 执行者。** 编译 A_source、打包材料、复制 manuscript、执行 Patch List、更新 03 文件、记录 writing-log、自检。
 
 N is the global monotonic counter shared with polish rounds.
 
@@ -217,6 +325,16 @@ references; Zotero integration points; citation overuse obscuring specific claim
 Vague claims, over-smoothed generic transitions, inflated novelty ("for the first time"),
 excessive hedging, undefined jargon, overused intensifiers ("very", "highly").
 
+## Review Order
+
+审查按顺序推进三层：
+
+1. **Logic** — 论证链、段落功能、证据支撑。段落在 section 中的角色对吗？结论能从证据推出来吗？
+2. **Domain** — 领域概念、术语、引用。术语与术语表一致吗？概念使用正确吗？引用到位吗？
+3. **Language** — 清晰度、流畅度、期刊语气。句子节奏、措辞、段落衔接。
+
+Logic 或 Domain 有未解决问题时，不进入 Language。语言润色不能掩盖论证或概念问题。
+
 ## Target Journal Handling
 
 **Hard rule:** Do not decide the target journal for the user.
@@ -248,8 +366,9 @@ sides and ask user to decide priority. Record resolution in review report.
 
 ## Resume and Update Mode
 
-When user returns with existing `05_review-roundN.md`: read existing report, identify last review
-pass, preserve resolved items, add new review pass for new content, generate changelog:
+When user returns with existing `05_review/05_review-round{N}A_source.md` and `05_review/05_review-round{N}B_report.md`:
+read existing B_report, identify last review pass, preserve resolved items, add new review pass
+for new content, generate changelog:
 
 ```markdown
 ## Update Summary
@@ -257,6 +376,230 @@ pass, preserve resolved items, add new review pass for new content, generate cha
 - Issues resolved: [list], Issues remaining: [list], New issues: [list]
 - Recommended next action: [handoff destination]
 ```
+
+## Review Backpropagation Gate
+
+**在每轮 review 形成 Revision Contract 之后、修改 manuscript 之前，必须执行此检查。**
+
+### Classification Conditions
+
+When a review issue touches any of the following, classify it as Hard / Soft / None
+per Backpropagation Levels before editing. Do NOT assume every hit requires full upstream update.
+
+- Paper protagonist 改变
+- Title / abstract / introduction 的主语改变
+- Main gap / central claim 改变
+- Figure order 或 figure scientific question 改变
+- Section function 改变（如 Discussion 变成了 Results）
+- Paragraph function / sentence sequence 改变
+- Terminology / forbidden phrasing 改变
+- Caveat placement 改变
+- Target journal voice 改变
+- Review 明确指出："not just polish", "structural rearrangement", "wrong narrative focus", "wrong protagonist", "section performs wrong job"
+
+Then follow Backpropagation Levels below.
+
+### Backpropagation Levels
+
+并非所有 review issue 都需要全套回传。按严重度分三档：
+
+| Level | Scope | Examples | Action |
+|-------|-------|----------|--------|
+| **Hard Backpropagation** | 结构性变更，影响全文论证方向 | protagonist 改变、central claim 改变、main gap 改变、figure scientific question 改变、methods definition 改变、evidence chain 重排 | archive → update 01/02/03 → 用户确认 → 改 04 |
+| **Soft Blueprint Update** | 局部调整，不改变全文方向 | paragraph function 微调、sentence sequence 调整、caveat placement 局部移动、terminology boundary 局部修改 | 更新 affected P-ID in blueprint → 用户确认 → 改 04。不 archive，不更新 01/02。 |
+| **No Backpropagation** | 表达层面，不影响结构 | wording、grammar、sentence rhythm、单个 claim verb 强度调整、citation placeholder | 直接 writing / polish，不触发回传 |
+
+**规则：**
+- ClaudeCode 先判断属于哪一档，口头告知用户判断理由，再问用户确认。
+- Hard Backpropagation → 必须先改 01/02/03，再改 04。
+- Soft Blueprint Update → 只改 blueprint 的受影响 P-ID + 04。不改 architecture / figure-outline / terminology 的非相关部分。
+- No Backpropagation → 直接 polish / writing，不留 05 以外的结构性记录。
+- 不确定属于哪一档时，默认取更严格的一档，列出理由后问用户。
+
+### Mandatory Execution Order
+
+1. 在 `05_review/05_review-round{N}B_report.md` 中填写 Revision Contract，包含 Backpropagation level（见模板）。
+
+2. **If level = Hard Backpropagation:**
+   - Archive affected 01/02/03 files to `old/`（加日期后缀）。
+   - Update upstream files from coarse to fine（01 → 02 → 03_section-architecture → 03_writing-blueprint → 03_figure-outline → 03_terminology）。
+   - User confirms upstream changes at each layer.
+   - Only then copy and patch 04.
+
+3. **If level = Soft Blueprint Update:**
+   - Update only affected P-ID(s) in `03_writing-blueprint.md`。
+   - Do not archive unless user explicitly requests it.
+   - Single user confirmation on the blueprint change.
+   - Then copy and patch 04.
+
+4. **If level = No Backpropagation:**
+   - Do not update any 03 file.
+   - Proceed directly to writing / polish.
+
+5. 所有上游更新记录写入 `04_writing-log.md` Revision Notes。
+
+### Revision Contract 字段速查
+
+| 字段 | 对应上游文件 |
+|------|-------------|
+| Paper protagonist / Not protagonist / Main consequence | `03_section-architecture.md` Protagonist Lock |
+| Main gap / Central claim | `03_section-architecture.md` Argument Chain |
+| Paragraph function / sentence sequence changes | `03_writing-blueprint.md` |
+| Section-level changes | `03_section-architecture.md` Section Architecture |
+| Figure logic changes | `03_figure-outline.md` |
+| Terminology changes | `03_terminology.md` |
+| Caveat placement | `03_section-architecture.md` Argument Chain (limitation link) |
+| Target journal | `03_section-architecture.md` Target Journal |
+
+### Hard Rules
+
+- **Hard Backpropagation → 必须先更新 01/02/03，用户确认后，再改 04。无例外。**
+- **Hard Backpropagation → 更新前必须先 archive 旧版到 `old/`。**
+- **Soft Blueprint Update → 只改 blueprint affected P-ID + 04。不 archive。不触动 architecture / figure-outline / terminology。**
+- **No Backpropagation → 直接 writing / polish。不触发 03 更新。**
+- **所有改动写入 `04_writing-log.md` Revision Notes。**
+- **若跳过此 gate 直接改 manuscript，后续 review round 将无法追溯结构变更。**
+
+### Example: Protagonist Shift (hypothetical)
+
+*以下为脱敏假设示例，展示 Backpropagation Gate 的完整触发和执行。*
+
+**Review 发现：** 导师/GPT 指出 manuscript 的 protagonist 应该是 [process/quantity B]，而非 [process/quantity A]。[A] 降级为 supporting diagnostic。Introduction 过早引入 [technical method X]。Fig. 1–3 目前展示方法流程，而非回答科学问题。
+
+**触发条件命中：**
+- paper protagonist 改变: `[process A + vague noun chain]` → `[process B]`
+- figure scientific question 改变: Fig. 1–3 需从方法展示改为科学问题驱动
+- terminology 改变: "[vague term 1]", "[vague term 2]", "[vague term 3]" → discouraged/forbidden
+- caveat placement 改变: 防御性表述需从 Results 移至 Methods / Discussion boundary
+
+**Revision Contract Handoff destination:**
+- [x] 03_section-architecture (Protagonist Lock, Section Architecture)
+- [x] 03_writing-blueprint (paragraph function and sentence sequences)
+- [x] 03_figure-outline (Fig. 1–3 scientific questions)
+- [x] 03_terminology (forbidden: [vague term 1], [vague term 2], [vague term 3])
+- [x] 04_manuscript
+
+**执行顺序：**
+1. Archive 旧 03 到 `old/`
+2. 更新 `03_section-architecture.md` Protagonist Lock: protagonist → [process B]; not protagonist → [process A]; forbidden narrative moves → "不要把 [A] 当主角"
+3. 更新 `03_writing-blueprint.md`: 受影响 P-ID 的段落功能 → [调整内容]
+4. 更新 `03_figure-outline.md`: Fig. 1–3 每张写入 scientific question
+5. 更新 `03_terminology.md`: forbidden phrases 加入 "[vague term 1]", "[vague term 2]", "[vague term 3]"
+5. 等待用户确认 03 更新
+6. 复制 base manuscript → `04_manuscript-reviewN.md`
+7. 修改正文: Introduction 移除 [technical method X]；Results 首句 result-first；caveats 集中到 Methods / Discussion boundary
+
+## GPT Journal Audit Packet Reference
+
+*GPT 分析是主流程的强制步骤（见 Interaction Flow Step 2–3）。此节提供 ClaudeCode 打包时使用的模板和规则。*
+
+### GPT Hard Rules
+
+GPT is the decision-maker for this review round, not the manuscript version controller.
+
+- GPT 输出 `B_report`（Issue Log + Revision Contract + Patch List），ClaudeCode 执行。
+- GPT 不执行全稿 polish。GPT 不输出完整 rewritten manuscript。
+- GPT 可以提供 candidate rewrite，但仅限于高价值短单元：
+  - Abstract
+  - Introduction opening paragraph
+  - Results subsection lead sentences
+  - Title options
+  - Summary / conclusion sentences
+- 所有正式入稿由 ClaudeCode 完成，并记录在 `04_writing-log.md`。
+- 若 GPT 指出 protagonist / gap / figure logic / section function 需改变，必须在 Revision Contract 中标记对应的 03 Handoff destination。
+
+### GPT Journal Audit Packet Template
+
+*ClaudeCode 在 Step 2 使用此模板打包材料。User 复制整个 block 发给 GPT。*
+
+---
+
+```
+# GPT Journal Audit Packet
+
+You are the review-round analyst for this manuscript.
+Your job: read the compiled review input, analyze against the target journal's requirements,
+and produce a structured report (B_report) that Claude Code will execute.
+
+Do not rewrite the full manuscript. Do not produce a polished final draft.
+You are the decision-maker. ClaudeCode is the executor.
+
+## Target journal
+
+[Insert: NCC / NC / JPO / JGR-Oceans / GRL / other]
+
+## Journal voice principles
+
+[Paste `## Journal Identity` + `## Shared` from references/journals/{journal}.md]
+
+## Compiled review input
+
+[Paste the full content of 05_review/05_review-round{N}A_source.md]
+
+## Project state (from 03_section-architecture.md)
+
+- Paper protagonist:
+- Not protagonist:
+- Main gap:
+- Central claim:
+- Main consequence:
+- Supporting diagnostics:
+- Forbidden narrative moves:
+
+## Current manuscript
+
+[Paste the manuscript unit(s) under review]
+
+## Reference papers provided
+
+[Attach or paste 2–4 reference paper .md files.
+For NCC: include at least one target-journal model paper and one topic-near paper.]
+
+## Audit priorities
+
+Please check:
+
+1. Whether the paper protagonist is stable throughout the manuscript.
+2. Whether each section performs its correct section-level job.
+3. Whether the writing matches the target journal's narrative identity.
+4. Whether Results paragraphs are result-first (lead with finding, not figure reference).
+5. Whether physical links replace literature-as-glue.
+6. Whether caveats are concentrated rather than scattered across sections.
+7. Whether abstract noun chains or AI-like phrases weaken the prose.
+8. Whether evidence boundaries are preserved without defensive overstatement.
+9. Whether the manuscript imitates the surface form of the reference papers
+   or captures their deeper narrative logic.
+
+## Target-journal interpretation
+
+[Extract from journal profile. Example for NC:]
+- broad significance and cross-field readability
+- strong evidence chain with clear mechanism/evidence balance
+- less climate-attribution burden than NCC
+- narrative shaped for scientifically literate non-specialists
+
+## Output format (this becomes 05_review/05_review-round{N}B_report.md)
+
+A. One-sentence overall diagnosis
+B. Issue Log — classify each issue: Severity (high/medium/low), Type, Decision (Accept/Defer/Reject)
+C. Revision Contract — fill ALL fields (protagonist, gap, claim, consequence, section-level changes,
+   figure logic changes, terminology changes, caveat placement, Handoff destination checkboxes)
+D. 03 Update Requirements — concrete changes needed for each checked 03 file
+E. Patch List — concrete edit instructions for ClaudeCode, grouped by manuscript section (Title/Abstract/
+   Introduction/Results/Discussion/Methods)
+F. Optional candidate rewrites ONLY for: Abstract, Introduction opening paragraph,
+   Results lead sentences, title, conclusion sentences
+G. Do NOT produce a full rewritten manuscript.
+```
+
+---
+
+### After Receiving GPT's B_report
+
+1. User reads GPT's `B_report`, confirms or adjusts Accept/Defer/Reject decisions with ClaudeCode.
+2. If GPT identified structural issues → Backpropagation Gate triggers (see Interaction Flow Step 5).
+3. ClaudeCode executes Patch List → writes to `04_manuscript-reviewN.md` → logs to `04_writing-log.md`.
+4. ClaudeCode runs Revision Unit Done When self-check.
 
 ## Handoff to Writing or Polish
 
@@ -266,6 +609,12 @@ When the user asks to apply review feedback to the manuscript, complete these st
 **in order** before any Edit or Write call:
 
 ```
+[ ] 0. Check `Backpropagation level` in Revision Contract.
+       - hard → archive affected 01/02/03, update upstream files, confirm each layer, then edit 04
+       - soft-blueprint-only → update affected P-ID(s) in `03_writing-blueprint.md`, no archive by default, confirm once, then edit 04
+       - none → do not update 03; proceed directly to writing / polish
+       Record any upstream or blueprint changes in `04_writing-log.md`.
+
 [ ] 1. Identify the base manuscript file.
        For round N: if N=1, base = 04_manuscript-draft.md.
        If N>1, base = the most recent 04_manuscript-review{N-1}.md
@@ -294,7 +643,10 @@ This checklist applies identically to polish→writing handoffs (producing
 - **Back to writing:** paragraph unclear, flow weak, claim placement wrong, missing transition.
   Action: revision instructions per issue; `[REVISION DRAFT]` if user requests.
 - **Back to structure:** section architecture wrong, figure order illogical, central story unclear,
-  journal narrative mismatch. Action: update `03_structure/03_project-brief.md`, then return to writing.
+  journal narrative mismatch. Action: classify Backpropagation level first.
+  Hard → archive and update affected 01/02/03 files.
+  Soft → update only affected P-ID(s) in `03_writing-blueprint.md`.
+  Record in writing-log, then return to writing.
 - **Back to methods:** methods cannot support claim, processing unclear, statistical test missing.
   Action: update `02a_data.md and 02b_methods.md`, re-draft affected units.
 - **Back to prepare:** research question unclear, evidence inventory incomplete, figure-to-claim
@@ -302,15 +654,38 @@ This checklist applies identically to polish→writing handoffs (producing
 - **Forward to polish:** issues primarily about language, style, journal voice,
   advisor wording. Action: review report as diagnostic input for polish.
 
+## Revision Unit Done When
+
+*每个 revision unit 执行完毕后，ClaudeCode 自检以下 8 条。全部通过才能标记 unit 完成。*
+
+```
+[ ] Protagonist is correct      — 主语是否匹配 Revision Contract 的 paper protagonist
+[ ] Section job is correct      — 此段落是否在执行正确的 section function
+[ ] Journal voice is correct    — 是否匹配目标期刊 `## Journal Identity`
+[ ] First sentence performs     — Results 首句是否 result-first；Introduction 首句是否提出 gap/question
+[ ] Key evidence is visible     — 核心发现/数据/数字是否出现在段落前半，而非埋在末尾
+[ ] Caveats are not scattered   — 防御性表述是否集中而非散布（对照 Defensive-language quarantine）
+[ ] Terminology is clean        — 是否遵守 03_terminology（preferred/discouraged/forbidden）
+[ ] Changes are logged          — 是否已追加到 04_writing-log.md Revision Notes
+```
+
+任一条未通过 → 修正后重新自检。全部通过 → 标记 unit 完成，进入下一 unit。
+
 ## Template References
 
-When generating review-stage materials, use: `references/templates/05_review-report.md`.
-Save user-facing output as `05_review/05_review-roundN.md`.
+When generating review-stage materials, use:
+- `references/templates/05_review-source.md` — for `05_review/05_review-round{N}A_source.md` (raw input container)
+- `references/templates/05_review-report.md` — for `05_review/05_review-round{N}B_report.md` (GPT analysis report; ClaudeCode execution input)
+
+Save user-facing output as:
+- `05_review/05_review-round{N}A_source.md`
+- `05_review/05_review-round{N}B_report.md`
 
 ## Guardrails
 
-- **Do not form independent review judgments.** The skill classifies and maps external review
-  input; it does not originate critiques of the manuscript.
+- **Do not form independent review judgments in the full review pipeline.** The skill classifies
+  and maps external review input; it does not originate critiques of the manuscript.
+  Exception: Lightweight Unit Review may originate local diagnostic judgments for a single unit.
 - **Do not rewrite manuscript prose** — revision happens in the writing stage.
 - **Do not decide the target journal for the user.**
 - **Do not invent evidence, citations, reviewer comments, or advisor comments.**
@@ -322,5 +697,5 @@ Save user-facing output as `05_review/05_review-roundN.md`.
 - **Do not process manuscript-level review unless explicitly requested.**
 - **Do not mark an issue as resolved without user confirmation or revised text.**
 - **Do not send prompts to external LLMs directly.**
-- **Do not generate per-section review reports** — a single `05_review-roundN.md` covers
+- **Do not generate per-section review reports** — a single `05_review-round{N}B_report.md` covers
   all passes.

@@ -2,16 +2,15 @@
 
 ## Purpose
 
-The structure workflow decides the manuscript architecture — what story to tell, which claims to
-feature, how to sequence figures, and which sections carry the narrative.
-It is a manuscript architecture stage, not a drafting stage. Its goals are to:
+The structure workflow takes the idea (01) and materials (02) and produces a clear narrative framework — the bridge from scientific intent to journal-aligned prose. It does NOT write manuscript text. Its goals are to:
 
 - Select the central story route from prepare-stage options and user confirmation
-- Build a claim hierarchy: primary claims, secondary claims, and claims not ready for the main story
-- Design section architecture with figure sequence and main-text-versus-supplement decisions
-- Load the target journal profile so narrative decisions are journal-aware from the start
-- Produce living documents (`03_project-brief.md`, `03_figure-outline.md`) that evolve across stages
-- Initialize the terminology dictionary (`03_terminology.md`) for cross-stage consistency
+- Build a claim hierarchy: primary claims, secondary claims, and claims not ready
+- Design section architecture with section roles and P-ID ranges; paragraph-level function belongs to writing-blueprint
+- Assign figures to claims with explicit scientific questions
+- Initialize and maintain the terminology dictionary as the sole authority
+- Load the target journal profile so narrative decisions are journal-aware
+- Produce four mutually-referencing files that do NOT duplicate each other
 
 ## When to Use
 
@@ -25,13 +24,15 @@ needs writing support.
 
 ## Core Principle
 
-> Structure decides the manuscript architecture; it does not write the manuscript.
+> Structure is a narrative contract, not a reference document. It prohibits ad-hoc writing decisions.
 
-- The section architecture is a scaffold, not a prison — writing may reveal adjustments
+- The section architecture is a scaffold — writing may reveal adjustments, but deviations must be deliberate and recorded
 - The claim hierarchy determines what belongs in the main narrative vs. supplementary
 - The figure sequence determines the narrative flow, not the other way around
 - Journal profile shapes narrative scope, claim depth, and section emphasis
-- A well-structured outline prevents wasted drafting of text that will be cut later
+- A well-structured architecture prevents wasted drafting AND prevents terminology abuse
+- **Every paragraph in 04 must trace back to a P-ID and paragraph contract in 03_writing-blueprint.md.**
+  **03_section-architecture.md controls section role, claim hierarchy, and P-ID range.**
 
 ## Ocean Paper Argument Chain
 
@@ -105,58 +106,105 @@ builds toward the primary claim, with each figure earning the reader's trust for
 
 **Prepare-stage files:** `01_prepare/01a_project-brief.md`, `01_prepare/01b_evidence-inventory.md`
 
-**Methods-stage file:** `02_methods/02a_data.md and 02_methods/02b_methods.md`
+**Methods-stage files:** `02_methods/02a_data.md`, `02_methods/02b_methods.md`
 
 **User input:** target journal (or willingness to choose); existing outline or section preference; central story direction preference.
 
-**Journal profile:** loaded from `references/journals/{journal}.md` based on confirmed target.
+**Journal profile:** loaded from `references/journals/{journal}.md` based on confirmed target. For NCC, paragraph craft rules are in `## Shared` + section-specific headings.
 
 ## Required Output
 
-Structure produces the following files in the user's project directory:
+Structure produces four files in the user's project directory. They must NOT duplicate each other:
 
 ```
-03_structure/03_project-brief.md       ← 活文档：项目书，跨阶段持续更新（旧版进 old/）
-03_structure/03_figure-outline.md      ← 活文档：图表蓝图，与项目书同步更新
-03_structure/03_terminology.md         ← 术语字典，review/polish 阶段维护
-03_structure/reference_papers/         ← 参考论文全文（用于风格参照与术语对齐）
+03_structure/03_section-architecture.md  ← 论文撰写纲要（全文架构、主张层级、论证链）
+03_structure/03_writing-blueprint.md     ← 段落蓝图（逐段功能、逐句推进顺序）
+03_structure/03_figure-outline.md        ← 图片组织（每图科学问题、panel 内容、caption skeleton）
+03_structure/03_terminology.md           ← 术语表（唯一术语权威来源）
+03_structure/reference_papers/           ← 参考论文全文（风格参照与术语对齐）
 ```
 
-**Living document convention:** `03_project-brief.md` and `03_figure-outline.md` are not one-time
-snapshots. They are updated throughout the project lifecycle as evidence, figures, and narrative
-decisions evolve. When a major revision occurs, the previous version is moved to `03_structure/old/`
-with a date suffix (e.g., `03_project-brief_v0601.md`).
+**Living document convention:** All four files are updated throughout the project lifecycle.
+When a major revision occurs, the previous version is moved to `03_structure/old/`
+with a date suffix.
 
-The legacy `03_manuscript-structure.md` (single-file manuscript architecture document) is deprecated.
-When migrating an existing project, move it to `03_structure/old/` and split its content into
-`03_project-brief.md` and `03_figure-outline.md`.
+**Negative Space Rules — what each file must NOT contain:**
 
-Do **not** create additional files unless the user explicitly asks.
+| File | Must NOT contain |
+|------|-----------------|
+| `03_writing-blueprint.md` | Data sources, variable formulas (→ 02). Figure panel details (→ figure-outline). Terminology rules (→ terminology). Argument chain, claim hierarchy (→ section-architecture). |
+| `03_figure-outline.md` | Argument chain, paragraph functions (→ writing-blueprint). Sentence sequences (→ writing-blueprint). Complete variable formulas (→ 02 methods). Terminology rules (→ terminology). |
+| `03_terminology.md` | Argument chain, paragraph structure, figure arrangements, statistical details, writing style rules. |
+| `03_section-architecture.md` | Data sources, variable formulas, statistical methods (→ 02). Figure panel details (→ figure-outline). Terminology rules (→ terminology). Sentence sequences (→ writing-blueprint). Discussion prose drafts. |
+
+**Cross-referencing rule:** Each file links to the others, never duplicates. Section-architecture references figure-outline by figure ID. Figure-outline references terminology for term conventions. Section-architecture references 02_methods for operational definitions.
+
+The legacy `03_project-brief.md` (single-file catch-all document) is deprecated and should be archived to `03_structure/old/`. Its content should be split into the four files above.
 
 ## Interaction Flow
 
-The structure workflow proceeds through thirteen phases:
+The structure workflow proceeds through these phases:
 
 ```
  1. Intake materials        → read prepare, methods, evidence inventory
- 2. Ask for outline         → does user have an existing outline or preference?
- 3. Confirm target journal  → ask if missing, confirm if specified
- 4. Load journal profile    → from references/journals/{journal}.md
- 5. Identify central story  → from evidence inventory routes and claims
- 6. Build ocean paper argument chain → need / gap / move / decisive evidence / bounded implication / limitation
- 7. Build claim hierarchy   → primary / secondary / not ready for main story
- 8. Design architecture     → what each section contains and accomplishes
- 9. Assign figures          → build figure sequence table
-10. Plan supplement         → main text vs. supplementary material
-11. Initialize terminology  → create 03_terminology.md with initial term entries
-12. Flag conflicts          → [STRUCTURE CONFLICT] between outline, argument chain, and evidence
-13. Save materials          → generate 03_project-brief.md, 03_figure-outline.md, 03_terminology.md
-14. Confirm readiness       → assess readiness for writing stage
+ 2. Confirm target journal  → ask if missing, confirm if specified
+ 3. Load journal profile    → from references/journals/{journal}.md
+ 4. Identify central story  → from evidence inventory routes and claims
+ 5. Build argument chain    → need / gap / move / decisive evidence / bounded implication / limitation
+ 6. Build claim hierarchy   → primary / secondary / not ready for main story
+ 7. Lock protagonist        → what IS the protagonist, what is NOT, forbidden narrative moves
+ 8. Design section architecture → section role, claim hierarchy, P-ID range
+ 9. Build writing blueprint  → paragraph map + paragraph contracts + sentence slots
+10. Assign figures          → each figure gets a scientific question and claim it serves
+11. Plan supplement         → main text vs. supplementary material
+12. Initialize terminology  → create 03_terminology.md with preferred/forbidden terms
+13. Cross-reference check   → verify no duplication across the four 03 files
+14. Save materials          → generate 03_section-architecture.md, 03_writing-blueprint.md, 03_figure-outline.md, 03_terminology.md
+15. Confirm readiness       → Gate 1: 03 completion check before handoff to writing
 ```
 
 ### Pacing
 
 Each turn asks **3–5 questions maximum**. Never ask the user to answer a dozen questions at once.
+
+## Writing Gates (Cross-Stage Hard Rules)
+
+### Gate 1: 03 Completion → 04 Writing
+
+Before any manuscript prose is drafted:
+
+- [ ] `03_section-architecture.md` has section role, claim hierarchy, argument chain, and P-ID range for every section
+- [ ] `03_writing-blueprint.md` has P-ID and paragraph function for every planned paragraph; sentence sequence for Results/Intro/Discussion/Abstract paragraphs
+- [ ] `03_figure-outline.md` has scientific question for every figure
+- [ ] `03_terminology.md` has preferred/forbidden terms with location constraints
+- [ ] Claim hierarchy locked (primary/secondary/not ready)
+- [ ] Every Results paragraph has figure evidence assigned
+- [ ] Every main-text figure is consumed by at least one paragraph. Supplementary / Extended Data figures may serve support, validation, sensitivity, or reviewer-defense roles without appearing in the main narrative.
+- [ ] No duplication across the four 03 files
+
+### Gate 2: High-Severity Review → Backpropagation
+
+If a review issue is high-severity structure / protagonist / figure logic, the manuscript (04) must NOT be patched directly. Instead:
+
+1. Update the affected upstream file (01/02/03) first
+2. User confirms upstream change
+3. Only then modify 04
+
+See Review Workflow §Backpropagation for the full 3-level rule.
+
+### Gate 3: Paragraph-ID Writing Discipline
+
+When drafting in 04, every paragraph references its P-ID from `03_writing-blueprint.md`. The writer reads the paragraph's function and sentence sequence from the blueprint before writing. If a P-ID lacks sentence sequence (and needs one), the writing stage produces the sentence sequence first and asks for user confirmation before drafting.
+
+### Gate 4: Terminology Lint
+
+After completing each 04 draft round, scan for:
+- Forbidden terms from `03_terminology.md`
+- NL in Introduction or Abstract
+- `signals` → should be `anomalies`
+- `flux` used for this paper's transport metrics
+- Stale figure panel references
+- Inconsistent time-period phrasing
 
 ## Target Journal Handling
 
@@ -169,7 +217,11 @@ Each turn asks **3–5 questions maximum**. Never ask the user to answer a dozen
 
 ## Journal Profile Use
 
-When a target journal is confirmed, load the matching profile:
+When a target journal is confirmed, load the matching profile.
+
+**03 Structure loads only `## Journal Identity`** — to understand what kind of story this journal rewards, what evidence standard is expected, and how that shapes manuscript architecture.
+
+**Do NOT load `## Shared` or section-specific rules during 03.** Those are for 04 Writing.
 
 | Journal | Profile file |
 |---------|-------------|
@@ -194,7 +246,7 @@ The architecture is built in this order:
    (supports primary but can be compressed), or not ready (insufficient evidence, move to
    supplement or defer).
 4. **Section architecture** — design what each section does: Introduction sets up gap, Methods documents approach, Results presents evidence, Discussion interprets, Conclusion states significance.
-5. **Figure sequence** — assign each figure to a section and narrative position. Order figures according to the Results Evidence Ladder (not the chronological order of analysis). Ensure figures build the story in logical order.
+5. **Figure sequence** — assign each figure to a section and narrative position. Order figures according to the Results Evidence Ladder (not the chronological order of analysis). Ensure figures build the story in logical order. **每张图必须在 `03_figure-outline.md` 中写明其回答的 scientific question，而不只是 panel 内容描述。**
 6. **Main text vs. supplement** — decide which figures, methods details, and secondary analyses belong in supplement.
 
 ## Missing and Conflicting Information
@@ -213,8 +265,8 @@ user to revise.
 
 When the user returns with existing `03_structure/` files:
 
-1. **Read** the existing files (`03_project-brief.md`, `03_figure-outline.md`, `03_terminology.md`)
-2. **Identify update points** — new evidence, revised claims, changed journal target
+1. **Read** the existing files (`03_section-architecture.md`, `03_writing-blueprint.md`, `03_figure-outline.md`, `03_terminology.md`)
+2. **Identify update source** — new evidence, revised claims, changed journal target, or **review backpropagation** (Revision Contract in latest `05_review-round{N}B_report.md`)
 3. **Preserve** confirmed architecture. Update only changed sections
 4. **Archive** the previous version to `03_structure/old/` with a date suffix before major revisions
 5. **Generate changelog:**
@@ -232,21 +284,87 @@ When the user returns with existing `03_structure/` files:
 
 Needs: confirmed central story route, claim hierarchy (primary/secondary/not ready), section architecture, figure sequence with main/supplement assignment, journal profile loaded.
 
+## Receiving Backpropagation from Review
+
+当 review 阶段的 Revision Contract 需要更新上游文件时，structure 阶段接收回传。
+
+### 触发源
+
+`05_review/05_review-round{N}B_report.md` 中的 Revision Contract。
+
+### 回传分级
+
+回传分三档（详见 `review.md` Backpropagation Gate）。下表仅列 **Hard Backpropagation** 场景（需更新 01/02/03）：
+
+| Review issue type | Backpropagates to | Example |
+|------------------|-------------------|---------|
+| Protagonist / central question / novelty changed | **01** Prepare + **03** Structure | Protagonist from NL → heat/salt transport |
+| Data definition, statistical method, variable formula changed | **02** Methods | Relative reinforcement calculation adjusted |
+| Narrative order, figure scientific question changed | **03** Structure | Fig. 1–3 reorder; section function redefined |
+| Paragraph function, sentence sequence | **03** Writing Blueprint only | P-ID role change; local caveat move（Soft Update） |
+| Sentence, paragraph expression, citation placement changed | **04** Writing | Result-first rewrite; terminology fix |
+| Language style, compression, grammar | polish | NCC sentence case; word choice（No Backpropagation） |
+
+Hard Backpropagation → 更新 01/02/03 后确认。Soft Blueprint Update → 只改 blueprint affected P-ID。No Backpropagation → 直接 writing/polish。
+
+### 03 内部更新顺序
+
+当回传目标为 03 时，按从粗到细的顺序更新四个 03 文件：
+
+```
+03_section-architecture  （全文方向：主角、论证链、claim hierarchy、section role）
+  → 03_writing-blueprint （逐段功能：受影响 P-ID 的段落角色、句子推进是否需调整）
+    → 03_figure-outline  （图科学问题：是否因段落重排而更新）
+      → 03_terminology   （术语边界：新增/修改 forbidden term 或 allowed location）
+```
+
+Hard Backpropagation: 先改粗粒度（全文方向），用户确认后再改细粒度（段落/句子/术语）。不能跳过 architecture 直接改 blueprint。
+
+Soft Blueprint Update: 只更新 03_writing-blueprint 中受影响 P-ID；不触动 architecture / figure-outline / terminology 的非相关部分。
+
+### 执行流程
+
+1. 读取 `05_review-round{N}B_report.md` 确定回传层级。
+
+2. **If level = Hard Backpropagation:**
+   - Archive affected files to `old/`（加日期后缀）。
+   - 逐层更新：先改 01（如有），再改 02（如有），再改 03（如有）。
+   - 每层更新后用户确认。
+   - 全部上游确认后，handoff 回 writing 修改 04。
+
+3. **If level = Soft Blueprint Update:**
+   - 更新 affected P-ID in `03_writing-blueprint` only。
+   - 不 archive（除非用户要求）。
+   - 一次确认后，handoff 回 writing 修改 04。
+
+4. **If level = No Backpropagation:**
+   - 不触发 structure 操作。
+
+5. 在 `04_writing-log.md` Revision Notes 追加记录。
+
+### 规则
+
+- **Hard Backpropagation: 高严重度结构问题不能直接 patch manuscript。** 必须先更新 01/02/03，再动 04。必须先 archive 旧版。每层更新后等用户确认。
+- **Soft Blueprint Update: 只改 blueprint affected P-ID。** 不 archive。不触动 architecture / figure-outline / terminology。
+- **只更新 Revision Contract 涉及的字段。** 不要重新设计整个 structure。
+
 ## Template References
 
 When generating structure-stage materials, use:
 
-- `references/templates/03_project-brief.md` — project brief template
+- `references/templates/03_section-architecture.md` — section architecture template (replaces deprecated `03_project-brief.md`)
+- `references/templates/03_writing-blueprint.md` — paragraph and sentence blueprint template
 - `references/templates/03_figure-outline.md` — figure outline template
 - `references/templates/03_terminology.md` — terminology dictionary template
 
 The user-facing output files should be saved as:
 
-- `03_structure/03_project-brief.md`
+- `03_structure/03_section-architecture.md`
+- `03_structure/03_writing-blueprint.md`
 - `03_structure/03_figure-outline.md`
 - `03_structure/03_terminology.md`
 
-The legacy `references/templates/03_manuscript-structure.md` is deprecated and retained for reference only.
+The legacy `03_manuscript-structure.md` template has been removed. If encountered in older projects, archive it and migrate content into the four 03 files.
 
 ## Guardrails
 

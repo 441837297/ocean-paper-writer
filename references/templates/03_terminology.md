@@ -7,28 +7,29 @@
 - target journal:
 - last updated: [YYYY-MM-DD]
 
-## Active Terms
+## Terminology Table
 
-| 标准术语 (Standard) | 禁止/废弃变体 (Banned/Deprecated) | 适用范围 (Scope) | 决策日期 (Date) | 备注 (Notes) |
-|----------|-------------|---------|---------|------|
-| | | | | |
+| Category | Preferred term | Discouraged variants | Forbidden phrases | Allowed location | 决策日期 | 备注 |
+|----------|---------------|---------------------|-------------------|------------------|----------|------|
+| | | | | | | |
 
-## Format Rules
+## Column Guide
 
-- **标准术语**: The single approved term in English.
-- **禁止/废弃变体**: Terms that must not appear in the manuscript.
-- **适用范围**: `全文` (whole manuscript), `Results §3` (specific section), `Methods only`, etc.
-- **决策日期**: When the decision was made (YYYY-MM-DD).
-- **备注**: Why the decision was made, which external paper the term aligns with, or any relevant context.
+- **Category:** 术语类别（如 transport, variability, mechanism, region）。
+- **Preferred term:** 唯一批准的英文术语。
+- **Discouraged variants:** 不推荐但非硬禁止的变体（可能在特定上下文中需要）。
+- **Forbidden phrases:** 绝对不能出现在 manuscript 中的词/短语。
+- **Allowed location:** `全文` / `Results only` / `Discussion only` / `Methods only` / `Introduction only` 等。若 forbidden phrase 只在特定位置允许，在此注明。
 
 ## Example Entries
 
-| 标准术语 | 禁止/废弃变体 | 适用范围 | 决策日期 | 备注 |
-|----------|-------------|---------|---------|------|
-| transport | flux (本文指标) | 全文 | 2026-05-29 | 文献引用的 flux 可保留原术语 |
-| boundary-crossing transport | boundary-crossing flux | 全文 | 2026-05-26 | |
-| anomaly content | payload | 全文 | 2026-06-03 | 对齐 He2024 JPO 术语体系 |
-| regional classes | dynamical regions | 全文 | 2026-05-31 | |
+| Category | Preferred term | Discouraged variants | Forbidden phrases | Allowed location | 决策日期 | 备注 |
+|----------|---------------|---------------------|-------------------|------------------|----------|------|
+| transport | transport | flux (本文指标) | — | 全文 | 2026-05-29 | 文献引用的 flux 可保留原术语 |
+| transport | boundary-crossing transport | boundary-crossing flux | — | 全文 | 2026-05-26 | |
+| variability | anomaly content | payload | — | 全文 | 2026-06-03 | 对齐 He2024 JPO |
+| region | regional classes | dynamical regions | — | 全文 | 2026-05-31 | |
+| mechanism | — | driven by, caused by | attributable to | Discussion only | — | Results 中禁用机制语言 |
 
 ## Resolved Issues
 

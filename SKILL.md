@@ -1,6 +1,6 @@
 ---
 name: ocean-paper-writer
-description: helps ocean science researchers build staged manuscript materials through six core manuscript-building workflows (prepare, methods, structure, writing, review, polish) plus an optional cover-letter workflow for publication materials.
+description: helps ocean science researchers build staged manuscript materials through five core manuscript-building stages (prepare, methods, structure, writing, review) plus polish (a sub-workflow of the review-writing loop) and an optional cover-letter stage for publication materials.
 ---
 
 # Ocean Paper Writer
@@ -13,14 +13,14 @@ target-journal plans, and advisor feedback) through to submission-ready material
 
 It is designed for manuscripts in physical oceanography, biogeochemistry, ocean-climate dynamics,
 marine ecosystems, and related fields.
-Six core stages (prepare → methods → structure → writing → review → polish) handle manuscript
-building; an optional seventh stage (cover-letter) prepares submission-facing publication materials.
+Five core stages (prepare → methods → structure → writing → review) handle manuscript
+building; polish operates as a sub-workflow within the review-writing loop; an optional sixth stage (cover-letter) prepares submission-facing publication materials.
 Each stage builds on verified outputs from the previous one.
 The skill does not try to produce a full manuscript in one pass.
 
 ## Core Workflow
 
-Six core manuscript-building stages, plus one optional publication-material stage:
+Five manuscript-building stages, plus polish (sub-workflow) and one optional publication-material stage:
 
 | Stage | Function |
 |-------|----------|
@@ -28,11 +28,12 @@ Six core manuscript-building stages, plus one optional publication-material stag
 | **02 methods** | Document data sources, processing workflows, derived variables, and statistical methods |
 | **03 structure** | Design manuscript architecture — central story, claim hierarchy, figure sequence, section roles |
 | **04 writing** | Draft manuscript prose one paragraph or subsection at a time, following the structure architecture |
-| **05 review** | Submit manuscript for external review (advisor / external LLM / self-review), record feedback, discuss revisions with user, then hand off to writing or polish |
-| **06 polish** | Refine confirmed text for clarity, flow, journal voice, and style naturalization — no evidence creation |
-| **07 cover-letter** | Prepare submission-facing cover letter material from confirmed manuscript claims and journal fit |
+| **05 review** | ClaudeCode compiles raw feedback into A_source → GPT analyzes and produces B_report (Issue Log + Revision Contract + Patch List) → ClaudeCode executes. GPT 决策，ClaudeCode 执行。 |
+| **06 cover-letter** | Prepare submission-facing cover letter material from confirmed manuscript claims and journal fit |
 
-Stage 07 is a publication-material stage, not a manuscript-building stage. It does not
+Polish is a sub-workflow of the review-writing loop — it refines confirmed text within `04_writing/` and records changes in `04_writing-log.md`. It has no numbered stage directory.
+
+Stage 06 is a publication-material stage, not a manuscript-building stage. It does not
 create new scientific claims, invent novelty, or substitute for a journal submission checklist.
 
 ## Global Manuscript Logic
@@ -66,6 +67,16 @@ Do not turn every output into full bilingual manuscript text by default. Chinese
 
 ## Session Start
 
+### 项目上下文初始化
+
+Skill 启动时，先检查项目目录下是否有 `CLAUDE.md`：
+- **有** → 读取并遵守。其中的术语、路径、禁止事项、决策记录优先于默认行为。
+- **无** → 建议用户创建，使用模板 `references/templates/CLAUDE.md`，放在项目根目录。新项目将未创建的文件标为 `[not created yet]`。
+
+CLAUDE.md 是项目记忆，不是 skill 规则的副本。通用写作规则（House Rules、Do Not Do 等）已由 skill 自动加载，此处不重复。
+
+---
+
 Skill 启动时先问：
 
 > 从头开始还是接续工作？如果接续，请提供项目目录路径。
@@ -86,14 +97,31 @@ Skill 启动时先问：
 - 已完成：
   - 01 prepare: [✓] project-brief, evidence-inventory
   - 02 methods: [✓] data, methods
-  - 03 structure: [✓] project-brief, figure-outline, terminology
+  - 03 structure: [✓] section-architecture, writing-blueprint, figure-outline, terminology
   - 04 writing: [N] 轮 review, [M] 轮 polish — 最新: 04_manuscript-reviewX-polishY.md
   - 05 review: [N] 轮审查完成
+- 缺失文件：[列出，如 CLAUDE.md / 03_writing-blueprint.md / 无]
 - 手稿状态：[M] methods units + [R] results units + [D] discussion units + [I] introduction units + [A] abstract + [C] conclusion，其中 [X]/[Y] confirmed / [Z] provisional
 - 建议下一步：[具体行动]
 ```
 
+`[✓]` = 完整可用，`[⚠]` = 存在但需更新（旧版 skill 生成、字段缺失等），`[✗]` = 缺失。
+
 此简报帮助用户快速回忆进度、确认上下文，再进入具体工作。
+
+### 非标准目录的处理
+
+如果项目目录没有标准 stage 结构（无 `01_prepare/` 等文件夹），或手稿是 .docx/.tex 等非标准格式：
+
+**统一从 prepare 开始。** 不走特殊分支。prepare 阶段会扫描现有材料（手稿、图表、代码、数据说明、审稿意见），从已有内容中解析出项目信息填入 project brief 和 evidence inventory。
+
+有旧手稿 → prepare 可以直接从手稿中提取研究问题、方法描述、证据链，不必从零讨论。
+有审稿意见 → 记录在案，到 review 阶段再用。
+有图表/代码 → 直接作为 evidence inventory 的证据来源。
+
+核心原则：**材料越多，prepare 跑得越快，但流程不变。** 即使有完整旧稿，仍走完整 prepare → methods → structure，从手稿和代码中推断出 01/02/03 内容，与用户逐项确认。不强求用户从零讨论每个字段。
+
+如果用户明确说 "我之前用旧版 skill"——扫描现有文件，识别缺口，在旧版基础上补建缺失文件（如 `03_writing-blueprint.md`、`CLAUDE.md`），更新已有文件中的过期字段。不覆盖、不重建用户已确认的内容。
 
 ### 修改后必问：同步上游
 
@@ -138,17 +166,18 @@ Each stage produces a fixed user-project output file. These are **user project f
 | 01 prepare | `01_prepare/01b_evidence-inventory.md` |
 | 02 methods | `02_methods/02a_data.md` |
 | 02 methods | `02_methods/02b_methods.md` |
-| 03 structure | `03_structure/03_project-brief.md` (活文档，跨阶段持续更新) |
+| 03 structure | `03_structure/03_section-architecture.md` (论文撰写纲要，跨阶段持续更新) |
+| 03 structure | `03_structure/03_writing-blueprint.md` (段落功能 + 逐句推进，04 起草前确认) |
 | 03 structure | `03_structure/03_figure-outline.md` (活文档，与项目书同步更新) |
 | 03 structure | `03_structure/03_terminology.md` (术语字典，review/polish 阶段维护) |
 | 03 structure | `03_structure/reference_papers/` (参考论文全文，用于风格参照与术语对齐) |
 | 04 writing | `04_writing/04_manuscript-draft.md` (初稿) |
 | 04 writing | `04_writing/04_manuscript-reviewN.md` (第 N 轮 05 审查后修改稿) |
-| 04 writing | `04_writing/04_manuscript-reviewN-polishM.md` (Review N 的第 M 轮 06 润色后修改稿) |
+| 04 writing | `04_writing/04_manuscript-reviewN-polishM.md` (Review N 的第 M 轮润色后修改稿) |
 | 04 writing | `04_writing/04_writing-log.md` (写作日志 + 修订记录 + polish 记录) |
-| 05 review | `05_review/05_review-roundN.md` (第 N 轮审查：外部反馈原文 + 与用户讨论的修改方案) |
-| 06 polish | **无独立输出文件** — 修改直接写入 `04_manuscript-reviewN-polishM.md`，修改记录写入 `04_writing-log.md` 的 Revision Notes |
-| 07 cover-letter | `07_cover-letter/07_cover-letter.md` |
+| 05 review | `05_review/05_review-round{N}A_source.md` (ClaudeCode 编译：原始意见整理，保留原文语气) |
+| 05 review | `05_review/05_review-round{N}B_report.md` (GPT 填写：Issue Log + Revision Contract + Patch List，ClaudeCode 执行依据) |
+| 06 cover-letter | `06_cover-letter/06_cover-letter.md` |
 
 **Versioning rule:** `04_manuscript-draft.md` is the initial complete first draft (04 阶段产出).
 N is a global monotonic review counter — it increments with each new review round.
@@ -173,11 +202,11 @@ generating output files.
 |-------|--------------------|-------------|
 | prepare | `references/workflow/prepare.md` | `references/templates/01a_project-brief.md`, `references/templates/01b_evidence-inventory.md` |
 | methods | `references/workflow/methods.md` | `references/templates/02a_data.md`, `references/templates/02b_methods.md` |
-| structure | `references/workflow/structure.md` | `references/templates/03_project-brief.md`, `references/templates/03_figure-outline.md`, `references/templates/03_terminology.md` |
+| structure | `references/workflow/structure.md` | `references/templates/03_section-architecture.md`, `references/templates/03_writing-blueprint.md`, `references/templates/03_figure-outline.md`, `references/templates/03_terminology.md` |
 | writing | `references/workflow/writing.md` | `references/templates/04_manuscript-draft.md`, `references/templates/04_writing-log.md` |
-| review | `references/workflow/review.md` | `references/templates/05_review-report.md` |
+| review | `references/workflow/review.md` | `references/templates/05_review-source.md`, `references/templates/05_review-report.md` |
 | polish | `references/workflow/polish.md` | (无独立模板 — polish 修改记录写入 `04_writing-log.md`) |
-| cover-letter | `references/workflow/cover-letter.md` | `references/templates/07_cover-letter.md` |
+| cover-letter | `references/workflow/cover-letter.md` | `references/templates/06_cover-letter.md` |
 
 Additional reference modules for writing:
 `references/writing/methods-and-data.md`, `references/writing/results-and-discussion.md`,
@@ -251,6 +280,19 @@ It is not AI-detection evasion.
 It does not hide weak evidence.
 It does not strengthen unsupported claims.
 
+## Writing Blueprint
+
+写作遵循三层嵌套：
+
+```
+全文架构（03_section-architecture.md）
+  → 逐段蓝图（03_writing-blueprint.md）：每段功能 + 句子推进顺序
+    → 正文草稿（04_manuscript-draft.md）
+```
+
+起草前确认当前段在 blueprint 中有段落功能和句子推进顺序。
+句子推进仅 Results、Introduction、Discussion、Abstract 段需要；routine Methods 段只需段落功能。
+
 ## Resume and Update Behavior
 
 When the user returns to a stage with an existing output file:
@@ -307,14 +349,21 @@ Each stage may hand off to one or more subsequent stages. Handoff is never autom
 | structure | writing |
 | writing | review |
 | review | writing (→ `04_manuscript-reviewN.md`), structure, methods, prepare, polish |
-| polish | writing (→ `04_manuscript-reviewN-polishM.md`), review, cover-letter |
+| polish | writing (→ `04_manuscript-reviewN-polishM.md`), review, structure, cover-letter |
 | cover-letter | polish, review, final assembly |
 
-**Review→Writing handoff:** Each review round processes external input and produces `05_review/05_review-roundN.md`.
-To incorporate feedback into the manuscript:
-1. Copy the base manuscript to `04_writing/04_manuscript-reviewN.md` (for N=1, the base is `04_manuscript-draft.md`; for N>1, the base is the most recent `04_manuscript-review{N-1}.md` or `04_manuscript-polish{N-1}.md`). **This step is mandatory — never edit the base manuscript directly, even for a one-word fix.**
-2. Apply targeted edits to the copy.
-3. Update `04_writing/04_writing-log.md`: append new entries to the Revision Notes table (newest first). **Never replace or delete existing entries.** Read the current last lines of the log before editing to confirm boundaries.
+**Review→Writing handoff:** Each review round — GPT 决策，ClaudeCode 执行：
+1. ClaudeCode compiles raw input into `05_review-round{N}A_source.md`.
+2. ClaudeCode packages A_source + manuscript + 03 files + journal profile + reference papers → user sends to GPT.
+3. GPT outputs `05_review-round{N}B_report.md` (Issue Log with Accept/Defer/Reject + Revision Contract + Patch List).
+4. **Backpropagation Gate:** Read `Backpropagation level` in B_report.
+    - Hard Backpropagation → archive affected 01/02/03, update upstream files, wait for user confirmation, then edit 04.
+    - Soft Blueprint Update → update only affected P-ID(s) in `03_writing-blueprint.md`, no archive by default, then edit 04.
+    - No Backpropagation → proceed directly to writing / polish.
+5. ClaudeCode copies base manuscript to `04_writing/04_manuscript-reviewN.md`. **Never edit the base directly.**
+6. ClaudeCode executes Patch List on the copy.
+7. ClaudeCode updates `04_writing/04_writing-log.md` (append only, newest first).
+8. ClaudeCode runs Revision Unit Done When self-check.
 
 **Polish→Writing handoff:** Same copy-then-edit rule; same append-only rule for the log.
 
@@ -370,16 +419,17 @@ Full Zotero integration reference: `references/zotero/README.md`
 
 ## Do Not Do
 
+*科学证据边界规则见 [Evidence and Claim Guardrails](#evidence-and-claim-guardrails)。此处仅列 workflow 禁令。*
+
 - **Do not generate a full manuscript in one pass.** Build it stage by stage.
 - **Do not complete multiple workflow stages at once.** Each stage produces its own output and requires user confirmation before advancing.
 - **Do not decide the target journal for the user.** Record, suggest only when asked, do not argue.
 - **Default writing unit is one paragraph; maximum is one subsection.** Build prose incrementally.
 - **Default polish unit is one paragraph; maximum is one subsection.** Refine text incrementally.
 - **Do not rewrite during review by default.** Review diagnoses; rewriting only happens when the user explicitly requests a revision draft.
-- **Do not edit the base manuscript directly when incorporating review or polish feedback.** Copy it to `04_manuscript-reviewN.md` or `04_manuscript-reviewN-polishM.md` first, then edit the copy. The base manuscript (`04_manuscript-draft.md` or the previous round's output) is immutable. This rule applies to both review and polish stages with no exceptions.
+- **Do not edit the base manuscript directly when incorporating review or polish feedback.** Copy it to `04_manuscript-reviewN.md` or `04_manuscript-reviewN-polishM.md` first, then edit the copy. The base manuscript is immutable.
 - **Do not create a separate polish log file.** All polish change records go into `04_writing-log.md` Revision Notes.
-- **Do not use polished language to hide evidence gaps.** If evidence is missing, return to review, writing, methods, or prepare.
-- **Do not invent data, methods, figures, citations, literature references, or advisor comments.**
 - **Do not overcompress materials according to journal rules during early stages.** Compression happens in late-stage polish.
-- **Do not ignore missing or conflicting information.** Flag it with standard tags and ask the user.
-- **Do not generate a cover letter without a confirmed target journal profile.** The contribution statement must reference the journal's actual scope. Cover-letter material summarizes confirmed manuscript outputs only.
+- **Do not generate a cover letter without a confirmed target journal profile.**
+- **Do not let ClaudeCode make Accept/Defer/Reject decisions on review feedback.** ClaudeCode compiles A_source; GPT produces B_report. ClaudeCode executes. 决策和执行分离。
+- **Do not let GPT or any external LLM perform full-manuscript polish.** GPT outputs B_report; ClaudeCode executes. GPT candidate rewrites allowed only for Abstract, Introduction P1, Results lead sentences, title, or conclusion sentences.

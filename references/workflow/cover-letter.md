@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Stage 07 is a publication-material stage, not a manuscript-building core stage.
+Stage 06 is a publication-material stage, not a manuscript-building core stage.
 It generates cover letter material from confirmed manuscript outputs only.
 The workflow does not create new scientific claims.
 
@@ -25,10 +25,10 @@ no target journal is confirmed; or the user only wants to explore journal option
 
 This stage draws from confirmed outputs only:
 
-- `03_structure/03_manuscript-structure.md` — central story, claim hierarchy
-- `04_writing/04_manuscript-draft.md` — manuscript text and key findings
-- `05_review/05_review-report.md` — confirmed claims and journal fit
-- `06_polish/06_polish-log.md` — polished text and final claim status
+- `03_structure/03_section-architecture.md` — central story, claim hierarchy
+- `04_writing/04_manuscript-reviewN-polishM.md` or latest confirmed manuscript — manuscript text and key findings
+- `05_review/05_review-round{N}B_report.md` — confirmed claims and journal fit
+- `04_writing/04_writing-log.md` — revision and polish records
 - Target journal profile — scope and aims for contribution alignment
 
 ## What This Stage Must Not Do
@@ -53,7 +53,7 @@ is available, mark `[CITATION NEEDED]`.
 ## Required Output
 
 ```
-07_cover-letter/07_cover-letter.md
+06_cover-letter/06_cover-letter.md
 ```
 
 ## Journal Profile Requirement
@@ -144,7 +144,7 @@ Use provided author details, or bracketed placeholders if not provided.
 2. Collect missing inputs (author details, data availability) — 3 questions max
 3. Extract paper title and key contribution from manuscript draft
 4. Draft the letter using the locked format
-5. Output to `07_cover-letter/07_cover-letter.md`
+5. Output to `06_cover-letter/06_cover-letter.md`
 6. Ask user to review and confirm
 
 ## Edge Cases

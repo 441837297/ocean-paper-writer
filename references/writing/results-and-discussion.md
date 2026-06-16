@@ -10,7 +10,7 @@ This module is used during the 04 writing stage to:
 ## Results section evidence ladder
 
 Before drafting individual Results paragraphs, check the Results Evidence Ladder Plan
-from `03_structure/03_manuscript-structure.md`.
+from `03_structure/03_section-architecture.md`.
 
 Default Results ladder:
 

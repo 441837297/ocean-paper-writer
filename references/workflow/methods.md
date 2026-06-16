@@ -178,3 +178,18 @@ The user-facing output file should be saved as:
 - **Do not overcompress methods details according to journal style during methods.** Compression comes later.
 - **Do not write a formal "Data Availability Statement" in methods stage.** Record data access info in the 02a data table; the journal-formatted statement is written during the writing stage.
 - **Preserve enough detail for reproducibility.** `[MISSING]`, `[UNCERTAIN]`, `[CONFLICT]`, and `[CONFIRM WITH USER]` flags are features, not bugs.
+
+### Scope Boundaries (CRITICAL)
+
+- **02a_data.md is the data document; 02b_methods.md is the methods document. Do not cross the line.**
+  - Data acquisition (how datasets were downloaded, API/subsetter details, notebook names for downloading) → **02a only**.
+  - Preprocessing that transforms raw data into analysis-ready form (QC, regridding, masking) → **02a** if it's dataset-level; **02b** if it's part of the analysis pipeline.
+  - Analysis workflow, variable derivation, statistical methods, parameter choices → **02b only**.
+- **02b is not a codebase directory listing.**
+  - Do not list every script in every subdirectory. Only mention scripts that directly produce manuscript figures or outputs.
+  - Third-party libraries (mexnc, netcdf_toolbox, etc.), exploratory scripts, test scripts, and HPC job launchers do not belong.
+  - The "Figure and Output Links" table is the primary script inventory — it maps each figure to its generating script. That is sufficient.
+- **Do not include project metadata unrelated to methods.**
+  - Git history, commit messages, version tags, and repo paths are not methods information. Do not include them.
+  - HPC configuration (SLURM templates, parpool worker counts) is not methods information unless the analysis result depends on it.
+- **The purpose of 02_methods is to support writing the manuscript Methods section.** Every piece of information in these files should answer: "Does the writer need this to draft the Methods section?" If not, leave it out.

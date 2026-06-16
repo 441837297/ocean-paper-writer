@@ -1,4 +1,4 @@
-# 07 Cover Letter
+# 06 Cover Letter
 
 ## Project Metadata
 
@@ -9,7 +9,7 @@
 
 ## Inputs
 
-- Manuscript draft: `04_writing/04_manuscript-draft.md`
+- Manuscript draft: `04_writing/04_manuscript-reviewN-polishM.md` (or latest confirmed manuscript)
 - Journal profile: `references/journals/[journal].md`
 - Corresponding author: [name, email, institution — or `[MISSING]`]
 - Data/code availability: [URLs or reason — or `[MISSING]`]
@@ -20,8 +20,8 @@
 
 ## Evidence Boundary Check
 
-- Confirmed central contribution: [from `03_manuscript-structure.md`]
-- Confirmed journal-fit rationale: [from `05_review/05_review-report.md`]
+- Confirmed central contribution: [from `03_section-architecture.md`]
+- Confirmed journal-fit rationale: [from `05_review/05_review-round{N}B_report.md`]
 - Claims not yet supported: [list or "none"]
 - Items requiring user confirmation: [list]
 - Citation-dependent statements: [list or "none"]

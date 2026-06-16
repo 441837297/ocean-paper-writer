@@ -1,324 +1,381 @@
 # GRL
 
-Geophysical Research Letters
+*Geophysical Research Letters*
 
 ---
 
-## 1. Journal Narrative Identity
+## Loading Contract
 
-GRL is a **single-sharp-message** journal.
-It does not publish comprehensive studies, exhaustive descriptions, or incremental extensions.
-It publishes research letters where one clear finding, well supported, carries enough significance to justify rapid publication.
-
-In ocean science, GRL is the right home when you have:
-
-- A finding that can be stated in one or two sentences, with a clear "before and after" — what did we think before, and what does this result change?
-- Enough evidence to support the core claim, even if the full mechanistic chain is not completely closed
-- Significance that extends beyond the immediate data point, region, or methodology
-
-GRL is **not** the right home when:
-
-- The manuscript requires a full literature review to establish context
-- Multiple independent findings must be presented in parallel to make the case
-- The significance is purely regional and cannot be connected to a broader process, mechanism, or implication
-- The evidence chain requires extensive supplementary analysis before the central claim becomes convincing
-
-The core narrative personality of GRL is: **fast, focused, significant**.
-A successful GRL paper tells one story, makes one central point, and limits its evidence to what is strictly needed.
-If the abstract needs more than two sentences to communicate the core finding, the story may not be sharp enough for GRL.
+- **When writing Introduction**: load `## Shared` + `## Introduction`
+- **When writing Results**: load `## Shared` + `## Results`
+- **When writing Discussion**: load `## Shared` + `## Discussion`
+- **When writing Methods**: load `## Shared` + `## Methods`
+- **When writing Abstract**: load `## Shared` + `## Abstract`
+- **When writing Key Points**: load `## Shared` + `## Key Points and Plain Language Summary`
+- **When preparing figures/tables**: load `## Shared` + `## Figures, Tables, and Captions`
+- **When polishing**: load `## Shared` + `## Late-stage Polish`
+- **House Rules** embedded in `writing.md` apply globally and are not restated here.
 
 ---
 
-## 2. Best-fit Ocean Science Stories
+## Journal Identity
 
-GRL in ocean science fits these story types:
+### Core narrative identity
+- Single sharp finding, stated in 1–2 sentences, with a clear "before and after."
+- Fast, focused, significant. One story, one central claim.
+- Evidence limited to what is strictly needed to support the claim.
+- If the abstract needs more than 2 sentences to communicate the core finding, the story may not be sharp enough for GRL.
 
-### Sharp discovery story
-A new phenomenon, a first quantification, or a process not previously recognized.
-The finding is the contribution — not the method, not the complete description, but the discovery itself.
+### Best-fit stories
+- **Sharp discovery**: a new phenomenon, first quantification, or previously unrecognized process.
+- **Event or anomaly**: an extreme event or rapid change signal that reveals something about the climate system.
+- **Mechanism-light but implication-strong**: clear observational evidence with a plausible mechanism; "consistent with" and "suggests" are acceptable.
+- **Regional process with broader implication**: regional scope but speaks to a general process — the connection must be explicit.
+- **Rapid-change or emerging-signal**: newly detected trend or regime shift, clear enough to warrant attention despite limited temporal coverage.
+- **Method-enabled finding**: the method reveals a new finding; the finding is the protagonist, not the method.
 
-### Event or anomaly story
-An extreme event, a rapid change signal, or an anomalous process that reveals something about the climate system.
-These stories work when the event carries broader significance beyond itself.
+### Not a good fit when
+- Multiple independent findings must be presented in parallel to make the case.
+- Significance is purely regional without demonstrated connection to a broader process.
+- Evidence chain requires extensive supplementary analysis before the central claim becomes convincing.
+- Comprehensive literature review or full mechanistic exploration is required.
 
-### Mechanism-light but implication-strong story
-A result where the observational evidence is clear but the full mechanistic chain is not fully resolved.
-GRL allows authors to present "what happens" and offer a plausible mechanism, as long as the claim language is properly bounded.
-Mechanism language should use "consistent with" and "suggests" for interpretation, not "demonstrates" — unless the evidence is direct and the mechanism is diagnosed, not inferred.
-
-### Regional process with broader implication
-A regional study that speaks to a general process.
-For example, a paper showing that upstream transport in a western boundary current controls downstream eddy kinetic energy — regional in scope, but the finding about transport-to-EKE predictability has implications for other boundary current systems.
-The regional-to-general connection must be explicit and convincing.
-
-### Rapid-change or emerging-signal story
-A newly detected trend, a regime shift, or a signal that appears to be developing.
-These work when the signal is clear enough to warrant attention despite limited temporal coverage.
-
-### Method-enabled scientific finding story
-A methodological advance that enables a new scientific finding.
-The method itself is not the story — what the method reveals is the story.
-Pure method papers without a scientific finding enabled by the method are better suited for JGR-Oceans, JAOT, or ESSD.
-
-### Stories that belong elsewhere:
-
-| Better fit for | Story characteristics |
-|---------------|----------------------|
-| JGR-Oceans | Complete evidence chain, multi-line evidence, comprehensive methodology, full mechanism with supporting diagnostics |
-| JPO | Dynamical equations, scaling analysis, process-oriented diagnostics, energy budgets as the central narrative |
-| Nature Communications | Broad cross-disciplinary significance, narrative-driven writing, accessible to non-specialist scientists |
+### Evidence logic
+- One figure, one point: each main figure supports exactly one aspect of the argument.
+- Supplementary material is for supporting detail, not essential evidence.
+- Trend claims must explicitly address whether record length is sufficient to separate trend from interannual/decadal variability.
+- In situ validation (when available) strengthens satellite/model-based claims — include in main text, not just supplementary.
+- Uncertainty stated concisely (error bars, confidence intervals). Do not expand into full limitation paragraphs.
 
 ---
 
-## 3. Preferred Reasoning and Evidence Logic
+## Shared
 
-### Claim structure
+### Global writing discipline
+- Active voice throughout. [OBSERVED 5/5 GRL]
+- Lead paragraphs with the topic sentence, then support with evidence. [OBSERVED]
+- Use one term for one concept throughout.
+- Define technical terms on first use — GRL is read by a broad geoscience audience.
+- Minimize acronyms. Do not create an acronym for a term used ≤3 times.
+- Mathematical formulations → Methods. Main text states physical meaning in natural language.
+- Sentences: shorter and more direct than JGR-Oceans or JPO.
+- Paragraphs: compact, 3–5 sentences.
 
-GRL requires claims that are **few, focused, and well-supported**.
-A typical GRL paper makes one central claim and possibly one or two secondary claims.
-Each claim must be directly supported by the evidence presented in the main text.
+### Claim language calibration
+| Evidence level | Use |
+|---|---|
+| Direct quantitative evidence | "We show that..."; "Our analysis reveals that..." |
+| Strong pattern, mechanism likely | "suggests", "indicates", "is consistent with" |
+| Plausible but not directly tested | "may", "could", "might" |
+| Cannot support | Do not claim causality without mechanistic diagnostics |
 
-### How much evidence is enough
+### Figure references
+- Default: parenthetical after the claim: "(Figure 1a)." [OBSERVED 6/6]
+- Sentence-subject "Figure X shows..." is strongly discouraged. [OBSERVED: ~95%+ parenthetical across papers]
+- Always use full word "Figure" (not "Fig.") — AGU style. [OBSERVED]
+- Panel letters: lowercase. Supplementary: "Figure S1".
 
-GRL does not require exhaustive validation, but the evidence must be sufficient to make the central claim convincing to a skeptical reviewer.
-Key principles:
+### Forbidden patterns (all sections)
+| Do not write | Write instead |
+|---|---|
+| "Interestingly," "Surprisingly," | Let the evidence carry the emphasis |
+| "It is worth noting that..." | State the point directly |
+| "In order to..." | "To..." |
+| Rhetorical questions | Declarative transition |
+| "This paper is organized as follows..." | Nothing — proceed to the next paragraph |
+| "Fig." as abbreviation | "Figure" |
+| "[claim], which has important implications for climate." | Specify the implication with quantification or a concrete pathway |
 
-- **One figure, one point:** Each main figure should support exactly one aspect of the argument.
-If a figure does not advance the central claim, it belongs in supplementary material.
-- **Limited but sufficient:** Figures should be few, essential, and each tightly connected to the central claim.
-- **Supplementary material is for supporting detail, not essential evidence:** If a claim depends on a supplementary figure, the claim should be moved to methods or the figure brought into main text.
-- **In situ validation, when available, significantly strengthens the claim:** A manuscript whose central claim is based on satellite or model data gains credibility when cross-validated against in situ observations in the main text, not just in supplementary material.
-
-### Mechanism language
-
-GRL papers frequently involve mechanism interpretation, but the language must match the evidence:
-
-- **Appropriate when evidence is strong:** "We show that", "Our results demonstrate that", "The analysis reveals that" — only when the evidence is direct and quantitative.
-- **Appropriate when evidence is suggestive:** "This is consistent with", "Our results suggest that", "The pattern indicates that" — for mechanism interpretation that follows from but is not directly proven by the data.
-- **Inappropriate in GRL context:** Claiming causality without mechanistic diagnostics.
-For example, calling a spatiotemporal correlation a causal relationship without process-based analysis.
-
-### Ocean science-specific evidence logic
-
-- **Satellite vs in situ consistency:** If the central claim depends on satellite data, cross-validation with in situ observations (where available) strongly strengthens the argument.
-A manuscript based on satellite-derived pCO₂, for example, benefits from showing validation against shipboard measurements in the main text.
-- **Temporal coverage and trend claims:** GRL letters claiming trends must explicitly address whether the record length is sufficient to separate the trend from interannual variability or decadal modes.
-- **Spatial coverage and generalization:** A regional study must explicitly bound its generalization.
-It is acceptable to claim "our results suggest that this process may operate in other regions" but not "this process operates globally" without global evidence.
-- **Model vs observation consistency:** When both model and observations are used, consistency between them should be explicitly shown.
-Mismatches should be acknowledged, not hidden.
-- **Seasonal vs long-term signals:** Papers claiming long-term trends must demonstrate that the temporal record is sufficient to separate the trend from seasonal and interannual variability.
-If the seasonal cycle is not explicitly addressed, the central trend claim sits on weak ground and may be a better fit for a longer-format journal where seasonal decomposition can be fully documented.
-
-### Uncertainty handling
-
-- State uncertainties concisely (error bars, confidence intervals, ensemble spread).
-- Do not expand uncertainty discussion into a full limitation paragraph — that belongs in longer-format journals.
-- If uncertainty is large enough to question the central claim, the paper may not be suitable for GRL.
+### GRL-specific format requirements
+- **Key Points**: 3 bullet points after the abstract. Sentence fragments (no verbs). [OBSERVED 5/5]
+- **Plain Language Summary**: required, after abstract / Key Points. [OBSERVED 5/5]
+- Methods BEFORE Results (standard IMRaD). [OBSERVED 5/5]
+- No separate Conclusion section — use "Summary and Discussion" or "Discussion and Conclusions." [OBSERVED]
 
 ---
 
-## 4. Section-level Story Strategy
+## Introduction
 
-### Introduction
+### Section role
+Establish context, identify the specific knowledge gap, and state the paper's contribution — all within 2–5 paragraphs. [OBSERVED: 4–5 paragraphs typical]
 
-GRL Introduction should follow a **fast arc**:
-context → immediate gap → why this matters now → what this paper shows.
+### Architecture [OBSERVED]
+1. **P1 — Broad context**: Establish the scientific question or phenomenon in 3–4 sentences. No generic opening — start with the specific problem. [OBSERVED 6/6]
+2. **P2–P(n-1) — Narrow to the gap**: What is not known? Why has it remained unresolved? Be precise. "The role of eddies in the air-sea CO₂ flux remains poorly quantified" not "More research is needed."
+3. **Final P — This paper's contribution**: "Here, using [approach], we [finding]." Include the key quantified finding. [OBSERVED 6/6]
 
-Typical structure:
-- **Paragraph 1:** Establish the broad context in 3-4 sentences.
-What is the scientific question or phenomenon?
-Why does it matter?
-No generic opening — start with the specific problem.
-- **Paragraph 2:** Identify the specific knowledge gap.
-What is not known?
-Why has it remained unresolved?
-Be precise: "The role of eddies in the air-sea CO₂ flux remains poorly quantified" is better than "More research is needed."
-- **Paragraph 3:** State what this paper does and its key finding.
-Include a clear objective statement and, when appropriate, a preview of the central result.
+### Opening move [OBSERVED 6/6]
+- OK: "Ocean mesoscale flows significantly influence nutrient distribution and biological productivity, yet the scarcity of eddy-permitting observational data sets...hinders understanding their role in carbon sequestration."
+- OK: "Mesoscale eddies are ubiquitous features in the global ocean...accounting for nearly 90% of oceanic kinetic energy."
+- Avoid: "In recent years, the study of X has attracted increasing attention."
+- Avoid: generic opening without quantitative anchoring.
 
-Tone: direct, specific, grounded in previous literature.
-Avoid: "In recent years, the study of X has attracted increasing attention." Instead: start with the phenomenon or problem directly.
+### Must do
+- Hit the gap by paragraph 2 or 3.
+- Include the central quantified finding in the final paragraph.
+- Keep introduction short — comprehensive literature reviews belong in longer-format journals.
 
-GRL Introduction should be **2-4 paragraphs**.
-Comprehensive literature reviews belong in JGR-Oceans or Reviews of Geophysics.
-
-### Methods (Data and Methods)
-
-GRL Methods must be **sufficient for evaluation but not exhaustive**. Include:
-- Data sources, spatial/temporal coverage, resolution
-- Key processing steps (quality control, gridding, filtering, statistical methods)
-- Enough detail that a reviewer in the same sub-field can evaluate the approach
-
-Methods can have subsections when the analysis involves multiple independent data types or analytical steps (e.g., satellite data, tracking algorithm, flux calculation, and decomposition analysis).
-
-**What to move to supplementary:** Detailed processing parameters, validation against multiple datasets, sensitivity tests, individual case studies that support but do not directly advance the central claim.
-
-GRL does not expect a separate "Study Area" section — study area context should be woven into Methods or Introduction as needed.
-
-### Results
-
-GRL Results should be organized around the **central claim, not around individual figures**.
-Instead of "Figure 1 shows X, Figure 2 shows Y, Figure 3 shows Z," each Results paragraph should advance one sub-claim, with the figure as supporting evidence.
-
-- Lead with the finding, then describe the evidence:
-"Both anticyclonic and cyclonic eddies acted as net CO₂ sinks over their lifetime (Figures 1b and 1d)." This is more effective than "Figure 1 shows the cumulative CO₂ flux..."
-- Each figure should be interpretable from its caption alone (self-contained captions).
-- Secondary findings can be mentioned but should not dominate the narrative.
-- Quantitative results should include units, uncertainties, and statistical significance where applicable.
-
-Every figure should serve the central claim. Figures that do not advance the narrative dilute the focus.
-
-### Discussion
-
-GRL Discussion should be **short and targeted**. It is not a full mechanistic exploration. It answers:
-
-1. **What does this result mean?** — Interpretation of the central finding in physical/oceanographic terms.
-2. **How does it compare with existing knowledge?** — Direct quantitative comparison with prior studies, not a literature review.
-For example, if a new estimate of eddy CO₂ flux is lower than a previous estimate, explain why (e.g., seasonal variability captured in the new analysis that was missed earlier).
-3. **What are the implications?** — Why this result matters beyond the immediate study.
-This is the place for the "broader significance" statement.
-4. **What cannot be concluded?** — Brief, specific acknowledgment of limitations.
-Do not write a generic limitation paragraph.
-
-GRL Discussion may be 2-4 paragraphs.
-If multiple points must be discussed, prioritize the ones that strengthen the central claim.
-
-Some GRL papers combine Results and Discussion into a single narrative.
-This works when each result naturally leads to its interpretation.
-
-### Conclusion
-
-GRL Conclusion can be very short — a single paragraph that restates the central finding and its significance.
-Some GRL papers let the last Discussion paragraph serve as the conclusion.
-
-When a separate Conclusion section is included:
-- Do not introduce new evidence or analysis
-- Do not repeat methodological details
-- State the central finding, its significance, and one forward-looking sentence if warranted
-- A typical GRL conclusion is one paragraph that summarizes the key result, its broader significance, and a single forward-looking statement if warranted
-
-### Abstract
-
-GRL Abstract should be **concise** and communicate the core story immediately.
-
-Structure: **problem → approach/data → core finding → implication**
-
-- Start with the problem or knowledge gap, not generic background
-- State the approach briefly — one sentence is often enough
-- Present the central quantitative finding clearly
-- End with why this matters
-
-GRL Abstracts are read by a broad geoscience audience.
-Avoid excessive jargon.
-An effective abstract starts with why the problem matters, states the approach briefly, gives the key quantitative result, and ends with the broader implication.
-
-References in abstracts: GRL allows them, but use sparingly.
-
-### Plain Language Summary
-
-Required by AGU for all GRL submissions.
-Write in language accessible to a scientifically literate public.
-Avoid all jargon.
-State the problem, what was done, what was found, and why it matters.
+### Avoid
+- Full mechanism preview (save for Results).
+- Exhaustive literature review.
+- "This paper is organized as follows..." (explicit section-by-section roadmap). [OBSERVED: Yang 2026 used it; others did not. Strongly prefer to omit.]
 
 ---
 
-## 5. Writing Voice and Rhetorical Style
+## Results
 
-### Sentence and paragraph rhythm
+### Section role
+Present the central claim with supporting evidence. Organized around the claim, not around individual figures. [OBSERVED]
 
-GRL writing is **direct and fast**.
-Sentences are shorter than in JGR-Oceans or JPO.
-Paragraphs are compact (3-5 sentences).
-Every sentence should advance the narrative.
+### Evidence ladder [OBSERVED]
+1. **Core finding**: state what was observed with quantification.
+2. **Supporting detail**: spatial pattern, temporal evolution, statistical significance.
+3. **Mechanism or driver** (when evidence allows): keep mechanism language bounded to evidence strength.
+4. **Robustness**: cross-validation or sensitivity test if brief.
 
-- Use active voice where natural: "We analyze 67 eddies..." not "An analysis of 67 eddies was conducted."
-- Lead paragraphs with the topic sentence, then support with evidence.
-- Avoid "filler" transitions: "It is worth noting that", "Interestingly", "Moreover" — cut these.
-Let evidence and logic create the transitions.
+### Paragraph opening rule [OBSERVED]
+- Default: claim-first. Open with the finding. [OBSERVED: ~60–65% claim-first across 6 papers]
+- Allowed: method-first for subsection-start paragraphs introducing a new diagnostic. [OBSERVED]
+- Revert to claim-first as soon as the diagnostic frame is established.
+- Never open with "Figure X shows..." or "To examine whether..." as routine opener.
 
-### Claim strength and hedging
+### Paragraph structure
+Claim → quantified evidence → spatial/temporal/uncertainty detail → brief interpretation.
+3–5 sentences. Never end a paragraph with only a figure reference.
 
-GRL claims should be **confident within their bounds**:
+### Results headings [OBSERVED]
+- Both sentence case and title case observed. Title case more common. [OBSERVED 3/5 title case, 2/5 sentence case]
+- Noun phrases strongly preferred: "Eddy Energy Budget," "Drivers of Sea-Air CO2 Flux Changes."
+- Declarative sentence headings: not observed. Avoid.
+- No sub-headings at all is acceptable for short GRL papers. [OBSERVED: Guo 2024]
 
-| Evidence level | Language | Example |
-|---------------|----------|---------|
-| Direct quantitative evidence | "shows", "demonstrates", "reveals" | "Our analysis shows that anticyclonic eddies enhance the CO₂ sink by 3.7%." |
-| Strong pattern, mechanism likely | "suggests", "indicates", "is consistent with" | "This pattern suggests that barotropic instabilities dominate EKE variability." |
-| Plausible but not directly tested | "may", "could", "might" | "This mechanism may also operate in other western boundary currents." |
-
-Do not inflate claims for impact.
-GRL editors and readers are experienced at detecting overclaiming.
-A bounded but confident claim is more effective than an inflated one that invites challenge.
-
-### Level of technicality
-
-GRL is read by a broad geoscience audience.
-Technical terms should be defined on first use.
-Acronyms should be minimized.
-Mathematical formulations can appear in methods but should not dominate the narrative.
-
-- Good: "Eddy kinetic energy (EKE) was estimated from geostrophic velocity anomalies."
-- Less good: Starting a paragraph with an equation without context.
-
-### Mechanism language — special note for ocean science
-
-GRL papers in ocean science often involve mechanism interpretation.
-The key is to match the mechanism language to the evidence:
-
-- **When you have direct process-based diagnostics** (energy conversion terms, budget closure, scale analysis): stronger mechanism language is appropriate.
-For example, if KmKe and PeKe terms from an energetic analysis directly show barotropic instability dominating over baroclinic instability, "demonstrates" may be justified.
-- **When you have spatiotemporal patterns that suggest a mechanism** but no direct dynamical diagnostic: use "consistent with", "suggests", "may indicate".
-For example, if thermal/non-thermal decomposition indicates changing drivers of pCO₂ variability but the biological and physical flux contributions are not directly measured, keep the mechanism language bounded.
-
-### Broader significance framing
-
-GRL requires the significance to be clear, but it should be **scientific significance first, societal significance second** (unless the data directly support societal claims).
-
-- Good:
-"These results suggest that mesoscale eddies play a larger role in the ocean carbon sink than previously estimated, and their increasing activity (Martinez-Moreno et al., 2021) implies this role may grow."
-- Less good without evidence: "These results have important implications for climate change policy."
+### Avoid
+- Figure-by-figure walkthrough ("Figure 1 shows X, Figure 2 shows Y").
+- Ending paragraphs with "(Figure 2a)." — close with interpretation.
+- "Interestingly," "Surprisingly," "Notably" as paragraph openers. [OBSERVED: "Notably" appears sporadically but is not best practice]
+- Variable labels or method names as headings.
 
 ---
 
-## 6. Late-stage Compression and Submission Notes
+## Discussion
 
-This section is **not a drafting guide**. It is only used during the final pre-submission pass.
+### Section role
+Interpret the central finding — what it means, how it compares with prior work, and why it matters. Short and targeted. 2–7 paragraphs. [OBSERVED]
 
-### What to preserve during compression
+GRL uses merged format: "Summary and Discussion" or "Discussion and Conclusions." [OBSERVED 5/5; Wang 2025 used standalone "Conclusions"]
 
-- The single central claim and its supporting figures
-- The evidence that directly supports the claim (in situ validation, quantitative comparisons)
-- The implication statement — why this finding matters
-- Data availability and methods transparency sufficient for reproducibility
+### Architecture [OBSERVED]
+1. Core finding restated with interpretation (1 paragraph).
+2. Quantitative comparison with prior studies — direct, not a literature review.
+3. Mechanism interpretation — bounded by evidence.
+4. Caveats — embedded briefly, not a standalone section.
+5. Broader significance — specific, concrete.
 
-### What to cut first if over length
+### Must do
+- First sentence: restate the central finding in context.
+- Keep comparison with prior work quantitative and specific.
+- End with one specific forward-looking statement or concrete implication.
 
-- Extended background or literature review in Introduction
-- Secondary findings that do not directly support the central claim
-- Extended mechanism speculation in Discussion
-- Methods detail that can move to supplementary material
-- Repetition between Results and Discussion (GRL Discussion should not re-state results in detail)
+### Caveat handling [OBSERVED]
+- Embed in the argument flow. If a standalone limitation paragraph exists, keep it short (2–3 sentences) and immediately follow with why the finding still stands.
+- Example: "It should be noted that our 0.1° resolution cannot resolve submesoscale motions. Submesoscale-resolving simulations are needed to further improve..."
 
-### Hard constraints to verify
-
-At the final pre-submission stage, check the journal's current author guidelines for word count, figure count, abstract length, and supplement requirements.
-Verify data availability and author contribution statements.
-These constraints should only be applied during the late polishing pass, not during drafting.
-
-### Structure fit notes
-
-- **Introduction too long or too generic:** GRL Introduction should hit the gap by paragraph 2, the contribution by paragraph 3.
-An Introduction that reads like a review paper before reaching the gap is better suited to JGR-Oceans.
-- **Results organized as "figure walkthrough" instead of narrative:** Each paragraph should advance the claim, not describe a figure.
-If the only way to organize Results is figure by figure, the narrative may not be sharp enough for GRL.
-- **Discussion that repeats results rather than interpreting them:** GRL Discussion should focus on meaning, comparison, and significance.
-If the Discussion section is longer than the Results section, consider whether the paper fits GRL or JGR-Oceans.
-- **Methods too sparse:** GRL Methods should be sufficient for a specialist to evaluate the approach — specifying only "we used satellite data" without data source, resolution, processing, or quality control is insufficient.
-- **Missing Plain Language Summary:** Required at submission, not something to add after reviewer request.
+### Avoid
+- Summarizing every Results subsection in order.
+- Full mechanistic exploration — belongs in longer-format journals.
+- Expanding into unsupported speculation.
+- Generic closing: "more research is needed."
+- New data, new mechanism, or claims absent from Results.
 
 ---
 
-*Journal profile: GRL*
-*Template: references/journals/_template.md (6-section narrative-oriented structure)*
+## Methods
+
+### Section role
+Sufficient detail for a specialist to evaluate the approach. Methods BEFORE Results (standard IMRaD). [OBSERVED 5/5 GRL]
+
+### Required detail
+- Data sources: access, spatial/temporal coverage, resolution, product version.
+- Key processing steps that affect the central claim, with justification.
+- Statistical methods: trend estimation, significance test, autocorrelation treatment.
+- Uncertainty quantification.
+
+### Must do
+- Keep concise — GRL Methods are shorter than JGR-Oceans.
+- Detailed processing parameters, extended validation, sensitivity tests → Supplementary.
+- Subsections acceptable when analysis involves multiple independent data types. [OBSERVED]
+
+### Avoid
+- Overlong processing detail in main text.
+- Missing key methodological information (data source, resolution, QC).
+- "Study Area" section — weave context into Methods or Introduction as needed.
+
+---
+
+## Abstract
+
+### Section role
+Communicate the core story immediately. Problem → approach → core finding → implication. Concise. [OBSERVED]
+
+### Architecture [OBSERVED 6/6]
+1. Problem or knowledge gap (1 sentence).
+2. Approach and data (1 sentence).
+3. Central quantified finding (1–2 sentences).
+4. Broader implication (1 sentence).
+
+### Must do
+- Start with the problem or gap, not generic background. [OBSERVED]
+- Include the key quantification.
+- End with why this matters — specific, not generic filler.
+
+### Avoid
+- Method-first opening.
+- Full mechanism chain.
+- Excessive jargon (read by broad geoscience audience).
+- References (use sparingly if at all).
+
+---
+
+## Conclusion
+
+### Section role
+GRL papers typically do not have a standalone Conclusion section. The conclusion function is served by the merged "Summary and Discussion" or "Discussion and Conclusions" format. [OBSERVED 4/5 GRL; Wang 2025 used standalone "Conclusions"]
+
+### Must do
+- Restate the central finding and its significance in 1–2 sentences.
+- End with a forward-looking statement if warranted.
+- No new evidence or analysis.
+
+### Avoid
+- Separate "Conclusion" heading — use "Summary and Discussion" instead.
+- New data, new mechanism, or unsupported extrapolation.
+
+---
+
+## Key Points and Plain Language Summary
+
+### Key Points [OBSERVED 5/5]
+- Exactly 3 bullet points, placed after the abstract.
+- Sentence fragments (no verbs): "The response of mesoscale coherent eddies to global warming is investigated."
+- Each point: one self-contained takeaway.
+- No references, no quantification (conceptual summary).
+- Written for a broad geoscience audience.
+
+### Plain Language Summary [OBSERVED 5/5]
+- Required by AGU for all GRL submissions.
+- One paragraph, 4–7 sentences.
+- Write in language accessible to scientifically literate public.
+- Avoid all jargon; define any unavoidable technical terms.
+- Structure: problem → what was done → what was found → why it matters.
+- Mirror the abstract's arc but with everyday vocabulary.
+
+---
+
+## Title and Keywords
+
+### Title format [OBSERVED 5/5]
+- Title Case (all major words capitalized).
+- Noun phrase, never a declarative sentence.
+- Pattern: "[Ocean/climate process] [preposition/participle] [context]"
+- "Observed Regional Impacts of Marine Heatwaves on Sea-Air CO2 Exchange"
+- "Response of Ocean Mesoscale Coherent Eddies to Global Warming"
+- "The Role of Ocean Mesoscale Variability in Air-Sea CO2 Exchange: A Global Perspective" (colon title tolerated)
+
+### Must do
+- Include both the key variable/process AND the broader context in the title.
+- Keep under ~20 words.
+
+### Avoid
+- Declarative-sentence titles.
+- Question titles.
+- Foregrounding the method rather than the finding.
+- "Fig." or other abbreviations in the title.
+
+### Keywords
+- GRL does not publish a keyword block in the final article. [OBSERVED 5/5]
+- [INFERRED] Ensure the title and abstract contain the 3–5 terms that define the paper's subfield for indexing.
+
+---
+
+## Figures, Tables, and Captions
+
+### Figure logic
+- One scientific question per main figure.
+- Figures should be few, essential, and each tightly connected to the central claim.
+- Figures that do not advance the central claim → Supplementary.
+
+### Caption style [OBSERVED]
+- Self-contained: a reader should understand the figure without referring to the main text.
+- First sentence states what is shown (declarative). Do not start with "Figure X shows…"
+- Remaining sentences describe panels, data sources, methods, and statistics.
+- Panel labels: lowercase (a, b, c) in bold.
+- Always use full word "Figure" (not "Fig.").
+
+### Must do
+- Include time period, sample size, and statistical test in every caption.
+- Define all abbreviations in each caption (self-contained).
+
+### Avoid
+- Panel inventory without a scientific question.
+- Captions that assume the reader has already read the main text.
+
+---
+
+## Data, Code, and Supplementary Materials
+
+### Data availability [OBSERVED]
+- "Data Availability Statement" section after Conclusions.
+- List every dataset with: full product name, version, persistent DOI/URL.
+- AGU requires data used in figures to be archived in a public repository.
+
+### Code availability
+- State software/version for each key analysis step.
+- Provide repository DOI or URL for custom analysis code.
+
+### Supplementary materials
+- Detailed processing, extended validation, additional case studies → Supporting Information.
+- GRL has no strict page limit for SI.
+- Supplementary figures follow the same caption rules as main figures.
+
+### Avoid
+- Placing essential evidence for the central claim only in Supplementary.
+- Missing data availability statement (required at submission).
+
+---
+
+## Late-stage Polish
+
+### Compression priorities
+Preserve during shortening:
+1. The single central claim and its supporting figures.
+2. Evidence that directly supports the claim (in situ validation, quantitative comparisons).
+3. The implication statement — why this finding matters.
+4. Data availability and methods sufficient for reproducibility.
+
+Cut first:
+1. Extended background or literature review in Introduction.
+2. Secondary findings not directly supporting the central claim.
+3. Extended mechanism speculation in Discussion.
+4. Methods detail → Supplementary.
+5. Repetition between Results and Discussion.
+
+### Voice alignment
+- Verify every paragraph opens with its key point (claim-first where possible).
+- Verify claim language matches evidence strength (see Shared calibration table).
+- Check that Key Points are sentence fragments (no verbs), exactly 3 bullets.
+- Verify Plain Language Summary is accessible — no jargon.
+- GRL voice: direct, fast, confident within bounds.
+
+### Submission-facing checks
+- Verify current GRL word limit, figure count, abstract length against the manuscript.
+- Confirm Data Availability Statement, author contributions, and Plain Language Summary are present.
+- Apply length constraints only during this pass, not during drafting.
+
+---
+
+*Journal profile restructured 2026-06-09 to H2 schema (fixed headings per _distill.md).*
+*Content migrated from original §1–§6 (Voice Principles + 6-section structure).*
+*Paragraph-level extraction from 5 GRL papers: Yang2026 (FXN2EDM7), Wang2026 (MPF2QEMI), Wang2025 (FUA28H74), Li2024 (GIEUG7Z8), Guo2024 (X2J39QN2).*
+*One JGR-Oceans paper (Cai2024, 888QLR8Q) also analyzed; GRL-specific rules filtered accordingly.*
+*New sections inferred from 5-paper paragraph-level extraction: Key Points and Plain Language Summary.*
+*Key GRL differentiators: Key Points (3 bullets), PLS required, Methods before Results (IMRaD), merged Summary and Discussion.*
