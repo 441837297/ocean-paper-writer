@@ -97,11 +97,11 @@ Skill 启动时先问：
 - 已完成：
   - 01 prepare: [✓] project-brief, evidence-inventory
   - 02 methods: [✓] data, methods
-  - 03 structure: [✓] section-architecture, writing-blueprint, figure-outline, terminology
+  - 03 structure: [✓] section-architecture, figure-outline, terminology
   - 04 writing: [N] 轮 review, [M] 轮 polish — 最新: 04_manuscript-reviewX-polishY.md
   - 05 review: [N] 轮审查完成
-- 缺失文件：[列出，如 CLAUDE.md / 03_writing-blueprint.md / 无]
-- 手稿状态：[M] methods units + [R] results units + [D] discussion units + [I] introduction units + [A] abstract + [C] conclusion，其中 [X]/[Y] confirmed / [Z] provisional
+- 缺失文件：[列出，如 CLAUDE.md / 无]
+- 手稿状态：[M] methods units + [R] results units + [D] discussion units + [I] introduction units + [A] abstract + [C] conclusion（如有），其中 [X]/[Y] confirmed / [Z] provisional
 - 建议下一步：[具体行动]
 ```
 
@@ -121,7 +121,7 @@ Skill 启动时先问：
 
 核心原则：**材料越多，prepare 跑得越快，但流程不变。** 即使有完整旧稿，仍走完整 prepare → methods → structure，从手稿和代码中推断出 01/02/03 内容，与用户逐项确认。不强求用户从零讨论每个字段。
 
-如果用户明确说 "我之前用旧版 skill"——扫描现有文件，识别缺口，在旧版基础上补建缺失文件（如 `03_writing-blueprint.md`、`CLAUDE.md`），更新已有文件中的过期字段。不覆盖、不重建用户已确认的内容。
+如果用户明确说 "我之前用旧版 skill"——扫描现有文件，识别缺口，在旧版基础上补建缺失文件（如 `03_figure-outline.md`、`CLAUDE.md`），更新已有文件中的过期字段。不覆盖、不重建用户已确认的内容。
 
 ### 修改后必问：同步上游
 
@@ -166,11 +166,10 @@ Each stage produces a fixed user-project output file. These are **user project f
 | 01 prepare | `01_prepare/01b_evidence-inventory.md` |
 | 02 methods | `02_methods/02a_data.md` |
 | 02 methods | `02_methods/02b_methods.md` |
-| 03 structure | `03_structure/03_section-architecture.md` (论文撰写纲要，跨阶段持续更新) |
-| 03 structure | `03_structure/03_writing-blueprint.md` (段落功能 + 逐句推进，04 起草前确认) |
+| 03 structure | `03_structure/03_section-architecture.md` (论文撰写纲要：全文架构、主张层级、段落合同，跨阶段持续更新) |
 | 03 structure | `03_structure/03_figure-outline.md` (活文档，与项目书同步更新) |
 | 03 structure | `03_structure/03_terminology.md` (术语字典，review/polish 阶段维护) |
-| 03 structure | `03_structure/reference_papers/` (参考论文全文，用于风格参照与术语对齐) |
+| — | `reference_papers/` (前人论文写作参考片段，按 section 组织，项目根目录) |
 | 04 writing | `04_writing/04_manuscript-draft.md` (初稿) |
 | 04 writing | `04_writing/04_manuscript-reviewN.md` (第 N 轮 05 审查后修改稿) |
 | 04 writing | `04_writing/04_manuscript-reviewN-polishM.md` (Review N 的第 M 轮润色后修改稿) |
@@ -202,7 +201,7 @@ generating output files.
 |-------|--------------------|-------------|
 | prepare | `references/workflow/prepare.md` | `references/templates/01a_project-brief.md`, `references/templates/01b_evidence-inventory.md` |
 | methods | `references/workflow/methods.md` | `references/templates/02a_data.md`, `references/templates/02b_methods.md` |
-| structure | `references/workflow/structure.md` | `references/templates/03_section-architecture.md`, `references/templates/03_writing-blueprint.md`, `references/templates/03_figure-outline.md`, `references/templates/03_terminology.md` |
+| structure | `references/workflow/structure.md` | `references/templates/03_section-architecture.md`, `references/templates/03_figure-outline.md`, `references/templates/03_terminology.md` |
 | writing | `references/workflow/writing.md` | `references/templates/04_manuscript-draft.md`, `references/templates/04_writing-log.md` |
 | review | `references/workflow/review.md` | `references/templates/05_review-source.md`, `references/templates/05_review-report.md` |
 | polish | `references/workflow/polish.md` | (无独立模板 — polish 修改记录写入 `04_writing-log.md`) |
@@ -213,40 +212,27 @@ Additional reference modules for writing:
 `references/writing/introduction-and-gap.md`, `references/writing/conclusions-and-claims.md`,
 `references/writing/ocean-science-domain.md`, `references/writing/bilingual-output.md`.
 
+Additional reference modules for fragment extraction:
+`references/workflow/fragment-extraction.md` — 从论文 MD 提取 section 片段的 haiku subagent 工作流。
+
+Helper scripts: `scripts/scan_headings.sh`.
+
 Additional reference modules for style naturalization:
 `references/review/style-naturalization.md`,
 `references/review/sentence-naturalization.md`,
 `references/review/transition-naturalization.md`,
 `references/review/vocabulary-naturalization.md`.
 
-## Journal Profile Handling
+## Journal
 
 **Hard rule: Do not decide the target journal for the user.**
 
-Available journal profiles:
-
-| Journal | Profile file |
-|---------|-------------|
-| GRL (Geophysical Research Letters) | `references/journals/grl.md` |
-| JGR-Oceans | `references/journals/jgr.md` |
-| JPO (Journal of Physical Oceanography) | `references/journals/jpo.md` |
-| Nature Communications | `references/journals/nc.md` |
-| Nature Climate Change | `references/journals/ncc.md` |
-
-Rules:
-
-- If the user provides a target journal: record it verbatim. Do not argue, override, or substitute. Load the corresponding journal profile during structure / writing / review / polish / cover-letter stages.
+- If the user provides a target journal: record it verbatim. Do not argue, override, or substitute.
 - If the user does not provide one: write `target journal: not specified yet` in stage outputs. Proceed with general-purpose guidance.
 - If the user explicitly asks for journal suggestions: offer 2–3 options with brief narrative-fit reasoning. End with "discuss with your advisor or coauthors."
-- Journal profiles are used for narrative architecture, claim depth, and voice —
-  not for premature compression according to official limits.
-  Length-limit checks only occur during late-stage submission polish if the user
-  explicitly requests them.
-- Journal-fit concerns are separate from evidence and logic concerns. Do not use journal-fit reasoning to override evidence boundaries.
-- If the target journal is not in the built-in list, and the user provides a submission guide URL
-  plus 3–4 recent papers from that journal, the skill can distill a journal profile on demand.
-  See `references/journals/_distill.md` for the full distillation workflow.
-  Only trigger this when the user explicitly requests it.
+- Journal-fit concerns are separate from evidence and logic concerns.
+
+Writing style is guided by the House Rules in `references/workflow/writing.md` and by reference paper fragments in `reference_papers/key_{section}/`. No journal-specific style profiles are loaded.
 
 ## Micro-drafting and Micro-polishing
 
@@ -257,7 +243,7 @@ Rules:
 - Larger requests should be handled as provisional outlines or section-by-section planning, not final prose.
 - Each writing unit is drafted in its own turn. After each unit, ask the user: keep / revise / expand / continue to next unit.
 - Do not cross section boundaries in one turn.
-- Drafting order: Methods → Results → Introduction → Discussion → Conclusion → Abstract (default).
+- Drafting order: Methods → Results → Introduction → Discussion → Abstract（default；如目标期刊有独立 Conclusion 则放在 Discussion 之后）
 
 ### Polish rules
 
@@ -280,28 +266,27 @@ It is not AI-detection evasion.
 It does not hide weak evidence.
 It does not strengthen unsupported claims.
 
-## Writing Blueprint
+## Writing Architecture
 
-写作遵循三层嵌套：
+写作遵循 context-first 原则：
 
 ```
-全文架构（03_section-architecture.md）
-  → 逐段蓝图（03_writing-blueprint.md）：每段功能 + 句子推进顺序
+全文架构（03_section-architecture.md）：论文顺序组织，段落级粒度（P-ID、段落功能、证据指针、主张边界）
+  + reference_papers/key_{section}/：前人论文相关片段（写作上下文）
     → 正文草稿（04_manuscript-draft.md）
 ```
 
-起草前确认当前段在 blueprint 中有段落功能和句子推进顺序。
-句子推进仅 Results、Introduction、Discussion、Abstract 段需要；routine Methods 段只需段落功能。
+起草前确认当前段在 section-architecture 中有段落合同。逐句大纲（sentence slots）已废弃——过度指令约束会压制写作质量。写作的正确方式是：先加载足够的背景知识（前人如何写、段落科学功能、术语边界），然后自然推进句子。
 
 ## Resume and Update Behavior
 
 When the user returns to a stage with an existing output file:
 
 1. Read the existing file.
-2. Preserve confirmed content — do not restart from scratch.
+2. Preserve confirmed decisions — do not restart from scratch. Remove obsolete or contradictory wording.
 3. Identify what has changed or needs updating.
 4. Update the relevant sections only.
-5. Generate an Update Summary at the end of the file.
+5. Do not generate append-only history sections. Archive old versions to `old/` or rely on version control if needed.
 6. Do not regenerate confirmed units unless the user requests revision.
 
 ## Missing Information and Confirmation
@@ -354,11 +339,11 @@ Each stage may hand off to one or more subsequent stages. Handoff is never autom
 
 **Review→Writing handoff:** Each review round — GPT 决策，ClaudeCode 执行：
 1. ClaudeCode compiles raw input into `05_review-round{N}A_source.md`.
-2. ClaudeCode packages A_source + manuscript + 03 files + journal profile + reference papers → user sends to GPT.
+2. ClaudeCode packages A_source + manuscript + 03 files + reference papers → user sends to GPT.
 3. GPT outputs `05_review-round{N}B_report.md` (Issue Log with Accept/Defer/Reject + Revision Contract + Patch List).
 4. **Backpropagation Gate:** Read `Backpropagation level` in B_report.
     - Hard Backpropagation → archive affected 01/02/03, update upstream files, wait for user confirmation, then edit 04.
-    - Soft Blueprint Update → update only affected P-ID(s) in `03_writing-blueprint.md`, no archive by default, then edit 04.
+    - Soft Section-Architecture Update → update only affected P-ID(s) in `03_section-architecture.md`, no archive by default, then edit 04.
     - No Backpropagation → proceed directly to writing / polish.
 5. ClaudeCode copies base manuscript to `04_writing/04_manuscript-reviewN.md`. **Never edit the base directly.**
 6. ClaudeCode executes Patch List on the copy.
@@ -413,7 +398,7 @@ exact write action.
 
 Full Zotero integration reference: `references/zotero/README.md`
 
-**Hard rule — full-text Zotero searches:** Before pulling full-text content (PDFs, Methods/Results paragraphs), explicitly ask the user whether to use subagent + haiku to avoid flooding the main context window. See README for detail.
+**Hard rule — full-text Zotero searches:** Before pulling full-text content (PDFs, Methods/Results paragraphs), confirm the retrieval scope and use a bounded extraction process that does not load complete papers into the active manuscript-writing context. See README for detail.
 
 **Hard rule — PDF reading prohibited for style reference:** When the skill needs to reference actual paper text (e.g., for writing style comparison, method phrasing, or narrative structure), **never use Zotero MCP `get_content` with `include pdf:true`** to extract paper text. Instead: (1) ask the user whether they have pre-converted MD files (from zotero-mineru-plugin or similar PDF→MD pipeline); (2) use the mineru-converted `output.md` files in Zotero storage (these are complete full-text MD, produced by zotero-mineru-plugin); (3) never attempt to read PDF binary via MCP for text extraction. The user's zotero-mineru-plugin pipeline produces clean MD files that should be the primary source for paper text.
 

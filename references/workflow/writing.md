@@ -2,13 +2,29 @@
 
 ## Purpose
 
-This file defines **how to execute a writing task**. It controls the writing process. Journal-specific prose style comes from `{journal}.md`. Non-negotiable prohibitions come from `## House Rules`.
+This file defines **how to execute a writing task**. It controls the writing process. Non-negotiable prohibitions come from `## House Rules`.
 
 The writing workflow generates manuscript prose one unit at a time, following the architecture defined in the structure stage. Journal voice is applied during drafting, not as a post-hoc layer. Context is loaded just-in-time.
 
 ## When to Use
 
-Run when: structure stage is complete with confirmed `03_section-architecture.md`; target journal is confirmed. Do NOT run when: structure is incomplete; user only wants to polish (use polish workflow).
+Run when: structure stage is complete with confirmed `03_section-architecture.md`. Do NOT run when: structure is incomplete; user only wants to polish (use polish workflow).
+
+---
+
+## 03 → 04 一致性检查
+
+每次起草或修改 04 单元之前，对照项目的三份 03 文件检查：
+
+1. **主角是否漂移** — 当前单元是否仍然服务于 03_section-architecture 定义的主角？
+2. **主张是否超过证据** — 关联是否写成了因果？动词强度是否超过 03_terminology 规定的 claim-strength 边界？
+3. **术语是否越过 section exposure** — 是否在禁止的 section 中使用了受限术语？（对照 03_terminology 的各节曝光规则）
+4. **图号和 panel role 是否一致** — 引用的图件是否与 03_figure-outline 中的定义一致？
+5. **关键概念是否混淆** — 03_terminology 中规定必须区分的概念（如 signed/unsigned）是否被混用？
+6. **限制是否仍然可见** — 03 规定的硬边界和 diagnostic limitation 是否在正文中保留？
+7. **是否重新引入了已被 03 删除的旧决策** — 检查 04 文本中是否出现了 03 已明确移除的措辞、公式或叙事元素？
+
+如果 04 暴露了真正的架构变化需求，先更新并压缩 03 的对应条目，再修改 04。不在 03 中保留新旧两个版本。
 
 ---
 
@@ -16,70 +32,83 @@ Run when: structure stage is complete with confirmed `03_section-architecture.md
 
 以下规则来自先前审稿教训，**对所有期刊生效，永远加载**：
 
-1. **段首先给结论。** 第一句是本段发现或主张。
+1. **段首句承担段落功能。** Results 段落 result-first；Discussion 解释段落 claim-first；Introduction 段首执行 rhetorical move；Methods 段首 topic/operation-first；limitation 段 scope-first 允许。
    Good: "The greatest cumulative intensity of MHWs is observed..."（Gou 2025 NCC）
-   Bad: "Across the global eddy population, stronger nonlinearity is accompanied by stronger surface thermohaline contrasts, consistent with stronger rotational dominance maintaining these contrasts during propagation" — 段首铺垫背景和机制，而非报发现
+   Bad: 段首铺垫背景和机制，而非执行该段的功能
 
 2. **一段只做一件事。** 每段承担一个功能：发现 / 机制 / 对比 / 边界 / 意义。
-   Bad: 一段中混入 U-EKE 关联 + Amp/R 分解 + 区域 shear 趋势 + 背景约束解释 + "without closing a full energy budget"——六件事塞一段
+   Bad: 一段中混入变量 A 与变量 B 的关联 + 分量分解 + 区域趋势 + 背景解释 + "without closing a full budget"——六件事塞一段
 
-3. **证据强度决定动词强度。** 充分证据用 show / find，机制推断用 suggest / indicate。
+3. **证据强度决定动词强度。**
+   - 直接测量结果 → show / find
+   - 统计关联 → is associated with / is consistent with
+   - 有限推断 → suggests
+   - 可能物理解释 → may reflect / could help explain
+   - 因果陈述 → 仅在有因果识别设计时使用
    Good: "Analysis...suggests that the hotspot warming..."（Li 2026 NCC）
-   Bad: "Their close temporal agreement (R=0.90) indicates that the altimetry-era EKE increase is expressed at the eddy-object level as faster eddy rotation" — 相关性用 "indicates" 过强，应为 "is consistent with"
+   Bad: 相关性用 "indicates" 过强，应为 "is consistent with"
 
 4. **结果句带齐变量、方向、范围。** 什么变量、在哪、何时、增强还是减弱。精确数值从 figure code/output 获取。
    Good: "We show that over the past 22 years, parts of the ocean have experienced..."（Yang Kai 2026 NCC）
-   Bad: "Boundary-crossing transport magnitude has also risen for both heat and salt." — 缺少百分比、区域、时段
+   Bad: "Transport magnitude has risen for both heat and salt." — 缺少百分比、区域、时段
 
 5. **先现象，后机制，再意义。**
    Good: "Globally, there is a significant increase in EKE and SST gradients..."（MM 2021 NCC）
-   Bad: "This larger anomaly content is expressed at boundaries as increased transport magnitude" — 机制动词 "is expressed at" 出现在现象陈述之前
+   Bad: "This larger anomaly content is expressed at boundaries as increased transport" — 机制动词出现在现象陈述之前
 
 6. **限定后置，不散布防御性否定句。** 先写发现，再补范围或例外。Scope qualifier（区域、样本、时段）可前置，defensive caveat 不可前置。用正面陈述替代否定句式；每类限制最多保留一次，其余集中到 Methods 或 Discussion boundary 段落。
    Good: "There is strong natural multidecadal variability... however..."（Li 2026 NCC）
-   Bad: "Whether larger anomaly content produces coherent net transport depends on eddy polarity, crossing pathway, and regional setting." — "Whether" 防御性开头
-   Bad: "not a closed material-trapping estimate" / "does not close the c_x trend diagnostic" — 否定句自我防御
+   Bad: "Whether larger anomaly content produces coherent net transport depends on polarity, pathway, and regional setting." — "Whether" 防御性开头
+   Bad: "not a closed budget estimate" / "does not close the trend diagnostic" — 否定句自我防御
 
 7. **术语定义一次，全文锁定。** 术语权威来源：`03_terminology.md`。
-   Bad: 同一概念出现 "thermohaline signatures" / "thermohaline anomalies" / "thermohaline contrasts" / "thermohaline character" 四种变体。
+   Bad: 同一概念出现 "signatures" / "anomalies" / "contrasts" / "character" 四种变体。
 
 ---
 
-## Load Order
+## Unit Context Packet
 
-**03 看骨架，04 看工艺。** 写作时不加载整个期刊 profile。
+起草每个 04 单元时，不再加载三份 03 全文和所有参考论文，而是构建一个限定的上下文包。
 
-### Always load:
+上下文包含五项：
 
-1. `## House Rules`（本文件）
-2. `03_terminology.md` 全文
-3. `03_writing-blueprint.md` — 当前 P-ID 的段落功能和句子推进
-4. `{journal}.md` → `## Shared` + `## {current section}`（不做筛选，全量保留）
+1. **段落合同** — `03_section-architecture.md` 中对应单元的一行合同
+2. **证据关节** — `03_figure-outline.md` 中对应的图卡
+3. **术语边界** — `03_terminology.md` 中与该单元相关的术语条目
+4. **已验证内容** — `02_methods/` 和源数据中已核实的方法和数字
+5. **期刊声音** — 目标期刊 profile 的当前 section 规则
 
-### Per-section context（subagent 或直接定位）:
+此外，加载对应 section 的 reference snippets（`reference_papers/key_{section}/`），学习前人的段落推进节奏和句式结构。不加载无关 section、无关图片或完整参考论文全文。
 
-从 03 文件提取当前 section 的材料。**按 section 级加载，不按段落 ID。** 段落会频繁变动。
+### 优先级顺序
 
-输入：
-- `03_section-architecture.md` → 当前 section 整节
-- `03_figure-outline.md` → 当前 section 涉及的图面板
+当来源冲突时，按以下优先级：
 
-输出格式：
+1. 已验证的项目证据和用户确认的方法
+2. 用户确认的主张和术语边界
+3. 段落合同
+4. 图件逻辑
+5. 目标期刊 profile
+
+参考论文片段用于学习修辞形式，但永远不能添加项目事实、强化主张或推翻术语和证据边界。
+
+### 参考片段
+
+写作前检查 `reference_papers/key_{section}/` 目录下是否有前人论文片段。
+
+- **有片段** → 加载作为写作上下文，学习其段落推进节奏和句式结构。不得复制其中的科学内容、具体数字或 distinctive phrasing。
+- **无片段或缺少目标论文** → 按 fragment-extraction.md 的四种状态处理：有论文则询问提取、无论文则提醒补充。
+
+片段库按 section 组织：
 ```
-## Section Target
-- Section / Function: [原文摘录]
-
-## Relevant Architecture
-[section-architecture 原文摘录]
-
-## Relevant Figure Panels
-[figure-outline 原文摘录]
-
-## Exclusions
-[相邻但不应写入本节的内容]
+reference_papers/
+  key_intro/          # Introduction 写作参考
+  key_results_sec1/   # Results §1 写作参考
+  key_results_sec2/   # Results §2 写作参考
+  key_results_sec3/   # Results §3 写作参考
+  key_discussion/     # Discussion 写作参考
+  key_methods/        # Methods 写作参考
 ```
-
-**不筛选期刊规则。** Shared 和当前节规则全量保留。subagent 只做 03 文件内容定位。
 
 ### Evidence sourcing:
 
@@ -90,25 +119,29 @@ Run when: structure stage is complete with confirmed `03_section-architecture.md
 
 ## Pre-draft Contract
 
-每次起草前，建立 local contract。从 blueprint 和 journal profile 获取，逐项确认后进入 Drafting。
+每次起草前，建立 local contract。从 section-architecture 获取，逐项确认后进入 Drafting。
 
-1. **确认 P-ID：** 当前段在 `03_writing-blueprint.md` 中有 P-ID 和段落功能。
-2. **确认句子推进：** 如该段需要句子推进顺序但 blueprint 中缺失 → 先生成提议 → 用户确认 → 再起草。仅 Results、Introduction、Discussion、Abstract 段需要句子推进；routine Methods 段只需段落功能。
-3. **确认 opening move：** 从 `{journal}.md` 当前 section 获取（首句角色、段落结构、禁止项）。
-4. **确认可用材料：** facts, figures, claims（从 03 文件提取结构和证据指向）。**精确数值从对应 figure 的代码运行结果中获取，不由 structure 预设。** 统计口径、样本范围等细节缺失时先与用户确认。
-5. **确认禁写内容：** 不属于本节的主张、机制解释、Discussion 素材。
+1. **确认 P-ID 和段落角色：** 当前段在 `03_section-architecture.md` 中有 P-ID、段落功能和主张边界。
+2. **加载参考片段：** 检查 `reference_papers/key_{section}/` 下是否有片段；如有则加载作为写作上下文；如缺少目标论文则按 `fragment-extraction.md` 提取。
+3. **确认可用材料：** facts, figures, claims（从 03 文件提取结构和证据指向）。**精确数值从对应 figure 的代码运行结果中获取，不由 structure 预设。** 统计口径、样本范围等细节缺失时先与用户确认。
+4. **确认禁写内容：** 不属于本节的主张、机制解释、Discussion 素材。
 
 ## Evidence-to-Claim
 
 - 每个 claim 必须能追溯到 source material（03 文件或用户提供的数据）。
-- 证据不足 → 降级表达（show → suggest → indicate → may），不补写事实。
+- 证据不足时，按证据类型降级表达：
+  - 直接测量 → show / find
+  - 统计关联 → is associated with / is consistent with
+  - 有限推断 → suggests
+  - 可能物理解释 → may reflect / could help explain
+- 不要将 indicate 作为通用中间等级。
 - Results 不写文献评价和 broad implication。Discussion 不重复 Results 数字清单。
 
 ## Drafting
 
-按 Pre-draft Contract 起草。遵循 journal section 规则。不添加无支撑的解释。不跨 section 边界搬运内容。
+按 Pre-draft Contract 起草。遵循 House Rules。不添加无支撑的解释。不跨 section 边界搬运内容。
 
-默认起草顺序：Methods → Results → Introduction → Discussion → Conclusion → Abstract。
+默认起草顺序：Methods → Results → Introduction → Discussion → Abstract。如果目标期刊有独立 Conclusion 则放在 Discussion 之后。
 
 每段之后用户确认：保留 / 修改 / 扩展 / 继续。
 
@@ -116,16 +149,9 @@ Run when: structure stage is complete with confirmed `03_section-architecture.md
 
 每个 draft unit 返回：
 1. **Draft Text** — 起草的段落正文
-2. **Slot Trace** — 当段落有 sentence slots 时必须输出：
-
-   | Slot | Draft sentence / clause | Evidence used | Notes |
-   |------|------------------------|---------------|-------|
-   | S1 | [正文对应句] | [证据来源] | [备注] |
-
-   检查：每个 slot 有对应正文句；无 slot 外的额外 claim；如有，标记 `[EXTRA CLAIM — CONFIRM WITH USER]`。
-3. **Evidence and Boundary** — 此段用了什么证据、主张什么、不主张什么
-4. **中文核对 / Author Check** — 中文简述此段做了什么，方便中文用户快速确认
-5. **User choice** — 保留 / 修改 / 扩展 / 继续下一单元
+2. **Evidence and Boundary** — 此段用了什么证据、主张什么、不主张什么
+3. **中文核对 / Author Check** — 中文简述此段做了什么，方便中文用户快速确认
+4. **User choice** — 保留 / 修改 / 扩展 / 继续下一单元
 
 如存在 unresolved evidence gaps 或术语风险，一并报告。
 
@@ -137,9 +163,7 @@ Run when: structure stage is complete with confirmed `03_section-architecture.md
 
 起草后检查：
 - [ ] House Rule 合规（段首、一段一事、动词强度、限定位置）
-- [ ] Journal rule 合规（从 `{journal}.md` 当前 section 获取的规则）
-- [ ] 段落功能与 `03_writing-blueprint.md` 一致
-- [ ] Slot Trace 完整：每个 slot 有对应正文句；无未经计划的额外 claim
+- [ ] 段落功能与 `03_section-architecture.md` 一致
 - [ ] 所有 claim 可追溯到 source
 - [ ] 术语与 `03_terminology.md` 一致
 - [ ] 无跨 section 边界污染
@@ -156,11 +180,11 @@ Run when: structure stage is complete with confirmed `03_section-architecture.md
 
 ## Required Inputs
 
-**Structure-stage files:** `03_structure/03_section-architecture.md`, `03_structure/03_writing-blueprint.md`, `03_structure/03_figure-outline.md`
+**Structure-stage files:** `03_structure/03_section-architecture.md`, `03_structure/03_figure-outline.md`
 
 **Supporting files:** `01_prepare/01a_project-brief.md`, `01_prepare/01b_evidence-inventory.md`, `02_methods/02a_data.md`, `02_methods/02b_methods.md`, `03_structure/03_terminology.md`
 
-**Journal profile:** `{journal}.md` → `## Shared` + `## {current section}`
+**Reference snippets（推荐）:** `reference_papers/key_{section}/` — 前人论文相关片段。如缺失，按 `references/workflow/fragment-extraction.md` 提取。
 
 ## Handoff
 
