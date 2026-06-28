@@ -264,6 +264,30 @@ When polishing Chinese or Chinese-influenced English:
 Hard rule:
 These checks improve clarity; they must not strengthen claims beyond the evidence.
 
+### Semantic Repetition Scan
+
+润色时检查同一段落或摘要中是否用不同表述讲了同一事实：
+
+- `near cancellation` ≈ `trend weak / insignificant / indistinguishable from zero`
+- `strengthened` ≈ `increased` 指向同一变量
+- 同一时间范围在摘要中重复出现
+- 同一关键数值在相邻句中多次出现
+
+出现语义重复时，保留更强或更精确的表述，删除冗余版本。
+
+### Rhetorical Detour Triggers
+
+以下结构不自动判错，但触发审查。审查标准：删除该结构后，前后句的逻辑关系是否仍然成立？如果不成立，说明这个结构在假装推进而实际没有。
+
+- `not only ... but also`
+- `rather than`
+- `whether ... depends on`
+- `while / although / despite` 开句（当让步从句推迟了主句主张时）
+- `however / therefore / furthermore / moreover`（检查是否承载真实因果或对比）
+- `This suggests ... Whether ... is a question for ...` 连续 hedging 链
+
+以上为 trigger，不是禁用词表。顶刊论文也使用这些词，关键在于它们是否真实推进了论点。
+
 ## Target Journal Voice
 
 **Hard rule:** Do not decide the target journal for the user. Use the user-specified journal as a

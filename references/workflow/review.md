@@ -53,11 +53,12 @@ this purpose.
    section function, figure logic, overclaiming patterns).
 3. Skill gathers required materials:
    - Current manuscript
-   - Structure files (`03_section-architecture.md`, `03_writing-blueprint.md`, `03_figure-outline.md`)
+   - Structure files (`03_section-architecture.md`, `03_figure-outline.md`)
    - Methods files (`02a_data.md`, `02b_methods.md`)
    - Evidence inventory (`01b_evidence-inventory.md`)
    - Target journal profile (if specified)
    - Reference papers in `03_structure/reference_papers/` (if available, for style/structure benchmarking)
+     **How to obtain:** Always read MinerU-converted `output.md` from Zotero storage first (clean full text, readable via Read tool). Do NOT use `get_content` (severe truncation, garbled PDF extraction). If no `output.md` exists for the target paper, remind the user to run MinerU conversion before extraction.  
 4. Skill assembles a complete review prompt and saves it to `05_review/05_review-round{N}A_source.md`.
 5. User copies the prompt to GPT / Gemini / other LLM.
 6. User brings the LLM's response back.
@@ -85,7 +86,8 @@ ClaudeCode 不替代 GPT 做判断。ClaudeCode 的职责是：编译原始材�
  2. ClaudeCode packages materials for GPT:
     - A_source file
     - Current manuscript (04_manuscript-*.md)
-    - 03_section-architecture.md, 03_writing-blueprint.md, 03_figure-outline.md, 03_terminology.md
+    - 03_section-architecture.md, 03_figure-outline.md, 03_terminology.md
+    - CLAUDE.md (project memory: protagonist lock, terminology rules, journal constraints, prohibitions)
     - Target journal profile (references/journals/{journal}.md)
     - 2–4 reference papers (from 03_structure/reference_papers/)
     → ClaudeCode 打包为 GPT Journal Audit Packet（见模板），user 发送给 GPT
@@ -106,7 +108,7 @@ ClaudeCode 不替代 GPT 做判断。ClaudeCode 的职责是：编译原始材�
     a. Classify each accepted issue as Hard / Soft / None per `## Review Backpropagation Gate` below.
 
     b. Hard Backpropagation: update 01/02/03 → user confirms → then modify 04.
-       Soft Blueprint Update: update only affected P-ID(s) in `03_writing-blueprint.md`.
+       Soft Section-Architecture Update: update only affected P-ID(s) in `03_section-architecture.md`.
        No Backpropagation: proceed directly to writing / polish.
 
     c. User confirms the selected level before any file edit.
@@ -236,7 +238,7 @@ use lightweight review. It does NOT create 05 files and does NOT require GPT.
 
 ## Required Inputs
 
-**Core files:** `03_structure/03_section-architecture.md`, `03_structure/03_writing-blueprint.md`, `03_structure/03_figure-outline.md`,
+**Core files:** `03_structure/03_section-architecture.md`, `03_structure/03_figure-outline.md`,
 current manuscript (`04_writing/04_manuscript-draft.md` or latest `04_manuscript-reviewN.md`
 / `04_manuscript-reviewN-polishM.md`)
 
@@ -422,14 +424,14 @@ Then follow Backpropagation Levels below.
 
 2. **If level = Hard Backpropagation:**
    - Archive affected 01/02/03 files to `old/`（加日期后缀）。
-   - Update upstream files from coarse to fine（01 → 02 → 03_section-architecture → 03_writing-blueprint → 03_figure-outline → 03_terminology）。
+   - Update upstream files from coarse to fine（01 → 02 → 03_section-architecture → 03_figure-outline → 03_terminology）。
    - User confirms upstream changes at each layer.
    - Only then copy and patch 04.
 
-3. **If level = Soft Blueprint Update:**
-   - Update only affected P-ID(s) in `03_writing-blueprint.md`。
+3. **If level = Soft Section-Architecture Update:**
+   - Update only affected P-ID(s) in `03_section-architecture.md`。
    - Do not archive unless user explicitly requests it.
-   - Single user confirmation on the blueprint change.
+   - Single user confirmation on the section-architecture change.
    - Then copy and patch 04.
 
 4. **If level = No Backpropagation:**
@@ -444,7 +446,7 @@ Then follow Backpropagation Levels below.
 |------|-------------|
 | Paper protagonist / Not protagonist / Main consequence | `03_section-architecture.md` Protagonist Lock |
 | Main gap / Central claim | `03_section-architecture.md` Argument Chain |
-| Paragraph function / sentence sequence changes | `03_writing-blueprint.md` |
+| Paragraph function / paragraph contract changes | `03_section-architecture.md` |
 | Section-level changes | `03_section-architecture.md` Section Architecture |
 | Figure logic changes | `03_figure-outline.md` |
 | Terminology changes | `03_terminology.md` |
@@ -474,7 +476,7 @@ Then follow Backpropagation Levels below.
 
 **Revision Contract Handoff destination:**
 - [x] 03_section-architecture (Protagonist Lock, Section Architecture)
-- [x] 03_writing-blueprint (paragraph function and sentence sequences)
+- [x] 03_section-architecture (paragraph contracts for affected P-IDs)
 - [x] 03_figure-outline (Fig. 1–3 scientific questions)
 - [x] 03_terminology (forbidden: [vague term 1], [vague term 2], [vague term 3])
 - [x] 04_manuscript
@@ -482,7 +484,7 @@ Then follow Backpropagation Levels below.
 **执行顺序：**
 1. Archive 旧 03 到 `old/`
 2. 更新 `03_section-architecture.md` Protagonist Lock: protagonist → [process B]; not protagonist → [process A]; forbidden narrative moves → "不要把 [A] 当主角"
-3. 更新 `03_writing-blueprint.md`: 受影响 P-ID 的段落功能 → [调整内容]
+3. 更新 `03_section-architecture.md`: 受影响 P-ID 的段落合同 → [调整内容]
 4. 更新 `03_figure-outline.md`: Fig. 1–3 每张写入 scientific question
 5. 更新 `03_terminology.md`: forbidden phrases 加入 "[vague term 1]", "[vague term 2]", "[vague term 3]"
 5. 等待用户确认 03 更新
@@ -545,6 +547,12 @@ You are the decision-maker. ClaudeCode is the executor.
 - Main consequence:
 - Supporting diagnostics:
 - Forbidden narrative moves:
+
+## Project constraints (from CLAUDE.md)
+
+- Terminology rules (preferred/discouraged/forbidden):
+- Journal-specific constraints:
+- Writing workflow rules:
 
 ## Current manuscript
 
@@ -611,7 +619,7 @@ When the user asks to apply review feedback to the manuscript, complete these st
 ```
 [ ] 0. Check `Backpropagation level` in Revision Contract.
        - hard → archive affected 01/02/03, update upstream files, confirm each layer, then edit 04
-       - soft-blueprint-only → update affected P-ID(s) in `03_writing-blueprint.md`, no archive by default, confirm once, then edit 04
+       - soft-section-architecture-only → update affected P-ID(s) in `03_section-architecture.md`, no archive by default, confirm once, then edit 04
        - none → do not update 03; proceed directly to writing / polish
        Record any upstream or blueprint changes in `04_writing-log.md`.
 
@@ -645,7 +653,7 @@ This checklist applies identically to polish→writing handoffs (producing
 - **Back to structure:** section architecture wrong, figure order illogical, central story unclear,
   journal narrative mismatch. Action: classify Backpropagation level first.
   Hard → archive and update affected 01/02/03 files.
-  Soft → update only affected P-ID(s) in `03_writing-blueprint.md`.
+  Soft → update only affected P-ID(s) in `03_section-architecture.md`.
   Record in writing-log, then return to writing.
 - **Back to methods:** methods cannot support claim, processing unclear, statistical test missing.
   Action: update `02a_data.md and 02b_methods.md`, re-draft affected units.

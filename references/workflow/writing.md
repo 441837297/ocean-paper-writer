@@ -39,6 +39,8 @@ Run when: structure stage is complete with confirmed `03_section-architecture.md
 2. **一段只做一件事。** 每段承担一个功能：发现 / 机制 / 对比 / 边界 / 意义。
    Bad: 一段中混入变量 A 与变量 B 的关联 + 分量分解 + 区域趋势 + 背景解释 + "without closing a full budget"——六件事塞一段
 
+   **段落功能标签：** 起草前明确本段属于哪一类——restate finding / explain mechanism / compare with literature / discuss implication / discuss limitation / propose future work / methodological caveat / synthesis。一段只选一个标签。
+
 3. **证据强度决定动词强度。**
    - 直接测量结果 → show / find
    - 统计关联 → is associated with / is consistent with
@@ -63,6 +65,21 @@ Run when: structure stage is complete with confirmed `03_section-architecture.md
 
 7. **术语定义一次，全文锁定。** 术语权威来源：`03_terminology.md`。
    Bad: 同一概念出现 "signatures" / "anomalies" / "contrasts" / "character" 四种变体。
+
+8. **一句一事，直接推进，不绕弯。** 每句只承载一个核心信息，先给结论再补限定。禁用 "not X but Y" / "rather than" / "since"（表原因） / "therefore" / "not only but also" 等绕弯连接词；禁用 "Whether X depends on Y" 设问自答句式——直接陈述 X 由 Y 决定。一段内不超过一个 "however"。如果一句话有三个以上逗号分隔的逻辑转折，拆成两句。
+   Bad: "This weak net tendency does not arise from a static system but from an active reorganization"
+   Bad: "Whether larger anomaly content produces coherent net transport depends on eddy polarity, crossing pathway, and regional setting."
+   Bad: "These constraints support a pathway from stronger currents to faster rotation, without closing a full energy budget."
+   Good: "Rotational polarity governs the flux direction. Thermal structure modulates only the magnitude."
+   Good: "Net transport coherence depends on eddy polarity, crossing pathway, and regional setting."
+
+9. **不因规避禁用词而添加无谓解释。** 如果删除 "not X but Y" 后句子已直接成立，不要再补半句解释为什么。不给第一次阅读的读者增加理解负担。
+
+10. **方法选择自然衔接，不跳转。** 不能前一句讲某方法的理论可能性、后一句突然切到 "we therefore used..."。方法段直接陈述做了什么、为什么在当前设定下合理。
+
+    **方法不是数据源清单。** 不用 "Using A, B, C, and D, we examine X, Y, and Z" 的堆砌结构。方法句是回答 gap 的动作，用一句紧凑描述即可：`Using [compact diagnostic], we test whether [main unresolved question].` 具体数据源和技术参数放在 Methods。
+
+11. **技术细节不前置堆砌。** 正文保持清晰直观。复杂技术细节集中在 Methods 或专门的归因/方法小节，不在 Results 主结果段落堆砌。
 
 ---
 
@@ -177,6 +194,10 @@ reference_papers/
 - 要求的 claim 超出证据边界
 
 ---
+
+## Abstract Drafting
+
+Abstract 最后写。起草和检查规则见 `writing-abstract.md`。
 
 ## Required Inputs
 

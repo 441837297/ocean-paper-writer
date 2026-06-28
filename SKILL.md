@@ -71,9 +71,24 @@ Do not turn every output into full bilingual manuscript text by default. Chinese
 
 Skill 启动时，先检查项目目录下是否有 `CLAUDE.md`：
 - **有** → 读取并遵守。其中的术语、路径、禁止事项、决策记录优先于默认行为。
-- **无** → 建议用户创建，使用模板 `references/templates/CLAUDE.md`，放在项目根目录。新项目将未创建的文件标为 `[not created yet]`。
+- **无** → 从模板 `references/templates/CLAUDE.md` 自动创建并注入通用写作规则。
 
-CLAUDE.md 是项目记忆，不是 skill 规则的副本。通用写作规则（House Rules、Do Not Do 等）已由 skill 自动加载，此处不重复。
+CLAUDE.md 是项目记忆，也是写作规则的运行时存放处。
+
+#### CLAUDE.md 自动注入逻辑
+
+1. 项目无 `CLAUDE.md` → 复制 `references/templates/CLAUDE.md` 到项目根目录，填入托管区块中的通用写作规则。报告：`已创建项目级 CLAUDE.md 并注入写作规则。`
+2. 项目有 `CLAUDE.md` 但无 `<!-- ocean-paper-writer-rules:start -->` 标记 → 从模板提取托管区块内容，追加到文件末尾。报告：`已在现有 CLAUDE.md 中追加写作规则。`
+3. 项目有 `CLAUDE.md` 且已有托管区块 → 对比模板中的 `version=` 与现有区块的版本号。若版本不同，提示差异并询问用户是否更新。**不自动覆盖。** 报告：`检测到写作规则版本差异（当前: X, 最新: Y），是否更新？`
+
+托管区块格式：
+```
+<!-- ocean-paper-writer-rules:start version=YYYY-MM-DD -->
+...规则内容...
+<!-- ocean-paper-writer-rules:end -->
+```
+
+托管区块外的内容永远不动。用户在区块外写的项目专属指令、导师意见、术语列表均不受影响。
 
 ---
 
@@ -203,8 +218,10 @@ generating output files.
 | methods | `references/workflow/methods.md` | `references/templates/02a_data.md`, `references/templates/02b_methods.md` |
 | structure | `references/workflow/structure.md` | `references/templates/03_section-architecture.md`, `references/templates/03_figure-outline.md`, `references/templates/03_terminology.md` |
 | writing | `references/workflow/writing.md` | `references/templates/04_manuscript-draft.md`, `references/templates/04_writing-log.md` |
+| writing | `references/workflow/writing-abstract.md` | (摘要起草约束 + 自检，写作阶段起草摘要时加载) |
 | review | `references/workflow/review.md` | `references/templates/05_review-source.md`, `references/templates/05_review-report.md` |
 | polish | `references/workflow/polish.md` | (无独立模板 — polish 修改记录写入 `04_writing-log.md`) |
+| polish | `references/workflow/polish-abstract.md` | (摘要润色检查，润色阶段处理摘要时加载) |
 | cover-letter | `references/workflow/cover-letter.md` | `references/templates/06_cover-letter.md` |
 
 Additional reference modules for writing:
