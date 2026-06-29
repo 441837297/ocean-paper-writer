@@ -15,7 +15,7 @@
 ## 2. 关键文件
 
 - 撰写纲要（全文架构 + 主张层级）：`03_structure/03_section-architecture.md`
-- 写作蓝图（逐段功能 + 逐句推进）：`03_structure/03_writing-blueprint.md`
+- 写作蓝图（段落功能 + 论证结构）：`03_structure/03_section-architecture.md`
 - 图表蓝图（每图科学问题 + caption 骨架）：`03_structure/03_figure-outline.md`
 - 术语表（唯一术语权威）：`03_structure/03_terminology.md`
 - 当前手稿：[最新版本路径；未起草则 `[not created yet]`]
@@ -26,7 +26,7 @@
 
 ### 动笔前必读
 1. `03_section-architecture.md` — 当前段落所属的 section 角色和主张层级
-2. `03_writing-blueprint.md` — 当前段落的段落功能和句子推进顺序
+2. `03_section-architecture.md` — 当前段落的 P-ID、段落功能、主张边界
 3. `03_terminology.md` — 确认术语，不临时造词
 4. 当前手稿最新版 — 确认上下文和衔接
 

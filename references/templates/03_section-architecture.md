@@ -16,7 +16,7 @@
 - project name: [from prepare]
 - working title: [from prepare]
 - target journal: [from prepare, or "not specified yet"]
-- journal profile loaded: [yes / no — profile name if yes]
+- journal guidance: [from reference papers — yes / no]
 - current stage: structure
 - last updated: [YYYY-MM-DD]
 - source files: `01_prepare/01a_project-brief.md`, `01_prepare/01b_evidence-inventory.md`, `02_methods/02a_data.md`, `02_methods/02b_methods.md`
@@ -28,8 +28,8 @@
 ## Target Journal and Narrative Direction
 
 - Target journal: [name or "not specified yet"]
-- Journal narrative identity: [key point from journal profile]
-- How the journal profile shapes this structure: [specific guidance]
+- Journal narrative identity: [derived from reference papers]
+- How reference papers shape this structure: [specific guidance]
 
 ## Central Story Route
 
@@ -45,7 +45,7 @@
 | Unresolved gap | [Specific unresolved gap] | [literature / evidence inventory] | [avoid unsupported novelty] | |
 | This paper's move | [What this paper does] | [methods + figures] | [do not claim unperformed analyses] | |
 | Decisive evidence | [Main evidence chain] | [figures / datasets / statistics] | [direct vs suggestive] | |
-| Bounded implication | [What the finding means] | [claim hierarchy + journal profile] | [avoid overextending] | |
+| Bounded implication | [What the finding means] | [claim hierarchy + journal guidance] | [avoid overextending] | |
 | Explicit limitation | [What this paper cannot claim] | [missing evidence checklist] | [must remain visible] | |
 
 **Argument-chain status:** [complete / partial / blocked]
@@ -115,9 +115,9 @@ Methods → Results → Discussion → Introduction → Conclusion → Abstract
 **Main text figures:** [N figures covering the central evidence chain]
 **Supplementary figures:** [N figures covering validation, sensitivity, supporting analysis]
 
-## Writing Blueprint Index
+## P-ID Index
 
-*本表是 `03_writing-blueprint.md` 的入口索引。具体段落功能、句子推进、禁写内容均在 blueprint 中。*
+*本表是全文段落的入口索引。每个 P-ID 在 Section Architecture 中有对应的段落功能和论证边界。*
 
 | Section | P-ID range | Section role |
 |---------|------------|-------------|

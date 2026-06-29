@@ -15,7 +15,6 @@
 - source manuscript: `04_writing/04_manuscript-draft.md` (or latest revision)
 - supporting files:
   - `03_structure/03_section-architecture.md`
-  - `03_structure/03_writing-blueprint.md`
   - `03_structure/03_figure-outline.md`
   - `03_structure/03_terminology.md`
   - `01_prepare/01b_evidence-inventory.md`
@@ -74,7 +73,6 @@
 - Backpropagation level: [hard / soft-blueprint-only / none]
 - Handoff destination:
   - [ ] 03_section-architecture
-  - [ ] 03_writing-blueprint
   - [ ] 03_figure-outline
   - [ ] 03_terminology
   - [ ] 04_manuscript
@@ -90,10 +88,6 @@
 - [ ] Protagonist Lock: [具体改动]
 - [ ] Argument Chain: [具体改动]
 - [ ] Section Architecture: [具体改动]
-
-### 03_writing-blueprint
-- [ ] Paragraph functions: [具体改动]
-- [ ] Sentence sequences: [具体改动]
 
 ### 03_figure-outline
 - [ ] Figure scientific questions: [具体改动]

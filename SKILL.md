@@ -113,6 +113,7 @@ Skill 启动时先问：
   - 01 prepare: [✓] project-brief, evidence-inventory
   - 02 methods: [✓] data, methods
   - 03 structure: [✓] section-architecture, figure-outline, terminology
+  - reference_papers: [✓] 已有 / [✗] 缺失（目标期刊范文 MD）
   - 04 writing: [N] 轮 review, [M] 轮 polish — 最新: 04_manuscript-reviewX-polishY.md
   - 05 review: [N] 轮审查完成
 - 缺失文件：[列出，如 CLAUDE.md / 无]
@@ -250,6 +251,11 @@ Additional reference modules for style naturalization:
 - Journal-fit concerns are separate from evidence and logic concerns.
 
 Writing style is guided by the House Rules in `references/workflow/writing.md` and by reference paper fragments in `reference_papers/key_{section}/`. No journal-specific style profiles are loaded.
+
+**When the user confirms a target journal, prompt them:**
+> 请将 2–4 篇 [Journal Name] 近期论文的 MD 全文放入项目的 `reference_papers/` 目录。这些论文将在 structure、writing、review、polish 和 cover-letter 阶段用于对标期刊风格、论证深度和段落惯例。
+
+If the user cannot provide reference papers immediately, proceed with general-purpose guidance and mark `[REFERENCE PAPERS PENDING]`. Do not block the workflow, but remind the user at each stage transition that reference papers will improve journal-specific output quality.
 
 ## Micro-drafting and Micro-polishing
 
@@ -432,6 +438,6 @@ Full Zotero integration reference: `references/zotero/README.md`
 - **Do not edit the base manuscript directly when incorporating review or polish feedback.** Copy it to `04_manuscript-reviewN.md` or `04_manuscript-reviewN-polishM.md` first, then edit the copy. The base manuscript is immutable.
 - **Do not create a separate polish log file.** All polish change records go into `04_writing-log.md` Revision Notes.
 - **Do not overcompress materials according to journal rules during early stages.** Compression happens in late-stage polish.
-- **Do not generate a cover letter without a confirmed target journal profile.**
+- **Do not generate a cover letter without a confirmed target journal and reference papers.**
 - **Do not let ClaudeCode make Accept/Defer/Reject decisions on review feedback.** ClaudeCode compiles A_source; GPT produces B_report. ClaudeCode executes. 决策和执行分离。
 - **Do not let GPT or any external LLM perform full-manuscript polish.** GPT outputs B_report; ClaudeCode executes. GPT candidate rewrites allowed only for Abstract, Introduction P1, Results lead sentences, title, or conclusion sentences.

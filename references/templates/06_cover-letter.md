@@ -10,13 +10,14 @@
 ## Inputs
 
 - Manuscript draft: `04_writing/04_manuscript-reviewN-polishM.md` (or latest confirmed manuscript)
-- Journal profile: `references/journals/[journal].md`
+- Reference papers: `reference_papers/` (2–4 篇目标期刊论文 MD)
 - Corresponding author: [name, email, institution — or `[MISSING]`]
 - Data/code availability: [URLs or reason — or `[MISSING]`]
 
-## Journal Scope (from profile)
+## Journal-Fit References
 
-[Extracted aims & scope from journal profile for contribution alignment]
+[从 reference_papers/ 中提取的目标期刊已发文献，用于期刊适配段落。
+列出 1-3 篇将在 cover letter 中引用的论文：Author (Year) Title, Journal.]
 
 ## Evidence Boundary Check
 
@@ -33,33 +34,43 @@
 [Date]
 
 The Editor-in-Chief
-[Editor Name]
 [Journal Name]
 
-Dear [Editor Name],
+Dear Editors,
 
 We submit our manuscript entitled "[Paper Title]" for consideration in
 [Journal Name].
 
-**Contribution Statement**
-[1–2 sentences explicitly referencing journal scope above]
+[One-sentence manuscript summary — what the paper reports, not a compressed abstract.]
 
-**Data and Code Availability**
-[Repository URLs, or "Data are not publicly available due to [reason]."]
+**Fit to [Journal Name]**
+[1–2 sentences referencing the journal's scope AND citing 1–3 related articles
+published in the journal. Frame this paper as extending that line of research.]
 
-**Conflict of Interest**
-The authors declare no conflict of interest.
+**Knowledge Gap**
+[One sentence: what previous studies focused on, what they left unexplored.]
 
-**Corresponding Author**
-[Name]
-[Email]
-[Institution]
+**Key Findings and Significance**
+[Headline findings. Direction + magnitude + dynamic trend.
+No multi-level estimation detail. No methodological defense.
+Keep the most important dynamic signal.]
+
+**Compliance**
+We confirm that this manuscript is original, has not been published previously,
+and is not under consideration for publication elsewhere. All authors have
+approved the manuscript and agree with its submission to [Journal Name].
+There are no conflicts of interest to declare.
+
+We sincerely hope that you will find our work appropriate for your journal
+and consider it for peer review. Thank you for your time and consideration.
 
 Sincerely,
-[Authors]
+[Corresponding Author Name]
+[Institution]
+[Email]
 
 ## Review Notes
 
-- Contribution alignment with journal scope: [confirmed / needs revision]
+- Journal-fit paragraph references: [confirmed / `[REFERENCE PAPERS PENDING]`]
 - Missing placeholders to fill before submission: [list]
 - User confirmation: [pending / confirmed]

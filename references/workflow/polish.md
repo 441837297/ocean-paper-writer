@@ -43,7 +43,7 @@ Classify the issue first:
 | `EVIDENCE_PROBLEM` | The claim is unsupported, overstates mechanism/causation/trend/climate implication, or lacks required citation | Mark `[POLISH BLOCKER]`; return to review, methods, prepare, or writing |
 | `PARAGRAPH_LOGIC_PROBLEM` | The paragraph has unclear topic sentence, mixed functions, weak internal sequence, or poor connection to adjacent units | If fixable within the unit, revise; if it requires new evidence or reordering, return to writing/review |
 | `LANGUAGE_PROBLEM` | The claim is supported but wording is unclear, verbose, repetitive, awkward, or overly generic | Polish the unit |
-| `JOURNAL_VOICE_PROBLEM` | The prose is supported but does not match the target journal's voice or level of accessibility | Polish with journal profile guidance |
+| `JOURNAL_VOICE_PROBLEM` | The prose is supported but does not match the target journal's voice or level of accessibility | Polish with reference paper guidance |
 | `CHINESE_INTENT_TRANSFER_PROBLEM` | The user's Chinese expression contains valid scientific intent but the English phrasing needs restructuring | Translate intent, not syntax; preserve claim/evidence/boundary |
 
 ## Universal Style Rules
@@ -183,7 +183,7 @@ Avoid overstating mechanisms, causation, trends, climate implications, or global
 
 ### Journal voice
 
-Loading a journal profile for polish: load `## Shared` + `## {current section}` + `## Late-stage Polish` from the journal profile.
+Deriving journal voice for polish: use 2–4 reference papers from `reference_papers/` to understand the target journal's narrative conventions, accessibility level, and paragraph craft patterns.
 
 - **GRL:** concise, single sharp message, short paragraphs, direct claims.
 - **JGR-Oceans:** rigorous, complete, transparent, methods depth visible in language.
@@ -422,7 +422,7 @@ conflicts with evidence boundary, `[CITATION NEEDED]` = citation required,
 `[CONFIRM WITH USER]` = needs user input.
 
 **Critical blockers:** no draft text provided; claim support unclear; review report missing when
-user asks for post-review polish; target journal specified by user but journal profile unavailable;
+user asks for post-review polish; target journal specified by user but reference papers unavailable;
 advisor comment unclear; citation needed for a claim that cannot be polished safely; unsupported
 claim that polish cannot strengthen.
 

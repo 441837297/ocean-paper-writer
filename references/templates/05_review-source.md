@@ -47,11 +47,9 @@
 - [ ] **Current manuscript:** `04_writing/04_manuscript-review{N-1}.md`（或最新版）
 - [ ] **03 结构文件:**
   - [ ] `03_structure/03_section-architecture.md`
-  - [ ] `03_structure/03_writing-blueprint.md`
   - [ ] `03_structure/03_figure-outline.md`
   - [ ] `03_structure/03_terminology.md`
-- [ ] **Target journal profile:** `references/journals/{journal}.md`
-- [ ] **Reference papers:** 2–4 篇目标期刊论文的 .md 全文（从 `03_structure/reference_papers/`）
+- [ ] **Reference papers:** 2–4 篇目标期刊论文的 .md 全文（从 `reference_papers/`）
 
 *ClaudeCode 在与用户交互时必须口头提醒：请将以上材料 + A_source 一起发给 GPT。*
 
@@ -59,4 +57,4 @@
 
 *ClaudeCode 编译完成。此文件 + Materials for GPT 清单中的所有文件，一起发给 GPT。*
 *GPT 分析后输出 `05_review-round{N}B_report.md`。ClaudeCode 依据 B_report 执行修改；涉及重大取舍或 Questions for User Confirmation 的内容，先向用户确认。*
-*ClaudeCode 口头提醒用户：「请将 A_source + manuscript + 03 文件 + journal profile + reference papers 一起发给 GPT。」*
+*ClaudeCode 口头提醒用户：「请将 A_source + manuscript + 03 文件 + reference papers 一起发给 GPT。」*

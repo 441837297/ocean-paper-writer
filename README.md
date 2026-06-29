@@ -43,9 +43,8 @@ prepare / methods / structure 阶段不依赖 Zotero；writing / review / polish
 2. **方法（Methods）** — 工具读取你的代码和数据描述，分两块记录：数据来源与预处理（`02a_data.md`），以及分析流程与统计方法（`02b_methods.md`）。
    你逐项确认或修正。
 
-3. **结构（Structure）** — 产出四个互不重复的文件，作为写作阶段的精准材料源：
-   - `03_section-architecture.md`（论文撰写纲要）：section role、P-ID range、主张层级、论证链。**03 只加载期刊 profile 的 Journal Identity 节。**
-   - `03_writing-blueprint.md`（写作蓝图）：逐段功能 + 逐句推进顺序，连接全文架构和正文草稿。
+3. **结构（Structure）** — 产出三个互不重复的文件，作为写作阶段的精准材料源：
+   - `03_section-architecture.md`（论文撰写纲要）：section role、P-ID range、主张层级、论证链。
    - `03_figure-outline.md`（图片蓝图）：每张图的科学问题、panel 内容、caption 骨架。
    - `03_terminology.md`（术语字典）：唯一术语权威来源，全文一致性检查。
 
@@ -66,8 +65,8 @@ prepare / methods / structure 阶段不依赖 Zotero；writing / review / polish
    **没有独立的润色日志文件** — 所有修改记录写入 `04_writing-log.md` 的 Revision Notes，与审查修改共享同一记录格式。
    可选：投稿前运行 style naturalization audit，先扫描 AI-like phrasing 再逐项改写。
 
-6. **投稿说明材料（Cover Letter，可选）** — 在手稿核心声明和目标期刊基本确认后，整理给编辑的 cover letter 素材。
-   贡献声明对齐目标期刊 scope；包含数据可用性、利益冲突声明和通讯作者信息。
+6. **投稿说明材料（Cover Letter，可选）** — 在手稿核心声明和目标期刊基本确认后，整理给编辑的 cover letter。
+   采用七段结构：投稿声明 → 一句话稿件概要 → 期刊适配（对标该刊已发文献）→ 知识缺口 → 核心结果与意义 → 合规声明 → 礼貌结尾。
    不新增科学结论；未确认目标期刊时不生成。
 
 任何阶段都可以暂停，稍后继续。
@@ -103,6 +102,7 @@ flowchart TD
 - **不编造数据、方法、引用或导师意见。** 缺失信息用明确的标记注明。
 - **不把弱证据写成强结论。** 证据边界在每个阶段都被保留。
 - **不替代科学判断。** 工具整理和精炼；研究者决定什么是对的。
+- **不保留特定期刊 profile。** 期刊风格通过对标典型参考文献实现。
 
 ## 适合谁
 
@@ -132,11 +132,10 @@ project-root/
 │   └── 02b_methods.md               # 分析流程、变量定义、统计方法
 ├── 03_structure/
 │   ├── 03_section-architecture.md    # 论文撰写纲要：section role、P-ID range、主张层级、论证链
-│   ├── 03_writing-blueprint.md       # 写作蓝图：逐段功能 + 逐句推进，起草前确认
 │   ├── 03_figure-outline.md         # 活文档：图表顺序、科学问题、caption 骨架、图-声明映射
 │   ├── 03_terminology.md            # 术语字典：标准术语/禁止变体对照表，全文一致性检查
-│   ├── reference_papers/            # 参考论文全文（建议预先转为 MD），用于风格参照与术语对齐
 │   └── old/                         # 旧版项目书与图表蓝图的归档
+├── reference_papers/                # 参考论文全文（建议预先转为 MD），用于风格参照与术语对齐
 ├── 04_writing/
 │   ├── 04_manuscript-draft.md       # 初稿（04 阶段直接产出）
 │   ├── 04_manuscript-reviewN.md     # 第 N 轮审查后修改稿（N 全局递增）
@@ -168,23 +167,27 @@ project-root/
 
 **你决定目标期刊，工具不替你选择。**
 
-- 如果确认了目标期刊：工具会告知你该期刊的特点（如内置的期刊 profile 中有），后续结构、写作、审查和润色阶段均按蒸馏后的规则执行。
+- 如果确认了目标期刊：工具会记录在项目文件中，后续写作、审查和润色阶段通过**对标典型参考文献**来落实期刊风格（句式、结构、论证深度）。
 - 如果暂时没有确认：按标准流程推进，写作和润色阶段时再落实期刊规范。
 
-如果你的目标期刊不在内置列表中，可以提供一个投稿指南网址 + 3-4 篇目标期刊近期论文，工具可以按需蒸馏出该期刊的写作规则。
-详见 `references/journals/_distill.md`。
+写作风格由 House Rules 和 `reference_papers/` 中的范文片段指导。不保留特定期刊 profile——具体期刊风格通过对标目标期刊的 2-4 篇近期典型论文实现。
 
-Cover letter 阶段必须基于已确认的目标期刊 profile 生成，不会在未确认期刊时生成投稿信。
+Cover letter 阶段需基于已确认的目标期刊和参考论文生成，不会在未确认期刊时生成投稿信。
 
-## 已内置的期刊 Profile
+## 地学领域期刊参考
 
-| 期刊 | 叙事定位 |
+以下为地学领域常见投稿目标，写作时通过对标该刊近期论文实现风格匹配：
+
+| 期刊 | 典型特征 |
 |---------|-------------------|
 | **GRL**（Geophysical Research Letters） | 单一锐利结论、精炼、简短讨论 |
 | **JGR-Oceans** | 完整证据链、方法透明、论证严谨 |
 | **JPO**（Journal of Physical Oceanography） | 动力学优先、机制驱动、物理精确 |
 | **Nature Communications** | 广泛意义、跨学科可读、证据有边界 |
 | **Nature Climate Change** | 气候变化中心、地球系统关联、后果导向 |
+| **Science** | 广泛科学意义、突破性发现、极精炼 |
+
+> 以上为领域参考，非内置 profile。实际写作风格以你提供的该刊近期参考论文为准。
 
 ## 写作与润色理念
 

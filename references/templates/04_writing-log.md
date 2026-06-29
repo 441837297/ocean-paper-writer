@@ -5,11 +5,11 @@
 - project name: [from project brief]
 - working title: [from project brief]
 - target journal: [from project brief]
-- journal profile: [name]
+- journal: [name, or "not specified yet"]
 - bilingual mode: [enabled / disabled]
 - current stage: writing
 - last updated: [YYYY-MM-DD]
-- source files: `01_prepare/01a_project-brief.md`, `01_prepare/01b_evidence-inventory.md`, `02_methods/02a_data.md`, `02_methods/02b_methods.md`, `03_structure/03_section-architecture.md`, `03_structure/03_writing-blueprint.md`, `03_structure/03_figure-outline.md`, `03_structure/03_terminology.md`
+- source files: `01_prepare/01a_project-brief.md`, `01_prepare/01b_evidence-inventory.md`, `02_methods/02a_data.md`, `02_methods/02b_methods.md`, `03_structure/03_section-architecture.md`, `03_structure/03_figure-outline.md`, `03_structure/03_terminology.md`
 
 ## Draft Unit Log
 

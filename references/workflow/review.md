@@ -56,8 +56,8 @@ this purpose.
    - Structure files (`03_section-architecture.md`, `03_figure-outline.md`)
    - Methods files (`02a_data.md`, `02b_methods.md`)
    - Evidence inventory (`01b_evidence-inventory.md`)
-   - Target journal profile (if specified)
-   - Reference papers in `03_structure/reference_papers/` (if available, for style/structure benchmarking)
+   - Target journal reference papers (if specified, from `reference_papers/`)
+   - Reference papers in `reference_papers/` (if available, for style/structure benchmarking)
      **How to obtain:** Always read MinerU-converted `output.md` from Zotero storage first (clean full text, readable via Read tool). Do NOT use `get_content` (severe truncation, garbled PDF extraction). If no `output.md` exists for the target paper, remind the user to run MinerU conversion before extraction.  
 4. Skill assembles a complete review prompt and saves it to `05_review/05_review-round{N}A_source.md`.
 5. User copies the prompt to GPT / Gemini / other LLM.
@@ -88,8 +88,7 @@ ClaudeCode 不替代 GPT 做判断。ClaudeCode 的职责是：编译原始材�
     - Current manuscript (04_manuscript-*.md)
     - 03_section-architecture.md, 03_figure-outline.md, 03_terminology.md
     - CLAUDE.md (project memory: protagonist lock, terminology rules, journal constraints, prohibitions)
-    - Target journal profile (references/journals/{journal}.md)
-    - 2–4 reference papers (from 03_structure/reference_papers/)
+    - 2–4 reference papers (from reference_papers/)
     → ClaudeCode 打包为 GPT Journal Audit Packet（见模板），user 发送给 GPT
 
  3. GPT analyzes and outputs 05_review/05_review-round{N}B_report.md:
@@ -249,7 +248,7 @@ current manuscript (`04_writing/04_manuscript-draft.md` or latest `04_manuscript
 - **Required for full review pipeline.** Review comments from author, advisor, coauthors, or external LLM response.
 - **Not required for Lightweight Unit Review.** Single-unit diagnostics run directly from the manuscript text and 03 files.
 
-**Optional:** target journal profile (`references/journals/{journal}.md`),
+**Optional:** 2–4 reference papers from `reference_papers/` (for journal-specific style benchmarking),
 distilled literature template (for template-guided LLM review prompt generation).
 
 ## Required Output
@@ -263,7 +262,7 @@ Review produces exactly two user-facing files per round:
 
 **Naming convention:**
 - `A_source` = ClaudeCode 编译整理。收集导师/用户/合作者的原始意见，组织为统一格式。保留原始语气。不分类、不评估、不做 Accept/Defer/Reject 决策。
-- `B_report` = GPT 填写。GPT 读取 A_source + manuscript + 03 文件 + journal profile + reference papers，输出分析报告。ClaudeCode 只能依据此文件进入 03 更新和 04 修改。ClaudeCode 不在此文件中做决策。
+- `B_report` = GPT 填写。GPT 读取 A_source + manuscript + 03 文件 + reference papers，输出分析报告。ClaudeCode 只能依据此文件进入 03 更新和 04 修改。ClaudeCode 不在此文件中做决策。
 - A/B 表达天然顺序：ClaudeCode 先编译原始输入，GPT 再分析输出报告。
 
 **分工原则：**
@@ -350,7 +349,7 @@ review report.
 When provided: classify each comment by type (evidence/structure/methods/writing/language/journal fit)
 and determine workflow destination (prepare/methods/structure/writing/polish).
 Do not automatically implement all comments — ask user which to prioritize.
-If an advisor comment conflicts with evidence or journal profile, mark `[REVIEW CONFLICT]`,
+If an advisor comment conflicts with evidence or journal conventions, mark `[REVIEW CONFLICT]`,
 present both sides, and ask user to decide priority.
 
 ## Missing and Conflicting Information
@@ -360,7 +359,7 @@ item, `[REVIEW BLOCKER]` = prevents meaningful processing, `[REVIEW CONFLICT]` =
 review input, `[CONFIRM WITH USER]` = needs user input.
 
 **Critical blockers:** no draft text, no structure file, no review input to process,
-user-specified journal profile unavailable, claims untraceable to evidence, unclear advisor
+user-specified journal guidance unavailable, claims untraceable to evidence, unclear advisor
 comments, inaccessible cited literature.
 
 **Conflict handling:** do not silently resolve conflicts between review inputs — present both
@@ -532,7 +531,10 @@ You are the decision-maker. ClaudeCode is the executor.
 
 ## Journal voice principles
 
-[Paste `## Journal Identity` + `## Shared` from references/journals/{journal}.md]
+[Paste journal-specific guidance derived from reference papers. Key elements:
+- Narrative identity of the target journal (from reading 2–4 reference papers)
+- Shared writing conventions observed across those papers
+- Section-specific patterns (Methods depth, Results structure, Discussion style)]
 
 ## Compiled review input
 
@@ -580,11 +582,11 @@ Please check:
 
 ## Target-journal interpretation
 
-[Extract from journal profile. Example for NC:]
+[Derived from reference papers. Example for a broad-interest journal:]
 - broad significance and cross-field readability
 - strong evidence chain with clear mechanism/evidence balance
-- less climate-attribution burden than NCC
 - narrative shaped for scientifically literate non-specialists
+- [adjust based on actual reference papers provided]
 
 ## Output format (this becomes 05_review/05_review-round{N}B_report.md)
 

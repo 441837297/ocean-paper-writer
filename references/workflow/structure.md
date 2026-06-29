@@ -9,7 +9,7 @@ The structure workflow takes the idea (01) and materials (02) and produces a cle
 - Design section architecture with section roles and P-ID ranges; paragraph-level function (P-ID, paragraph function, evidence pointer, claim boundary) belongs to section-architecture
 - Assign figures to claims with explicit scientific questions
 - Initialize and maintain the terminology dictionary as the sole authority
-- Load the target journal profile so narrative decisions are journal-aware
+- Derive journal-aware narrative guidance from target journal reference papers
 - Produce three mutually-referencing 03 files (plus external reference snippet library). Summary or citation overlap is allowed as long as each scientific definition, sign rule or decision has a single authoritative home.
 
 ## When to Use
@@ -29,7 +29,7 @@ needs writing support.
 - The section architecture is a scaffold — writing may reveal adjustments, but deviations must be deliberate and recorded
 - The claim hierarchy determines what belongs in the main narrative vs. supplementary
 - The figure sequence determines the narrative flow, not the other way around
-- Journal profile shapes narrative scope, claim depth, and section emphasis
+- Journal guidance shapes narrative scope, claim depth, and section emphasis (derived from reference papers)
 - A well-structured architecture prevents wasted drafting AND prevents terminology abuse
 - **Every paragraph in 04 must trace back to a P-ID and paragraph contract in 03_section-architecture.md.**
   **03_section-architecture.md controls section role, claim hierarchy, paragraph-level contracts, and P-ID range.**
@@ -47,7 +47,7 @@ ocean/system need
 → explicit limitation
 ```
 
-This chain must be derived from the prepare-stage evidence inventory, methods materials, target journal profile, and user-confirmed research direction.
+This chain must be derived from the prepare-stage evidence inventory, methods materials, target journal reference papers, and user-confirmed research direction.
 
 ### What Each Link Means
 
@@ -91,7 +91,7 @@ builds toward the primary claim, with each figure earning the reader's trust for
 |---------|-------------------|
 | Nature Climate Change | detection → robustness/confounders → attribution → consequence |
 | Nature Communications | core finding → supporting evidence → mechanism/pathway → broader context |
-| JGR / JPO / GRL | Keep the ladder but compress or expand according to journal profile |
+| JGR / JPO / GRL | Keep the ladder but compress or expand according to journal conventions |
 
 ### Rules
 
@@ -110,7 +110,7 @@ builds toward the primary claim, with each figure earning the reader's trust for
 
 **User input:** target journal (or willingness to choose); existing outline or section preference; central story direction preference.
 
-**Journal profile:** loaded from `references/journals/{journal}.md` based on confirmed target. For NCC, paragraph craft rules are in `## Shared` + section-specific headings.
+**Journal guidance:** derived from 2–4 reference papers from the target journal in `reference_papers/`. These papers provide narrative identity, section conventions, and evidence standards for structure decisions.
 
 ## Required Output
 
@@ -218,7 +218,7 @@ The structure workflow proceeds through these phases:
 ```
  1. Intake materials        → read prepare, methods, evidence inventory
  2. Confirm target journal  → ask if missing, confirm if specified
- 3. Load journal profile    → from references/journals/{journal}.md
+ 3. Load reference papers    → from reference_papers/ (2–4 target journal papers)
  4. Identify central story  → from evidence inventory routes and claims
  5. Build argument chain    → need / gap / move / decisive evidence / bounded implication / limitation
  6. Build claim hierarchy   → primary / secondary / not ready for main story
@@ -280,16 +280,23 @@ After completing each 04 draft round, scan against `03_terminology.md`:
 
 **Hard rule: Do not decide the target journal for the user.**
 
-- If the user provides a target journal: record it, confirm it, then load the corresponding journal profile from `references/journals/`
-- If the user does not provide one: ask during structure. If still unsure, write `target journal: not specified yet` and proceed without profile loading
-- If the user asks for suggestions: offer 2–3 options with brief reasoning, referencing available journal profiles. End with "discuss with your advisor or coauthors."
-- The profile is used to shape narrative architecture, not to enforce formatting constraints
+- If the user provides a target journal: record it, confirm it, then ask the user to place 2–4 recent papers from that journal as MD files in `reference_papers/`. Prompt:
+  > 请将 2–4 篇 [Journal Name] 近期论文的 MD 全文放入 `reference_papers/`。这些论文将用于对标期刊叙事惯例、论证深度和段落结构。如暂时没有，可以先推进，但后续 writing/review/polish/cover-letter 阶段会需要。
+- If the user does not provide one: ask during structure. If still unsure, write `target journal: not specified yet` and proceed without journal-specific guidance
+- If the user asks for suggestions: offer 2–3 options with brief reasoning. End with "discuss with your advisor or coauthors."
+- Reference papers are used to derive narrative architecture guidance, not to enforce formatting constraints
 
-## Journal Profile Use
+## Journal Guidance via Reference Papers
 
-When a target journal is confirmed, load the matching profile.
+When a target journal is confirmed, load 2–4 reference papers from `reference_papers/`.
 
-**03 Structure loads only `## Journal Identity`** — to understand what kind of story this journal rewards, what evidence standard is expected, and how that shapes manuscript architecture.
+**03 Structure uses reference papers to understand:**
+- What kind of story this journal rewards
+- What evidence standard is expected
+- How section architecture should be shaped
+- What narrative conventions are common in this journal
+
+No built-in journal profiles are used. All journal-specific guidance comes from the reference papers the user provides.
 
 **Do NOT load `## Shared` or section-specific rules during 03.** Those are for 04 Writing.
 
@@ -343,7 +350,7 @@ When the user returns with existing `03_structure/` files:
 
 ## Handoff to Writing
 
-Needs: confirmed central story route, claim hierarchy (primary/secondary/not ready), section architecture, figure sequence with main/supplement assignment, journal profile loaded.
+Needs: confirmed central story route, claim hierarchy (primary/secondary/not ready), section architecture, figure sequence with main/supplement assignment, journal-aware narrative guidance derived from reference papers.
 
 ## Receiving Backpropagation from Review
 
@@ -431,7 +438,7 @@ The legacy `03_manuscript-structure.md` and `03_writing-blueprint.md` templates 
 - **Do not assign claims to sections that the evidence cannot support.** Mark `[STRUCTURE CONFLICT]`.
 - **Do not force a narrative route that ignores available evidence.** Select from what the evidence supports.
 - **Do not overload the main text with supplementary-level detail.** The supplement plan exists for a reason.
-- **Do not skip journal profile loading when a target journal is specified.** The profile shapes section architecture.
+- **Do not skip deriving journal-aware guidance from reference papers when a target journal is specified.** The guidance shapes section architecture.
 - **Do not treat the structure as immutable.** The writing stage may reveal necessary adjustments.
 - **Do not overcompress the structure to fit journal length limits.** Compression happens in writing and polish.
 - **Preserve the evidence-to-claim connection.** Every section assignment must trace back to a verified claim.
