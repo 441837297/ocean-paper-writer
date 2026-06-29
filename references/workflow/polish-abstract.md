@@ -14,7 +14,7 @@
 
 6. **无方法防御** — 删除 "including X and Y" 类预防性方法说明。
 7. **无统计防御** — 删除削弱主张的冗余修饰（如多余的 "on average"、"toward"）。
-8. **无归因防御** — 删除 "under an observation-based extension" 类审稿回复式表述。
+8. **无归因防御** — 删除 "under an [approach]-based extension" 类审稿回复式表述。
 
 ## 语言质量
 

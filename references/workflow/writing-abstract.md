@@ -20,9 +20,9 @@
 
 | 类型 | 特征 | 例子 | 处理 |
 |------|------|------|------|
-| 方法防御 | 把读者注意力从发现拉到方法边界 | `including shorter-lived eddies and dipoles` | 删除；方法边界放 Methods/Discussion |
-| 统计防御 | 把主发现写弱、写啰嗦 | `directed, on average, toward` | 删除 filler（toward），保留必要的统计描述 |
-| 归因防御 | 摘要像审稿回复，不像发现陈述 | `under an observation-based extension` | 删除；归因论证放正文 |
+| 方法防御 | 把读者注意力从发现拉到方法边界 | `including [sub-category A] and [sub-category B]` | 删除；方法边界放 Methods/Discussion |
+| 统计防御 | 把主发现写弱、写啰嗦 | `directed, on average, toward` | 删除 filler（toward 等），保留必要的统计描述 |
+| 归因防御 | 摘要像审稿回复，不像发现陈述 | `under an [approach]-based extension` | 删除；归因论证放正文 |
 
 该防御的放 Methods 或 Discussion boundary，不放摘要。
 
@@ -46,7 +46,7 @@ show / find  >  indicate  >  suggest  >  may reflect
 
 | 避免（清单式） | 推荐（动作式） |
 |---------------|---------------|
-| Using satellite observations, reconstructed CO2 flux fields, and a framework that separates rotational polarity from thermal structure, we show... | We separate rotational polarity from thermal structure using observations and reconstructed CO2 fluxes. |
+| Using [data type A], [data type B], and a framework that separates [property X] from [property Y], we show... | We separate [property X] from [property Y] using [observations/data] and [reconstructed/modeled] [quantities]. |
 
 只保留一个核心动作，数据细节全部删除。
 

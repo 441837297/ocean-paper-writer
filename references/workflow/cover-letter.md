@@ -115,7 +115,7 @@ If author details are not provided and user declines: use bracketed placeholders
 
 **段落 4（知识缺口）** — 一句话说清前人做了什么、没做什么。不列文献综述。
 
-**段落 5（核心结果）** — 只给 headline 数字和最关键发现。不展开技术路径（如 long-lived / shorter-lived / dipoles 分级估算留在正文）。如果有多条核心发现，保留最重要的动态信号（如"双向增强但净趋势不显著"），不能因为压缩而丢失。
+**段落 5（核心结果）** — 只给 headline 数字和最关键发现。不展开技术路径（如子类/子成分的分级估算留在正文）。如果有多条核心发现，保留最重要的动态信号（如"各分量均增强但净趋势不显著"），不能因为压缩而丢失。
 
 ## Letter Format
 
@@ -196,7 +196,7 @@ Use provided author details, or bracketed placeholders if not provided.
 > Previous studies of [field] have mainly focused on [what was done], leaving [what was unexplored] largely unexplored.
 
 **核心发现（方向 + 量级 + 趋势）：**
-> [Group A] generally [action X], whereas [Group B] [action Y]. [Headline number], equivalent to [percentage] of [reference quantity]. Both [components] intensified, yet they nearly canceled, leaving no significant long-term trend in [net quantity].
+> [Group A] generally [action X], whereas [Group B] [action Y]. [Headline number], equivalent to [percentage] of [reference quantity]. Both opposing components intensified, yet they nearly canceled, leaving no significant long-term trend in [net quantity].
 
 **意义（bounded implication）：**
 > These results offer new constraints for [specific application], improving the representation of [process] in [models/attribution].
@@ -223,24 +223,23 @@ Cover letter 中的方法只保留数据来源，不展开技术路径：
 
 | 避免（太细） | 使用（适当） |
 |-------------|------------|
-| separating X from Y across A and B using framework Z | satellite observations and machine-learning reconstructions (YEAR–YEAR) |
-| directly constrained long-lived eddies under an extended attribution framework, with shorter-lived eddies and dipole enhancement | [删除，不放 cover letter] |
+| separating [property A] from [property B] across [categories] using [framework Z] | [data type] and [method type] reconstructions (YEAR–YEAR) |
+| directly constrained [sub-category 1] under an extended attribution framework, with [sub-category 2] and [effect] enhancement | [删除，不放 cover letter] |
 
 ### 术语与尺度匹配
 
 | 避免 | 使用 | 原因 |
 |------|------|------|
-| eddies represent a carbon sink | eddy-induced net CO2 uptake | sink 是海盆尺度概念，涡旋是个体 |
-| eddy-induced sink | contribution to the ocean CO2 sink | 同上 |
-| [noun] uptake [noun]（uptake 做动词） | [noun] absorb [noun] | uptake 是名词，不能做动词 |
+| [local entity] represents a [domain-scale] sink | [process]-induced net [quantity] change | 大尺度概念不用于描述局部个体 |
+| [noun] uptake [noun]（名词当动词用） | [noun] absorb / release [noun] | 词性正确 |
 | In this work, we try to... | In this work, we show / quantify / add... | Cover letter 要自信，不用试探性动词 |
-| draw a piece of jigsaw puzzles | add a missing piece | jigsaw puzzles 不适合正式 cover letter |
+| [informal metaphor] | [plain academic equivalent] | 非正式比喻不适合正式 cover letter |
 
 ### 其他禁忌
 
-- **不用 "source/sink" 描述涡旋个体** — source/sink 用于 ocean-scale；涡旋尺度用 uptake/release、absorption/release
-- **不把方法层级写太细** — long-lived、shorter-lived、dipoles 等分级估算留在正文
-- **不丢失核心动态信号** — 如"双向增强但净趋势不显著"，不能因压缩而删除
+- **不用大尺度术语描述局部个体** — 领域总览概念不用于个体过程；局部尺度用对应的过程动词
+- **不把方法层级写太细** — 子类、子成分的分级估算留在正文
+- **不丢失核心动态信号** — 如"各分量均增强但净趋势不显著"，不能因压缩而删除
 
 ## Interaction Flow
 
@@ -255,8 +254,8 @@ Cover letter 中的方法只保留数据来源，不展开技术路径：
 
 **结构方向正确 ≠ 英文正确。** 最终提交前必须逐句检查：
 - 每句是否有完整的主谓结构（不缺谓语、不缺名词）
-- 动词搭配是否自然（uptake 是名词不是动词、absorb 不是 uptake）
-- 修饰语是否与中心词匹配（roughly 不与精确数字连用）
+- 动词搭配是否自然（名词不误用为动词）
+- 修饰语是否与中心词匹配（模糊修饰语不与精确数字连用）
 
 如果编辑联系人未明确指定，用 "Dear Editors" 比猜测具体姓名更安全。
 
@@ -279,4 +278,4 @@ Cover letter 中的方法只保留数据来源，不展开技术路径：
 - Do not skip the contribution statement alignment step.
 - Do not turn the cover letter into a compressed abstract.
 - Do not expand methodological detail beyond data source + time range.
-- Do not drop the most important dynamic signal (e.g., "both limbs intensified, net trend insignificant") during compression.
+- Do not drop the most important dynamic signal (e.g., "opposing components intensified but net trend insignificant") during compression.
