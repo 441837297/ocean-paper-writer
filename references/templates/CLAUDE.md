@@ -38,7 +38,7 @@
 ### House Rules
 写作时遵守 `writing.md` 的 House Rules。核心纪律：段落功能清晰、证据定动词强度、术语与术语表一致、限定后置。
 
-<!-- ocean-paper-writer-rules:start version=2026-06-28 -->
+<!-- ocean-paper-writer-rules:start version=2026-06-29 -->
 
 ## 4. 通用写作规则
 
