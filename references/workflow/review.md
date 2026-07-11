@@ -258,6 +258,106 @@ use lightweight review. It does NOT create 05 files and does NOT require GPT.
 - Language pass is skipped if Logic, Domain, or Tutor has unresolved issues.
 - If the user confirms a structural change, classify it as hard / soft-blueprint-only / none, then follow the corresponding Backpropagation level.
 
+## Tutor Structural Self-Review
+
+When the user explicitly asks to check Introduction-Discussion closure or structural
+funnel/expansion logic across sections, use this lightweight cross-section self-review.
+It does NOT create `05_review/` files. Output is chat-only.
+
+### When to use
+
+- User asks: "检查 Introduction-Discussion 是否闭环"
+- User asks: "检查 Introduction 的收拢逻辑"
+- User asks: "检查 Discussion 的展开逻辑"
+- User wants a structural integrity check without triggering a full review round
+
+### When NOT to use
+
+- External review input exists → full review pipeline (A_source / B_report)
+- Single paragraph only → Lightweight Unit Review
+- User wants Methods / statistics / data-processing check → out of scope
+- User did not explicitly ask for cross-section structural review
+
+### Process
+
+1. **Load materials:**
+   - Current manuscript — full Introduction and Discussion sections
+   - `03_structure/03_section-architecture.md` — Argument Chain, Protagonist Lock
+   - `03_structure/03_terminology.md`
+   - `references/review/tutor-review-checklist.md` — Introduction + Discussion + 通用原则 rules, plus Closure Map tool
+   - Optionally: `03_structure/03_figure-outline.md` if figure logic is questioned
+
+2. **Map Introduction funnel** against tutor checklist rule "漏斗清楚，四级逐级收拢":
+   ```
+   L1 Ocean/system need:      [text excerpt or MISSING]
+   L2 Established knowledge:  [text excerpt or MISSING]
+   L3 Specific gap:           [text excerpt or MISSING]
+   L4 This paper's move:      [text excerpt or MISALIGNED]
+   ```
+
+3. **Map Discussion expansion** against tutor checklist rule "讨论逐级展开，形成闭环":
+   ```
+   Finding synthesis:            [text excerpt or MISSING]
+   Bounded explanation:          [text excerpt or MISSING]
+   Dimensioned comparison:       [text excerpt or MISSING]
+   Bounded broader significance: [text excerpt or BOUNDARY CHECK]
+   Return to gap:                [text excerpt or MISSING]
+   ```
+
+4. **Build Closure Map** using the format from `tutor-review-checklist.md`:
+   Link each Introduction Gap → Results evidence → Discussion answer.
+   Mark each row CLOSED / PARTIAL / OPEN.
+
+5. **Flag minimal issues.** Only flag the following categories — do not generate
+   new scientific review problems:
+
+   | Issue type | What it means |
+   |---|---|
+   | `missing funnel step` | A required Introduction level is absent |
+   | `premature broad implication` | Broader significance stated without evidence boundary |
+   | `mechanism before synthesis` | Discussion opens with mechanism, not finding synthesis |
+   | `comparison without dimension` | "consistent with" without specifying the dimension |
+   | `open Introduction gap` | A Gap stated in Introduction has no Discussion answer |
+   | `orphan Discussion claim` | A Discussion conclusion has no Introduction Gap precursor |
+
+### Output format
+
+Output directly in chat — do not write to `05_review/`:
+
+```
+## Tutor Structural Review — Introduction ↔ Discussion
+
+### Introduction funnel
+[L1–L4 mapping. For each level: text excerpt or MISSING / MISALIGNED]
+
+### Discussion expansion
+[Five-dimension mapping. For each: text excerpt or MISSING / MISALIGNED]
+
+### Closure Map
+| Introduction Gap | Results evidence | Discussion answer | Status |
+|---|---|---|---|
+| ... | ... | ... | CLOSED / PARTIAL / OPEN |
+
+### Issues flagged
+- [issue type]: [具体描述，含行号或段落位置]
+
+### Recommended action
+- Handoff: [writing / structure]
+- Backpropagation: [soft-blueprint-only / hard / none]
+```
+
+### Rules
+
+- Do NOT create `05_review/` files. Do NOT generate A_source or B_report.
+- Do NOT check Methods, statistics, data processing, or figure rendering.
+- Do NOT generate new scientific review issues beyond the 6 structural categories above.
+- This is a structural integrity check, not a substitute for a full review round.
+- If structural issues require blueprint changes: classify as soft-blueprint-only or hard
+  per the Backpropagation Gate, present the classification to the user, and ask before editing.
+- If no issues are found, report "No structural issues detected" and do not recommend changes.
+- This sub-flow does not change the existing review pipeline, Lightweight Unit Review, or any
+  other workflow stage.
+
 ## Required Inputs
 
 **Core files:** `03_structure/03_section-architecture.md`, `03_structure/03_figure-outline.md`,

@@ -26,11 +26,19 @@
 
 ## 2. Introduction
 
-### 漏斗清楚，Gap 信号逐级精确化
+### 漏斗清楚，四级逐级收拢
 - **Scope**: Introduction
-- **检查点**：相邻段落不重复"尚不清楚"信号；每层 gap 比前一层更具体。
-- **反例**：P1 末句 `remains uncertain`，P2 首句 `remains fragmented`——同一个 Gap 说了两次，信息密度不增。
-- **正例**：P1 以 process-level 信号起（`mesoscale processes remain less well characterized`），段末给出精确 Gap（`net contribution...spatial distribution and variability...remains uncertain`），P2 以具体证据矛盾起（`Even the direction...is disputed`）。
+- **检查点**：Introduction 需四级收拢，相邻层级不重复信号，不跳级。
+  - **L1 — Ocean/system need**：从领域核心问题出发（非方法或数据）
+  - **L2 — Established knowledge**：前人已知什么（具体，不笼统说 well studied）
+  - **L3 — Specific gap**：不知道什么、为什么过去不知道、本文为何能突破
+  - **L4 — This paper's move**：本文研究直接回应 L3 的 Gap（非另起问题）
+- **反例**：
+  - L1→L2 断层：从大领域直接跳到本文方法，缺少前人研究铺垫
+  - L2→L3 断层：罗列前人研究但不指出未解决的问题
+  - L3→L4 错位：Gap 说 X，本文做 Y
+  - 级间重复：P1 末 `remains uncertain`，P2 首 `remains fragmented`
+- **正例**：P1 交代中尺度过程在海洋碳汇中的系统重要性（L1），指出前人已定位汇区但物理机制未分解（L2→L3），段末以本文的机制分解方案收束（L4）。相邻段落 Gap 信号逐级精确化，不重复同一层级。
 
 ### 每组文献都有明确论证任务
 - **Scope**: Introduction + Discussion
@@ -70,11 +78,19 @@
 
 ## 4. Discussion
 
-### 首段给出综合判断
+### 讨论逐级展开，形成闭环
 - **Scope**: Discussion
-- **检查点**：首段先给最重要发现和意义，方法仅用于限定证据基础。
-- **反例**：`By combining a dynamics–thermodynamics framework with multi-decadal observations, we document that X process accounts for Y% of the global Z budget.`
-- **正例**：`X process accounts for Y% of the global Z budget, revealing a previously unquantified contribution. This estimate is constrained by two independent observational records spanning Z decades.`
+- **检查点**：Discussion 遵循五级展开，最终回应 Introduction 的 Gap。
+  - **Finding synthesis**：首段给最重要发现和意义，方法仅用于限定证据基础
+  - **Bounded explanation**：机制解释限于数据/方法范围，不越界
+  - **Dimensioned comparison**：比较前人时指明维度（区域、尺度、季节、指标类型），不笼统说 consistent with
+  - **Bounded significance**：更广意义限于证据范围，不无限外推
+  - **Return to gap**：末尾回应 Introduction 的核心 Gap，形成闭环
+- **反例**（synthesis）：首句以方法框架开头而非结果开头
+- **反例**（explanation）：由相关性直接写成确定因果
+- **反例**（comparison）：`Our results are broadly consistent with previous studies.`
+- **反例**（return to gap）：末尾讨论新方向但未提及 Introduction Gap 是否已解决
+- **正例**：`X process accounts for Y% of the global Z budget, revealing a previously unquantified contribution. [...] Our results agree with Li et al. on the direction but differ in magnitude because their estimate is restricted to western boundary currents. [...] These results resolve the previously disputed net contribution, confirming that...`
 
 ### Limitations 诊断影响，不回避也不自损
 - **Scope**: Discussion
@@ -107,3 +123,23 @@
 - **检查点**：术语、符号、正负号、单位、核心数字在正文、图注、补充材料、摘要、Cover Letter 中统一，不得跨文档冲突。
 - **反例**：正文改为 40.5%（分母 1.90 Pg C），摘要或 Cover Letter 仍保留 22.6%（旧分母 3.40 Pg C）。
 - **正例**：`768.6 Tg C yr−1, 40.5% of 1.90 Pg C yr−1`——全文所有出现位置一致，无遗留旧版本数字。
+
+---
+
+## 辅助工具：Introduction–Discussion Closure Map
+
+用于跨节闭环检查时快速定位 Gap 是否已被 Discussion 回应。不是独立检查项，不增加规则总数。
+
+| Introduction Gap | Results evidence | Discussion answer | Status |
+|---|---|---|---|
+| （从 Intro 提取的 Gap 陈述） | （Results 中对应的证据） | （Discussion 中对应的回应） | CLOSED / PARTIAL / OPEN |
+
+**Status 含义：**
+- **CLOSED** — Gap 在 Introduction 中提出，Results 有证据，Discussion 有回应，逻辑闭环
+- **PARTIAL** — 有回应但未完全解决（如方向对但量级差异未解释）
+- **OPEN** — Introduction 提出但 Discussion 未回应，或 Discussion 的结论在 Introduction 中找不到对应的 Gap
+
+**使用限制：**
+- 仅在跨节结构自检时使用，不用于单段审查
+- 一个 Gap 可能对应多个 Results 证据，一个 Discussion 回答可能覆盖多个 Gap
+- 不要求逐行填满——只填有明确映射关系的行
