@@ -59,6 +59,7 @@ prepare / methods / structure 阶段不依赖 Zotero；writing / review / polish
    ClaudeCode 编译原始反馈为 `05_review-round{N}A_source.md` → 用户发给 GPT → GPT 输出 `05_review-round{N}B_report.md`（Issue Log + Revision Contract + Patch List）→ ClaudeCode 按 B_report 执行修改。
    每轮审查后修改稿保存为 `04_manuscript-reviewN.md`（N 全局递增）。
    **修改前先检查 Backpropagation Gate：若涉及结构变更，先更新 03 文件，用户确认蓝图后再动正文。**
+   可选加载导师审稿视角检查清单（`references/review/tutor-review-checklist.md`），按稿件 section 和通用原则核查导师重点关注的论证问题。
 
    **润色（Polish，子工作流）** — 逐段精修已确认的文本，优化清晰度、流畅度和期刊语气。
    润色修改保存为 `04_manuscript-reviewN-polishM.md`（M 为 polish 子编号，随新 review 重置）。
@@ -234,7 +235,7 @@ references/
   templates/                 # 各阶段输出文件的格式模板
   journals/                  # 期刊 profile（含 _distill.md 按需蒸馏规则）
   writing/                   # 各章节写作指南
-  review/                    # 审查与风格自然化参考
+  review/                    # 审查参考：风格自然化 + 导师审稿视角检查清单
   zotero/                    # Zotero MCP 集成说明与配置记录
 examples/                    # 分阶段使用示例
 docs/                        # 开发记录

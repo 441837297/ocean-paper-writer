@@ -153,7 +153,7 @@ If author details are not provided and user declines: use bracketed placeholders
 示例逻辑：
 > Recent articles published in your journal on [topic] (e.g., Author et al., YEAR; Author et al., YEAR) have highlighted [key finding]. Our work extends this line of research by [this paper's unique contribution].
 
-**段落 4（知识缺口）：** 一句话说清前人做了什么、没做什么。不列文献综述。
+**段落 4（知识缺口）：** 一句话说清前人做了什么、没做什么。不列文献综述。必须遵循"前人已解决维度 → 本文新增维度"结构，不笼统声称"从未被研究"。
 
 **段落 5（核心结果与意义）：** 只给 headline 数字和最关键发现。
 - 方向 + 量级 + 趋势，三者齐全

@@ -241,6 +241,9 @@ Additional reference modules for style naturalization:
 `references/review/transition-naturalization.md`,
 `references/review/vocabulary-naturalization.md`.
 
+Additional reference modules for advisor-perspective review:
+`references/review/tutor-review-checklist.md`.
+
 ## Journal
 
 **Hard rule: Do not decide the target journal for the user.**

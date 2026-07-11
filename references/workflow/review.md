@@ -35,7 +35,7 @@ All feedback goes through the same pipeline: record, discuss, confirm, revise.
 
 **Exception — Lightweight Unit Review:** For single-paragraph or single-unit review
 without external input, the skill may originate a local diagnostic judgment
-(Logic → Domain → Language). This exception does NOT create 05 files and does
+(Logic → Domain → Tutor → Language). This exception does NOT create 05 files and does
 NOT replace the full review pipeline for section-level or manuscript-level review.
 See [Lightweight Unit Review](#lightweight-unit-review).
 
@@ -49,8 +49,10 @@ this purpose.
 
 1. User confirms: want to send manuscript to external LLM for review.
 2. User specifies review focus (own notes, specific concerns, specific sections) or chooses
-   template-guided mode (uses `_distill.md` framework — evidence chain, claim strength,
-   section function, figure logic, overclaiming patterns).
+   a review mode:
+   - **通用审查**：使用 Review Dimensions（evidence, claim strength, section function, figure logic, overclaiming）
+   - **导师视角审查**：加载 `tutor-review-checklist.md` 对应 section 规则，侧重论证层级、主张边界、文献定位和结果叙事
+   - **期刊对标审查**：使用 `reference_papers/` 中的目标期刊范文进行结构和深度对标
 3. Skill gathers required materials:
    - Current manuscript
    - Structure files (`03_section-architecture.md`, `03_figure-outline.md`)
@@ -75,6 +77,8 @@ which LLM to use and does the sending. The skill only generates the prompt text.
 导师/用户/合作者的原始意见 → ClaudeCode 编译为 `A_source` → 发给 GPT → GPT 输出 `B_report`（Issue Log + Revision Contract + Patch List）→ ClaudeCode 按 B_report 执行修改。
 
 ClaudeCode 不替代 GPT 做判断。ClaudeCode 的职责是：编译原始材料、打包发送、执行 Patch List、管理版本、记录日志、自检。
+
+**Tutor checklist 在完整 review 中的角色：** 当已有的导师/合作者意见不够精确时，可用 checklist 帮助解释"导师可能在这条意见背后关心什么"，辅助定位问题的论证层级。**不得**借 checklist 在导师意见之外额外生成一批新问题。
 
 ### Interaction Flow
 
@@ -199,12 +203,23 @@ use lightweight review. It does NOT create 05 files and does NOT require GPT.
 ### Process
 
 ```
-1. Logic pass    → Does the claim follow from the evidence?
+1. Load rules    → Determine section function from 03_section-architecture.
+                   Load only current section Scope rules + 通用原则 rules.
+                   Other section rules are not loaded and produce no output.
+                   NOT_APPLICABLE is reserved for loaded rules that do not apply
+                   to the specific paragraph position or content
+                   (e.g., Discussion 首段规则适用于 Discussion 第三段时 → NOT_APPLICABLE).
+                   Cross-document rules (e.g., 全稿口径一致) are skipped in unit-level
+                   review — they require manuscript-wide material and cannot be verified
+                   from a single paragraph.
+2. Logic pass    → Does the claim follow from the evidence?
                    Is the paragraph performing the correct section function?
-2. Domain pass   → Are terms consistent with 03_terminology?
+3. Domain pass   → Are terms consistent with 03_terminology?
                    Are concepts used correctly?
-3. Language pass → Is the prose clear, precise, and journal-aligned?
-                   (Only if Logic and Domain pass clean)
+4. Tutor pass    → Run loaded tutor rules. Output PASS / FLAG / NOT_APPLICABLE per rule.
+                   Each FLAG: trigger sentence, tutor追问, rule reference, minimal fix.
+5. Language pass → Is the prose clear, precise, and journal-aligned?
+                   (Only if Logic, Domain, and Tutor pass clean)
 ```
 
 ### Output format
@@ -217,6 +232,14 @@ use lightweight review. It does NOT create 05 files and does NOT require GPT.
 
 ### Domain
 [诊断结果。术语是否一致、概念是否正确]
+
+### Tutor
+[每条已加载规则的 PASS / FLAG / NOT_APPLICABLE]
+- [规则名称]: PASS
+- [规则名称]: FLAG
+  - Trigger: [触发句]
+  - Tutor question: [导师可能追问什么]
+  - Minimal fix: [最小修改动作]
 
 ### Language
 [诊断结果。仅当 Logic + Domain 通过后才进入]
@@ -232,7 +255,7 @@ use lightweight review. It does NOT create 05 files and does NOT require GPT.
 - Do NOT create `05_review/` files for lightweight review.
 - Do NOT generate A_source or B_report.
 - If Logic identifies a structural issue (protagonist, section function, figure logic), recommend Backpropagation Gate but do NOT execute it — ask the user first.
-- Language pass is skipped if Logic or Domain issues are unresolved.
+- Language pass is skipped if Logic, Domain, or Tutor has unresolved issues.
 - If the user confirms a structural change, classify it as hard / soft-blueprint-only / none, then follow the corresponding Backpropagation level.
 
 ## Required Inputs
@@ -248,8 +271,10 @@ current manuscript (`04_writing/04_manuscript-draft.md` or latest `04_manuscript
 - **Required for full review pipeline.** Review comments from author, advisor, coauthors, or external LLM response.
 - **Not required for Lightweight Unit Review.** Single-unit diagnostics run directly from the manuscript text and 03 files.
 
-**Optional:** 2–4 reference papers from `reference_papers/` (for journal-specific style benchmarking),
-distilled literature template (for template-guided LLM review prompt generation).
+- **Required for Lightweight Unit Review Tutor pass:** `references/review/tutor-review-checklist.md`
+- **Optional for full review:** used only to interpret or locate existing advisor feedback; not used to generate new issues
+
+**Optional:** 2–4 reference papers from `reference_papers/` (for journal-specific style benchmarking).
 
 ## Required Output
 
@@ -328,13 +353,14 @@ excessive hedging, undefined jargon, overused intensifiers ("very", "highly").
 
 ## Review Order
 
-审查按顺序推进三层：
+审查按顺序推进四层：
 
 1. **Logic** — 论证链、段落功能、证据支撑。段落在 section 中的角色对吗？结论能从证据推出来吗？
 2. **Domain** — 领域概念、术语、引用。术语与术语表一致吗？概念使用正确吗？引用到位吗？
-3. **Language** — 清晰度、流畅度、期刊语气。句子节奏、措辞、段落衔接。
+3. **Tutor** — 导师审稿视角。主张边界清楚吗？Gap 有没有重复？文献功能明确吗？结果叙述直接吗？Limitations 交代影响而不自损吗？跨文档口径一致吗？
+4. **Language** — 清晰度、流畅度、期刊语气。句子节奏、措辞、段落衔接。
 
-Logic 或 Domain 有未解决问题时，不进入 Language。语言润色不能掩盖论证或概念问题。
+Logic、Domain 或 Tutor 有未解决问题时，不进入 Language。语言润色不能掩盖论证或概念问题。
 
 ## Target Journal Handling
 
