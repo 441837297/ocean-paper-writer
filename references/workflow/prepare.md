@@ -39,6 +39,20 @@ Prepare produces exactly two default user-facing files:
 
 Do **not** create additional files unless the user explicitly asks. If information is insufficient for a complete file, produce a draft version with `[MISSING]` and `[TODO]` markers.
 
+### Optional 01c literature synthesis
+
+Create `01_prepare/01c_literature-synthesis.md` only when the user explicitly wants a literature synthesis, literature-role map, or method-provenance chain. It is independent from 01a and 01b rather than embedded in either file.
+
+Keep 01c selective and role-based:
+
+1. Record one core contribution per key paper.
+2. Separate direct method sources from mean-state comparisons and broader context.
+3. Assign literature to Introduction, Methods, Results, or Discussion without duplicating a full bibliography.
+4. Distinguish what was adopted, adapted, compared, or discussed.
+5. State the central novelty once; do not create multiple literature-role labels that repeat the same contribution.
+
+Equations and implementation details remain in methods. Full prose and citation placement remain in writing.
+
 ## Interaction Flow
 
 The prepare workflow proceeds through seven phases. Each phase can span multiple conversation turns.
@@ -156,11 +170,13 @@ When generating prepare-stage materials, use these template files from the skill
 
 - `references/templates/01a_project-brief.md`
 - `references/templates/01b_evidence-inventory.md`
+- Optional: `references/templates/01c_literature-synthesis.md`
 
 The user-facing output files should be saved to the project directory as:
 
 - `01_prepare/01a_project-brief.md`
 - `01_prepare/01b_evidence-inventory.md`
+- Optional: `01_prepare/01c_literature-synthesis.md`
 
 ## Guardrails
 

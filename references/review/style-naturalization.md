@@ -43,6 +43,22 @@ Full specification in `references/workflow/polish.md`, section "Style Naturaliza
 | Medium | Sounds generic, over-smoothed, or repetitive | Rewrite when tone feels too polished or repetitive |
 | Optional | Acceptable but can be improved if overused | Rewrite selectively based on context |
 
+## Defensive Framing
+
+Flag repeated disclaimers, negative self-limiting statements, caveats in high-impact positions,
+and explanations aimed mainly at hypothetical objections. Classify each item before rewriting:
+
+| Type | Action |
+|------|--------|
+| Redundant disclaimer | Delete it |
+| Negative scope statement | State the study's actual scope positively |
+| Necessary evidence or methodological limitation | Retain it once, stated calmly |
+| Negative scientific finding | Preserve it as a result |
+
+Prioritize abstracts, Introduction gap statements, contribution sentences, Discussion openings,
+conclusions, and figure captions. Do not misclassify statements such as non-significant trends,
+unclosed budgets, unexplained residuals, or unsupported causal pathways as defensive writing.
+
 ## Load one leaf file at a time
 
 - `references/review/sentence-naturalization.md` — sentence rhythm, template openings, generic sentence structure

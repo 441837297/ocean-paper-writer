@@ -176,6 +176,18 @@ Do not automatically implement all comments — ask user which to prioritize.
 If an advisor comment conflicts with evidence or journal profile, mark `[REVIEW CONFLICT]`,
 present both sides, and ask user to decide priority.
 
+## Response-Letter Handoff
+
+After reviewer-comment decisions and manuscript revisions are confirmed, the review stage may
+prepare or revise one persistent response-letter draft. Load
+`references/review/response-letter.md` only when analyzing response strategy, drafting formal
+point-by-point replies, or revising an existing response. Do not load it for ordinary manuscript
+review.
+
+Keep scientific reasoning and execution details in the review decisions and revision plan. Transfer
+only the direct answer, minimum necessary evidence, manuscript action, revised text, and exact
+location into the formal response. Use `references/templates/05_response-letter.md` for assembly.
+
 ## Missing and Conflicting Information
 
 **Marking conventions:** `[MISSING]` = not provided, `[UNCERTAIN]` = may change, `[TODO]` = action

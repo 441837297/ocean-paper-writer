@@ -104,11 +104,14 @@ The structure workflow proceeds through thirteen phases:
 11. Flag conflicts          → [STRUCTURE CONFLICT] between outline, argument chain, and evidence
 12. Save materials          → generate 03_manuscript-structure.md in conversation
 13. Confirm readiness       → assess readiness for writing stage
+14. Cross-stage self-check  → search active 01–03 files and remove duplicate or conflicting declarations
 ```
 
 ### Pacing
 
 Each turn asks **3–5 questions maximum**. Never ask the user to answer a dozen questions at once.
+
+The cross-stage self-check is mandatory after every structure-file edit, not only at stage handoff. Structure may retain short orientation, but detailed methods, evidence status, literature inventories, and terminology definitions must remain in their authoritative upstream files.
 
 ## Target Journal Handling
 
@@ -148,6 +151,8 @@ The architecture is built in this order:
 4. **Section architecture** — design what each section does: Introduction sets up gap, Methods documents approach, Results presents evidence, Discussion interprets, Conclusion states significance.
 5. **Figure sequence** — assign each figure to a section and narrative position. Ensure figures build the story in logical order.
 6. **Main text vs. supplement** — decide which figures, methods details, and secondary analyses belong in supplement.
+
+If the project uses a terminology file, build or update it from the literature before finalizing section and figure labels. Keep it as a short table with: concept, first-use full form, approved later-use form, and source. Do not turn it into a second methods or writing guide.
 
 ## Missing and Conflicting Information
 

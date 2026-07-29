@@ -244,6 +244,7 @@ Scan against these categories:
 - Generic academic filler
 - Formulaic transitions
 - Repetitive sentence patterns
+- Defensive framing and repeated caveats
 - Vague or inflated claim verbs
 - Ocean-science overclaim patterns
 - Citation / evidence boundary risks
@@ -277,6 +278,8 @@ Rewrite only the selected items.
 - Do not turn correlation into causation.
 - Do not turn regional findings into global conclusions.
 - Do not turn model output into observed fact.
+- Do not treat negative scientific findings as defensive language. Preserve statements reporting
+  non-significant trends, unclosed budgets, unexplained residuals, or unsupported causal pathways.
 - Do not rewrite domain terms just because they look technical.
 
 **Rewrite output format:**

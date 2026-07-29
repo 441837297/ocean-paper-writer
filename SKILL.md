@@ -25,10 +25,11 @@ Six core manuscript-building stages, plus one optional publication-material stag
 | Stage | Function |
 |-------|----------|
 | **01 prepare** | Turn proposals, figures, code outputs, and early ideas into a project brief and evidence inventory |
+| **01c literature synthesis (optional)** | Assign key literature to method provenance, Introduction background, Results comparison, and Discussion dialogue |
 | **02 methods** | Document data sources, processing workflows, derived variables, and statistical methods |
 | **03 structure** | Design manuscript architecture — central story, claim hierarchy, figure sequence, section roles |
 | **04 writing** | Draft manuscript prose one paragraph or subsection at a time, following the structure architecture |
-| **05 review** | Diagnose evidence, claims, logic, journal fit, and revision priorities — no rewriting by default |
+| **05 review** | Diagnose evidence, claims, logic, journal fit, and revision priorities — no rewriting by default; optionally assemble a response letter from confirmed decisions and marked revisions |
 | **06 polish** | Refine confirmed text for clarity, flow, journal voice, and style naturalization — no evidence creation |
 | **07 cover-letter** | Prepare submission-facing cover letter material from confirmed manuscript claims and journal fit |
 
@@ -89,6 +90,7 @@ Each stage produces a fixed user-project output file. These are **user project f
 |-------|-------------|
 | 01 prepare | `01_prepare/01a_project-brief.md` |
 | 01 prepare | `01_prepare/01b_evidence-inventory.md` |
+| 01 prepare, optional | `01_prepare/01c_literature-synthesis.md` |
 | 02 methods | `02_methods/02a_data.md` |
 | 02 methods | `02_methods/02b_methods.md` |
 | 03 structure | `03_structure/03_manuscript-structure.md` |
@@ -96,8 +98,11 @@ Each stage produces a fixed user-project output file. These are **user project f
 | 04 writing | `04_writing/04_manuscript-reviewN.md` (第 N 轮 05 审查后修改稿) |
 | 04 writing | `04_writing/04_manuscript-polishN.md` (第 N 轮 06 润色后修改稿) |
 | 05 review | `05_review/05_gpt-review-roundN.md` (第 N 轮审查) |
+| 05 review response-letter | A single persistent project-defined draft, typically `05_response_draft.md` or `05_response_round2_draft.md` |
 | 06 polish | `06_polish/06_polish-log.md` |
 | 07 cover-letter | `07_cover-letter/07_cover-letter.md` |
+
+Before drafting each response, discuss with the author why the comment matters and what will be updated; keep that analysis in the conversation rather than in the final response letter.
 
 **Versioning rule:** `04_manuscript-draft.md` is the initial complete first draft (04 阶段产出).
 N is a global monotonic counter shared by review and polish rounds — it increments regardless of
@@ -109,6 +114,65 @@ The writing log (`04_writing-log.md`) tracks which round each unit was last modi
 
 Do not generate stage output files for stages the user has not reached. Do not generate files for future stages preemptively.
 
+For final response-letter Word assembly, read `references/review/response-letter.md` and use
+`scripts/build_response_docx_template.py` or `assets/response_letter_template.docx`. Replace all
+placeholders with project content; do not copy project-specific media into the reusable skill asset.
+
+## Cross-Stage Information Ownership
+
+After every material edit to project-stage files, immediately run a cross-stage self-check before reporting completion or advancing. This check has higher priority than adding further detail. Remove duplicated declarations while preserving the staged file architecture.
+
+Assign one authoritative home to each information type:
+
+| File | Authoritative content |
+|------|-----------------------|
+| `01a_project-brief.md` | Scientific question, hypotheses, claim boundaries, and minimal figure contract |
+| `01b_evidence-inventory.md` | Evidence assets, evidence strength, unsupported claims, and evidence gaps |
+| `01c_literature-synthesis.md`, if used | Core literature contributions, method-source chain, and section-specific literature roles |
+| `02a_data.md` | Dataset identity, variables, coverage, resolution, and sample-selection contract |
+| `02b_methods.md` | Equations, parameters, algorithms, quality control, statistics, and sensitivity methods |
+| `03_manuscript-structure.md` | Claim hierarchy, argument chain, figure sequence, section roles, and main-versus-supplement decisions |
+| Separate structure-stage figure plan, if used | Panel-level scientific roles, panel sequence, and main-versus-extended-data placement |
+| Project terminology file, if used | Canonical terms, abbreviations, units, and prohibited conflations |
+| Project memory file, if used | Current status, authoritative-file navigation, and immediate execution order |
+
+Rules:
+
+1. Keep one complete authoritative version of each scientific or methodological decision.
+2. When a downstream file needs upstream information, link to the authoritative file and retain only the shortest summary needed for the downstream file's own function.
+3. Never make an upstream stage file depend on, cite as authority, or require a downstream stage file. Stage dependencies flow only forward: `01 → 02 → 03 → 04 → 05/06`.
+4. Before updating a decision, identify its authoritative stage file. Update other files only when their narrative, execution contract, or terminology is materially affected.
+5. Do not copy equations or parameter tables into structure files; keep them in `02b_methods.md`.
+6. Keep the figure contract in `01a_project-brief.md` to one line per figure; put panel-level design only in the structure-stage figure plan when the project uses one.
+7. Keep project memory files navigational. Do not maintain a parallel scientific plan inside them.
+8. After each edit, search all active stage files for the changed claim, parameter, figure role, literature role, or term. Confirm that one file remains authoritative and that downstream repetitions are only short orientation or links.
+9. Treat conflicting duplicates as an incomplete edit. Resolve them before marking the task complete; do not defer known contradictions to a later cleanup pass.
+
+### Required post-edit self-check
+
+Before completion, report internally:
+
+- authoritative home of each changed item;
+- active files searched;
+- duplicates removed or reduced to links;
+- contradictions found and resolved;
+- any intentional repetition and why it is necessary.
+
+Necessary repetition is limited to concise orientation: structure may restate the research question in one sentence, summarize a method's narrative role without its implementation details, and repeat a claim only where needed to map it to a figure or section.
+
+## Literature-Aligned Terminology Tables
+
+When a project uses a terminology file:
+
+1. Derive terms from relevant classic and current domain literature; do not invent terminology from project shorthand.
+2. Keep the file compact and table-based. Record the concept, first-use full form, later-use short form, and literature source.
+3. Use only established abbreviations. Mathematical symbols may be used after definition, but do not create letter abbreviations for transport components or project-specific diagnostics.
+4. Distinguish related quantities explicitly, especially kinematics versus dynamics, anomaly association versus causation, flux versus transport, occurrence versus persistence, and propagation versus material trapping.
+5. If a project-specific quantity lacks a community-standard name, use a plain descriptive term, define it once, and mark the closest literature method as comparison rather than direct authority.
+6. Keep equations, units, and implementation details in the methods file. The terminology file records naming and usage only.
+
+During structure or polish, apply the terminology table consistently: use the full term at first mention, then only its approved short form or mathematical symbol.
+
 ## How to Use Workflow References
 
 Each stage has a workflow reference file (rules and guidance) and one or more template files
@@ -117,11 +181,11 @@ generating output files.
 
 | Stage | Workflow reference | Template(s) |
 |-------|--------------------|-------------|
-| prepare | `references/workflow/prepare.md` | `references/templates/01a_project-brief.md`, `references/templates/01b_evidence-inventory.md` |
+| prepare | `references/workflow/prepare.md` | `references/templates/01a_project-brief.md`, `references/templates/01b_evidence-inventory.md`, optional `references/templates/01c_literature-synthesis.md` |
 | methods | `references/workflow/methods.md` | `references/templates/02a_data.md`, `references/templates/02b_methods.md` |
 | structure | `references/workflow/structure.md` | `references/templates/03_manuscript-structure.md` |
 | writing | `references/workflow/writing.md` | `references/templates/04_manuscript-draft.md` |
-| review | `references/workflow/review.md` | `references/templates/05_review-report.md` |
+| review | `references/workflow/review.md` | `references/templates/05_review-report.md`, `references/templates/05_response-letter.md` (optional response-letter subworkflow) |
 | polish | `references/workflow/polish.md` | `references/templates/06_polish-log.md` |
 | cover-letter | `references/workflow/cover-letter.md` | `references/templates/07_cover-letter.md` |
 
@@ -304,4 +368,3 @@ Full Zotero integration reference: `references/zotero/README.md`
 **Hard rule — full-text Zotero searches:** Before pulling full-text content (PDFs, Methods/Results paragraphs), explicitly ask the user whether to use subagent + haiku to avoid flooding the main context window. See README for detail.
 
 **Hard rule — PDF reading prohibited for style reference:** When the skill needs to reference actual paper text (e.g., for writing style comparison, method phrasing, or narrative structure), **never use Zotero MCP `get_content` with `include pdf:true`** to extract paper text. Instead: (1) ask the user whether they have pre-converted MD files (from zotero-mineru-plugin or similar PDF→MD pipeline); (2) use the mineru-converted `output.md` files in Zotero storage (these are complete full-text MD, produced by zotero-mineru-plugin); (3) never attempt to read PDF binary via MCP for text extraction. The user's zotero-mineru-plugin pipeline produces clean MD files that should be the primary source for paper text.
-
