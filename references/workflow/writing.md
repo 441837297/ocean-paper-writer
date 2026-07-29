@@ -2,365 +2,213 @@
 
 ## Purpose
 
-The writing workflow generates manuscript prose one writing unit at a time — a micro-drafting
-workflow — following the architecture defined in the structure stage. Its goals are to:
+This file defines **how to execute a writing task**. It controls the writing process. Non-negotiable prohibitions come from `## House Rules`.
 
-- Draft each manuscript unit in a deliberate order:
-  Methods → Results → Introduction → Discussion → Conclusion → Abstract
-- Apply the target journal's voice, claim strength, and rhetorical style during drafting —
-  not as a later rewrite
-- Ground every claim in the verified evidence from prepare, methods, and structure stages
-- Integrate citations from Zotero where available
-- Support bilingual output (English + Chinese comparison) when requested
-- Avoid context pollution by limiting each drafting pass to one paragraph or subsection
+The writing workflow generates manuscript prose one unit at a time, following the architecture defined in the structure stage. Journal voice is applied during drafting, not as a post-hoc layer. Context is loaded just-in-time.
 
 ## When to Use
 
-Run writing when: structure stage is complete with confirmed `03_manuscript-structure.md`;
-the user has a target journal confirmed (or "not specified yet"); and the user is ready to draft
-manuscript prose.
+Run when: structure stage is complete with confirmed `03_section-architecture.md`. Do NOT run when: structure is incomplete; user only wants to polish (use polish workflow).
 
-Do **not** run writing when: structure stage is not complete; the user only wants to polish
-existing text (use polish workflow); or the user wants a full draft in one turn without
-section-by-section, paragraph-by-paragraph interaction.
+---
 
-## Core Principle
+## 03 → 04 一致性检查
 
-> Writing is a micro-drafting stage, not a whole-section generation stage.
+每次起草或修改 04 单元之前，对照项目的三份 03 文件检查：
 
-- The default drafting unit is one paragraph. The maximum unit is one subsection.
-- A full section is planned, but never drafted in a single pass.
-- Methods and Results are written first because they depend on established evidence, not on
-  narrative framing
-- Introduction and Discussion are written later because they refer to the results that precede them
-- Abstract is written last because it distills everything
-- Each writing unit is drafted, confirmed, and revised before moving to the next
-- Journal voice is applied during drafting, not as a post-hoc layer
-- Context pollution is avoided by loading only the materials needed for the current unit
+1. **主角是否漂移** — 当前单元是否仍然服务于 03_section-architecture 定义的主角？
+2. **主张是否超过证据** — 关联是否写成了因果？动词强度是否超过 03_terminology 规定的 claim-strength 边界？
+3. **术语是否越过 section exposure** — 是否在禁止的 section 中使用了受限术语？（对照 03_terminology 的各节曝光规则）
+4. **图号和 panel role 是否一致** — 引用的图件是否与 03_figure-outline 中的定义一致？
+5. **关键概念是否混淆** — 03_terminology 中规定必须区分的概念（如 signed/unsigned）是否被混用？
+6. **限制是否仍然可见** — 03 规定的硬边界和 diagnostic limitation 是否在正文中保留？
+7. **是否重新引入了已被 03 删除的旧决策** — 检查 04 文本中是否出现了 03 已明确移除的措辞、公式或叙事元素？
+
+如果 04 暴露了真正的架构变化需求，先更新并压缩 03 的对应条目，再修改 04。不在 03 中保留新旧两个版本。
+
+---
+
+## House Rules
+
+以下规则来自先前审稿教训，**对所有期刊生效，永远加载**：
+
+1. **段首句承担段落功能。** Results 段落 result-first；Discussion 解释段落 claim-first；Introduction 段首执行 rhetorical move；Methods 段首 topic/operation-first；limitation 段 scope-first 允许。
+   Good: "The greatest cumulative intensity of MHWs is observed..."（Gou 2025 NCC）
+   Bad: 段首铺垫背景和机制，而非执行该段的功能
+
+2. **一段只做一件事。** 每段承担一个功能：发现 / 机制 / 对比 / 边界 / 意义。
+   Bad: 一段中混入变量 A 与变量 B 的关联 + 分量分解 + 区域趋势 + 背景解释 + "without closing a full budget"——六件事塞一段
+
+   **段落功能标签：** 起草前明确本段属于哪一类——restate finding / explain mechanism / compare with literature / discuss implication / discuss limitation / propose future work / methodological caveat / synthesis。一段只选一个标签。
+
+3. **证据强度决定动词强度。**
+   - 直接测量结果 → show / find
+   - 统计关联 → is associated with / is consistent with
+   - 有限推断 → suggests
+   - 可能物理解释 → may reflect / could help explain
+   - 因果陈述 → 仅在有因果识别设计时使用
+   Good: "Analysis...suggests that the hotspot warming..."（Li 2026 NCC）
+   Bad: 相关性用 "indicates" 过强，应为 "is consistent with"
+
+4. **结果句带齐变量、方向、范围。** 什么变量、在哪、何时、增强还是减弱。精确数值从 figure code/output 获取。
+   Good: "We show that over the past 22 years, parts of the ocean have experienced..."（Yang Kai 2026 NCC）
+   Bad: "Transport magnitude has risen for both heat and salt." — 缺少百分比、区域、时段
+
+5. **先现象，后机制，再意义。**
+   Good: "Globally, there is a significant increase in EKE and SST gradients..."（MM 2021 NCC）
+   Bad: "This larger anomaly content is expressed at boundaries as increased transport" — 机制动词出现在现象陈述之前
+
+6. **限定后置，不散布防御性否定句。** 先写发现，再补范围或例外。Scope qualifier（区域、样本、时段）可前置，defensive caveat 不可前置。用正面陈述替代否定句式；每类限制最多保留一次，其余集中到 Methods 或 Discussion boundary 段落。
+   Good: "There is strong natural multidecadal variability... however..."（Li 2026 NCC）
+   Bad: "Whether larger anomaly content produces coherent net transport depends on polarity, pathway, and regional setting." — "Whether" 防御性开头
+   Bad: "not a closed budget estimate" / "does not close the trend diagnostic" — 否定句自我防御
+
+7. **术语定义一次，全文锁定。** 术语权威来源：`03_terminology.md`。
+   Bad: 同一概念出现 "signatures" / "anomalies" / "contrasts" / "character" 四种变体。
+
+8. **一句一事，直接推进，不绕弯。** 每句只承载一个核心信息，先给结论再补限定。禁用 "not X but Y" / "rather than" / "since"（表原因） / "therefore" / "not only but also" 等绕弯连接词；禁用 "Whether X depends on Y" 设问自答句式——直接陈述 X 由 Y 决定。一段内不超过一个 "however"。如果一句话有三个以上逗号分隔的逻辑转折，拆成两句。
+   Bad: "This weak net tendency does not arise from a static system but from an active reorganization"
+   Bad: "Whether larger anomaly content produces coherent net transport depends on eddy polarity, crossing pathway, and regional setting."
+   Bad: "These constraints support a pathway from stronger currents to faster rotation, without closing a full energy budget."
+   Good: "Rotational polarity governs the flux direction. Thermal structure modulates only the magnitude."
+   Good: "Net transport coherence depends on eddy polarity, crossing pathway, and regional setting."
+
+9. **不因规避禁用词而添加无谓解释。** 如果删除 "not X but Y" 后句子已直接成立，不要再补半句解释为什么。不给第一次阅读的读者增加理解负担。
+
+10. **方法选择自然衔接，不跳转。** 不能前一句讲某方法的理论可能性、后一句突然切到 "we therefore used..."。方法段直接陈述做了什么、为什么在当前设定下合理。
+
+    **方法不是数据源清单。** 不用 "Using A, B, C, and D, we examine X, Y, and Z" 的堆砌结构。方法句是回答 gap 的动作，用一句紧凑描述即可：`Using [compact diagnostic], we test whether [main unresolved question].` 具体数据源和技术参数放在 Methods。
+
+11. **技术细节不前置堆砌。** 正文保持清晰直观。复杂技术细节集中在 Methods 或专门的归因/方法小节，不在 Results 主结果段落堆砌。
+
+---
+
+## Unit Context Packet
+
+起草每个 04 单元时，不再加载三份 03 全文和所有参考论文，而是构建一个限定的上下文包。
+
+上下文包含五项：
+
+1. **段落合同** — `03_section-architecture.md` 中对应单元的一行合同
+2. **证据关节** — `03_figure-outline.md` 中对应的图卡
+3. **术语边界** — `03_terminology.md` 中与该单元相关的术语条目
+4. **已验证内容** — `02_methods/` 和源数据中已核实的方法和数字
+5. **期刊声音** — 目标期刊 profile 的当前 section 规则
+
+此外，加载对应 section 的 reference snippets（`reference_papers/key_{section}/`），学习前人的段落推进节奏和句式结构。不加载无关 section、无关图片或完整参考论文全文。
+
+### 优先级顺序
+
+当来源冲突时，按以下优先级：
+
+1. 已验证的项目证据和用户确认的方法
+2. 用户确认的主张和术语边界
+3. 段落合同
+4. 图件逻辑
+5. 目标期刊 profile
+
+参考论文片段用于学习修辞形式，但永远不能添加项目事实、强化主张或推翻术语和证据边界。
+
+### 参考片段
+
+写作前检查 `reference_papers/key_{section}/` 目录下是否有前人论文片段。
+
+- **有片段** → 加载作为写作上下文，学习其段落推进节奏和句式结构。不得复制其中的科学内容、具体数字或 distinctive phrasing。
+- **无片段或缺少目标论文** → 按 fragment-extraction.md 的四种状态处理：有论文则询问提取、无论文则提醒补充。
+
+片段库按 section 组织：
+```
+reference_papers/
+  key_intro/          # Introduction 写作参考
+  key_results_sec1/   # Results §1 写作参考
+  key_results_sec2/   # Results §2 写作参考
+  key_results_sec3/   # Results §3 写作参考
+  key_discussion/     # Discussion 写作参考
+  key_methods/        # Methods 写作参考
+```
+
+### Evidence sourcing:
+
+- 精确数据 / 数值由用户提供或从用户指定的 figure code/output 中读取。structure 不预设未确认数值。
+- 统计口径、样本范围等细节缺失时，先与用户确认再行动。
+
+---
+
+## Pre-draft Contract
+
+每次起草前，建立 local contract。从 section-architecture 获取，逐项确认后进入 Drafting。
+
+1. **确认 P-ID 和段落角色：** 当前段在 `03_section-architecture.md` 中有 P-ID、段落功能和主张边界。
+2. **加载参考片段：** 检查 `reference_papers/key_{section}/` 下是否有片段；如有则加载作为写作上下文；如缺少目标论文则按 `fragment-extraction.md` 提取。
+3. **确认可用材料：** facts, figures, claims（从 03 文件提取结构和证据指向）。**精确数值从对应 figure 的代码运行结果中获取，不由 structure 预设。** 统计口径、样本范围等细节缺失时先与用户确认。
+4. **确认禁写内容：** 不属于本节的主张、机制解释、Discussion 素材。
+
+## Evidence-to-Claim
+
+- 每个 claim 必须能追溯到 source material（03 文件或用户提供的数据）。
+- 证据不足时，按证据类型降级表达：
+  - 直接测量 → show / find
+  - 统计关联 → is associated with / is consistent with
+  - 有限推断 → suggests
+  - 可能物理解释 → may reflect / could help explain
+- 不要将 indicate 作为通用中间等级。
+- Results 不写文献评价和 broad implication。Discussion 不重复 Results 数字清单。
+
+## Drafting
+
+按 Pre-draft Contract 起草。遵循 House Rules。不添加无支撑的解释。不跨 section 边界搬运内容。
+
+默认起草顺序：Methods → Results → Introduction → Discussion → Abstract。如果目标期刊有独立 Conclusion 则放在 Discussion 之后。
+
+每段之后用户确认：保留 / 修改 / 扩展 / 继续。
+
+## Output
+
+每个 draft unit 返回：
+1. **Draft Text** — 起草的段落正文
+2. **Evidence and Boundary** — 此段用了什么证据、主张什么、不主张什么
+3. **中文核对 / Author Check** — 中文简述此段做了什么，方便中文用户快速确认
+4. **User choice** — 保留 / 修改 / 扩展 / 继续下一单元
+
+如存在 unresolved evidence gaps 或术语风险，一并报告。
+
+输出文件：
+- `04_writing/04_manuscript-draft.md`
+- `04_writing/04_writing-log.md`（统一修订记录，review + polish 修改均记录于此）
+
+## Self-Check
+
+起草后检查：
+- [ ] House Rule 合规（段首、一段一事、动词强度、限定位置）
+- [ ] 段落功能与 `03_section-architecture.md` 一致
+- [ ] 所有 claim 可追溯到 source
+- [ ] 术语与 `03_terminology.md` 一致
+- [ ] 无跨 section 边界污染
+
+## Stop Conditions
+
+以下情况停止起草，报告原因：
+- 无 Pre-draft Contract（需先建立）
+- 关键 claim 缺乏证据支撑
+- 图引用模糊不清
+- 要求的 claim 超出证据边界
+
+---
+
+## Abstract Drafting
+
+Abstract 最后写。起草和检查规则见 `writing-abstract.md`。
 
 ## Required Inputs
 
-**Structure-stage file:** `03_structure/03_manuscript-structure.md`
+**Structure-stage files:** `03_structure/03_section-architecture.md`, `03_structure/03_figure-outline.md`
 
-**Supporting files:** `01_prepare/01a_project-brief.md`, `01_prepare/01b_evidence-inventory.md`,
-`02_methods/02a_data.md and 02_methods/02b_methods.md`
+**Supporting files:** `01_prepare/01a_project-brief.md`, `01_prepare/01b_evidence-inventory.md`, `02_methods/02a_data.md`, `02_methods/02b_methods.md`, `03_structure/03_terminology.md`
 
-**Journal profile:** already loaded during structure stage; re-referenced during writing for
-voice guidance.
+**Reference snippets（推荐）:** `reference_papers/key_{section}/` — 前人论文相关片段。如缺失，按 `references/workflow/fragment-extraction.md` 提取。
 
-**User input:** which section to draft first (if deviating from default order); citation details
-(Zotero export, DOI list, or manual references); bilingual preference.
+## Handoff
 
-## Required Output
-
-Writing produces two default user-facing files:
-
-```
-04_writing/04_manuscript-draft.md   ← clean manuscript text only (Section Draft Assembly)
-04_writing/04_writing-log.md        ← Draft Unit Log, Reference Key Lookup, Revision Notes, Update Summary
-```
-
-The draft file contains confirmed manuscript prose in Author-Year + Zotero key citation format,
-ready for copy-paste into Word. The log file tracks all writing metadata: unit status, revision
-history, reference lookup table, and update summaries. Both files are updated incrementally.
-Do **not** create per-section files unless the user explicitly asks.
-
-## Interaction Flow
-
-The writing workflow proceeds through nine phases. Within each section (phases 3–8), drafting
-proceeds one writing unit at a time — each unit is one paragraph (default) or one subsection
-(maximum).
-
-```
-1. Intake structure materials → read architecture, claim hierarchy, figure sequence
-2. Confirm journal voice      → re-reference journal profile for writing guidance
-3. Draft Methods unit         → one paragraph/small-subsection at a time
-4. Draft Results unit         → one paragraph/small-subsection at a time
-5. Draft Introduction unit    → one paragraph/small-subsection at a time
-6. Draft Discussion unit      → one paragraph/small-subsection at a time
-7. Draft Conclusion unit      → one paragraph/small-subsection at a time
-8. Draft Abstract             → single short unit (written last)
-9. Confirm readiness          → assess readiness for review stage
-```
-
-### Pacing
-
-Each writing unit is drafted in its own turn. After drafting a paragraph or subsection, ask the
-user for confirmation before continuing to the next unit.
-
-- Do not draft multiple paragraphs in a single turn unless the user explicitly requests
-  batch drafting.
-- Prefer drafting one paragraph at a time. A full subsection is allowed only as the maximum unit,
-  with explicit user request and confirmation.
-- Do not cross section boundaries in one turn.
-- User confirmation on each unit: keep / revise / expand / continue to next unit.
-
-## Unit-Level Feedback Contract
-
-After each writing unit, provide a lightweight confirmation block. Do not turn every writing unit into a full review report.
-
-Default response structure for each writing unit:
-
-```markdown
-### Draft Text
-[English manuscript prose]
-
-### Evidence and Boundary
-- Evidence used: [figures / methods / data / references]
-- Claim served: [claim ID from structure]
-- Argument-chain link served: [need / gap / move / decisive evidence / bounded implication / limitation]
-- What this unit does not claim: [explicit boundary]
-
-### 中文核对 / Author Check
-- [用中文简要说明这段在论文中的作用]
-- [提醒用户需要确认的数据、方法、证据边界或措辞风险]
-- [如果有 [MISSING] / [CITATION NEEDED] / [UNCERTAIN]，用中文说明]
-
-### User Options
-请选择：保留 / 修改 / 扩展 / 继续下一单元
-```
-
-Only include the Chinese author check for Chinese-speaking users or when it helps clarify intent. The Chinese note is author-facing and must not add claims absent from the English draft.
-
-## Section-End Feedback
-
-At the end of a section, provide a concise section-level summary:
-
-```markdown
-## Section Completion Summary / 本节完成情况
-
-- Confirmed units: [list]
-- Main claim(s) served: [claim IDs]
-- Argument-chain links covered: [links]
-- Remaining issues: [MISSING / CITATION NEEDED / UNCERTAIN / none]
-- Risk before next section: [evidence / structure / citation / language / none]
-- Recommended next action: [continue writing / revise a unit / return to review / return to structure]
-```
-
-Do not provide this summary after every paragraph unless the user asks. Use it when a section or meaningful subsection is complete.
-
-## Drafting Order
-
-Default section sequence: Methods → Results → Introduction → Discussion → Conclusion → Abstract.
-Rationale: Methods are most factual; Results present evidence; Introduction sets up the gap so that the Discussion can refer to both the stated motivation and the established findings; Conclusion summarizes; Abstract distills everything.
-
-Within each section, drafting proceeds one writing unit at a time — never the entire section in
-one pass. After completing all units in a section and receiving user confirmation, move to the
-next section.
-
-## Section-by-Section Planning
-
-These section-level guides are for **planning** the paragraph sequence — not for generating the
-entire section in one pass. Each section is broken into individual writing units (paragraphs or
-small subsections) and drafted one unit at a time.
-
-**Methods** — Source: `02a_data.md and 02b_methods.md`. Past tense. Break into units: data
-sources, preprocessing, derived variables, statistics. Follow journal profile for main-text vs.
-supplement depth.
-
-**Results** — Lead each paragraph with the finding, not the figure reference ("EKE increased by
-X%" not "Figure 2 shows..."). Follow figure sequence from structure. One paragraph per key finding
-or figure group. Secondary findings after primary, or in supplement.
-
-**Introduction** — Arc: broad context (para 1) → specific gap (para 2) → what this paper does/finds
-(para 3). Three paragraphs, drafted one at a time. Essential references only.
-
-**Discussion** — Arc: restate primary finding → interpret physically → compare with prior work →
-broader implications → bound what cannot be concluded. One paragraph per discussion point.
-Follow journal profile on length.
-
-**Conclusion** — Restate central finding + broader significance + one forward-looking sentence if
-warranted. Typically 1–2 paragraphs. No new evidence.
-
-**Abstract** — Written last. Journal-specific structure (problem → approach → finding →
-implication). Self-contained. Drafted as one unit. Check journal word limit.
-
-## Writing Unit Policy
-
-### Default unit
-
-One paragraph.
-
-### Maximum unit
-
-One subsection. A subsection corresponds to a logical sub-topic within a section — e.g., a data
-source description, a single preprocessing step, one result finding, one discussion point.
-
-### Not allowed by default
-
-- Full Results section in one turn
-- Full Discussion section in one turn
-- Full Introduction section in one turn
-- Abstract plus any other section in one turn
-- Multiple sections in one response
-- Multiple paragraphs within one section without per-paragraph confirmation
-
-### Allowed only if user explicitly requests
-
-- Provisional full-section sketch — must be labeled `provisional, not final prose`
-- Rough full-section outline for review — must be labeled `outline only, not final`
-- Batch drafting of multiple paragraphs — user must say "draft paragraphs 2-3 together" or
-  equivalent
-
-Even when the user requests a full-section sketch, label it clearly as provisional to distinguish
-from confirmed draft units.
-
-### Prohibited terminology
-
-Do not use phrases that imply whole-section generation:
-
-| Avoid | Use instead |
-|-------|-------------|
-| "generate full section" | "draft the next paragraph" |
-| "write entire chapter" | "write this writing unit" |
-| "complete manuscript draft in one pass" | "micro-drafting workflow" |
-
-## Before Drafting Each Unit
-
-Before drafting any paragraph or subsection, verify these six items. If any are missing, ask the
-user (3–5 questions max):
-
-1. **Which section** is being drafted?
-   (Methods / Results / Discussion / Introduction / Conclusion / Abstract)
-2. **Which unit** is being drafted? (which paragraph number, or which subsection heading)
-3. **What narrative function or claim** should this unit serve?
-4. **What evidence supports it?** (figure, dataset, method, reference)
-5. **What target journal voice** should be applied?
-6. **What language mode?** (English / Chinese / bilingual)
-
-Do not start drafting if these are unclear — ask first.
-
-## Draft Unit Output Format
-
-When outputting a writing unit, include the following structure. If the user wants only the draft
-text, the evidence trace can be written into `04_manuscript-draft.md` notes rather than displayed;
-but the workflow default includes it.
-
-```markdown
-## Draft Unit
-
-[paragraph or subsection text]
-
-## Evidence Used
-- Figures: [figure IDs]
-- Data/methods: [sources]
-- References: [citations or [CITATION NEEDED]]
-- Claim supported: [claim ID from structure]
-
-## Boundaries / Cautions
-- What this unit does not claim: [explicit boundary statement]
-- Uncertainty or citation needed: [if applicable]
-
-## User Confirmation
-- [ ] keep as drafted
-- [ ] revise
-- [ ] expand
-- [ ] continue to next unit
-```
-
-## Context Pollution Control
-
-Each writing unit must be scoped to its specific narrative function. The following
-cross-contamination rules apply:
-
-- **Load only what the current unit needs.** Do not load unrelated figures, claims, or literature
-  into the context for a single paragraph.
-- **Do not write Discussion mechanism language into Results.** Results present what the data show;
-  Discussion interprets what it means. Keep these separate even when drafting them sequentially.
-- **Do not write Introduction framing into Methods.** Methods document what was done; Introduction
-  establishes why it matters. Do not introduce broader significance claims in Methods prose.
-- **Do not let Abstract compression style leak into body paragraphs.** Abstract is a dense summary;
-  body paragraphs should be fully developed with evidence, not compressed.
-- **Do not insert unsupported broader implications.** Even if the target journal profile values
-  broader significance, do not include claims that the evidence does not support.
-- **Each paragraph serves exactly one narrative function.** If a paragraph tries to both present a
-  result and discuss its mechanism, split it into two units.
-
-## Citation Integration
-
-- Ask the user for citations: Zotero export, DOI list, or manual reference list
-- If Zotero references are available via `references/zotero/README.md`, follow that workflow
-- If no citations are provided, mark as `[CITATION NEEDED]` and continue
-- Do not fabricate references or DOI numbers
-
-## Journal Voice Integration
-
-Reference the journal profile during each section for: sentence rhythm (short/direct vs.
-longer/nuanced); claim strength matching evidence level; domain jargon depth; mechanism language
-(causality vs. suggestion); broader significance framing.
-
-## Bilingual and Chinese-Friendly Output
-
-Follow `references/writing/bilingual-output.md`. Default: English manuscript text with Chinese-friendly author interaction. Full bilingual manuscript comparison only when the user explicitly requests it. Opt-out keywords: `english only`, `no bilingual`, `only english`, `不要中文`, `只要英文`, `不需要中文解释`.
-
-## Resume and Update Mode
-
-When the user returns with existing `04_writing/04_manuscript-draft.md` and `04_writing/04_writing-log.md`:
-
-1. **Read** the existing draft and log, including the Draft Unit Log
-2. **Identify the last confirmed writing unit** — start from the next unconfirmed unit
-3. **Preserve** confirmed units. Do not rewrite them unless the user requests revision
-4. **If underlying materials changed** (revised methods, new figures), note which units
-   need updating
-5. **Generate changelog:**
-
-```markdown
-## Update Summary
-- Last confirmed unit: [unit ID — section, paragraph/subsection]
-- Next unit to draft: [unit ID]
-- Units needing revision due to material changes: [list]
-- Citations still needed: [list]
-- Ready for review: [yes / no / partial — all units confirmed?]
-```
-
-## Handoff to Review
-
-Needs: all six sections drafted and confirmed by the user; citations integrated
-(or `[CITATION NEEDED]` markers); journal voice applied throughout; bilingual format applied
-if requested.
-
-## Template References
-
-When generating writing-stage materials, use:
-
-- `references/templates/04_manuscript-draft.md`
-
-The user-facing output file should be saved as:
-
-- `04_writing/04_manuscript-draft.md`
-
-## Reference Modules
-
-Load on demand when drafting the corresponding section, not all at once.
-Load only the writing reference module relevant to the current section,
-unless the user requests a broader writing check.
-
-- `references/writing/methods-and-data.md` — Methods section patterns
-- `references/writing/results-and-discussion.md` — Results and Discussion section patterns
-- `references/writing/introduction-and-gap.md` — Introduction and gap framing
-- `references/writing/conclusions-and-claims.md` — Conclusion and claim strength
-- `references/writing/ocean-science-domain.md` — domain expression patterns
-- `references/writing/bilingual-output.md` — bilingual format spec
-- `references/journals/{journal}.md` — journal profile for voice and structure
-
-## Guardrails
-
-- **Do not draft an entire section in a single turn.**
-  Default unit = one paragraph; maximum unit = one subsection.
-- **Do not draft multiple writing units without user confirmation between them.**
-  Each unit is confirmed before the next begins.
-- **Do not draft without the structure-stage architecture.**
-  The section architecture guides every unit.
-- **Do not fabricate citations or DOI numbers.** Mark as `[CITATION NEEDED]`.
-- **Do not inflate claim strength beyond what the evidence supports.**
-- **Do not write Abstract before other sections are complete.**
-- **Do not ignore the journal profile during drafting.**
-  Apply voice during writing, not as a later fix.
-- **Do not overload Introduction with comprehensive literature review.**
-  Only what establishes the gap.
-- **Do not introduce new evidence, analysis, or data in the Conclusion.**
-- **Do not convert hedging into overconfidence or uncertainty into weakness.**
-- **Do not allow context pollution.** Each paragraph serves exactly one narrative function;
-  do not mix Discussion mechanism into Results, or Introduction framing into Methods.
-- **Do not label provisional sketches as final prose.**
-  User-requested full-section sketches must be marked `provisional, not final prose`.
+- **To Review:** manuscript draft confirmed by user.
+- **From Review (Backpropagation):** update 01/02/03 per Revision Contract before modifying 04.
+- **To Polish:** confirmed text ready for style refinement.

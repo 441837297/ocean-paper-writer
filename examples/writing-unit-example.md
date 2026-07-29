@@ -53,6 +53,15 @@ acceleration is broadly consistent with enhanced baroclinic energy
 conversion, though direct instability diagnostics are presented
 separately (Section 3.4).
 
+### Slot Trace
+
+| Slot | Draft sentence / clause | Evidence used | Notes |
+|------|-------------------------|---------------|-------|
+| S1 | EKE in the Kuroshio Extension increased by 12 ± 4 cm² s⁻² per decade over 1993–2022 | Fig. 3a | lead finding — magnitude, direction, region, period |
+| S2 | strongest during winter (DJF) and concentrated in the 145°E–160°E band | Fig. 3a, Fig. 3b | spatial/seasonal support |
+| S3 | mean zonal flow also strengthened by 0.05 ± 0.02 m s⁻¹ per decade | Fig. 3b | comparative evidence |
+| S4 | broadly consistent with enhanced baroclinic energy conversion... presented separately (Section 3.4) | — | bounded mechanism language; mechanism validation deferred to Section 3.4 |
+
 ### Evidence and Boundary
 - Evidence used: Fig3a, Fig3b; CMEMS altimetry geostrophic velocity anomalies; EKE = (ug'² + vg'²) / 2
 - Claim served: C2

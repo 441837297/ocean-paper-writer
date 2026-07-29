@@ -1,6 +1,6 @@
 ---
 name: ocean-paper-writer
-description: helps ocean science researchers build staged manuscript materials through six core manuscript-building workflows (prepare, methods, structure, writing, review, polish) plus an optional cover-letter workflow for publication materials.
+description: helps ocean science researchers build staged manuscript materials through five core manuscript-building stages (prepare, methods, structure, writing, review) plus polish (a sub-workflow of the review-writing loop) and an optional cover-letter stage for publication materials.
 ---
 
 # Ocean Paper Writer
@@ -13,14 +13,14 @@ target-journal plans, and advisor feedback) through to submission-ready material
 
 It is designed for manuscripts in physical oceanography, biogeochemistry, ocean-climate dynamics,
 marine ecosystems, and related fields.
-Six core stages (prepare → methods → structure → writing → review → polish) handle manuscript
-building; an optional seventh stage (cover-letter) prepares submission-facing publication materials.
+Five core stages (prepare → methods → structure → writing → review) handle manuscript
+building; polish operates as a sub-workflow within the review-writing loop; an optional sixth stage (cover-letter) prepares submission-facing publication materials.
 Each stage builds on verified outputs from the previous one.
 The skill does not try to produce a full manuscript in one pass.
 
 ## Core Workflow
 
-Six core manuscript-building stages, plus one optional publication-material stage:
+Five manuscript-building stages, plus polish (sub-workflow) and one optional publication-material stage:
 
 | Stage | Function |
 |-------|----------|
@@ -29,12 +29,29 @@ Six core manuscript-building stages, plus one optional publication-material stag
 | **02 methods** | Document data sources, processing workflows, derived variables, and statistical methods |
 | **03 structure** | Design manuscript architecture — central story, claim hierarchy, figure sequence, section roles |
 | **04 writing** | Draft manuscript prose one paragraph or subsection at a time, following the structure architecture |
-| **05 review** | Diagnose evidence, claims, logic, journal fit, and revision priorities — no rewriting by default; optionally assemble a response letter from confirmed decisions and marked revisions |
-| **06 polish** | Refine confirmed text for clarity, flow, journal voice, and style naturalization — no evidence creation |
-| **07 cover-letter** | Prepare submission-facing cover letter material from confirmed manuscript claims and journal fit |
+| **05 review** | ClaudeCode compiles raw feedback into A_source → GPT analyzes and produces B_report (Issue Log + Revision Contract + Patch List) → ClaudeCode executes; optionally assemble a response letter from confirmed decisions and marked revisions. |
+| **06 cover-letter** | Prepare submission-facing cover letter material from confirmed manuscript claims and journal fit |
 
-Stage 07 is a publication-material stage, not a manuscript-building stage. It does not
+Polish is a sub-workflow of the review-writing loop — it refines confirmed text within `04_writing/` and records changes in `04_writing-log.md`. It has no numbered stage directory.
+
+Stage 06 is a publication-material stage, not a manuscript-building stage. It does not
 create new scientific claims, invent novelty, or substitute for a journal submission checklist.
+
+## Global Manuscript Logic
+
+Before drafting, reviewing, or polishing major manuscript material, keep the manuscript anchored to a checkable argument chain:
+
+**ocean/system need → unresolved process/data/method gap → this paper's move → decisive evidence → bounded implication → explicit limitation**
+
+This argument chain is a control surface for scientific coherence. It is not a new stage, not a paper-type classifier, and not a replacement for the user's research plan or target-journal decision.
+
+Use the chain to check:
+- whether the central claim follows from the available evidence;
+- whether each section serves the manuscript's main argument;
+- whether a figure, paragraph, or claim is being asked to support more than it can;
+- whether broader ocean, climate, or ecosystem implications remain bounded by the evidence.
+
+If a link in the chain is missing or weak, mark it explicitly with `[MISSING]`, `[UNCERTAIN]`, `[EVIDENCE GAP]`, `[STRUCTURE CONFLICT]`, `[REVIEW BLOCKER]`, or `[POLISH BLOCKER]` depending on the active stage.
 
 ## Chinese-Friendly Interaction Policy
 
@@ -51,12 +68,86 @@ Do not turn every output into full bilingual manuscript text by default. Chinese
 
 ## Session Start
 
+### 项目上下文初始化
+
+Skill 启动时，先检查项目目录下是否有 `CLAUDE.md`：
+- **有** → 读取并遵守。其中的术语、路径、禁止事项、决策记录优先于默认行为。
+- **无** → 从模板 `references/templates/CLAUDE.md` 自动创建并注入通用写作规则。
+
+CLAUDE.md 是项目记忆，也是写作规则的运行时存放处。
+
+#### CLAUDE.md 自动注入逻辑
+
+1. 项目无 `CLAUDE.md` → 复制 `references/templates/CLAUDE.md` 到项目根目录，填入托管区块中的通用写作规则。报告：`已创建项目级 CLAUDE.md 并注入写作规则。`
+2. 项目有 `CLAUDE.md` 但无 `<!-- ocean-paper-writer-rules:start -->` 标记 → 从模板提取托管区块内容，追加到文件末尾。报告：`已在现有 CLAUDE.md 中追加写作规则。`
+3. 项目有 `CLAUDE.md` 且已有托管区块 → 对比模板中的 `version=` 与现有区块的版本号。若版本不同，提示差异并询问用户是否更新。**不自动覆盖。** 报告：`检测到写作规则版本差异（当前: X, 最新: Y），是否更新？`
+
+托管区块格式：
+```
+<!-- ocean-paper-writer-rules:start version=YYYY-MM-DD -->
+...规则内容...
+<!-- ocean-paper-writer-rules:end -->
+```
+
+托管区块外的内容永远不动。用户在区块外写的项目专属指令、导师意见、术语列表均不受影响。
+
+---
+
 Skill 启动时先问：
 
 > 从头开始还是接续工作？如果接续，请提供项目目录路径。
 
 - **接续** → 扫描目录下已有 stage 输出，报告进度，询问下一步。
 - **从头开始** → 请用户提供项目目录路径，默认进入 **prepare**。
+
+### 接续时必做：现状简报
+
+扫描项目目录后，用以下格式简要汇总现状（控制在 10 行以内）：
+
+```
+## 项目现状 / Project Status
+
+- 项目：[project name]
+- 目标期刊：[journal or "未指定"]
+- 当前阶段：[stage]
+- 已完成：
+  - 01 prepare: [✓] project-brief, evidence-inventory
+  - 02 methods: [✓] data, methods
+  - 03 structure: [✓] section-architecture, figure-outline, terminology
+  - reference_papers: [✓] 已有 / [✗] 缺失（目标期刊范文 MD）
+  - 04 writing: [N] 轮 review, [M] 轮 polish — 最新: 04_manuscript-reviewX-polishY.md
+  - 05 review: [N] 轮审查完成
+- 缺失文件：[列出，如 CLAUDE.md / 无]
+- 手稿状态：[M] methods units + [R] results units + [D] discussion units + [I] introduction units + [A] abstract + [C] conclusion（如有），其中 [X]/[Y] confirmed / [Z] provisional
+- 建议下一步：[具体行动]
+```
+
+`[✓]` = 完整可用，`[⚠]` = 存在但需更新（旧版 skill 生成、字段缺失等），`[✗]` = 缺失。
+
+此简报帮助用户快速回忆进度、确认上下文，再进入具体工作。
+
+### 非标准目录的处理
+
+如果项目目录没有标准 stage 结构（无 `01_prepare/` 等文件夹），或手稿是 .docx/.tex 等非标准格式：
+
+**统一从 prepare 开始。** 不走特殊分支。prepare 阶段会扫描现有材料（手稿、图表、代码、数据说明、审稿意见），从已有内容中解析出项目信息填入 project brief 和 evidence inventory。
+
+有旧手稿 → prepare 可以直接从手稿中提取研究问题、方法描述、证据链，不必从零讨论。
+有审稿意见 → 记录在案，到 review 阶段再用。
+有图表/代码 → 直接作为 evidence inventory 的证据来源。
+
+核心原则：**材料越多，prepare 跑得越快，但流程不变。** 即使有完整旧稿，仍走完整 prepare → methods → structure，从手稿和代码中推断出 01/02/03 内容，与用户逐项确认。不强求用户从零讨论每个字段。
+
+如果用户明确说 "我之前用旧版 skill"——扫描现有文件，识别缺口，在旧版基础上补建缺失文件（如 `03_figure-outline.md`、`CLAUDE.md`），更新已有文件中的过期字段。不覆盖、不重建用户已确认的内容。
+
+### 修改后必问：同步上游
+
+每次对项目文件做完实质性修改（手稿文本、术语字典、项目书、图表蓝图）后，**必须**询问用户：
+
+> 是否需要同步到上游（HPC / 远程服务器 / Obsidian vault）？
+
+如果用户确认，根据项目配置执行同步操作（如 `sync_files(direction="up")` 到 HPC）。
+不自动同步，但必须提醒。
 
 所有 stage 输出文件存放在用户指定的项目目录下，不同项目互不干扰。
 
@@ -66,7 +157,7 @@ Skill 启动时先问：
 - **Code, notebooks, data processing, methods description:** route to **methods**. The user wants to document what was done.
 - **Outline, manuscript structure, target journal architecture, section planning:** route to **structure**. The user needs a narrative architecture before drafting.
 - **Draft paragraph, write a section, "write Results/Discussion/Introduction", "write the next paragraph":** route to **writing**. The user wants to generate manuscript prose.
-- "**Check my text", "review this", "critique", advisor comments, "does this hold up?", journal fit:** route to **review**. The user wants diagnosis and revision planning.
+- "**Check my text", "review this", "critique", advisor comments, "does this hold up?", journal fit:** route to **review**. The user has external review input to process, or wants to generate a prompt for external LLM review.
 - "**Polish this", "revise wording", "de-AI", "improve language", "make it flow better",
   journal style, advisor language comments:** route to **polish**.
   If the user says "de-AI", interpret this as a request for style naturalization /
@@ -93,24 +184,29 @@ Each stage produces a fixed user-project output file. These are **user project f
 | 01 prepare, optional | `01_prepare/01c_literature-synthesis.md` |
 | 02 methods | `02_methods/02a_data.md` |
 | 02 methods | `02_methods/02b_methods.md` |
-| 03 structure | `03_structure/03_manuscript-structure.md` |
+| 03 structure | `03_structure/03_section-architecture.md` (论文撰写纲要：全文架构、主张层级、段落合同，跨阶段持续更新) |
+| 03 structure | `03_structure/03_figure-outline.md` (活文档，与项目书同步更新) |
+| 03 structure | `03_structure/03_terminology.md` (术语字典，review/polish 阶段维护) |
+| — | `reference_papers/` (前人论文写作参考片段，按 section 组织，项目根目录) |
 | 04 writing | `04_writing/04_manuscript-draft.md` (初稿) |
 | 04 writing | `04_writing/04_manuscript-reviewN.md` (第 N 轮 05 审查后修改稿) |
-| 04 writing | `04_writing/04_manuscript-polishN.md` (第 N 轮 06 润色后修改稿) |
-| 05 review | `05_review/05_gpt-review-roundN.md` (第 N 轮审查) |
+| 04 writing | `04_writing/04_manuscript-reviewN-polishM.md` (Review N 的第 M 轮润色后修改稿) |
+| 04 writing | `04_writing/04_writing-log.md` (写作日志 + 修订记录 + polish 记录) |
+| 05 review | `05_review/05_review-round{N}A_source.md` (ClaudeCode 编译：原始意见整理，保留原文语气) |
+| 05 review | `05_review/05_review-round{N}B_report.md` (GPT 填写：Issue Log + Revision Contract + Patch List，ClaudeCode 执行依据) |
 | 05 review response-letter | A single persistent project-defined draft, typically `05_response_draft.md` or `05_response_round2_draft.md` |
-| 06 polish | `06_polish/06_polish-log.md` |
-| 07 cover-letter | `07_cover-letter/07_cover-letter.md` |
-
-Before drafting each response, discuss with the author why the comment matters and what will be updated; keep that analysis in the conversation rather than in the final response letter.
+| 06 cover-letter | `06_cover-letter/06_cover-letter.md` |
 
 **Versioning rule:** `04_manuscript-draft.md` is the initial complete first draft (04 阶段产出).
-N is a global monotonic counter shared by review and polish rounds — it increments regardless of
-whether the round was a review or a polish pass. After each round, the revised manuscript is saved
-as `04_manuscript-reviewN.md` (if the round was a 05 review) or `04_manuscript-polishN.md`
-(if the round was a 06 polish). The suffix maps to the stage that produced the changes; the number
-tells you the absolute sequence. Example: review1 → review2 → polish3 → review4.
-The writing log (`04_writing-log.md`) tracks which round each unit was last modified in.
+N is a global monotonic review counter — it increments with each new review round.
+M is a polish sub-counter that resets to 1 for each new review round.
+After each review round, the revised manuscript is saved as `04_manuscript-reviewN.md`.
+Polish passes following review N are saved as `04_manuscript-reviewN-polishM.md` (e.g., review6-polish1, review6-polish2).
+When a new review round begins, it uses the latest polish (or the base review if no polish) as input,
+and produces `04_manuscript-review{N+1}.md`. Example: review6 → review6-polish1 → review6-polish2 → review7 → review7-polish1.
+The writing log (`04_writing-log.md`) tracks which round each unit was last modified in, and also serves as the unified revision record for both review→writing and polish→writing modifications.
+
+**Polish tracking:** There is no separate polish log file. All polish modifications are recorded in `04_writing-log.md` Revision Notes (same format as review revisions). Each polish entry notes the polish round (M counter) in the Change description.
 
 Do not generate stage output files for stages the user has not reached. Do not generate files for future stages preemptively.
 
@@ -120,9 +216,7 @@ placeholders with project content; do not copy project-specific media into the r
 
 ## Cross-Stage Information Ownership
 
-After every material edit to project-stage files, immediately run a cross-stage self-check before reporting completion or advancing. This check has higher priority than adding further detail. Remove duplicated declarations while preserving the staged file architecture.
-
-Assign one authoritative home to each information type:
+After every material edit to project-stage files, run a cross-stage self-check before reporting completion or advancing. Assign one authoritative home to each information type:
 
 | File | Authoritative content |
 |------|-----------------------|
@@ -131,47 +225,32 @@ Assign one authoritative home to each information type:
 | `01c_literature-synthesis.md`, if used | Core literature contributions, method-source chain, and section-specific literature roles |
 | `02a_data.md` | Dataset identity, variables, coverage, resolution, and sample-selection contract |
 | `02b_methods.md` | Equations, parameters, algorithms, quality control, statistics, and sensitivity methods |
-| `03_manuscript-structure.md` | Claim hierarchy, argument chain, figure sequence, section roles, and main-versus-supplement decisions |
-| Separate structure-stage figure plan, if used | Panel-level scientific roles, panel sequence, and main-versus-extended-data placement |
-| Project terminology file, if used | Canonical terms, abbreviations, units, and prohibited conflations |
-| Project memory file, if used | Current status, authoritative-file navigation, and immediate execution order |
+| `03_section-architecture.md` | Claim hierarchy, argument chain, section roles, and paragraph contracts |
+| `03_figure-outline.md` | Panel-level roles, figure sequence, and main-versus-supplement placement |
+| `03_terminology.md` | Canonical terms, abbreviations, units, and prohibited variants |
+| Project `CLAUDE.md` | Current project rules, status navigation, paths, and confirmed constraints |
 
 Rules:
 
 1. Keep one complete authoritative version of each scientific or methodological decision.
-2. When a downstream file needs upstream information, link to the authoritative file and retain only the shortest summary needed for the downstream file's own function.
-3. Never make an upstream stage file depend on, cite as authority, or require a downstream stage file. Stage dependencies flow only forward: `01 → 02 → 03 → 04 → 05/06`.
-4. Before updating a decision, identify its authoritative stage file. Update other files only when their narrative, execution contract, or terminology is materially affected.
-5. Do not copy equations or parameter tables into structure files; keep them in `02b_methods.md`.
-6. Keep the figure contract in `01a_project-brief.md` to one line per figure; put panel-level design only in the structure-stage figure plan when the project uses one.
-7. Keep project memory files navigational. Do not maintain a parallel scientific plan inside them.
-8. After each edit, search all active stage files for the changed claim, parameter, figure role, literature role, or term. Confirm that one file remains authoritative and that downstream repetitions are only short orientation or links.
-9. Treat conflicting duplicates as an incomplete edit. Resolve them before marking the task complete; do not defer known contradictions to a later cleanup pass.
+2. Link downstream files to the authoritative file and retain only the shortest summary needed for the downstream file's own function.
+3. Keep stage dependencies forward-only: `01 → 02 → 03 → 04 → 05`.
+4. Update the authoritative file first, then update other files only when their narrative, execution contract, or terminology is materially affected.
+5. Keep equations and implementation details in `02b_methods.md`; do not copy them into structure files.
+6. After each edit, search active stage files for the changed claim, parameter, figure role, literature role, or term. Resolve conflicting duplicates before completion.
 
-### Required post-edit self-check
-
-Before completion, report internally:
-
-- authoritative home of each changed item;
-- active files searched;
-- duplicates removed or reduced to links;
-- contradictions found and resolved;
-- any intentional repetition and why it is necessary.
-
-Necessary repetition is limited to concise orientation: structure may restate the research question in one sentence, summarize a method's narrative role without its implementation details, and repeat a claim only where needed to map it to a figure or section.
+Necessary repetition is limited to concise orientation, figure/section mapping, and the minimum context needed to execute a downstream stage.
 
 ## Literature-Aligned Terminology Tables
 
-When a project uses a terminology file:
+When a project uses `03_terminology.md`:
 
 1. Derive terms from relevant classic and current domain literature; do not invent terminology from project shorthand.
 2. Keep the file compact and table-based. Record the concept, first-use full form, later-use short form, and literature source.
-3. Use only established abbreviations. Mathematical symbols may be used after definition, but do not create letter abbreviations for transport components or project-specific diagnostics.
+3. Use only established abbreviations. Mathematical symbols may follow definition, but do not create letter abbreviations for project-specific diagnostics.
 4. Distinguish related quantities explicitly, especially kinematics versus dynamics, anomaly association versus causation, flux versus transport, occurrence versus persistence, and propagation versus material trapping.
-5. If a project-specific quantity lacks a community-standard name, use a plain descriptive term, define it once, and mark the closest literature method as comparison rather than direct authority.
+5. If a project-specific quantity lacks a community-standard name, use a plain descriptive term and mark the closest literature method as comparison rather than direct authority.
 6. Keep equations, units, and implementation details in the methods file. The terminology file records naming and usage only.
-
-During structure or polish, apply the terminology table consistently: use the full term at first mention, then only its approved short form or mathematical symbol.
 
 ## How to Use Workflow References
 
@@ -183,16 +262,23 @@ generating output files.
 |-------|--------------------|-------------|
 | prepare | `references/workflow/prepare.md` | `references/templates/01a_project-brief.md`, `references/templates/01b_evidence-inventory.md`, optional `references/templates/01c_literature-synthesis.md` |
 | methods | `references/workflow/methods.md` | `references/templates/02a_data.md`, `references/templates/02b_methods.md` |
-| structure | `references/workflow/structure.md` | `references/templates/03_manuscript-structure.md` |
-| writing | `references/workflow/writing.md` | `references/templates/04_manuscript-draft.md` |
-| review | `references/workflow/review.md` | `references/templates/05_review-report.md`, `references/templates/05_response-letter.md` (optional response-letter subworkflow) |
-| polish | `references/workflow/polish.md` | `references/templates/06_polish-log.md` |
-| cover-letter | `references/workflow/cover-letter.md` | `references/templates/07_cover-letter.md` |
+| structure | `references/workflow/structure.md` | `references/templates/03_section-architecture.md`, `references/templates/03_figure-outline.md`, `references/templates/03_terminology.md` |
+| writing | `references/workflow/writing.md` | `references/templates/04_manuscript-draft.md`, `references/templates/04_writing-log.md` |
+| writing | `references/workflow/writing-abstract.md` | (摘要起草约束 + 自检，写作阶段起草摘要时加载) |
+| review | `references/workflow/review.md` | `references/templates/05_review-source.md`, `references/templates/05_review-report.md`, optional `references/templates/05_response-letter.md` |
+| polish | `references/workflow/polish.md` | (无独立模板 — polish 修改记录写入 `04_writing-log.md`) |
+| polish | `references/workflow/polish-abstract.md` | (摘要润色检查，润色阶段处理摘要时加载) |
+| cover-letter | `references/workflow/cover-letter.md` | `references/templates/06_cover-letter.md` |
 
 Additional reference modules for writing:
 `references/writing/methods-and-data.md`, `references/writing/results-and-discussion.md`,
 `references/writing/introduction-and-gap.md`, `references/writing/conclusions-and-claims.md`,
 `references/writing/ocean-science-domain.md`, `references/writing/bilingual-output.md`.
+
+Additional reference modules for fragment extraction:
+`references/workflow/fragment-extraction.md` — 从论文 MD 提取 section 片段的 haiku subagent 工作流。
+
+Helper scripts: `scripts/scan_headings.sh`.
 
 Additional reference modules for style naturalization:
 `references/review/style-naturalization.md`,
@@ -200,48 +286,38 @@ Additional reference modules for style naturalization:
 `references/review/transition-naturalization.md`,
 `references/review/vocabulary-naturalization.md`.
 
-## Journal Profile Handling
+Additional reference modules for advisor-perspective review:
+`references/review/tutor-review-checklist.md`.
+
+Additional reference module for response letters:
+`references/review/response-letter.md`.
+
+## Journal
 
 **Hard rule: Do not decide the target journal for the user.**
 
-Available journal profiles:
-
-| Journal | Profile file |
-|---------|-------------|
-| GRL (Geophysical Research Letters) | `references/journals/grl.md` |
-| JGR-Oceans | `references/journals/jgr.md` |
-| JPO (Journal of Physical Oceanography) | `references/journals/jpo.md` |
-| Nature Communications | `references/journals/nc.md` |
-| Nature Climate Change | `references/journals/ncc.md` |
-
-Rules:
-
-- If the user provides a target journal: record it verbatim. Do not argue, override, or substitute. Load the corresponding journal profile during structure / writing / review / polish / cover-letter stages.
+- If the user provides a target journal: record it verbatim. Do not argue, override, or substitute.
 - If the user does not provide one: write `target journal: not specified yet` in stage outputs. Proceed with general-purpose guidance.
 - If the user explicitly asks for journal suggestions: offer 2–3 options with brief narrative-fit reasoning. End with "discuss with your advisor or coauthors."
-- Journal profiles are used for narrative architecture, claim depth, and voice —
-  not for premature compression according to official limits.
-  Length-limit checks only occur during late-stage submission polish if the user
-  explicitly requests them.
-- Journal-fit concerns are separate from evidence and logic concerns. Do not use journal-fit reasoning to override evidence boundaries.
-- Length-limit compression only during late-stage polish if the user explicitly requests it. Do not compress during early stages.
-- Cover letter requires a confirmed target journal profile; do not generate one without it.
-- If the target journal is not in the built-in list, and the user provides a submission guide URL
-  plus 3–4 recent papers from that journal, the skill can distill a journal profile on demand.
-  See `references/journals/_distill.md` for the full distillation workflow.
-  Only trigger this when the user explicitly requests it.
+- Journal-fit concerns are separate from evidence and logic concerns.
+
+Writing style is guided by the House Rules in `references/workflow/writing.md` and by reference paper fragments in `reference_papers/key_{section}/`. No journal-specific style profiles are loaded.
+
+**When the user confirms a target journal, prompt them:**
+> 请将 2–4 篇 [Journal Name] 近期论文的 MD 全文放入项目的 `reference_papers/` 目录。这些论文将在 structure、writing、review、polish 和 cover-letter 阶段用于对标期刊风格、论证深度和段落惯例。
+
+If the user cannot provide reference papers immediately, proceed with general-purpose guidance and mark `[REFERENCE PAPERS PENDING]`. Do not block the workflow, but remind the user at each stage transition that reference papers will improve journal-specific output quality.
 
 ## Micro-drafting and Micro-polishing
 
 ### Writing rules
 
-- Build one stage at a time, one paragraph per unit. Do not generate a full manuscript in one pass or complete multiple stages before user confirmation.
 - **Default writing unit:** one paragraph.
 - **Maximum writing unit:** one subsection.
 - Larger requests should be handled as provisional outlines or section-by-section planning, not final prose.
 - Each writing unit is drafted in its own turn. After each unit, ask the user: keep / revise / expand / continue to next unit.
 - Do not cross section boundaries in one turn.
-- Drafting order: Methods → Results → Introduction → Discussion → Conclusion → Abstract (default).
+- Drafting order: Methods → Results → Introduction → Discussion → Abstract（default；如目标期刊有独立 Conclusion 则放在 Discussion 之后）
 
 ### Polish rules
 
@@ -250,7 +326,7 @@ Rules:
 - Manuscript-level polish is limited to consistency checks (terminology, abbreviations, recurring patterns, journal voice alignment) — not full-text rewriting.
 - If the user requests full-manuscript polish, recommend unit-by-unit polish instead.
 - Each polished unit requires user confirmation before it is marked as final.
-- Confirmed polished units can be assembled back into `04_writing/04_manuscript-draft.md` or the user's own manuscript file.
+- Polish modifications are saved as `04_manuscript-reviewN-polishM.md` (copy-then-edit from the latest review or polish base). Polish change records are written to `04_writing-log.md` Revision Notes.
 
 **Style naturalization audit** is an optional polish subworkflow.
 It has two steps:
@@ -264,15 +340,27 @@ It is not AI-detection evasion.
 It does not hide weak evidence.
 It does not strengthen unsupported claims.
 
+## Writing Architecture
+
+写作遵循 context-first 原则：
+
+```
+全文架构（03_section-architecture.md）：论文顺序组织，段落级粒度（P-ID、段落功能、证据指针、主张边界）
+  + reference_papers/key_{section}/：前人论文相关片段（写作上下文）
+    → 正文草稿（04_manuscript-draft.md）
+```
+
+起草前确认当前段在 section-architecture 中有段落合同。逐句大纲（sentence slots）已废弃——过度指令约束会压制写作质量。写作的正确方式是：先加载足够的背景知识（前人如何写、段落科学功能、术语边界），然后自然推进句子。
+
 ## Resume and Update Behavior
 
 When the user returns to a stage with an existing output file:
 
 1. Read the existing file.
-2. Preserve confirmed content — do not restart from scratch.
+2. Preserve confirmed decisions — do not restart from scratch. Remove obsolete or contradictory wording.
 3. Identify what has changed or needs updating.
 4. Update the relevant sections only.
-5. Generate an Update Summary at the end of the file.
+5. Do not generate append-only history sections. Archive old versions to `old/` or rely on version control if needed.
 6. Do not regenerate confirmed units unless the user requests revision.
 
 ## Missing Information and Confirmation
@@ -294,27 +382,20 @@ Stage-specific tags: `[STRUCTURE CONFLICT]`, `[REVIEW BLOCKER]`, `[REVIEW CONFLI
 
 - Do not guess, fabricate, or invent missing information.
 
-## Writing Principles
+## Evidence and Claim Guardrails
 
-These apply at every stage:
+These boundaries apply at every stage:
 
-**Name the variable, not the category.**
-Say "temperature and salinity anomalies", not "thermohaline signatures". Say "heat and salt transport magnitude", not "transport dimension". If the variable has a name, use it.
-
-**Open with the finding.**
-Every paragraph's first sentence states the observed result with its key number: "Global eddy nonlinearity increased by 2.76% per decade..." Not: "Across the global eddy population, stronger nonlinearity is accompanied by..."
-
-**State limitations once, factually.**
-Essential caveats belong in Methods or Extended Data captions. Never use defensive disclaimers in Results or Discussion: "not a causal estimate", "not a closed estimate", "does not close the budget", "need not vary identically", "consistent with" as a recurring hedge.
-
-**Match claim strength to evidence.**
-Robust detection → "We show that". Attribution suggestive → "This is consistent with". Quantified consequence → give the number. Never inflate.
-
-**Keep evidence and claim in the same container.**
-Regional data → regional conclusion. Observational record → observed trend, not climate regime. Correlation is not causation. Statistical significance is not physical significance. Model output is not observed fact.
-
-**Do not fabricate.**
-Mark missing evidence as `[EVIDENCE GAP]` or `[CITATION NEEDED]`. Do not polish unsupported claims into sounding stronger.
+- Do not convert visual patterns into confirmed mechanisms without supporting evidence.
+- Do not treat correlation as causation.
+- Do not extend regional results to global implications without evidence.
+- Do not treat short observational records as climate trends.
+- Do not frame climate relevance as climate-change evidence.
+- Do not present model output as observed fact.
+- Do not equate statistical significance with physical significance.
+- Do not invent data sets, methods, figures, citations, or advisor comments.
+- Preserve uncertainty. Hedging is a feature, not a bug.
+- If a claim is not supported by the evidence, flag it — do not polish it into sounding stronger.
 
 ## Handoff Rules
 
@@ -327,8 +408,34 @@ Each stage may hand off to one or more subsequent stages. Handoff is never autom
 | structure | writing |
 | writing | review |
 | review | writing (→ `04_manuscript-reviewN.md`), structure, methods, prepare, polish |
-| polish | writing (→ `04_manuscript-polishN.md`), review, cover-letter |
+| polish | writing (→ `04_manuscript-reviewN-polishM.md`), review, structure, cover-letter |
 | cover-letter | polish, review, final assembly |
+
+**Review→Writing handoff:** Each review round — GPT 决策，ClaudeCode 执行：
+1. ClaudeCode compiles raw input into `05_review-round{N}A_source.md`.
+2. ClaudeCode packages A_source + manuscript + 03 files + reference papers → user sends to GPT.
+3. GPT outputs `05_review-round{N}B_report.md` (Issue Log with Accept/Defer/Reject + Revision Contract + Patch List).
+4. **Backpropagation Gate:** Read `Backpropagation level` in B_report.
+    - Hard Backpropagation → archive affected 01/02/03, update upstream files, wait for user confirmation, then edit 04.
+    - Soft Section-Architecture Update → update only affected P-ID(s) in `03_section-architecture.md`, no archive by default, then edit 04.
+    - No Backpropagation → proceed directly to writing / polish.
+5. ClaudeCode copies base manuscript to `04_writing/04_manuscript-reviewN.md`. **Never edit the base directly.**
+6. ClaudeCode executes Patch List on the copy.
+7. ClaudeCode updates `04_writing/04_writing-log.md` (append only, newest first).
+8. ClaudeCode runs Revision Unit Done When self-check.
+
+**Polish→Writing handoff:** Same copy-then-edit rule; same append-only rule for the log.
+
+### Mandatory Version Copy Rule
+
+**此规则适用于 review 和 polish 两个阶段，无例外：**
+
+1. 确定 base manuscript（最新的已确认版本）。
+2. 将 base 复制到新版本文件（`04_manuscript-reviewN.md` 或 `04_manuscript-reviewN-polishM.md`）。
+3. 仅编辑新文件。**永远不要直接编辑 base manuscript。**
+4. 将修改记录追加到 `04_writing-log.md` Revision Notes（最新在前，不覆盖旧条目）。
+
+违反此规则是手稿版本管理中最常见的错误。Base manuscript 在其轮次完成后是不可变的。
 
 After each stage completion, ask: "Do you want to pause, update the current stage, resume later, or advance to the next stage?"
 
@@ -365,6 +472,23 @@ exact write action.
 
 Full Zotero integration reference: `references/zotero/README.md`
 
-**Hard rule — full-text Zotero searches:** Before pulling full-text content (PDFs, Methods/Results paragraphs), explicitly ask the user whether to use subagent + haiku to avoid flooding the main context window. See README for detail.
+**Hard rule — full-text Zotero searches:** Before pulling full-text content (PDFs, Methods/Results paragraphs), confirm the retrieval scope and use a bounded extraction process that does not load complete papers into the active manuscript-writing context. See README for detail.
 
 **Hard rule — PDF reading prohibited for style reference:** When the skill needs to reference actual paper text (e.g., for writing style comparison, method phrasing, or narrative structure), **never use Zotero MCP `get_content` with `include pdf:true`** to extract paper text. Instead: (1) ask the user whether they have pre-converted MD files (from zotero-mineru-plugin or similar PDF→MD pipeline); (2) use the mineru-converted `output.md` files in Zotero storage (these are complete full-text MD, produced by zotero-mineru-plugin); (3) never attempt to read PDF binary via MCP for text extraction. The user's zotero-mineru-plugin pipeline produces clean MD files that should be the primary source for paper text.
+
+## Do Not Do
+
+*科学证据边界规则见 [Evidence and Claim Guardrails](#evidence-and-claim-guardrails)。此处仅列 workflow 禁令。*
+
+- **Do not generate a full manuscript in one pass.** Build it stage by stage.
+- **Do not complete multiple workflow stages at once.** Each stage produces its own output and requires user confirmation before advancing.
+- **Do not decide the target journal for the user.** Record, suggest only when asked, do not argue.
+- **Default writing unit is one paragraph; maximum is one subsection.** Build prose incrementally.
+- **Default polish unit is one paragraph; maximum is one subsection.** Refine text incrementally.
+- **Do not rewrite during review by default.** Review diagnoses; rewriting only happens when the user explicitly requests a revision draft.
+- **Do not edit the base manuscript directly when incorporating review or polish feedback.** Copy it to `04_manuscript-reviewN.md` or `04_manuscript-reviewN-polishM.md` first, then edit the copy. The base manuscript is immutable.
+- **Do not create a separate polish log file.** All polish change records go into `04_writing-log.md` Revision Notes.
+- **Do not overcompress materials according to journal rules during early stages.** Compression happens in late-stage polish.
+- **Do not generate a cover letter without a confirmed target journal and reference papers.**
+- **Do not let ClaudeCode make Accept/Defer/Reject decisions on review feedback.** ClaudeCode compiles A_source; GPT produces B_report. ClaudeCode executes. 决策和执行分离。
+- **Do not let GPT or any external LLM perform full-manuscript polish.** GPT outputs B_report; ClaudeCode executes. GPT candidate rewrites allowed only for Abstract, Introduction P1, Results lead sentences, title, or conclusion sentences.

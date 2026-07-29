@@ -14,7 +14,7 @@
 
 ## Introduction
 
-*NCC climate-first arc — broad context (§1.1) → known changes + gap (§1.2) → chain as missing link (§1.3) → Here we show (§1.4). Terms defined for broad climate-science audience.*
+*[Target-journal introduction arc from journal profile; replace with section-specific guidance during writing.]*
 
 [Confirmed units are assembled here in paragraph order.]
 
@@ -22,7 +22,7 @@
 
 ## Results
 
-*Follow figure sequence from 03_manuscript-structure.md. Lead each paragraph with the finding. One paragraph per key finding or figure group.*
+*Follow figure sequence from 03_section-architecture.md and 03_figure-outline.md. Lead each paragraph with the finding. One paragraph per key finding or figure group.*
 
 [Confirmed units are assembled here in paragraph order.]
 

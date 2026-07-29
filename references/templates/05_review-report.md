@@ -1,166 +1,186 @@
-# 05 Review Report
+# 05 Review Report — Round N
 
-*Review diagnoses and plans revision; it does not rewrite by default.*
-*If material is missing, use `[REVIEW BLOCKER]`. If advisor comments conflict with evidence or structure, use `[REVIEW CONFLICT]`.*
+*此文件由 GPT 填写。GPT 读取 `05_review-round{N}A_source.md` 及相关材料，进行分析并输出此报告。*
+*ClaudeCode 只能依据此文件进入 03 更新和 04 修改。ClaudeCode 不在此文件中做决策。*
 
 ## Project Metadata
 
 - project name:
 - working title:
 - target journal:
-- review scope: [unit-level / section-level / manuscript-level]
-- section / unit reviewed:
-- current stage: review
+- review round: N
+- review source: [advisor / GPT / self-review / coauthor / combined]
+- source file: `05_review/05_review-round{N}A_source.md`
 - last updated:
-- source structure file: `03_structure/03_manuscript-structure.md`
-- source writing file: `04_writing/04_manuscript-draft.md`
+- source manuscript: `04_writing/04_manuscript-draft.md` (or latest revision)
 - supporting files:
-  - `01_prepare/01a_project-brief.md`
+  - `03_structure/03_section-architecture.md`
+  - `03_structure/03_figure-outline.md`
+  - `03_structure/03_terminology.md`
   - `01_prepare/01b_evidence-inventory.md`
   - `02_methods/02a_data.md and 02_methods/02b_methods.md`
 
-## Review Pass Summary
-
-[2–4 sentences describing what was reviewed — which scope, which sections or units, which materials were used, and what review priority the user set.]
-
-## Materials Reviewed
-
-- [file path or section] — status: [loaded / available / [MISSING] / [REVIEW BLOCKER]]
-- [file path or section] — status: [...]
-
-## Review Priority
-
-[User-specified priority — e.g., evidence, logic, journal fit, language, advisor feedback, or general diagnostic.]
+---
 
 ## Overall Diagnosis
 
-[3–6 sentence summary of the most important finding from this review pass. What is the single biggest issue? Is the manuscript on track or does it need significant revision before moving forward?]
+[3–5 sentence synthesis. What is the single biggest issue? Is this "not just polish" — i.e., does it require structural changes?]
+
+---
 
 ## Issue Log
 
-| Issue ID | Severity | Type | Action label | Workflow destination | Location | Problem | Evidence / reason | Recommended action | Status |
-|----------|----------|------|--------------|----------------------|----------|---------|-------------------|-------------------|--------|
-| R01 | high | evidence | BLOCKED_BY_EVIDENCE | prepare / methods | Results para 2 | [problem description] | [why evidence is insufficient] | [specific action] | [TODO] |
-| R02 | medium | claim | SOFTEN_CLAIM | writing / polish | Discussion para 1 | [...] | [...] | [...] | [TODO] |
-| R03 | low | language | POLISH_LANGUAGE | polish | Abstract | [...] | [...] | [...] | [TODO] |
+| ID | Severity | Type | Source | Location | Problem | Decision | Action | Destination |
+|----|----------|------|--------|----------|---------|----------|--------|-------------|
+| R01 | high | structure | advisor | Discussion | section performs wrong job | Accept | RESTRUCTURE_SECTION | structure → writing |
+| R02 | medium | terminology | GPT |全文 | "SST-driven" overused | Accept | update 03_terminology | structure |
+| R03 | low | language | self | Abstract L3 | verbose | Accept | POLISH_LANGUAGE | polish |
+| R04 | medium | claim | advisor | Results §2 | overclaim mechanism | Defer | revisit after round 9 | — |
+| R05 | low | language | GPT | Introduction | suggest shorter P1 | Reject | current length matches NCC convention | — |
 
-**Severity:**  
-- `high` = blocks manuscript credibility  
-- `medium` = weakens the argument  
-- `low` = improves clarity or polish  
+**Severity:** `high` = blocks credibility / `medium` = weakens argument / `low` = clarity or polish
 
-**Type:**  
-`evidence` / `claim` / `structure` / `methods` / `figure` / `citation` / `journal fit` / `language` / `advisor feedback`
+**Decision:**
+- `Accept` = implement in this round, appears in Patch List
+- `Defer` = valid but postpone to later round, with reason
+- `Reject` = disagree, with reason
 
-**Action label:**  
-`SOFTEN_CLAIM` / `ADD_EVIDENCE` / `ADD_METHOD_DETAIL` / `CHECK_STATISTICS` / `ADD_CITATION` / `REORDER_FIGURE_LOGIC` / `RESTRUCTURE_SECTION` / `REWRITE_UNIT` / `POLISH_LANGUAGE` / `AUTHOR_INPUT_NEEDED` / `BLOCKED_BY_EVIDENCE`
+**Action labels:** `SOFTEN_CLAIM` / `ADD_EVIDENCE` / `ADD_METHOD_DETAIL` / `CHECK_STATISTICS` / `ADD_CITATION` / `REORDER_FIGURE_LOGIC` / `RESTRUCTURE_SECTION` / `REWRITE_UNIT` / `POLISH_LANGUAGE` / `AUTHOR_INPUT_NEEDED` / `BLOCKED_BY_EVIDENCE`
 
-**Workflow destination:**  
-`prepare` / `methods` / `structure` / `writing` / `review` / `polish` / `user`
+**Destination:** `prepare` / `methods` / `structure` / `writing` / `polish` / `user`
 
-**Status:**  
-`[TODO]` / `in progress` / `resolved` / `[CONFIRM WITH USER]`
+---
 
-## Evidence Support Review
+## Revision Contract
 
-[Per-claim or per-paragraph assessment of whether claims are supported by figures, data, methods, or citations. Note unsupported claims, overinterpreted visual patterns, and missing citations.]
+*在修改任何文件之前填写。若任一 03 文件被勾选，必须先更新 03，用户确认后，再改 04。*
 
-| Claim / paragraph | Evidence cited | Evidence sufficient? | Notes |
-|-------------------|---------------|---------------------|-------|
-| [claim or paragraph] | [figure / data / citation] | [yes / partial / no] | |
+- Target journal:
+- Paper protagonist:
+- Not protagonist:
+- Main gap:
+- Central claim:
+- Main consequence:
+- Section-level changes:
+  - Title:
+  - Abstract:
+  - Introduction:
+  - Results:
+  - Discussion:
+- Figure logic changes:
+- Terminology changes:
+- Caveat placement:
+- Backpropagation level: [hard / soft-blueprint-only / none]
+- Handoff destination:
+  - [ ] 03_section-architecture
+  - [ ] 03_figure-outline
+  - [ ] 03_terminology
+  - [ ] 04_manuscript
+  - [ ] polish
 
-## Claim Strength Review
+---
 
-[Assessment of verb strength, mechanism language, causation/attribution boundaries, and hedging balance. Identify overclaiming, underclaiming, and unjustified mechanism language.]
+## 03 Update Requirements
 
-- Claim strength issues: [list]
-- Mechanism language not justified by evidence: [list]
-- Hedging concerns: [list]
+*从 Revision Contract 的 Handoff destination 派生。列出每个 03 文件的具体修改项。*
 
-## Section Function Review
+### 03_section-architecture
+- [ ] Protagonist Lock: [具体改动]
+- [ ] Argument Chain: [具体改动]
+- [ ] Section Architecture: [具体改动]
 
-[For each reviewed section, assess whether it performs the narrative job assigned in the structure file.]
+### 03_figure-outline
+- [ ] Figure scientific questions: [具体改动]
+- [ ] Figure order: [具体改动]
 
-| Section | Assigned job (from structure) | Does draft execute it? | Issues |
-|---------|------------------------------|----------------------|--------|
-| [section] | [narrative job] | [yes / partial / no] | |
+### 03_terminology
+- [ ] Preferred terms: [新增/修改]
+- [ ] Forbidden phrases: [新增/修改]
+- [ ] Allowed location: [修改]
 
-## Figure and Data Logic Review
+**03 更新后必须用户确认，再进入 manuscript 修改。**
 
-[Assessment of figure order, figure-claim alignment, caption-text consistency, and methods sufficiency.]
+- [ ] 用户已确认 03 更新
 
-- Figure order vs. structure plan: [matches / deviates — note differences]
-- Figure-claim alignment: [each figure supports at least one claim?]
-- Caption issues: [list]
-- Methods sufficiency: [can a reader understand how figures were generated?]
+---
 
-## Target Journal Fit Review
+## Patch List
 
-[Only populated when a target journal is specified. Assess claim depth, section emphasis, narrative structure, and voice against the journal profile.]
+*仅包含 Decision = Accept 的条目。每条是可执行的编辑指令。按 section 分组。*
 
-- Journal profile used: [name]
-- Narrative fit: [issues]
-- Claim depth fit: [issues]
-- Section emphasis fit: [issues]
-- Voice consistency: [issues]
+### Title
+- [ ] P01: [具体修改指令] — from Rxx
 
-## Ocean Science Overclaiming Check
+### Abstract
+- [ ] P02: [具体修改指令] — from Rxx
 
-| Risk type | Location | Current wording / claim | Why risky | Recommended boundary |
-|-----------|----------|------------------------|-----------|---------------------|
-| visual pattern → mechanism | [section] | [quote] | [reason] | [bounding language] |
-| correlation → causation | [...] | [...] | [...] | [...] |
-| regional → global | [...] | [...] | [...] | [...] |
-| short record → climate trend | [...] | [...] | [...] | [...] |
-| climate relevance → climate-change evidence | [...] | [...] | [...] | [...] |
-| model output → observed fact | [...] | [...] | [...] | [...] |
-| statistical → physical significance | [...] | [...] | [...] | [...] |
+### Introduction
+- [ ] P03: [具体修改指令] — from Rxx
 
-## Citation and Literature Needs
+### Results
+- [ ] P04: [具体修改指令] — from Rxx
 
-| Location | What is needed | Context | Priority |
-|----------|---------------|---------|----------|
-| [section / paragraph] | [citation] | [why it is needed] | [high / medium / low] |
+### Discussion
+- [ ] P05: [具体修改指令] — from Rxx
 
-## Advisor Feedback Mapping
+### Methods
+- [ ] P06: [具体修改指令] — from Rxx
 
-*Only populated when advisor comments are provided.*
-
-| Comment | Type | Affected section | Required action | Workflow destination | Priority |
-|---------|------|-----------------|----------------|---------------------|----------|
-| [advisor comment] | [evidence / structure / methods / writing / language / journal fit] | [section] | [revision action] | [prepare / methods / structure / writing / polish] | [high / medium / low] |
-
-## Revision Priority Plan
-
-### High priority
-- [Issue ID] — [Action label] — [recommended action] — destination: [workflow/user]
-
-### Medium priority
-- [Issue ID] — [Action label] — [recommended action] — destination: [workflow/user]
-
-### Low priority
-- [Issue ID] — [Action label] — [recommended action] — destination: [workflow/user]
+---
 
 ## Handoff Recommendation
 
-[One of: back to writing / back to structure / back to methods / back to prepare / forward to polish]
-
-- Destination:
+- Destination: [writing / polish / structure]
 - Rationale:
-- What the next stage needs from this report:
+- 03 files updated: [yes / no / N/A]
+- 03 confirmed by user: [yes / no]
+
+---
 
 ## Questions for User Confirmation
 
-1. [Question about revision priorities or unresolved issues]
-2. [Question about conflict resolution]
-3. [Question about handoff direction]
+1. [确认 Accept/Defer/Reject 决策]
+2. [确认 03 更新内容]
+3. [确认 Patch List 优先级和顺序]
+
+---
+
+## Diagnostic Working (Optional)
+
+*以下为 ClaudeCode 处理原始输入时的中间分析。仅在需要追溯判断依据时保留。*
+
+### Evidence Support Check
+
+| Claim / paragraph | Evidence cited | Sufficient? | Notes |
+|-------------------|---------------|-------------|-------|
+| | | | |
+
+### Section Function Check
+
+| Section | Assigned job (from structure) | Does draft execute? | Issues |
+|---------|------------------------------|---------------------|--------|
+| | | | |
+
+### Ocean Science Overclaiming Check
+
+| Risk type | Location | Current wording | Recommended boundary |
+|-----------|----------|----------------|---------------------|
+| | | | |
+
+### Citation Needs
+
+| Location | What is needed | Priority |
+|----------|---------------|----------|
+| | | |
+
+---
 
 ## Update Summary
 
-*Populated only during resume mode — when a previous review report exists and a new review pass is added.*
+*Resume mode only.*
 
-- Review pass added: [date — scope — section reviewed]
-- Issues resolved: [list]
-- Issues remaining: [list]
-- New issues: [list]
-- Recommended next action: [handoff destination]
+- Review pass added: [date / scope / source]
+- Issues accepted: [N] / deferred: [N] / rejected: [N]
+- 03 files updated: [list]
+- Patches applied: [N]
+- Recommended next action:

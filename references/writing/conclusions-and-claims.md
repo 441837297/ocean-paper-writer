@@ -3,7 +3,7 @@
 ## Purpose
 
 This module is used during the 04 writing stage (Conclusion drafting)
-and 05 review / 06 polish (claim boundary checking).
+and 05 review / polish (claim boundary checking).
 The Conclusion synthesizes supported findings, implications, limitations,
 and future work. It must not introduce new evidence.
 

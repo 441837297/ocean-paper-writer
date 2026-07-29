@@ -7,6 +7,37 @@ This module is used during the 04 writing stage to:
 - convert Results into bounded Discussion interpretation;
 - prevent overinterpretation of results into unsupported mechanisms or causal claims.
 
+## Results section evidence ladder
+
+Before drafting individual Results paragraphs, check the Results Evidence Ladder Plan
+from `03_structure/03_section-architecture.md`.
+
+Default Results ladder:
+
+1. System / data / workflow setup
+2. Validation / credibility
+3. Main result
+4. Comparison / robustness
+5. Mechanism / diagnostic evidence
+6. Consequence / generalization
+
+Use this ladder to decide paragraph order. Results should not simply follow figure order
+unless the figure order already follows the evidence ladder.
+
+Ocean-science adaptation:
+
+- **Detection papers:** observed pattern → statistical significance → robustness/confounders → attribution diagnostics → consequence.
+- **Mechanism papers:** observed phenomenon → process diagnostic → sensitivity/alternative explanation → mechanism boundary.
+- **Method/data papers:** workflow/data coverage → validation → benchmark/comparison → scientific discovery enabled by the method.
+
+Hard rules:
+
+- Each Results subsection opens with a claim-first sentence, not "Figure X shows...".
+- Each paragraph serves one ladder step or one key finding.
+- Mechanism language in Results must be diagnostic and bounded; deeper interpretation belongs in Discussion.
+- If a ladder step is missing from the evidence inventory, mark it `[MISSING]` rather than inventing prose.
+- If a figure does not serve a ladder step, consider moving it to supplement or not using it in the main Results narrative.
+
 ## Results paragraph pattern
 
 Each Results paragraph follows:
@@ -50,6 +81,7 @@ finding recap → mechanism candidate → literature comparison → uncertainty 
 - Every claim must trace to a figure, table, method, or citation.
 - If a claim cannot be traced, mark `[CITATION NEEDED]` or `[CONFIRM WITH USER]`.
 - A visual pattern is not automatically a confirmed mechanism.
+- Every Results paragraph must identify its ladder step: setup / validation / main result / robustness / diagnostic / consequence.
 
 ## Ocean-science overclaim checks
 

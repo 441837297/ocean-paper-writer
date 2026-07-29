@@ -4,7 +4,7 @@
 
 **核心思路：** 论文写作的起点很分散 — 项目书、论文图、分析代码、数据描述、文献笔记、导师反馈。
 把这些碎片拼成一篇连贯的论文，很难一步完成。
-这个工具把主体论文构建拆成六个阶段，另有一个可选阶段准备投稿说明材料。每个阶段产出可供你审阅、修改、反复打磨的中间文件。
+这个工具把主体论文构建拆成五个核心阶段，并把 polish 作为 review-writing 循环中的子工作流；投稿前可进入可选的 06 Cover Letter 阶段准备投稿说明材料。每个阶段产出可供你审阅、修改、反复打磨的中间文件。
 你控制研究内容、科学判断和最终文字；工具辅助整理材料、起草初稿、检查一致性。
 决定权始终在你手上。
 
@@ -34,7 +34,7 @@ prepare / methods / structure 阶段不依赖 Zotero；writing / review / polish
 
 ## 工作流程
 
-主体论文构建分六个阶段；投稿前可进入第七阶段准备投稿说明材料。每次只推进一个阶段：
+主体论文构建分五个核心阶段，另有 polish 子工作流；投稿前可进入可选的 06 Cover Letter 阶段。每次只推进一个阶段：
 
 1. **准备（Prepare）** — 你提供项目书、图表和研究想法。
    工具会问 3-5 个关键问题，然后生成项目简报和证据清单。
@@ -43,31 +43,58 @@ prepare / methods / structure 阶段不依赖 Zotero；writing / review / polish
 2. **方法（Methods）** — 工具读取你的代码和数据描述，分两块记录：数据来源与预处理（`02a_data.md`），以及分析流程与统计方法（`02b_methods.md`）。
    你逐项确认或修正。
 
-3. **结构（Structure）** — 如果你已有目标期刊，工具会依据期刊风格设计手稿架构：核心故事线、声明层级、图表顺序、各节定位。
-   这是蓝图，不是正文。
+3. **结构（Structure）** — 产出三个互不重复的文件，作为写作阶段的精准材料源：
+   - `03_section-architecture.md`（论文撰写纲要）：section role、P-ID range、主张层级、论证链。
+   - `03_figure-outline.md`（图片蓝图）：每张图的科学问题、panel 内容、caption 骨架。
+   - `03_terminology.md`（术语字典）：唯一术语权威来源，全文一致性检查。
 
 4. **写作（Writing）** — 逐段推进。工具起草，你审阅。每段之后你说：保留 / 修改 / 扩展 / 继续。
    默认顺序：Methods → Results → Introduction → Discussion → Conclusion → Abstract。
    产出 `04_manuscript-draft.md`（初稿）。
+   **精准加载：** 写作时只加载目标节的期刊规则（`Shared + 当前节`）+ 术语表全文 + House Rules，不使用整个期刊 profile。
    包含图表标题（caption）生成，遵循三部分结构：主题 → 关键内容 → 数据来源。
    需要文献支撑时，工具会先征求你的同意再检索 Zotero。
 
-5. **审查（Review）** — 工具诊断证据缺口、声明强度、逻辑问题和期刊适配度。
-   每轮审查产出 `05_gpt-review-roundN.md`，修改后的手稿保存为 `04_manuscript-reviewN.md`。
-   多轮审查的 N 全局递增（review1 → review2 → polish3 → review4 合法）。
-   默认不改写任何内容，你决定修什么、往哪个方向走。
+5. **审查（Review）** — GPT 决策，ClaudeCode 执行：
+   ClaudeCode 编译原始反馈为 `05_review-round{N}A_source.md` → 用户发给 GPT → GPT 输出 `05_review-round{N}B_report.md`（Issue Log + Revision Contract + Patch List）→ ClaudeCode 按 B_report 执行修改。
+   每轮审查后修改稿保存为 `04_manuscript-reviewN.md`（N 全局递增）。
+   **修改前先检查 Backpropagation Gate：若涉及结构变更，先更新 03 文件，用户确认蓝图后再动正文。**
+   可选加载导师审稿视角检查清单（`references/review/tutor-review-checklist.md`），按稿件 section 和通用原则核查导师重点关注的论证问题。
 
-6. **润色（Polish）** — 推荐逐段精修已确认的文本，优化清晰度、流畅度和期刊语气。
-   每轮润色后修改稿保存为 `04_manuscript-polishN.md`，N 与审查共享全局计数器。
-   也可以在投稿前运行一次可选的 style naturalization audit：先扫描出高风险、中风险和可选修改项，用户选择后再改写，不会自动批量重写全文。
+   **润色（Polish，子工作流）** — 逐段精修已确认的文本，优化清晰度、流畅度和期刊语气。
+   润色修改保存为 `04_manuscript-reviewN-polishM.md`（M 为 polish 子编号，随新 review 重置）。
+   **没有独立的润色日志文件** — 所有修改记录写入 `04_writing-log.md` 的 Revision Notes，与审查修改共享同一记录格式。
+   可选：投稿前运行 style naturalization audit，先扫描 AI-like phrasing 再逐项改写。
 
-7. **投稿说明材料（Cover Letter，可选）** — 在手稿核心声明和目标期刊基本确认后，整理给编辑的 cover letter 素材。
-   贡献声明对齐目标期刊 scope；包含数据可用性、利益冲突声明和通讯作者信息。
+6. **投稿说明材料（Cover Letter，可选）** — 在手稿核心声明和目标期刊基本确认后，整理给编辑的 cover letter。
+   采用七段结构：投稿声明 → 一句话稿件概要 → 期刊适配（对标该刊已发文献）→ 知识缺口 → 核心结果与意义 → 合规声明 → 礼貌结尾。
    不新增科学结论；未确认目标期刊时不生成。
 
 任何阶段都可以暂停，稍后继续。
 也可以回到前面的阶段 — 审查可以回到写作或结构，润色可以回到写作。
 这不是单向流水线。
+
+### 流程图
+
+```mermaid
+flowchart TD
+    P[[01 Prepare<br>项目简报 + 证据清单]]
+    M[[02 Methods<br>数据来源 + 分析方法]]
+    S[[03 Structure<br>撰写纲要 + 图表蓝图<br>术语字典 + 参考论文]]
+    W[[04 Writing<br>逐段起草正文]]
+    R[[05 Review<br>统一审查流程<br>反馈→讨论→修改]]
+    CL[[06 Cover Letter<br>投稿信素材]]
+
+    P --> M --> S --> W --> R --> CL
+    R -.->|审查后回到写作| W
+
+    style R fill:#f9f,stroke:#333
+    style W fill:#bbf,stroke:#333
+```
+
+> 主流程从左到右推进，06 Cover Letter 为可选阶段。虚线回路：Review 完成后回到 Writing 修改正文。
+> Polish 润色是 Review-Writing 循环的子工作流，不单独编号；润色修改直接写入 `04_writing/` 版本文件，
+> 记录写入 `04_writing-log.md`。
 
 ## 不做什么
 
@@ -76,6 +103,7 @@ prepare / methods / structure 阶段不依赖 Zotero；writing / review / polish
 - **不编造数据、方法、引用或导师意见。** 缺失信息用明确的标记注明。
 - **不把弱证据写成强结论。** 证据边界在每个阶段都被保留。
 - **不替代科学判断。** 工具整理和精炼；研究者决定什么是对的。
+- **不保留特定期刊 profile。** 期刊风格通过对标典型参考文献实现。
 
 ## 适合谁
 
@@ -95,27 +123,33 @@ prepare / methods / structure 阶段不依赖 Zotero；writing / review / polish
 开始一个项目后，工具会在你的项目目录下生成以下结构。每个文件有单一明确的用途（只有多文件阶段才加 `a`/`b` 后缀）：
 
 ```
-manuscript/
+project-root/
+├── CLAUDE.md
 ├── 01_prepare/
-│   ├── 01a_project-brief.md       # 研究问题、背景、研究区域、数据概览
-│   └── 01b_evidence-inventory.md  # 图→声明对应表、证据强度、故事路线
+│   ├── 01a_project-brief.md         # 研究问题、背景、数据概览（prepare 阶段快照）
+│   └── 01b_evidence-inventory.md    # 图→声明对应表、证据强度、故事路线
 ├── 02_methods/
-│   ├── 02a_data.md                # 数据来源、预处理、坐标系、版本信息
-│   └── 02b_methods.md             # 分析流程、代码清单、统计方法、不确定性
+│   ├── 02a_data.md                  # 数据来源、预处理、版本信息
+│   └── 02b_methods.md               # 分析流程、变量定义、统计方法
 ├── 03_structure/
-│   └── 03_manuscript-structure.md  # 章节架构、声明层级、图表顺序
+│   ├── 03_section-architecture.md    # 论文撰写纲要：section role、P-ID range、主张层级、论证链
+│   ├── 03_figure-outline.md         # 活文档：图表顺序、科学问题、caption 骨架、图-声明映射
+│   ├── 03_terminology.md            # 术语字典：标准术语/禁止变体对照表，全文一致性检查
+│   └── old/                         # 旧版项目书与图表蓝图的归档
+├── reference_papers/                # 参考论文全文（建议预先转为 MD），用于风格参照与术语对齐
 ├── 04_writing/
-│   ├── 04_manuscript-draft.md     # 初稿（04 阶段直接产出）
-│   ├── 04_manuscript-reviewN.md   # 第 N 轮审查后修改稿（N 全局递增）
-│   ├── 04_manuscript-polishN.md   # 第 N 轮润色后修改稿（N 与审查共享）
-│   └── 04_writing-log.md          # 起草日志、单元状态、文献速查、修订记录
+│   ├── 04_manuscript-draft.md       # 初稿（04 阶段直接产出）
+│   ├── 04_manuscript-reviewN.md     # 第 N 轮审查后修改稿（N 全局递增）
+│   ├── 04_manuscript-reviewN-polishM.md  # Review N 的第 M 轮润色修改稿
+│   └── 04_writing-log.md            # 统一日志：起草单元状态、文献速查、修订记录（含审查+润色）
 ├── 05_review/
-│   └── 05_gpt-review-roundN.md    # 第 N 轮审查报告（诊断 + 修改建议）
-├── 06_polish/
-│   └── 06_polish-log.md           # 原始文本 vs 润色后文本、修改理由、边界检查
-└── 07_cover-letter/
-    └── 07_cover-letter.md         # 投稿信，贡献声明对齐期刊 scope
+│   ├── 05_review-round{N}A_source.md  # 第 N 轮：ClaudeCode 编译原始意见
+│   └── 05_review-round{N}B_report.md  # 第 N 轮：GPT 分析报告（Issue Log + Revision Contract + Patch List）
+└── 06_cover-letter/
+    └── 06_cover-letter.md           # 投稿信，贡献声明对齐期刊 scope
 ```
+
+> 注意：Polish 润色不单独编号，无独立目录。润色输出是 `04_writing/` 中的手稿版本，修改记录写入 `04_writing-log.md`。
 
 这些文件存放在你的论文项目目录中，不在 Skill 代码仓库内。
 随着推进逐步积累，随时可以打开、阅读、直接编辑。
@@ -134,23 +168,27 @@ manuscript/
 
 **你决定目标期刊，工具不替你选择。**
 
-- 如果确认了目标期刊：工具会告知你该期刊的特点（如内置的期刊 profile 中有），后续结构、写作、审查和润色阶段均按蒸馏后的规则执行。
+- 如果确认了目标期刊：工具会记录在项目文件中，后续写作、审查和润色阶段通过**对标典型参考文献**来落实期刊风格（句式、结构、论证深度）。
 - 如果暂时没有确认：按标准流程推进，写作和润色阶段时再落实期刊规范。
 
-如果你的目标期刊不在内置列表中，可以提供一个投稿指南网址 + 3-4 篇目标期刊近期论文，工具可以按需蒸馏出该期刊的写作规则。
-详见 `references/journals/_distill.md`。
+写作风格由 House Rules 和 `reference_papers/` 中的范文片段指导。不保留特定期刊 profile——具体期刊风格通过对标目标期刊的 2-4 篇近期典型论文实现。
 
-Cover letter 阶段必须基于已确认的目标期刊 profile 生成，不会在未确认期刊时生成投稿信。
+Cover letter 阶段需基于已确认的目标期刊和参考论文生成，不会在未确认期刊时生成投稿信。
 
-## 已内置的期刊 Profile
+## 地学领域期刊参考
 
-| 期刊 | 叙事定位 |
+以下为地学领域常见投稿目标，写作时通过对标该刊近期论文实现风格匹配：
+
+| 期刊 | 典型特征 |
 |---------|-------------------|
 | **GRL**（Geophysical Research Letters） | 单一锐利结论、精炼、简短讨论 |
 | **JGR-Oceans** | 完整证据链、方法透明、论证严谨 |
 | **JPO**（Journal of Physical Oceanography） | 动力学优先、机制驱动、物理精确 |
 | **Nature Communications** | 广泛意义、跨学科可读、证据有边界 |
 | **Nature Climate Change** | 气候变化中心、地球系统关联、后果导向 |
+| **Science** | 广泛科学意义、突破性发现、极精炼 |
+
+> 以上为领域参考，非内置 profile。实际写作风格以你提供的该刊近期参考论文为准。
 
 ## 写作与润色理念
 
@@ -197,7 +235,7 @@ references/
   templates/                 # 各阶段输出文件的格式模板
   journals/                  # 期刊 profile（含 _distill.md 按需蒸馏规则）
   writing/                   # 各章节写作指南
-  review/                    # 审查与作者化风格自然化参考
+  review/                    # 审查参考：风格自然化 + 导师审稿视角检查清单
   zotero/                    # Zotero MCP 集成说明与配置记录
 examples/                    # 分阶段使用示例
 docs/                        # 开发记录
@@ -207,7 +245,7 @@ docs/                        # 开发记录
 
 此仓库面向维护者。扩展时请注意：
 - 流程文件聚焦单一阶段；较大篇幅放在模板文件中。
-- 新增期刊 profile 使用 `references/journals/_template.md`。
+- 期刊写作惯例通过项目 `reference_papers/` 中的近期论文提取，不新增内置期刊 profile。
 - 保留逐阶段推进和逐段起草/润色的设计。
 - 证据边界不可跨越 — 每个阶段的声明必须可追溯到证据。
 

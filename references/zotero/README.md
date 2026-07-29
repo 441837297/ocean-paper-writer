@@ -140,7 +140,7 @@ Zotero is used for citation needs and literature support review:
 
 Do not auto-rewrite based on Zotero data during Review.
 
-### 06 Polish
+### Polish
 
 Zotero is used mainly for citation phrasing and claim precision:
 
