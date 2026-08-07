@@ -53,7 +53,10 @@ Keep 01c selective and role-based:
 
 Equations and implementation details remain in methods. Full prose and citation placement remain in writing.
 
-## Interaction Flow
+## Stage Steps
+
+Follow the global Stage/Step, Source Scope, Plan, and Single-Step workflow in `SKILL.md`. Enter at
+any phase when the user specifies it; reuse confirmed material and preserve the existing phase order.
 
 The prepare workflow proceeds through seven phases. Each phase can span multiple conversation turns.
 

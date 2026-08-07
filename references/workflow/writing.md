@@ -10,6 +10,26 @@ The writing workflow generates manuscript prose one unit at a time, following th
 
 Run when: structure stage is complete with confirmed `03_section-architecture.md`. Do NOT run when: structure is incomplete; user only wants to polish (use polish workflow).
 
+## Stage Steps
+
+Follow the global Stage/Step, Source Scope, Plan, and Single-Step workflow in `SKILL.md`. Enter at
+any step when the user specifies it; reuse confirmed material. The existing writing order is:
+
+1. Select the writing unit and establish its Pre-draft Contract.
+2. Inspect the unit context and discuss the scientific content in Chinese.
+
+   a. 逐项确认段落陈述与已确认材料（figure/table/evidence inventory）的对应关系。
+   b. 检查逻辑顺序、表述强度、与前后段的职责衔接。
+   c. 不做：读取生成代码验证计算、追溯变量定义链、审计统计输出。
+
+   **Upstream issue：** 如发现可能影响科学正确性的上游矛盾（如 figure 单位不一致、
+   术语与 03_terminology 冲突），标记为 `[UPSTREAM]`，简要描述问题及可能影响，
+   询问用户是否立即处理。若用户确认，将问题写为独立提示词文件
+   （`doc/upstream_<topic>_YYYYMMDD.md`），由用户在新窗口中执行。
+   当前 Writing Step 继续以已确认材料为边界。
+3. Confirm the writing direction, then draft the English manuscript prose.
+4. Confirm the draft, record it, and select the next unit.
+
 ---
 
 ## 03 → 04 一致性检查

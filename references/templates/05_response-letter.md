@@ -4,7 +4,12 @@
 
 ## Overall response
 
-Response: [Briefly summarize the main revisions and thank the editor and reviewers.]
+Optional. For an editor, use one or two concise sentences. For a reviewer, give a brief response
+then proceed to point-by-point comments. Add a revision summary only when it is explicitly requested
+by the editor or reviewer, or requested by the user. Summarize concrete completed changes, such as
+`corrected ...`, `added ...`, `recalculated ...`, or `clarified ...`; do not create abstract categories.
+
+Response: [Optional brief overall response.]
 
 ## Reviewer #1
 
@@ -12,9 +17,8 @@ Response: [Briefly summarize the main revisions and thank the editor and reviewe
 
 [Paste the reviewer comment verbatim.]
 
-Response: [Answer the point in the first one or two sentences. Give the minimum evidence or rationale
-needed to support that answer, then state what was changed or why the original treatment was
-retained. Distinguish verified results from interpretation.]
+Response: [Give the direct, confirmed response. State the specific action, object, result or evidence
+boundary, manuscript action, and location. Distinguish verified results from interpretation.]
 
 Evidence for reviewer evaluation: [Optional. Insert a concise result, response-only figure/table, or
 cross-reference only when needed. Omit this block for simple comments.]
@@ -35,8 +39,8 @@ Location: [Section, equation, figure, table, page, or line.]
 
 [Paste the reviewer comment verbatim.]
 
-Response: [Answer directly, give the minimum evidence or rationale, and state the manuscript action.
-Use one brief acknowledgment at most; do not repeat background already supplied by the reviewer.]
+Response: [Give the direct, confirmed response. Use specific actions and scientific objects; use one
+brief acknowledgment at most and do not repeat background already supplied by the reviewer.]
 
 Evidence for reviewer evaluation: [Optional response-only evidence or cross-reference.]
 

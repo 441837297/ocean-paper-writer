@@ -80,7 +80,10 @@ ClaudeCode 不替代 GPT 做判断。ClaudeCode 的职责是：编译原始材�
 
 **Tutor checklist 在完整 review 中的角色：** 当已有的导师/合作者意见不够精确时，可用 checklist 帮助解释"导师可能在这条意见背后关心什么"，辅助定位问题的论证层级。**不得**借 checklist 在导师意见之外额外生成一批新问题。
 
-### Interaction Flow
+### Stage Steps
+
+Follow the global Stage/Step, Source Scope, Plan, and Single-Step workflow in `SKILL.md`. Enter at
+any phase when the user specifies it; reuse confirmed material and preserve the existing phase order.
 
 ```
  1. ClaudeCode collects raw review input → compiles 05_review/05_review-round{N}A_source.md
@@ -125,6 +128,12 @@ ClaudeCode 不替代 GPT 做判断。ClaudeCode 的职责是：编译原始材�
     c. ALL subsequent edits MUST target this new file only
 
  7. ClaudeCode executes Patch List on 04_manuscript-reviewN.md
+
+    执行中如发现需要上游验证的问题（如数值与 figure 不一致、GPT 建议的措辞引入了
+    未确认术语），标记 `[UPSTREAM]`，简要描述问题及可能影响，询问用户是否处理。
+    若用户确认，将问题写为独立提示词文件
+    （`doc/upstream_<topic>_YYYYMMDD.md`），由用户在新窗口中执行。
+    当前 Patch 继续以已确认材料为边界。
 
  8. ClaudeCode appends all revision entries to 04_writing-log.md Revision Notes (newest first)
 
@@ -480,15 +489,10 @@ present both sides, and ask user to decide priority.
 
 ## Response-Letter Handoff
 
-After reviewer-comment decisions and manuscript revisions are confirmed, the review stage may
-prepare or revise one persistent response-letter draft. Load
-`references/review/response-letter.md` only when analyzing response strategy, drafting formal
-point-by-point replies, or revising an existing response. Do not load it for ordinary manuscript
-review.
-
-Keep scientific reasoning and execution details in the review decisions and revision plan. Transfer
-only the direct answer, minimum necessary evidence, manuscript action, revised text, and exact
-location into the formal response. Use `references/templates/05_response-letter.md` for assembly.
+Response remains part of Stage 05. When handling a reviewer or editor comment for a response
+letter, load `references/review/response-letter.md` and follow its stepwise, user-confirmed
+workflow. Use `references/templates/05_response-letter.md` only to assemble the final document.
+Do not load either file for ordinary manuscript review.
 
 ## Missing and Conflicting Information
 

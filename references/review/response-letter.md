@@ -6,33 +6,106 @@ Convert confirmed scientific decisions and completed revisions into concise, evi
 to editors and reviewers. Use this reference only when analyzing response strategy, drafting a
 response letter, or revising an existing response. Do not load it for ordinary manuscript review.
 
-## Response Unit
+## Stepwise Comment Workflow
 
-Build each reply in this order:
+Handle one comment at a time. Complete only the current step, state the completed step and next
+step, then wait for the user. The user may enter at any step. Reuse interpretations, decisions, or
+responses already explicitly confirmed; do not repeat completed work.
 
-1. **Direct answer** — state the decision or finding in the first one or two sentences.
-2. **Evidence or rationale** — give only what the reviewer needs to evaluate that answer.
-3. **Manuscript action** — state what was corrected, added, clarified, removed, or retained.
-4. **Location** — identify the exact section, equation, figure, table, page, or line.
+### R0. Select comment
 
-Use a shorter unit when the comment is simple. Do not turn every reply into four paragraphs.
+Identify one editor or reviewer comment and preserve it verbatim. Confirm which comment is being
+handled when it is unclear.
 
-## Response Pathways
+### R1. Interpret comment
 
-Choose the pathway that matches the confirmed decision:
+Read the original comment, the relevant manuscript passage, and only the context needed to
+understand why the concern was raised. Propose one comment type and briefly explain it:
 
-| Pathway | Use when | Required content |
-|---------|----------|------------------|
-| Accept and correct | The reviewer identified an error | Name the error, correction, recomputed scope, and whether conclusions changed |
-| Clarify presentation | The treatment is valid but unclear | Give the definition or distinction and state where it is now explained |
-| Add evidence | The concern requires a test, analysis, figure, table, or citation | Report the direct result and identify manuscript or response-only evidence |
-| Partially agree | Part of the suggestion is supported | State what was adopted and define the boundary of what is not supported |
-| Retain the treatment | The original choice remains justified | Give the evidence-based rationale and any clarification added for readers |
-| State an evidence boundary | Available evidence cannot isolate the requested mechanism or attribution | State what the evidence supports, what remains unresolved, and what evidence would be required |
-| Cross-reference | Another reply already provides the full analysis | Give the direct answer, then point to the earlier response without repeating it |
+```text
+审稿人直接问什么：
+他为什么会问这个：
+对应原稿位置：
+我的暂定判断：[EDIT / CLARIFY / ADD_ANALYSIS / CORRECT / BOUNDARY]；[简短理由]
+```
 
-Do not use `beyond the scope` as a substitute for a feasible minimum check. If a requested analysis
-cannot be performed, identify the missing data, diagnostic, experiment, or model output.
+Types are aids to interpretation, not decisions:
+
+- `EDIT`: a presentational or textual revision is requested.
+- `CLARIFY`: the intended treatment may be valid but is unclear.
+- `ADD_ANALYSIS`: a test, analysis, figure, table, or citation is needed.
+- `CORRECT`: an error, calculation, definition, or implementation needs correction.
+- `BOUNDARY`: the evidence cannot support the requested mechanism, attribution, or scope.
+
+Stop after R1 and ask the user to confirm or correct the interpretation.
+
+### R2. User confirms interpretation
+
+Record the confirmed interpretation and type. If the user changes either, return to R1 only as
+needed to make the interpretation clear.
+
+### R3. Propose response strategy
+
+Based on the confirmed interpretation, discuss the scientific response before writing formal prose:
+
+```text
+建议回应思路：
+
+1. 是否接受审稿人的意见：
+2. 需要做或已经做了什么：
+3. 最关键的结果或事实：
+4. 手稿准备修改哪里：
+5. Response 需要保持怎样的证据边界：
+```
+
+Do not use `beyond the scope` in place of a feasible minimum check. If requested work cannot be
+done, identify the missing data, diagnostic, experiment, or model output. Stop after R3 and wait
+for user confirmation.
+
+### R4. User confirms strategy
+
+Record the confirmed scientific decision, evidence boundary, manuscript action, and location.
+Return to R3 when the user changes the strategy.
+
+### R5. Draft Chinese response
+
+Draft a concise formal Chinese reply from the confirmed interpretation, strategy, manuscript
+revision, terminology, and analysis results. It must be close to the final response in information
+density, not an internal note. Use the type naturally:
+
+| Type | Usual response logic |
+|------|----------------------|
+| `EDIT` | Thank the reviewer, state what was revised, show the original and revised sentence, and give the location. |
+| `CLARIFY` | State the original intended meaning, how it is now clarified, and the location. |
+| `ADD_ANALYSIS` | State the added analysis, its result, and the manuscript revision. |
+| `CORRECT` | State the error, correction or recalculation, corrected result, and whether conclusions changed. |
+| `BOUNDARY` | State what the evidence supports, its limit, and how the manuscript was adjusted. |
+
+Use the minimum evidence needed for evaluation. Keep internal implementation details, abandoned
+alternatives, and repeated background out of the reply. Stop after R5 and wait for user
+confirmation.
+
+### R6. User confirms Chinese response
+
+Treat the confirmed Chinese response as the information boundary for English rendering. Return to
+R5 when its scientific content, logic, or evidence strength changes.
+
+### R7. Draft English response
+
+Render the confirmed Chinese response as concise, natural academic English. Preserve confirmed
+facts, logical order, and evidence strength. Use the reviewer comment, final manuscript, and
+terminology table for exact terms. Prefer concrete actions and objects: `corrected`, `added`,
+`calculated`, `recalculated`, `revised`, `clarified [object]`, `removed`, `defined`, and `moved`.
+State what was done and, for analyses or corrections, what the result shows and whether conclusions
+changed. Keep sentences short and direct; use at most one brief acknowledgment.
+
+**Tone: use second person throughout.** Replace all third-person references (`the reviewer`,
+`the editor`, `Reviewer #1`, `the comment`) with second-person forms (`you`, `your`, `your comment`).
+This is a direct reply to a colleague, not a report about their comments. The revision is shown,
+not defended.
+
+Then give the English reply to the user for confirmation. If it requires substantive re-examination,
+return to the earliest uncertain step rather than polishing English directly.
 
 ## Evidence and Claim Boundaries
 
@@ -86,34 +159,29 @@ interpretation, revise the manuscript as well.
 ## DOCX Format
 
 For a Word response letter, run `scripts/build_response_docx_template.py` or copy
-`assets/response_letter_template.docx`, then replace the placeholders without changing the styles.
+`assets/response_template.docx`, then replace the placeholders without changing the styles.
 
 - Use Times New Roman throughout, including tables, headers, footers and page numbers.
-- Put each editor or reviewer comment in a two-row, one-column table: the first row is the comment
-  label (`Editor Comments`, `Comment 1`, `Major Comment 1`, or `Minor Comment 1`); the second row
-  preserves the comment verbatim in regular black text.
-- Apply Word's built-in `Grid Table 4 Accent 1` style to comment tables. Do not approximate it with
-  manually assigned borders or cell margins. Set each table and its single column to the document's
-  available text width, calculated from the page width minus the left and right margins.
-- Keep `Response to Reviewer 1` or the corresponding reviewer number outside the table as a section
-  heading. Keep response prose black.
-- Use blue text only for text copied from the revised manuscript and added references. Show the
-  complete revised context in blue and bold only the words actually changed.
-- Put the exact manuscript location on the following line in red italics.
-- Keep response-only figures and tables black. Replace absent media with a labeled placeholder;
-  never carry project images into a reusable template.
-- Use dashed blue separators between major response units. Do not add a table of contents.
+- Keep editor and reviewer comments as regular black text, preserving them verbatim.
+- Keep each reviewer label, `Major comments`, and `Minor comments` as black section headings.
+- Use blue text for manuscript metadata, response prose, revised manuscript context, response-only
+  figure labels and captions. Do not selectively bold revised wording.
+- Follow each revision excerpt with `Location: [section, figure, table, or caption]. Lines
+  [XX-XX].` in blue italics. Leave the location and line placeholders for the author to complete.
+- Insert a labeled blue placeholder for any response-only figure, and keep project-specific media
+  out of the reusable template.
+- Separate response units with whitespace only. Do not use dashed separators or a table of contents.
 
 ## Revision Workflow
 
 When revising an existing response:
 
 1. Preserve each reviewer comment verbatim.
-2. Compare the reply with the confirmed scientific decision and final manuscript change.
-3. Put the direct answer first.
-4. Remove internal reasoning, repeated background, formulaic thanks, and duplicated explanations.
-5. Retain the minimum evidence needed to justify the answer.
-6. Update revised text and location from the final manuscript version.
+2. Compare it with the confirmed scientific decision and final manuscript change.
+3. Resume from the earliest uncertain step in R0-R7. Do not directly polish English when the
+   interpretation, strategy, Chinese content, evidence, or manuscript action is uncertain.
+4. Once those are confirmed, update the English response, revised text, and location from the final
+   manuscript version.
 
 ## Final Check
 

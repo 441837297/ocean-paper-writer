@@ -52,7 +52,10 @@ Methods produces two default user-facing files:
 
 Do **not** create additional files unless the user explicitly asks. If information is insufficient, produce a draft with `[MISSING]`, `[UNCERTAIN]`, and `[CONFLICT]` markers.
 
-## Interaction Flow
+## Stage Steps
+
+Follow the global Stage/Step, Source Scope, Plan, and Single-Step workflow in `SKILL.md`. Enter at
+any phase when the user specifies it; reuse confirmed material and preserve the existing phase order.
 
 The methods workflow proceeds through ten phases. Each phase can span multiple conversation turns.
 

@@ -211,7 +211,10 @@ reference_papers/                        ← 按 section 组织的参考论文�
 
 The legacy `03_project-brief.md` (single-file catch-all document) is deprecated and should be archived to `03_structure/old/`. Its content should be split into the three files above plus the external reference snippet library.
 
-## Interaction Flow
+## Stage Steps
+
+Follow the global Stage/Step, Source Scope, Plan, and Single-Step workflow in `SKILL.md`. Enter at
+any phase when the user specifies it; reuse confirmed material and preserve the existing phase order.
 
 The structure workflow proceeds through these phases:
 

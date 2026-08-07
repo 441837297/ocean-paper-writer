@@ -60,16 +60,6 @@ If the central contribution or target journal is missing, mark `[MISSING]` or
 `[CONFIRM WITH USER]`. If a cover-letter claim needs literature support and no source
 is available, mark `[CITATION NEEDED]`.
 
-## Journal-Fit via Reference Papers
-
-Cover letter 不依赖内置期刊 profile。期刊适配段落通过**对标目标期刊已发文献**实现：
-
-- 从 `reference_papers/` 加载 2–4 篇目标期刊近期论文
-- 在期刊适配段引用这些论文，说明本文是该研究线索的延伸
-- 风格指导来自 House Rules + 参考论文片段，不来自期刊 profile
-
-如果用户未提供目标期刊参考论文，标记 `[MISSING]` 并询问用户是否提供。若用户暂时无法提供，先用通用期刊适配逻辑起草，标注 `[REFERENCE PAPERS PENDING]`。
-
 ## Required Output
 
 ```
@@ -98,32 +88,6 @@ Ask at most 3 questions before proceeding. Skip any that are already provided:
    declines.
 
 If author details are not provided and user declines: use bracketed placeholders.
-
-## 推荐段落结构（七段）
-
-| 段落 | 功能 | 不要写成 |
-|------|------|---------|
-| 1 | 投稿声明（title + article type） | 长背景 |
-| 2 | 一句话稿件概要 | 结果细节 |
-| 3 | 期刊适配：引用该刊已发表的相关文献，说明本文是这条线索的延伸 | 泛泛说 important |
-| 4 | 知识缺口 | 方法堆砌 |
-| 5 | 核心结果与意义（1 个 headline 数字 + 关键发现） | 另一版摘要 |
-| 6 | 原创性、未一稿多投、作者同意、无利益冲突 | 省略 |
-| 7 | 礼貌结尾 | 过度恳求 |
-
-### 段落功能详解
-
-**段落 3（期刊适配）** — 这是 cover letter 区别于 abstract 的最关键段落。策略：
-- 引用目标期刊上已发表的相关文章（1–3 篇）
-- 说明本文是这条研究线索的延伸或补充
-- 暗示：贵刊已经在关注这个领域，我们提供的是新的维度
-
-示例逻辑：
-> Recent articles published in your journal on [topic] (e.g., Author et al., YEAR; Author et al., YEAR) have highlighted [key finding]. Our work extends this line of research by [this paper's unique contribution].
-
-**段落 4（知识缺口）** — 一句话说清前人做了什么、没做什么。不列文献综述。
-
-**段落 5（核心结果）** — 只给 headline 数字和最关键发现。不展开技术路径（如子类/子成分的分级估算留在正文）。如果有多条核心发现，保留最重要的动态信号（如"各分量均增强但净趋势不显著"），不能因为压缩而丢失。
 
 ## Letter Structure
 
@@ -293,7 +257,10 @@ Cover letter 中的方法只保留数据来源，不展开技术路径：
 - **不把方法层级写太细** — 子类、子成分的分级估算留在正文
 - **不丢失核心动态信号** — 如"各分量均增强但净趋势不显著"，不能因压缩而删除
 
-## Interaction Flow
+## Stage Steps
+
+Follow the global Stage/Step, Source Scope, Plan, and Single-Step workflow in `SKILL.md`. Enter at
+any phase when the user specifies it; reuse confirmed material and preserve the existing phase order.
 
 1. Confirm target journal
 2. Load 2–4 reference papers from `reference_papers/` for journal-fit paragraph

@@ -29,7 +29,7 @@ Five manuscript-building stages, plus polish (sub-workflow) and one optional pub
 | **02 methods** | Document data sources, processing workflows, derived variables, and statistical methods |
 | **03 structure** | Design manuscript architecture — central story, claim hierarchy, figure sequence, section roles |
 | **04 writing** | Draft manuscript prose one paragraph or subsection at a time, following the structure architecture |
-| **05 review** | ClaudeCode compiles raw feedback into A_source → GPT analyzes and produces B_report (Issue Log + Revision Contract + Patch List) → ClaudeCode executes; optionally assemble a response letter from confirmed decisions and marked revisions. |
+| **05 review** | ClaudeCode compiles raw feedback into A_source → GPT analyzes and produces B_report (Issue Log + Revision Contract + Patch List) → ClaudeCode executes; response letters use the stepwise, user-confirmed workflow in `references/review/response-letter.md`. |
 | **06 cover-letter** | Prepare submission-facing cover letter material from confirmed manuscript claims and journal fit |
 
 Polish is a sub-workflow of the review-writing loop — it refines confirmed text within `04_writing/` and records changes in `04_writing-log.md`. It has no numbered stage directory.
@@ -59,7 +59,7 @@ This skill is designed for Chinese-speaking ocean science researchers preparing 
 
 Default behavior:
 - User-facing interaction follows the user's language. If the user writes in Chinese, ask questions, explain reasoning, and provide confirmation notes in Chinese.
-- Manuscript-facing text defaults to English unless the user explicitly asks for Chinese manuscript text.
+- Discuss scientific logic, structure, revision ideas, and plans in Chinese first. Draft English manuscript-facing prose only after the user confirms the corresponding Chinese reasoning or modification direction.
 - English remains the default language for draft manuscript prose, figure captions, abstracts, cover letters, journal-facing statements, and polished submission text.
 - Chinese explanations are author-facing aids. They may explain intent, structure, evidence boundaries, and items requiring user confirmation, but they must not add scientific claims absent from the English manuscript text.
 - When helpful, include a short `中文核对 / Author Check` block after substantial stage outputs, draft units, review passes, or polish passes.
@@ -72,24 +72,21 @@ Do not turn every output into full bilingual manuscript text by default. Chinese
 
 Skill 启动时，先检查项目目录下是否有 `CLAUDE.md`：
 - **有** → 读取并遵守。其中的术语、路径、禁止事项、决策记录优先于默认行为。
-- **无** → 从模板 `references/templates/CLAUDE.md` 自动创建并注入通用写作规则。
+- **无** → 从模板 `references/templates/CLAUDE.md` 复制到项目根目录。报告：`已创建项目级 CLAUDE.md。`
 
-CLAUDE.md 是项目记忆，也是写作规则的运行时存放处。
+#### CLAUDE.md 的定位
 
-#### CLAUDE.md 自动注入逻辑
+CLAUDE.md 是**项目记忆文件**，记录这个项目"是什么"：
 
-1. 项目无 `CLAUDE.md` → 复制 `references/templates/CLAUDE.md` 到项目根目录，填入托管区块中的通用写作规则。报告：`已创建项目级 CLAUDE.md 并注入写作规则。`
-2. 项目有 `CLAUDE.md` 但无 `<!-- ocean-paper-writer-rules:start -->` 标记 → 从模板提取托管区块内容，追加到文件末尾。报告：`已在现有 CLAUDE.md 中追加写作规则。`
-3. 项目有 `CLAUDE.md` 且已有托管区块 → 对比模板中的 `version=` 与现有区块的版本号。若版本不同，提示差异并询问用户是否更新。**不自动覆盖。** 报告：`检测到写作规则版本差异（当前: X, 最新: Y），是否更新？`
+- 项目概述（科学问题、目标期刊、当前阶段）
+- 主角锁定（核心框架、核心发现、边界）
+- 术语锁定（正确术语与禁止术语）
+- 关键文件导航与代码/数据路径
+- 项目特定禁止事项
 
-托管区块格式：
-```
-<!-- ocean-paper-writer-rules:start version=YYYY-MM-DD -->
-...规则内容...
-<!-- ocean-paper-writer-rules:end -->
-```
+**通用写作规则不在 CLAUDE.md 中重复。** 写作规则（House Rules）的唯一权威来源是 `references/workflow/writing.md`，由 skill 在 writing/polish/review 阶段自动加载，无需也不应在项目文件中拷贝。
 
-托管区块外的内容永远不动。用户在区块外写的项目专属指令、导师意见、术语列表均不受影响。
+新项目创建时从模板生成 CLAUDE.md，模板仅包含项目记忆骨架，不含写作规则文本。
 
 ---
 
@@ -173,6 +170,70 @@ If the user's request is ambiguous or spans multiple stages, ask:
 
 If the user is new and has research materials but no structured outputs, default to **prepare**.
 
+## Global Workflow Gates
+
+Apply these gates to every substantive task. They define navigation and collaboration only; each
+stage workflow retains its own scientific phases, inputs, and outputs.
+
+### Stage and Step
+
+Before substantive analysis or modification, identify the current Stage (`01`–`06`) and the concrete
+Step within that stage. If the user specifies both, use them. Otherwise infer the most likely stage
+and step from the request and project status, state the judgment in one or two sentences, and ask
+the user to confirm. Keep the current position visible in this form:
+
+```
+Current: 05 Review → Response R3 → R1C03
+```
+
+Each workflow may begin at any step. Reuse results that are already explicit, reliable, and confirmed;
+do not require earlier steps to be repeated.
+
+### Source Scope
+
+**File location first.** Before scanning (Glob/Grep) for project files, ask the user
+for known file paths or preferred versions. Only scan when the user does not know.
+This saves tokens and yields more precise results.
+
+Before formal analysis or modification, first make a quick pre-read of filenames, frontmatter,
+headings, and only the passages directly relevant to the current step. Then propose the files for
+full reading and the reason each is needed. Wait for user confirmation before deep reading. Confirm
+source scope once per work unit; request an additional source only when a new, necessary gap appears.
+A project-status directory scan is a pre-read, not a substitute for this gate.
+
+```
+本步骤建议读取：
+1. [file]
+理由：[why this file is needed]
+```
+
+### Plan and Execution
+
+For any project-content modification, use:
+
+```
+Investigate → Propose plan → User confirms → Execute
+```
+
+Keep the plan brief: goal, files or content to change, basis, and expected result. For a single
+spelling error, citation, or unambiguous formatting correction, use an abbreviated plan. Do not
+modify content before confirmation.
+
+### Single-Step Completion
+
+Advance one step at a time. At the end of every step, state:
+
+```
+当前步骤完成：
+本步确认了什么：
+下一步：
+准备做什么：
+```
+
+Then wait for the user. The AI investigates materials, proposes the most likely judgment and its
+basis, and executes confirmed work. The user confirms research direction, scientific judgments,
+plans, and final prose. When uncertain, state a provisional judgment before requesting a decision.
+
 ## Stage Outputs
 
 Each stage produces a fixed user-project output file. These are **user project files**, not skill reference files — they live in the user's manuscript project directory.
@@ -211,7 +272,7 @@ The writing log (`04_writing-log.md`) tracks which round each unit was last modi
 Do not generate stage output files for stages the user has not reached. Do not generate files for future stages preemptively.
 
 For final response-letter Word assembly, read `references/review/response-letter.md` and use
-`scripts/build_response_docx_template.py` or `assets/response_letter_template.docx`. Replace all
+`scripts/build_response_docx_template.py` or `assets/response_template.docx`. Replace all
 placeholders with project content; do not copy project-specific media into the reusable skill asset.
 
 ## Cross-Stage Information Ownership
@@ -289,8 +350,8 @@ Additional reference modules for style naturalization:
 Additional reference modules for advisor-perspective review:
 `references/review/tutor-review-checklist.md`.
 
-Additional reference module for response letters:
-`references/review/response-letter.md`.
+Additional reference module for Stage 05 response letters: `references/review/response-letter.md`.
+It defines the stepwise, user-confirmed response workflow.
 
 ## Journal
 
@@ -362,6 +423,8 @@ When the user returns to a stage with an existing output file:
 4. Update the relevant sections only.
 5. Do not generate append-only history sections. Archive old versions to `old/` or rely on version control if needed.
 6. Do not regenerate confirmed units unless the user requests revision.
+7. Restore the last reliable Stage and Step, then continue from the earliest step made uncertain by
+   new evidence, feedback, or requested changes.
 
 ## Missing Information and Confirmation
 
@@ -396,6 +459,15 @@ These boundaries apply at every stage:
 - Do not invent data sets, methods, figures, citations, or advisor comments.
 - Preserve uncertainty. Hedging is a feature, not a bug.
 - If a claim is not supported by the evidence, flag it — do not polish it into sounding stronger.
+
+## Plain and Compact Academic Writing
+
+For manuscript prose, response letters, and project analysis, write the concrete scientific object,
+then the concrete action or result, then only the necessary explanation. Prefer existing terminology
+over new umbrella labels. Give one main scientific judgment per sentence. State direct diagnostics
+before mechanism interpretation, and match evidence language to `03_terminology.md`: use
+`shows`/`reveals` for direct diagnostics and `is consistent with`/`suggests`/`may reflect` when
+attribution is limited.
 
 ## Handoff Rules
 

@@ -9,11 +9,11 @@ from lxml import etree
 
 
 SKILL_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_OUTPUT = SKILL_ROOT / "assets" / "response_letter_template.docx"
+DEFAULT_OUTPUT = SKILL_ROOT / "assets" / "response_template.docx"
 
 FONT = "Times New Roman"
 BLACK = RGBColor(0, 0, 0)
-BLUE = RGBColor(68, 114, 196)
+BLUE = RGBColor(0, 112, 192)
 RED = RGBColor(192, 0, 0)
 BOX_COLOR = "4472C4"
 HEADER_FILL = "B4C7E7"
@@ -119,6 +119,26 @@ def add_divider(document):
     p_pr.append(borders)
 
 
+def add_spacing(document):
+    paragraph = document.add_paragraph()
+    paragraph.paragraph_format.space_before = Pt(3)
+    paragraph.paragraph_format.space_after = Pt(3)
+    return paragraph
+
+
+def add_response_unit(document, comment_placeholder, response_label="Response:"):
+    paragraph = document.add_paragraph()
+    add_run(paragraph, comment_placeholder)
+    paragraph = document.add_paragraph()
+    add_run(paragraph, f"{response_label} ", bold=True, color=BLUE)
+    add_run(paragraph, "[Insert the point-by-point response here.]", color=BLUE)
+    paragraph = document.add_paragraph()
+    add_run(paragraph, "Revised: ", bold=True, color=BLUE)
+    add_run(paragraph, "[Paste the complete revised context here.]", color=BLUE)
+    paragraph = document.add_paragraph()
+    add_run(paragraph, "Location: [section, figure, table, or caption]. Lines [XX-XX].", italic=True, color=BLUE)
+
+
 def add_page_number(document):
     paragraph = document.sections[0].footer.paragraphs[0]
     paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -181,76 +201,81 @@ def build_template(output_path=DEFAULT_OUTPUT):
     configure_styles(document)
     ensure_comment_table_style(document)
     section = document.sections[0]
-    section.top_margin = Cm(2.2)
-    section.bottom_margin = Cm(2.2)
-    section.left_margin = Cm(2.5)
-    section.right_margin = Cm(2.5)
+    section.top_margin = Cm(2.54)
+    section.bottom_margin = Cm(2.54)
+    section.left_margin = Cm(3.175)
+    section.right_margin = Cm(3.175)
 
     title = document.add_paragraph()
     title.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    add_run(title, "Response Letter", size=16, bold=True)
+    add_run(title, "A point-by-point response", size=16, bold=True)
 
     paragraph = document.add_paragraph()
-    add_run(paragraph, "Manuscript Number: ", bold=True)
-    add_run(paragraph, "[Manuscript ID]")
+    add_run(paragraph, "Manuscript Number: ", bold=True, color=BLUE)
+    add_run(paragraph, "[insert manuscript number]", color=BLUE)
     paragraph = document.add_paragraph()
-    add_run(paragraph, "Title: ", bold=True)
-    add_run(paragraph, "[Manuscript title]")
+    add_run(paragraph, "Title: ", bold=True, color=BLUE)
+    add_run(paragraph, "[insert manuscript title]", color=BLUE)
 
-    add_divider(document)
+    add_spacing(document)
     paragraph = document.add_paragraph()
-    add_run(paragraph, "Dear Editor,", bold=True)
+    add_run(paragraph, "Editor", bold=True)
     paragraph = document.add_paragraph()
-    add_run(paragraph, "[Insert the concise overall response after all point-by-point replies are finalized.]")
-    add_comment_table(document, "Editor Comments", "[Paste the Editor's comments verbatim here.]")
+    add_run(paragraph, "[Paste the Editor’s decision letter or comment verbatim here.]")
     paragraph = document.add_paragraph()
-    add_run(paragraph, "Response: ", bold=True)
-    add_run(paragraph, "[Insert the direct response to the Editor here.]")
+    add_run(paragraph, "Response: ", bold=True, color=BLUE)
+    add_run(paragraph, "[Insert the response to the Editor here.]", color=BLUE)
 
-    add_divider(document)
+    add_spacing(document)
     heading = document.add_paragraph()
-    heading.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    add_run(heading, "Response to Reviewer 1", size=12, bold=True)
-    add_comment_table(document, "Comment 1", "[Paste Reviewer 1's original comment verbatim here.]")
+    add_run(heading, "Reviewer 1", size=12, bold=True)
+    paragraph = document.add_paragraph()
+    add_run(paragraph, "[Paste the reviewer’s overall comment verbatim here, if applicable.]")
+
+    heading = document.add_paragraph()
+    add_run(heading, "Major comments", size=11, bold=True)
+    add_response_unit(
+        document,
+        "1. [Paste the reviewer’s original comment verbatim here.]",
+        response_label="Response to Major #1:",
+    )
 
     paragraph = document.add_paragraph()
-    add_run(paragraph, "Response:", bold=True)
-    paragraph = document.add_paragraph()
-    add_run(paragraph, "[Give the direct answer first, followed by the minimum evidence and manuscript action.]")
-
-    paragraph = document.add_paragraph()
-    add_run(paragraph, "Revised text in the manuscript:", bold=True, color=BLUE)
-    paragraph = document.add_paragraph()
-    add_run(paragraph, "[Paste the complete revised context in blue. ", color=BLUE)
-    add_run(paragraph, "Bold only the words actually changed", bold=True, color=BLUE)
-    add_run(paragraph, ".]", color=BLUE)
-    paragraph = document.add_paragraph()
-    add_run(paragraph, "(see Section X, Fig. X, Table X, or Lines X-X in the revised manuscript)", italic=True, color=RED)
-
-    add_divider(document)
-    paragraph = document.add_paragraph()
-    add_run(paragraph, "Added reference:", italic=True, color=BLUE)
-    paragraph = document.add_paragraph()
-    add_run(paragraph, "[Insert the complete added reference here.]", color=BLUE)
-
-    add_divider(document)
-    paragraph = document.add_paragraph()
-    add_run(paragraph, "Response-only figure or table:", italic=True)
+    add_run(paragraph, "Response-only figure (if needed):", bold=True, color=BLUE)
     placeholder = document.add_table(rows=1, cols=1)
     set_table_borders(placeholder)
     cell = placeholder.cell(0, 0)
     set_cell_margins(cell, top=500, bottom=500)
     cell.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
-    add_run(cell.paragraphs[0], "[Insert response-only figure or table here]", italic=True)
-    caption = document.add_paragraph()
-    caption.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    add_run(caption, "Fig. R1. [Insert a self-contained caption.]", bold=True)
+    add_run(cell.paragraphs[0], "[Insert the figure here; center it and place it before the next reviewer comment.]", italic=True, color=BLUE)
     paragraph = document.add_paragraph()
-    add_run(paragraph, "(response-only evidence; state whether it was added to the manuscript)", italic=True, color=RED)
+    add_run(paragraph, "Fig. R#. ", bold=True, color=BLUE)
+    add_run(paragraph, "[Insert a concise response-only figure caption.]", color=BLUE)
+
+    add_spacing(document)
+    add_response_unit(
+        document,
+        "2. [Paste the reviewer’s original comment verbatim here.]",
+        response_label="Response to Major #2:",
+    )
+
+    add_spacing(document)
+    paragraph = document.add_paragraph()
+    add_run(paragraph, "Minor comments", size=11, bold=True)
+    add_response_unit(
+        document,
+        "1. [Paste the reviewer’s original comment verbatim here.]",
+    )
+
+    add_spacing(document)
+    heading = document.add_paragraph()
+    add_run(heading, "Reviewer 2", size=12, bold=True)
+    paragraph = document.add_paragraph()
+    add_run(paragraph, "[Duplicate the Reviewer 1 structure for each additional reviewer.]", color=BLUE)
 
     add_page_number(document)
-    document.core_properties.title = "Response Letter Template"
-    document.core_properties.subject = "De-identified reusable response-letter template"
+    document.core_properties.title = "Response Template"
+    document.core_properties.subject = "De-identified reusable point-by-point response template"
     document.core_properties.author = ""
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
