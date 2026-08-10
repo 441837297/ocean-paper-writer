@@ -3,7 +3,7 @@
 ## Purpose
 
 This module is used during the 04 writing stage to convert the project brief,
-evidence inventory, target journal profile, and Zotero-supported literature
+evidence inventory, task-local reference-reading brief, and verified literature
 into Introduction prose.
 The Introduction must not promise claims the results do not support.
 Novelty and gap statements require literature backing.

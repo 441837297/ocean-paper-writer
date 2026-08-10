@@ -2,100 +2,42 @@
 
 ## Purpose
 
-Reduce generic, over-smoothed, template-like academic phrasing and improve authorial academic style
-while preserving scientific meaning and evidence boundaries.
+Improve authorial academic style by replacing generic, over-smoothed, inflated, or repetitive
+phrasing while preserving scientific meaning. Evidence boundaries come from `SKILL.md`; prose rules
+come from the writing House Rules.
 
-## What This Is Not
+## Modes
 
-- not AI-detection evasion
-- not generic paraphrasing
-- not a way to hide weak evidence
-- not a way to strengthen unsupported claims
-- not a substitute for review
-
-## Two Modes
-
-### 1. Inline polish mode
-
-Used during normal paragraph-level polish.
-The polish workflow loads leaf files as needed while refining individual units.
-
-### 2. Audit mode
-
-Used when the user asks for style naturalization, AI-like phrasing check,
-authorial academic style review, or uploads a larger section for pre-submission quality review.
-
-Audit mode follows:
-
-Detect → User selection → Rewrite
-
-- Detect produces a risk-tagged report; no rewriting happens yet.
-- User selects what to fix (High / High+Medium / specific IDs / review-only).
-- Rewrite applies changes only to selected items, preserving all evidence boundaries.
-
-Full specification in `references/workflow/polish.md`, section "Style Naturalization Audit."
+- **Inline:** refine one confirmed writing unit during polish.
+- **Audit:** detect risks in a larger confirmed section, let the user select items, then rewrite the
+  selected items only.
 
 ## Risk Tiers
 
-| Tier | Meaning | Suggested use |
-|------|---------|---------------|
-| High | Likely to weaken credibility or overstate evidence | Rewrite by default unless domain language requires it |
-| Medium | Sounds generic, over-smoothed, or repetitive | Rewrite when tone feels too polished or repetitive |
-| Optional | Acceptable but can be improved if overused | Rewrite selectively based on context |
+| Tier | Meaning |
+|------|---------|
+| High | Wording obscures meaning or materially inflates the claim |
+| Medium | Wording is generic, over-smoothed, or repetitive |
+| Optional | Acceptable wording that may be improved when overused |
 
-## Defensive Framing
+## Detection Focus
 
-Flag repeated disclaimers, negative self-limiting statements, caveats in high-impact positions,
-and explanations aimed mainly at hypothetical objections. Classify each item before rewriting:
+- vague scientific subjects or actions;
+- promotional novelty language;
+- formulaic openings and transitions;
+- repeated sentence rhythm;
+- caveats placed where they obscure the main claim;
+- generic significance statements;
+- terminology drift.
 
-| Type | Action |
-|------|--------|
-| Redundant disclaimer | Delete it |
-| Negative scope statement | State the study's actual scope positively |
-| Necessary evidence or methodological limitation | Retain it once, stated calmly |
-| Negative scientific finding | Preserve it as a result |
+Classify an apparent caveat by function. Preserve a negative scientific result or necessary
+limitation; state scope positively when possible; remove a redundant disclaimer.
 
-Prioritize abstracts, Introduction gap statements, contribution sentences, Discussion openings,
-conclusions, and figure captions. Do not misclassify statements such as non-significant trends,
-unclosed budgets, unexplained residuals, or unsupported causal pathways as defensive writing.
+Load at most one focused leaf for the selected problem:
 
-## Load one leaf file at a time
+- `sentence-naturalization.md`
+- `transition-naturalization.md`
+- `vocabulary-naturalization.md`
 
-- `references/review/sentence-naturalization.md` — sentence rhythm, template openings, generic sentence structure
-- `references/review/transition-naturalization.md` — formulaic transitions, content-driven logical connections
-- `references/review/vocabulary-naturalization.md` — inflated novelty words, generic academic filler, ocean-science watchlist
-
-## What to Preserve
-
-- scientific meaning
-- claim strength
-- uncertainty
-- citation gaps
-- user's intended authorial voice
-- ocean-science terminology (SST, EKE, MLD, SSH, Chl-a, mesoscale, etc.)
-
-## Ocean-Specific Caution
-
-Flag phrases that inflate:
-
-- climate relevance into climate-change evidence
-- regional results into global conclusions
-- correlation into mechanism
-- short observational records into climate trends
-- model output into observed fact
-- statistical significance into physical significance
-
-## Lightweight Retrieval
-
-| Category | Problem expression | Replacement |
-|----------|--------------------|-------------|
-| Vocabulary inflation | `groundbreaking` | `useful in practice` |
-| Sentence overclaim | `This proves that ...` | `This suggests that ...` |
-| Transition over-smoothing | `Moreover, it is worth noting that ...` | `Additionally, ...` or direct statement |
-
-## Maintenance Rules
-
-- Keep each entry short enough for direct reuse.
-- Prefer replacements that preserve formal academic tone.
-- Add rationale only when it helps explain the rewrite choice.
-- Keep category filenames stable.
+The rewrite preserves numbers, citations, uncertainty, terminology, claim strength, and the user's
+intended scientific meaning.

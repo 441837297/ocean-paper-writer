@@ -68,28 +68,14 @@ Words that overstate contribution when evidence does not support them.
 | demonstrates | Implies proof in most contexts | Only when a formal proof or decisive experiment is presented |
 | proves | Even stronger than demonstrates | Almost never in empirical ocean science |
 
-### Ocean-science overclaim triggers
+### Evidence-sensitive terms
 
-Terms that should trigger an evidence check, not automatic replacement.
+For mechanism, driver, attribution, trend, observed, robust, and broad-implication language, apply
+the evidence situations in `SKILL.md` before deciding whether the term is precise.
 
-| Expression | Risk | Check |
-|-----------|------|-------|
-| climate-change signal | May conflate variability with forced trend | Is a formal detection/attribution analysis performed? |
-| global implication | Regional study claiming global reach | Is the finding replicated across multiple basins? |
-| mechanism | Implies causal chain | Is process-based diagnostics or modeling evidence provided? |
-| driver | Implies causality | Is the causal direction established? |
-| attribution | Formal statistical or process-based assignment | Is an attribution method applied? |
-| regime shift | Implies a persistent state change | Is the shift statistically identified and tested? |
-| long-term trend | Implies climate-scale change | Is the record long enough to separate from decadal variability? |
-| observed evidence | May conflate satellite/remote sensing with in situ | Is the observation type clearly specified? |
-| robust response | Generalizes stability | Are sensitivity tests reported? |
-| Earth-system consequence | Global-scale claim | Is a global analysis or model presented? |
+### Application
 
-### Important rules
-
-- Do not replace statistical "significant" when tied to a stated statistical test.
-- Do not replace ocean-science technical terms (SST, SSH, EKE, MLD, Chl-a, stratification, mesoscale, submesoscale, baroclinic, etc.).
-- Do not weaken legitimate findings unnecessarily.
-- Replace inflated wording with specific evidence-based wording.
+Keep statistical `significant` when tied to a stated test. Preserve established ocean-science
+terms. Replace inflated wording with the specific evidence, condition, or magnitude.
 
 *Module: vocabulary*

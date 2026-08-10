@@ -2,67 +2,35 @@
 
 ## Project Metadata
 
-- project name: [from project brief]
-- working title: [from project brief]
-- target journal: [from project brief, or "not specified yet"]
-- current stage: methods (data)
-- last updated: [YYYY-MM-DD]
-- source prepare files: `01_prepare/01a_project-brief.md`, `01_prepare/01b_evidence-inventory.md`
+- project name:
+- target journal:
+- last updated:
 
-## Data Sources
+## Datasets
 
-| Dataset | Variable(s) | Source / Provider | Version | Time range | Spatial coverage | Resolution | Role in analysis | Confirmation |
-|---------|-------------|-------------------|---------|------------|-----------------|------------|-----------------|-------------|
-| [name] | [list] | [provider] | [ver.] | [start–end] | [region] | [spatial / temporal] | [central / validation / context] | [✓ / [MISSING]] |
+| Dataset | Provider and version | Variables | Coverage | Resolution | Access or DOI | Role |
+|---------|----------------------|-----------|----------|------------|---------------|------|
+| | | | | | | |
 
-## Data Availability & References
+## Dataset-Level Preprocessing
 
-每个数据集必须包含访问地址和/或 DOI。格式：
+| Dataset | Selection, QC, regridding, or masking | Source | Status |
+|---------|----------------------------------------|--------|--------|
+| | | | |
 
-| Dataset | Data Availability (URL or DOI) | 简介 (1–2 句) | Reference (if applicable) |
-|---------|-------------------------------|---------------|---------------------------|
-| [name] | [https://doi.org/... or product URL] | [产品简介] | [Author, Year / DOI] |
+## Conventions
 
-**注意：** 这是材料整理阶段的数据清单，不是手稿中的 "Data Availability Statement"。
-手稿的 Data Availability 段落留到 writing 阶段按目标期刊格式撰写。
+| Item | Convention | Source |
+|------|------------|--------|
+| | | |
 
-## Raw and Processed Data
+## Dataset Caveats
 
-- Raw data source: [how raw data was obtained — download, collaborator, fieldwork]
-- Processing applied before analysis: [e.g., gridding, subsampling, quality control]
-- Processed data storage: [path to processed files used in analysis]
-- Data version notes: [any version changes, reprocessing events]
+| Dataset | Caveat | Consequence |
+|---------|--------|-------------|
+| | | |
 
-## Units, Coordinates, and Conventions
+## Open Items
 
-- Coordinate system: [geographic / projected; grid type]
-- Vertical coordinate: [depth / pressure / isopycnal; reference level]
-- Time convention: [UTC / local; calendar]
-- Flux sign convention: [positive upward / downward for heat, carbon]
-- Missing data representation: [NaN / fill value / masked]
-
-## Data Limitations and Caveats
-
-- Known data gaps: [temporal gaps, spatial holes, sensor limitations]
-- Data quality issues: [flags, uncertainties, biases]
-- Version caveats: [reprocessing, product version changes]
-
-## Missing Data Details
-
-List details that are still missing. Use `[MISSING]` tags.
-
-## Questions for User Confirmation
-
-List questions that still need user input. No more than 3–5 per turn.
-
-## Notes for Methods Stage (02b)
-
-What the methods section needs to know from the data:
-
-- Which datasets drive the central analysis
-- Resolution and coverage constraints that limit method choices
-- Any data-specific conventions for coordinate/unit handling
-
-## Update Summary
-
-[Populated only during resume mode.]
+- `[MISSING]`
+- `[CONFIRM WITH USER]`

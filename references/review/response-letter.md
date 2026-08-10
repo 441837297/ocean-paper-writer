@@ -6,6 +6,15 @@ Convert confirmed scientific decisions and completed revisions into concise, evi
 to editors and reviewers. Use this reference only when analyzing response strategy, drafting a
 response letter, or revising an existing response. Do not load it for ordinary manuscript review.
 
+## Universal Rules
+
+Apply these to every response, regardless of comment type or length.
+
+- **Second person throughout.** Use `you` and `your`, never `the reviewer`, `the editor`, or
+  `Reviewer #1`. This is a direct reply to a colleague, not a report about their comments.
+- **At most one brief acknowledgment per comment.** Omit it when a direct answer reads naturally.
+  The revision is the best acknowledgment — do not repeat praise or agreement in words.
+
 ## Stepwise Comment Workflow
 
 Handle one comment at a time. Complete only the current step, state the completed step and next
@@ -29,13 +38,22 @@ understand why the concern was raised. Propose one comment type and briefly expl
 我的暂定判断：[EDIT / CLARIFY / ADD_ANALYSIS / CORRECT / BOUNDARY]；[简短理由]
 ```
 
-Types are aids to interpretation, not decisions:
+Types are aids to interpretation, not decisions. The five types and when to use each:
 
-- `EDIT`: a presentational or textual revision is requested.
-- `CLARIFY`: the intended treatment may be valid but is unclear.
-- `ADD_ANALYSIS`: a test, analysis, figure, table, or citation is needed.
-- `CORRECT`: an error, calculation, definition, or implementation needs correction.
-- `BOUNDARY`: the evidence cannot support the requested mechanism, attribution, or scope.
+| Type | What the reviewer is actually asking |
+|------|--------------------------------------|
+| `MINOR_EDIT` | Fix a typo, wording, or formatting issue. The science is untouched. |
+| `CLARIFY` | They didn't understand something — a term, a definition, a symbol, a method step, or why the result differs from a familiar framework. The science is correct but the communication was unclear. |
+| `ADD_ANALYSIS` | They want a new diagnostic, figure, table, citation, or sensitivity test. Evidence is missing. |
+| `CORRECT` | An error in code, formula, value, or implementation. Something was wrong. |
+| `BOUNDARY` | They ask for attribution or mechanism that exceeds the available evidence, data, or model output. The limit is real and must be stated. |
+
+CLARIFY is the broadest category. It covers terminology confusion (e.g., baroclinic transfer vs
+buoyancy conversion), inconsistent notation (e.g., using the same symbol for local density and
+volume-integrated energy), missing method steps (e.g., how spatial structure is obtained from
+volume-integrated terms), and apparent contradiction with classical theory that is actually a
+framework difference (e.g., eddy-following lifecycle vs Eulerian climatology). The common thread:
+the science is sound but was not explained clearly enough for the reviewer to follow.
 
 Stop after R1 and ask the user to confirm or correct the interpretation.
 
@@ -73,13 +91,13 @@ Draft a concise formal Chinese reply from the confirmed interpretation, strategy
 revision, terminology, and analysis results. It must be close to the final response in information
 density, not an internal note. Use the type naturally:
 
-| Type | Usual response logic |
-|------|----------------------|
-| `EDIT` | Thank the reviewer, state what was revised, show the original and revised sentence, and give the location. |
-| `CLARIFY` | State the original intended meaning, how it is now clarified, and the location. |
-| `ADD_ANALYSIS` | State the added analysis, its result, and the manuscript revision. |
-| `CORRECT` | State the error, correction or recalculation, corrected result, and whether conclusions changed. |
-| `BOUNDARY` | State what the evidence supports, its limit, and how the manuscript was adjusted. |
+| Type | Response strategy | Typical length | Start with thanks? |
+|------|-------------------|----------------|--------------------|
+| `MINOR_EDIT` | Agree → show what changed → paste revised text → give location. | 1–2 sentences | No |
+| `CLARIFY` | Acknowledge where the manuscript caused confusion → give the unified definition / derivation / logic → answer directly → paste revised text → give location. | 1–4 short paragraphs | Yes |
+| `ADD_ANALYSIS` | State the added analysis → key result → whether conclusions changed → paste revised text → give location. | 2–3 short paragraphs | Yes |
+| `CORRECT` | State the error source → correction or recalculation → corrected result → whether conclusions changed → paste revised text → give location. | 2–3 short paragraphs | Yes (admit directly, no self-defense) |
+| `BOUNDARY` | State what the evidence supports → where the boundary is → how the manuscript wording was adjusted → paste revised text → give location. | 1–2 short paragraphs | Yes |
 
 Use the minimum evidence needed for evaluation. Keep internal implementation details, abandoned
 alternatives, and repeated background out of the reply. Stop after R5 and wait for user
@@ -97,19 +115,15 @@ facts, logical order, and evidence strength. Use the reviewer comment, final man
 terminology table for exact terms. Prefer concrete actions and objects: `corrected`, `added`,
 `calculated`, `recalculated`, `revised`, `clarified [object]`, `removed`, `defined`, and `moved`.
 State what was done and, for analyses or corrections, what the result shows and whether conclusions
-changed. Keep sentences short and direct; use at most one brief acknowledgment.
-
-**Tone: use second person throughout.** Replace all third-person references (`the reviewer`,
-`the editor`, `Reviewer #1`, `the comment`) with second-person forms (`you`, `your`, `your comment`).
-This is a direct reply to a colleague, not a report about their comments. The revision is shown,
-not defended.
+changed. Keep sentences short and direct. Apply the Universal Rules (you/your, one acknowledgment
+max) — the revision is shown, not defended.
 
 Then give the English reply to the user for confirmation. If it requires substantive re-examination,
 return to the earliest uncertain step rather than polishing English directly.
 
-## Evidence and Claim Boundaries
+## Evidence Language
 
-Match response language to evidence:
+Apply the global evidence boundaries in `SKILL.md`. Match response posture to the confirmed state:
 
 | Evidence state | Preferred posture |
 |----------------|-------------------|
@@ -118,9 +132,7 @@ Match response language to evidence:
 | Plausible but not isolated | `This provides a plausible interpretation...` |
 | Unresolved with available evidence | `The available outputs do not isolate...` |
 
-Preserve distinctions between correlation and causation, regional and general conclusions, model
-output and observation, statistical and physical significance, and a residual term and its possible
-components. Do not strengthen a claim merely to sound decisive.
+Keep the response at the same evidence strength and scope as the confirmed manuscript.
 
 ## Granularity
 
