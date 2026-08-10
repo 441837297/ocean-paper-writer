@@ -1,43 +1,35 @@
 # 01c Literature Synthesis
 
-## Purpose
+## Scientific Literature Roles
 
-[State which manuscript question or method chain this synthesis supports.]
-
-## Key Literature Inventory
-
-| Paper / ID | Core contribution | Role in this project |
-|------------|-------------------|----------------------|
-| [paper] | [one contribution] | [method / Introduction / Results comparison / Discussion] |
+| Paper or ID | Scientific contribution | Project role | Supported claim or method | Boundary |
+|-------------|-------------------------|--------------|---------------------------|----------|
+| | | | | |
 
 ## Method Source Chain
 
-1. [Original framework or method]
-2. [Adaptation followed by this project]
-3. [Comparison source, if needed]
+| Step | Source | Contribution | Project use or adaptation |
+|------|--------|--------------|---------------------------|
+| | | | |
 
-## Introduction Materials
+## Introduction Background
 
-- [Broad background]
-- [Known change or mean state]
-- [Specific gap]
+| Topic or gap | Source | Role |
+|--------------|--------|------|
+| | | |
 
 ## Results Comparisons
 
-- [Result and the closest comparable study]
+| Project result | Comparison source | Comparable quantity or scope | Boundary |
+|----------------|-------------------|------------------------------|----------|
+| | | | |
 
 ## Discussion Dialogue
 
-- [Finding, prior study, and purpose of the comparison]
+| Project finding | Source | Agreement, difference, or context | Purpose |
+|-----------------|--------|-----------------------------------|---------|
+| | | | |
 
-## Core Contribution
+## Citation or Provenance Gaps
 
-[State the manuscript's single central contribution once.]
-
-## Citation or Evidence Gaps
-
-- [CITATION NEEDED] [item]
-
-## Update Summary
-
-- [date and changed literature roles]
+- `[CITATION NEEDED]`

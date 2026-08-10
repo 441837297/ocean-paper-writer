@@ -1,51 +1,29 @@
-# [项目名称] — CLAUDE.md
+# [Project Name] - CLAUDE.md
 
-> **本文件的定位：项目记忆文件。** 记录这个项目"是什么"——主角、术语、路径、约束、当前状态。
-> 通用写作规则（House Rules）由 ocean-paper-writer skill 统一管理，skill 启动时自动加载，**不在此重复**。
-> 接续工作时先读此文件，获取项目上下文。
+## Project
 
-## 1. 项目概述
+- working title:
+- target journal:
+- current stage and step:
+- current status:
 
-- 项目：[一句话，这个论文要解决什么问题]
-- 论文标题（working title）：[当前标题]
-- 目标期刊：[如 "未指定"]
-- 当前阶段：[prepare / methods / structure / writing / review / polish / cover-letter]
-- 进度：[一句话；新项目可写 "starting from scratch"]
+## Canonical Project Content
 
-## 2. 关键文件
+- project brief: `01_prepare/01a_project-brief.md`
+- current architecture: `03_structure/03_section-architecture.md`
+- terminology: `03_structure/03_terminology.md`
 
-- 撰写纲要（全文架构 + 主张层级）：`03_structure/03_section-architecture.md`
-- 写作蓝图（段落功能 + 论证结构）：`03_structure/03_section-architecture.md`
-- 图表蓝图（每图科学问题 + caption 骨架）：`03_structure/03_figure-outline.md`
-- 术语表（唯一术语权威）：`03_structure/03_terminology.md`
-- 当前手稿：[最新版本路径；未起草则 `[not created yet]`]
-- 写作日志（修订记录）：`04_writing/04_writing-log.md`
-- 期刊规范：skill 自动加载
+## Paths
 
-## 3. 写作流程
+- prepare files:
+- methods files:
+- structure files:
+- reference papers:
+- current manuscript:
+- review files:
+- code and data:
 
-### 动笔前必读
-1. `03_section-architecture.md` — 当前段落所属的 section 角色和主张层级
-2. `03_section-architecture.md` — 当前段落的 P-ID、段落功能、主张边界
-3. `03_terminology.md` — 确认术语，不临时造词
-4. 当前手稿最新版 — 确认上下文和衔接
+## Project-Specific Operational Constraints
 
-### 改完后必做
-1. 按 copy-then-edit 规则写入对应手稿版本
-2. 在 writing-log 追加 Revision Notes（最新在前，不覆盖旧条目）
-3. 口头汇总：改了哪个文件 / 哪一段 / 为什么改
-
-### House Rules
-写作时遵守 `writing.md` 的 House Rules。核心纪律：段落功能清晰、证据定动词强度、术语与术语表一致、限定后置。
-
-
-## 4. 禁止事项（本项目特定）
-
-- 不使用以下废话句式：[列出]
-- 已确认术语，不得更改：[列出，如 "NL = nonlinearity, EKE = eddy kinetic energy"]
-- 不编造引用、数据、方法、图表
-- [其他项目特定约束]
-
----
-
-*此文件随项目推进更新。改 protagonist、术语、或完成一轮 review 后同步更新。*
+- [constraint]
+- project-specific prohibitions outside terminology: [prohibition]

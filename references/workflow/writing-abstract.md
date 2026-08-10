@@ -26,14 +26,9 @@
 
 该防御的放 Methods 或 Discussion boundary，不放摘要。
 
-### 动词强度阶梯
+### 动词强度
 
-按证据强度选择动词，不把相关写成因果：
-
-```
-show / find  >  indicate  >  suggest  >  may reflect
-  确立           指向          暗示          可能反映
-```
+按 `references/workflow/writing.md#House Rules` 的证据-动词映射选择动词。
 
 ### 主张结构
 

@@ -5,15 +5,15 @@
 This module is used during the 04 writing stage to convert `02_methods/02a_data.md`
 and `02_methods/02b_methods.md` into manuscript Methods prose.
 It is not the 02_methods output template.
-Methods prose must trace to data, code, processing workflow, and user confirmation.
-Do not fabricate method details.
+Methods prose traces to data, code, processing workflow, and user confirmation. Missing details use
+the standard status markers from `SKILL.md`.
 
 ## Inputs to read before drafting
 
 - `02_methods/02a_data.md`
 - `02_methods/02b_methods.md`
 - figure-to-claim matrix from `01_prepare/01b_evidence-inventory.md`
-- target journal profile if available
+- task-local `Reference Reading Brief` when journal-specific Methods exposition is useful
 - Zotero citation support only when needed for data product or method references
 
 ## Data prose pattern
@@ -56,7 +56,7 @@ statistical or diagnostic method → output → uncertainty/sensitivity
 - product/version
 - variables used
 - grid and resolution
-- assimilation caveat (do not present reanalysis as direct observation)
+- assimilation basis and the distinction between reanalysis and direct observations
 - period covered
 
 ### Model output
@@ -67,7 +67,7 @@ statistical or diagnostic method → output → uncertainty/sensitivity
 - ensemble member or single run
 - spin-up and analysis period
 - validation basis
-- do not present model output as observed fact
+- source labeling that identifies the material as model output
 
 ### Statistical analysis
 
@@ -76,15 +76,12 @@ statistical or diagnostic method → output → uncertainty/sensitivity
 - autocorrelation treatment (effective sample size, prewhitening, or none)
 - confidence intervals or uncertainty quantification
 - multiple testing or field significance if applicable
-- distinction between statistical significance and physical significance
+- statistical significance, effect size, and physical meaning
 
-## What not to do
+## Drafting focus
 
-- Do not write methods as results.
-- Do not frame method choices as scientific conclusions.
-- Do not fabricate unconfirmed parameters.
-- Do not hide data gaps.
-- Do not use polished language to mask missing method details.
+Methods prose explains reproducible scientific operations. Keep results and conclusions in their
+manuscript sections, and mark unconfirmed parameters or data gaps explicitly.
 
 ## Missing information tags
 

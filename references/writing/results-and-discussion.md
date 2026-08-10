@@ -5,7 +5,7 @@
 This module is used during the 04 writing stage to:
 - convert figure evidence from the evidence inventory into Results prose;
 - convert Results into bounded Discussion interpretation;
-- prevent overinterpretation of results into unsupported mechanisms or causal claims.
+- keep interpretation aligned with the evidence boundaries in `SKILL.md`.
 
 ## Results section evidence ladder
 
@@ -30,7 +30,7 @@ Ocean-science adaptation:
 - **Mechanism papers:** observed phenomenon → process diagnostic → sensitivity/alternative explanation → mechanism boundary.
 - **Method/data papers:** workflow/data coverage → validation → benchmark/comparison → scientific discovery enabled by the method.
 
-Hard rules:
+Drafting guidance:
 
 - Each Results subsection opens with a claim-first sentence, not "Figure X shows...".
 - Each paragraph serves one ladder step or one key finding.
@@ -45,8 +45,6 @@ Each Results paragraph follows:
 finding → figure evidence → quantitative detail → spatial/temporal pattern → bounded interpretation
 
 - **finding:** state what was observed, not what it means.
-  **For NCC: the finding must be a specific quantified result, not an abstract statement.**
-  The first sentence must give the observed change with its key number.
 - **figure evidence:** reference the specific figure/table that supports the finding.
 - **quantitative detail:** include numbers, units, magnitudes, trends.
 - **spatial/temporal pattern:** where and when the pattern occurs.
@@ -80,22 +78,13 @@ finding recap → mechanism candidate → literature comparison → uncertainty 
 - At most one main claim per paragraph.
 - Every claim must trace to a figure, table, method, or citation.
 - If a claim cannot be traced, mark `[CITATION NEEDED]` or `[CONFIRM WITH USER]`.
-- A visual pattern is not automatically a confirmed mechanism.
+- Mechanism claims follow the evidence guidance in `SKILL.md`.
 - Every Results paragraph must identify its ladder step: setup / validation / main result / robustness / diagnostic / consequence.
 
-## Ocean-science overclaim checks
+## Evidence check
 
-Before finalizing any Results or Discussion paragraph, check:
-
-| Risk | Check |
-|------|-------|
-| correlation → causation | Is the causal direction established? |
-| regional result → global conclusion | Is the finding replicated beyond the study region? |
-| short record → climate trend | Is the record long enough to separate from decadal variability? |
-| climate relevance → climate-change evidence | Is a formal detection/attribution analysis performed? |
-| model result → observed fact | Is the distinction between simulation and observation clear? |
-| statistical significance → physical significance | Is the effect size physically meaningful? |
-| mechanism language | Is there diagnostic or literature support for the proposed mechanism? |
+Before finalizing a Results or Discussion unit, apply the evidence situations in `SKILL.md` to its
+claims and record any unresolved support as `[EVIDENCE GAP]`.
 
 ## Literature support in Results and Discussion
 
@@ -103,8 +92,8 @@ Before finalizing any Results or Discussion paragraph, check:
   or referencing established methods.
 - Discussion typically requires more Zotero support for literature comparison,
   mechanism interpretation, and broader context.
-- Never fabricate references. Gaps are marked `[CITATION NEEDED]`.
-- Each Zotero call requires user confirmation before querying.
+- Mark missing sources as `[CITATION NEEDED]`.
+- Zotero retrieval follows `references/zotero/README.md`.
 
 ## Paragraph examples
 
@@ -164,7 +153,7 @@ subject → key content → data source
 - Non-spatial figures (charts, schematics): include variables and comparison context
 - Title Case for noun phrases; Sentence case for complete sentences
 - Escape special LaTeX characters (%, _, &)
-- Do not insert `[MISSING]` placeholders in caption output — omit unknown clauses gracefully
+- Final caption prose includes confirmed clauses; unresolved details remain outside the caption as status markers.
 
 **Ocean figure example:**
 
@@ -201,8 +190,10 @@ and ship-based CTD casts.}
 
 ### Caption Writing Rules
 
-- Do not write captions before the figure/table sequence is confirmed in structure.
-- Do not fabricate resolution, data source, or spatial extent.
-- Do not insert `[MISSING]` stubs in final caption text — skip the clause.
-- Adapt caption length to journal style (GRL: tighter; JGR/JPO: full detail).
+- Write captions after the figure/table sequence is confirmed in structure.
+- Use verified resolution, data source, and spatial extent.
+- Keep unresolved details outside final caption prose.
 - Re-read captions during polish for consistency with final figure content.
+
+For journal-specific rhetorical adaptation, use the task-local `Reference Reading Brief`
+from `references/subagents/reference-reading.md`.
