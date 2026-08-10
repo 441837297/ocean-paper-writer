@@ -2,23 +2,16 @@
 
 ## Project
 
-- research question:
 - working title:
 - target journal:
 - current stage and step:
 - current status:
 
-## Scientific Memory
+## Canonical Project Content
 
-- central contribution:
-- supported claim boundary:
-- current limitation:
-- project-specific scientific constraints:
-
-## Terminology Memory
-
-- confirmed terms:
-- project-specific prohibited variants:
+- project brief: `01_prepare/01a_project-brief.md`
+- current architecture: `03_structure/03_section-architecture.md`
+- terminology: `03_structure/03_terminology.md`
 
 ## Paths
 
@@ -30,6 +23,7 @@
 - review files:
 - code and data:
 
-## Project-Specific Constraints
+## Project-Specific Operational Constraints
 
 - [constraint]
+- project-specific prohibitions outside terminology: [prohibition]

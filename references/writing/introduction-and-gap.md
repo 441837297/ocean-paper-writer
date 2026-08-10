@@ -57,19 +57,10 @@ Zotero may be used to:
 - identify competing explanations
 - validate the gap statement
 
-Every Zotero call requires explicit user confirmation before querying.
+Zotero retrieval follows `references/zotero/README.md`.
 
-## Journal adaptation
-
-- **GRL:** one sharp unresolved question; minimal background; gap in paragraph 1 or 2.
-- **JGR-Oceans:** full evidence-chain framing; established knowledge → gap → approach.
-- **JPO:** mechanism/dynamics-first framing; the gap is often a dynamical understanding gap.
-- **Nature Communications:** broad significance stated but bounded by evidence;
-  accessible to non-specialist.
-- **Nature Climate Change:** climate-change consequence framing or Earth-system relevance
-  must be supported by a connection chain, not assumed.
-  Use 4-paragraph structure: P1=climate problem → P2=known changes under forcing → P3=prior work by question → gap → P4=this study.
-  **Do not pre-sell the mechanism chain** — save core mechanisms (nonlinearity, method framework) for Results/Discussion.
+For journal-specific rhetorical adaptation, use the task-local `Reference Reading Brief`
+from `references/subagents/reference-reading.md`.
 
 ## Introduction paragraph architecture
 
@@ -79,9 +70,6 @@ A standard 4-paragraph structure:
 2. **Known background** — what prior work has established; cite key references.
 3. **Specific gap** — what is missing, uncertain, or debated; anchor with literature.
 4. **This study** — what we do, how we do it, and a preview of the central finding.
-
-A 5th paragraph is acceptable for JGR-Oceans or Nature Communications
-if additional background is needed for a broader audience.
 
 ## Example gap rewrites
 

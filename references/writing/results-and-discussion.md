@@ -45,8 +45,6 @@ Each Results paragraph follows:
 finding → figure evidence → quantitative detail → spatial/temporal pattern → bounded interpretation
 
 - **finding:** state what was observed, not what it means.
-  **For NCC: the finding must be a specific quantified result, not an abstract statement.**
-  The first sentence must give the observed change with its key number.
 - **figure evidence:** reference the specific figure/table that supports the finding.
 - **quantitative detail:** include numbers, units, magnitudes, trends.
 - **spatial/temporal pattern:** where and when the pattern occurs.
@@ -195,5 +193,7 @@ and ship-based CTD casts.}
 - Write captions after the figure/table sequence is confirmed in structure.
 - Use verified resolution, data source, and spatial extent.
 - Keep unresolved details outside final caption prose.
-- Adapt caption length to journal style (GRL: tighter; JGR/JPO: full detail).
 - Re-read captions during polish for consistency with final figure content.
+
+For journal-specific rhetorical adaptation, use the task-local `Reference Reading Brief`
+from `references/subagents/reference-reading.md`.
