@@ -1,6 +1,6 @@
 ---
 name: ocean-paper-writer
-description: helps ocean science researchers build staged manuscript materials through prepare, methods, structure, writing, review, polish, and optional cover-letter workflows.
+description: helps ocean science researchers build staged manuscript materials through prepare, methods, structure, writing, review, polish, and optional cover-letter workflows, including Word/DOCX revision handoff with native equations and tracked changes.
 ---
 
 # Ocean Paper Writer
@@ -191,6 +191,7 @@ Load one stage workflow on entry and templates only when generating project file
 | abstract drafting | `references/workflow/writing-abstract.md` | load with writing |
 | review | `references/workflow/review.md` | `05` templates; load focused review modules only when needed |
 | response letter | `references/review/response-letter.md` | `05_response-letter.md` and DOCX asset for final assembly |
+| DOCX revision handoff | `references/workflow/docx-compare.md` | Word COM tracked editing |
 | polish | `references/workflow/polish.md` | focused naturalization module when selected |
 | abstract polish | `references/workflow/polish-abstract.md` | load with polish |
 | cover letter | `references/workflow/cover-letter.md` | `references/templates/06_cover-letter.md` |
