@@ -1,5 +1,44 @@
 # DOCX Tracked Revision Handoff
 
+## Final Word Delivery Workflow
+
+Begin after the final manuscript Markdown and final Response Markdown are confirmed. Choose the
+manuscript Word handoff that matches the author's preferred working arrangement.
+
+```mermaid
+flowchart TD
+    A[Confirm final Manuscript and Response Markdown] --> B{Manuscript Word handoff}
+    B -->|Codex edits| C[Two-Gate editing and QA]
+    B -->|Author edits| D[Author edits and sends current-page screenshot]
+    C --> E[Page-by-page completion]
+    D --> E
+    E --> F[Update Response DOCX]
+    F --> G[Page-by-page screenshot QA]
+    G --> H[Final delivery]
+```
+
+### Codex-Led DOCX Modification
+
+Use the Per-Unit Two-Gate Workflow below when Codex applies confirmed revisions to the manuscript
+DOCX. This branch uses the existing Word COM, Track Changes, field, formula-conversion, and
+screenshot-verification rules.
+
+### Author Editing with Codex Screenshot QA
+
+Use this branch when the author applies confirmed final content in the manuscript Word. The author
+renders formulas manually and provides one current-page screenshot at a time.
+
+For the current page, Codex reads the corresponding final manuscript Markdown and final Response
+Markdown, then checks that the Word page implements confirmed wording, numbers, formulas, symbols,
+figure and table numbering, revision marks, and layout.
+
+- When the page is correct, reply exactly: `本页完成`, then continue with the next page.
+- When revision is needed, list the omission location, current issue, and correct content. Review
+  that page again after it is updated.
+
+After all manuscript Word pages are complete, begin the Response Word final-delivery workflow in
+`references/review/response-letter.md`.
+
 Keep the submitted source DOCX immutable. Create one field-cleaned baseline and one cumulative tracked
 DOCX from it. Enable Word Track Changes only in the cumulative tracked DOCX after the common
 initial cleanup. Continue every confirmed edit in that file. Do not create clean, compared, hash,
@@ -95,20 +134,29 @@ Editing rules:
   the user to complete the Zotero action in Word. Verify the saved result before advancing.
 - If the user refines wording during DOCX review, update the working manuscript first, then update
   any matching Response revised text before editing Word.
-- Keep display equations and inline mathematical expressions as native Word OMath. Preserve all
-  existing OMath. For every new or replaced mathematical expression, provide a Word UnicodeMath
-  linear expression or token; insert only the confirmed linear token as tracked text when it belongs
-  to an otherwise surgical prose edit. During a multi-unit backfill, do not pause each unit solely for
-  OMath conversion. Keep a conversation-level list of pending linear tokens, finish the confirmed
-  prose, table, and caption replacements first, and convert the pending expressions together in a
-  final formula pass with Track Changes enabled. Do not automate OMath conversion through Word COM.
-  When a display equation is stored in a layout table, preserve the table, its rows and columns, and
-  the equation-number cell. After the final formula pass, verify subscripts, superscripts, vectors,
-  baseline alignment, table layout, and equation numbers in dedicated All Markup screenshots.
-- For new structured notation, insert only linear UnicodeMath tokens such as `E_M^1`; never emulate
-  mathematical structure with ordinary Word subscript or superscript character formatting. In a
-  multi-unit backfill, retain the tracked linear token until the final formula pass, then convert all
-  queued tokens to Professional OMath together.
+- Run the final formula pass in two separately confirmed phases:
+  1. **Read-only inventory:** Scan body text, captions, tables, appendices, and text boxes. Classify
+     each item as correct native OMath, unconverted linear notation, MathType or another embedded
+     equation object, or a legacy image, empty object, or malformed formula. Compare notation with
+     the authoritative working manuscript, especially lowercase `e` versus volume-integrated `E`,
+     subscripts, superscripts, vectors, Greek letters, and equation numbers. Report the inventory in
+     the conversation only; do not create an audit file or modify Word. Wait for user confirmation.
+  2. **Confirmed conversion:** Preserve correct existing equations and use the author-confirmed
+     equation engine. Convert simple structured notation such as `E_K^1`, `Q_P`, `T_n`, and `F_K^1`
+     to native Word OMath. Use MathType-compatible input for complex fractions, integrals, multiline
+     equations, or formulas assigned to MathType. Keep simple combinations such as `0.5R` as ordinary
+     text unless the author requests otherwise.
+- Before converting a full formula class, test one representative item. Word COM may automate simple
+  subscript/superscript OMath only after the test succeeds and structural verification confirms the
+  expected OMath elements. Do not use COM for accents, overbars, integrals, multiline equations, or
+  MathType-object replacement. If automation fails, restore the exact original token or object first,
+  then provide the author with the required Word- or MathType-compatible input for manual replacement.
+  Treat manual author replacement as the normal fallback, not as a reason to retry unsafe automation.
+- Convert only uniquely located ranges, save between small batches, and never bulk-delete embedded
+  equation objects. Preserve layout tables, their rows and columns, and equation-number cells. After
+  conversion, verify formula counts, remaining linear tokens, subscripts, superscripts, vector
+  formatting, baseline alignment, equation numbers, and table layout. Finish with dedicated All
+  Markup screenshots of representative body text, captions, display equations, and appendix tables.
 - In tables, preserve the existing table structure and replace only the visible cell content range,
   excluding the end-of-cell marker. Verify every affected cell's final text or value exactly.
 - Keep simple inline numeric-letter combinations such as `0.5R` as ordinary text unless the author

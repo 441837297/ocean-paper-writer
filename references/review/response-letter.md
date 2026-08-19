@@ -170,8 +170,9 @@ interpretation, revise the manuscript as well.
 
 ## DOCX Format
 
-For a Word response letter, run `scripts/build_response_docx_template.py` or copy
-`assets/response_template.docx`, then replace the placeholders without changing the styles.
+For a Word response letter, update an existing Response DOCX when one exists. Otherwise, run
+`scripts/build_response_docx_template.py` or copy `assets/response_template.docx`, then replace
+the placeholders without changing the styles. Preserve the existing styles when updating.
 
 - Use Times New Roman throughout, including tables, headers, footers and page numbers.
 - Keep editor and reviewer comments as regular black text, preserving them verbatim.
@@ -183,6 +184,27 @@ For a Word response letter, run `scripts/build_response_docx_template.py` or cop
 - Insert a labeled blue placeholder for any response-only figure, and keep project-specific media
   out of the reusable template.
 - Separate response units with whitespace only. Do not use dashed separators or a table of contents.
+
+## Response Word Final Delivery
+
+Begin after every manuscript Word page has completed final QA. Treat `response0806.md`, or the
+corresponding final Response Markdown, as the content authority.
+
+Update the existing Response DOCX when the project provides one. Preserve reviewer-comment original
+text, established styles and colors, and each `Revised text` and `Location` structure. When the
+project has no Response DOCX, create one with the existing script or template.
+
+Codex may apply the confirmed final Response Markdown to the Response DOCX. The author renders
+formulas manually and provides one current-page screenshot at a time. For the current page, Codex
+compares the screenshot with the corresponding final Response Markdown and checks response content,
+formulas, colors, verbatim comments, `Revised text`, and `Location`.
+
+- When the page is correct, reply exactly: `本页完成`, then continue with the next page.
+- When revision is needed, list only the content requiring correction and review that page again
+  after it is updated.
+
+This final delivery step verifies the confirmed response and its presentation. Scientific decisions
+remain governed by the established review and response-letter workflow.
 
 ## Revision Workflow
 

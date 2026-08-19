@@ -191,7 +191,7 @@ Load one stage workflow on entry and templates only when generating project file
 | abstract drafting | `references/workflow/writing-abstract.md` | load with writing |
 | review | `references/workflow/review.md` | `05` templates; load focused review modules only when needed |
 | response letter | `references/review/response-letter.md` | `05_response-letter.md` and DOCX asset for final assembly |
-| DOCX revision handoff | `references/workflow/docx-compare.md` | Word COM tracked editing |
+| DOCX final handoff | `references/workflow/docx-compare.md` | Choose Codex-led DOCX modification or author editing with page-by-page screenshot QA |
 | polish | `references/workflow/polish.md` | focused naturalization module when selected |
 | abstract polish | `references/workflow/polish-abstract.md` | load with polish |
 | cover letter | `references/workflow/cover-letter.md` | `references/templates/06_cover-letter.md` |
@@ -236,8 +236,13 @@ to configured upstream storage such as HPC, a remote server, or an Obsidian vaul
 Review decisions follow the Backpropagation Gate in `references/workflow/review.md`; version creation
 then follows the global manuscript versioning rule above.
 
-For final response-letter Word assembly, use `scripts/build_response_docx_template.py` or
-`assets/response_template.docx` and replace all placeholders with project content.
+For final DOCX delivery, confirm the final manuscript and Response Markdown, then choose Codex-led
+DOCX modification or author editing with Codex page-by-page screenshot QA for the manuscript Word.
+After the manuscript Word is complete, update and QA the Response Word. Continue updating an
+existing Response DOCX when available; use `scripts/build_response_docx_template.py` or
+`assets/response_template.docx` when a new document is needed. Follow
+`references/workflow/docx-compare.md` and `references/review/response-letter.md` for the detailed
+workflow.
 
 ## Status Markers
 
