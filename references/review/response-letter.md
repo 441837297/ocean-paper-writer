@@ -15,111 +15,68 @@ Apply these to every response, regardless of comment type or length.
 - **At most one brief acknowledgment per comment.** Omit it when a direct answer reads naturally.
   The revision is the best acknowledgment — do not repeat praise or agreement in words.
 
-## Stepwise Comment Workflow
+## Per-Comment Workflow
 
-Handle one comment at a time. Complete only the current step, state the completed step and next
-step, then wait for the user. The user may enter at any step. Reuse interpretations, decisions, or
-responses already explicitly confirmed; do not repeat completed work.
+Follow the A-E workflow in `references/workflow/review.md`. Handle one comment at a time and preserve
+it verbatim. Codex prepares the strategy packet, investigates project facts, and executes only a
+researcher-confirmed Response Contract. ChatGPT discusses the strategy before execution and verifies
+the completed work afterward. Shared implementation does not imply shared explanation.
 
-### R0. Select comment
-
-Identify one editor or reviewer comment and preserve it verbatim. Confirm which comment is being
-handled when it is unclear.
-
-### R1. Interpret comment
-
-Read the original comment, the relevant manuscript passage, and only the context needed to
-understand why the concern was raised. Propose one comment type and briefly explain it:
+The Response Contract records:
 
 ```text
-审稿人直接问什么：
-他为什么会问这个：
-对应原稿位置：
-我的暂定判断：[EDIT / CLARIFY / ADD_ANALYSIS / CORRECT / BOUNDARY]；[简短理由]
+Issue ID:
+Reviewer actually asks:
+Direct answer:
+Confirmed facts:
+Required code/analysis/manuscript actions:
+What must not be claimed or added:
+Expected response length:
+Verification criteria:
 ```
 
-Types are aids to interpretation, not decisions. The five types and when to use each:
+Do not treat the internal scientific rationale or the contract as response prose. If investigation
+changes a material fact, revise and reconfirm the contract before drafting. Do not invent theory,
+terminology, literature discussion, or defensive explanation to fill a gap.
 
-| Type | What the reviewer is actually asking |
-|------|--------------------------------------|
-| `MINOR_EDIT` | Fix a typo, wording, or formatting issue. The science is untouched. |
-| `CLARIFY` | They didn't understand something — a term, a definition, a symbol, a method step, or why the result differs from a familiar framework. The science is correct but the communication was unclear. |
-| `ADD_ANALYSIS` | They want a new diagnostic, figure, table, citation, or sensitivity test. Evidence is missing. |
-| `CORRECT` | An error in code, formula, value, or implementation. Something was wrong. |
-| `BOUNDARY` | They ask for attribution or mechanism that exceeds the available evidence, data, or model output. The limit is real and must be stated. |
+After execution, write the Chinese response logic at near-final information density, then render the
+English response from the same confirmed facts and evidence boundary. Use the original comment,
+terminology table, original manuscript text, and completed revision for exact terms. Prefer concrete
+actions and objects: `corrected`, `added`, `calculated`, `recalculated`, `revised`, `clarified
+[object]`, `removed`, `defined`, and `moved`.
 
-CLARIFY is the broadest category. It covers terminology confusion (e.g., baroclinic transfer vs
-buoyancy conversion), inconsistent notation (e.g., using the same symbol for local density and
-volume-integrated energy), missing method steps (e.g., how spatial structure is obtained from
-volume-integrated terms), and apparent contradiction with classical theory that is actually a
-framework difference (e.g., eddy-following lifecycle vs Eulerian climatology). The common thread:
-the science is sound but was not explained clearly enough for the reviewer to follow.
+Prepare the independent verification packet with the original comment, Response Contract, relevant
+result, Chinese logic, English response, original manuscript text, revised text or concise diff, and
+verification criteria. Ask ChatGPT to read the chain sentence by sentence and check that:
 
-Stop after R1 and ask the user to confirm or correct the interpretation.
+- the Chinese logic directly answers the original comment;
+- every English sentence has a clear source and function in the Chinese logic;
+- the English response does not omit, add, or strengthen a scientific claim;
+- the revised manuscript fulfills every stated action and remains consistent with the original
+  context;
+- wording, terminology, grammar, and logical transitions are natural and precise.
 
-### R2. User confirms interpretation
+Accept only `PASS` or `REVISE` with specific reasons. Revise and repeat as needed. The researcher
+confirms PASS before the issue is marked resolved.
 
-Record the confirmed interpretation and type. If the user changes either, return to R1 only as
-needed to make the interpretation clear.
+## Response Structure and Length
 
-### R3. Propose response strategy
+Use this default order: answer directly; state what was checked or corrected; state the manuscript
+change; add quantitative evidence or explanation only when required. State the concrete object,
+result, or correction before abstraction. Do not repeat the reviewer's background explanation or
+add related theory to demonstrate expertise.
 
-Based on the confirmed interpretation, discuss the scientific response before writing formal prose:
+| Issue | Typical response |
+|-------|------------------|
+| Wording or terminology correction | 1-2 sentences |
+| Notation or formula correction | 1-3 sentences |
+| Code or numerical error | State the error, correction, recalculation, and whether conclusions changed |
+| Substantive conceptual question | One short paragraph with only the required definitions and evidence |
+| New analysis request | Summarize the method, result, and resulting manuscript change |
 
-```text
-建议回应思路：
-
-1. 是否接受审稿人的意见：
-2. 需要做或已经做了什么：
-3. 最关键的结果或事实：
-4. 手稿准备修改哪里：
-5. Response 需要保持怎样的证据边界：
-```
-
-Do not use `beyond the scope` in place of a feasible minimum check. If requested work cannot be
-done, identify the missing data, diagnostic, experiment, or model output. Stop after R3 and wait
-for user confirmation.
-
-### R4. User confirms strategy
-
-Record the confirmed scientific decision, evidence boundary, manuscript action, and location.
-Return to R3 when the user changes the strategy.
-
-### R5. Draft Chinese response
-
-Draft a concise formal Chinese reply from the confirmed interpretation, strategy, manuscript
-revision, terminology, and analysis results. It must be close to the final response in information
-density, not an internal note. Use the type naturally:
-
-| Type | Response strategy | Typical length | Start with thanks? |
-|------|-------------------|----------------|--------------------|
-| `MINOR_EDIT` | Agree → show what changed → paste revised text → give location. | 1–2 sentences | No |
-| `CLARIFY` | Acknowledge where the manuscript caused confusion → give the unified definition / derivation / logic → answer directly → paste revised text → give location. | 1–4 short paragraphs | Yes |
-| `ADD_ANALYSIS` | State the added analysis → key result → whether conclusions changed → paste revised text → give location. | 2–3 short paragraphs | Yes |
-| `CORRECT` | State the error source → correction or recalculation → corrected result → whether conclusions changed → paste revised text → give location. | 2–3 short paragraphs | Yes (admit directly, no self-defense) |
-| `BOUNDARY` | State what the evidence supports → where the boundary is → how the manuscript wording was adjusted → paste revised text → give location. | 1–2 short paragraphs | Yes |
-
-Use the minimum evidence needed for evaluation. Keep internal implementation details, abandoned
-alternatives, and repeated background out of the reply. Stop after R5 and wait for user
-confirmation.
-
-### R6. User confirms Chinese response
-
-Treat the confirmed Chinese response as the information boundary for English rendering. Return to
-R5 when its scientific content, logic, or evidence strength changes.
-
-### R7. Draft English response
-
-Render the confirmed Chinese response as concise, natural academic English. Preserve confirmed
-facts, logical order, and evidence strength. Use the reviewer comment, final manuscript, and
-terminology table for exact terms. Prefer concrete actions and objects: `corrected`, `added`,
-`calculated`, `recalculated`, `revised`, `clarified [object]`, `removed`, `defined`, and `moved`.
-State what was done and, for analyses or corrections, what the result shows and whether conclusions
-changed. Keep sentences short and direct. Apply the Universal Rules (you/your, one acknowledgment
-max) — the revision is shown, not defended.
-
-Then give the English reply to the user for confirmation. If it requires substantive re-examination,
-return to the earliest uncertain step rather than polishing English directly.
+For every sentence ask: `Which part of the reviewer's question requires this sentence?` Remove or
+shorten it when there is no clear answer. Avoid unnecessary summary labels and new terminology when
+direct description is clearer.
 
 ## Evidence Language
 
@@ -185,23 +142,23 @@ the placeholders without changing the styles. Preserve the existing styles when 
   out of the reusable template.
 - Separate response units with whitespace only. Do not use dashed separators or a table of contents.
 
-## Response Word Final Delivery
+## P6. Response Word Final Delivery
 
-Begin after every manuscript Word page has completed final QA. Treat `response0806.md`, or the
-corresponding final Response Markdown, as the content authority.
+Begin after P5 has locked the manuscript Word file. Treat `response0806.md`, or the corresponding
+final Response Markdown, as the content authority.
 
 Update the existing Response DOCX when the project provides one. Preserve reviewer-comment original
 text, established styles and colors, and each `Revised text` and `Location` structure. When the
 project has no Response DOCX, create one with the existing script or template.
 
-Codex may apply the confirmed final Response Markdown to the Response DOCX. The author renders
-formulas manually and provides one current-page screenshot at a time. For the current page, Codex
-compares the screenshot with the corresponding final Response Markdown and checks response content,
-formulas, colors, verbatim comments, `Revised text`, and `Location`.
+Call `scripts/export_word_pdf_pages.ps1` with `-View Final` in a new temporary directory. Compare
+every page with the final Response Markdown for response content, formulas, colors, verbatim comments,
+`Revised text`, and `Location`.
 
-- When the page is correct, reply exactly: `本页完成`, then continue with the next page.
-- When revision is needed, list only the content requiring correction and review that page again
-  after it is updated.
+Then cross-check every Response declaration and revised-text excerpt against the locked manuscript:
+every stated revision, number, result, and conclusion must be present in the manuscript at the same
+evidence strength. Update Markdown before a content change, update the Response Word file for a
+transfer error, then repeat P6.
 
 This final delivery step verifies the confirmed response and its presentation. Scientific decisions
 remain governed by the established review and response-letter workflow.
@@ -212,8 +169,8 @@ When revising an existing response:
 
 1. Preserve each reviewer comment verbatim.
 2. Compare it with the confirmed scientific decision and final manuscript change.
-3. Resume from the earliest uncertain step in R0-R7. Do not directly polish English when the
-   interpretation, strategy, Chinese content, evidence, or manuscript action is uncertain.
+3. Resume from the earliest uncertain A-E stage. Do not directly polish English when the contract,
+   Chinese logic, evidence, or manuscript action is uncertain.
 4. Once those are confirmed, update the English response, revised text, and location from the final
    manuscript version.
 

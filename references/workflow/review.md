@@ -3,21 +3,54 @@
 ## Purpose
 
 Review converts author, advisor, coauthor, or external-review feedback into confirmed revision
-decisions and executable patches. Full review keeps decision-making separate from file execution.
+decisions and executable patches. Codex manages project evidence and execution; ChatGPT supports
+strategy discussion before execution and independent verification afterward; the researcher makes
+the final decision.
 
 ## Full Review Pipeline
 
-1. ClaudeCode compiles raw feedback into `05_review-round{N}A_source.md`, preserving source wording.
-2. ClaudeCode packages A_source, the current manuscript, and relevant project files for GPT.
-3. GPT produces `05_review-round{N}B_report.md` with an Issue Log, Revision Contract, and Patch List.
-4. The user confirms or adjusts the report decisions.
-5. ClaudeCode applies the Backpropagation Gate below.
-6. ClaudeCode creates the next manuscript version using the global version rule in `SKILL.md`.
-7. ClaudeCode executes accepted patches and updates `04_writing-log.md`.
-8. Each changed unit is checked against evidence, architecture, terminology, and the accepted issue.
+### A. Intake
 
-ClaudeCode compiles and executes. GPT supplies Accept, Defer, and Reject decisions. The user confirms
-scientific judgments and major tradeoffs.
+1. Codex compiles feedback into `05_review-round{N}A_source.md` without changing its meaning.
+2. Identify the reviewed manuscript version and locate only the relevant decision records,
+   terminology, figures, tables, code, analyses, and previous responses.
+3. Record dependencies between comments without merging their responses.
+4. Prepare a compact ChatGPT strategy packet and tell the user exactly which files to upload. Include
+   the original comment, the relevant original manuscript text and context, and only the supporting
+   files needed to understand the issue. Include the full manuscript only for manuscript-wide issues.
+
+### B. ChatGPT Strategy Discussion
+
+The user discusses one comment at a time with ChatGPT and brings back a confirmed Response Contract.
+Record it in `05_review-round{N}B_report.md` with: Issue ID, what the reviewer actually asks, direct
+answer, confirmed facts, required code/analysis/manuscript actions, prohibited claims or additions,
+expected response length, and verification criteria. Internal scientific reasoning may remain
+detailed, but it is not final response prose. Wait for researcher confirmation before execution.
+
+### C. Investigation
+
+When facts remain unresolved, Codex checks the relevant code, formulas, units, implementation, or
+results before editing prose. Report factual findings without inventing an explanation. If findings
+materially change the Response Contract, stop and ask the user to take them back to ChatGPT, then
+confirm the revised contract.
+
+### D. Execution
+
+Apply the Backpropagation Gate below, create the next manuscript version under the global version
+rule, and execute one comment or tightly coupled technical unit at a time. Shared calculations or
+code changes may serve multiple comments, but each comment retains its own direct response. Update
+code, analyses, figures, tables, manuscript, terminology, and `04_writing-log.md` only as required by
+the contract. Draft the concise response from the confirmed facts and completed revision.
+
+### E. Independent ChatGPT Verification
+
+Do not mark execution as resolution. For each completed comment, prepare a compact verification
+packet containing the original comment, confirmed Response Contract, relevant result, Chinese
+response logic, English response, relevant original manuscript text, revised text or concise diff,
+and the verification criteria. Ask ChatGPT to check the chain sentence by sentence:
+`original comment -> Chinese logic -> English response -> original text -> revised text`.
+ChatGPT returns `PASS` or `REVISE` with specific reasons. Codex applies required corrections and
+repeats verification. Mark the issue resolved only after the researcher confirms PASS.
 
 ## Inputs
 
@@ -94,7 +127,11 @@ persistent project-defined draft and the dedicated response-letter workflow.
 
 ## Completion
 
-A review round is complete when accepted issues are implemented in the new manuscript version,
-deferred and rejected issues retain reasons, upstream changes are confirmed, and the writing log
-records the completed patches. Handoff then goes to writing, polish, or another affected upstream
-stage.
+A review round is complete when every accepted issue has a researcher-confirmed PASS, deferred and
+rejected issues retain reasons, upstream changes are confirmed, and the writing log records the
+completed patches. Codex then checks that all comments are covered and that manuscript and response
+agree on equations, symbols, figures, tables, units, terminology, values, locations, and cross-section
+claims. Finally, the user or external ChatGPT cold-reads the complete response letter and revised
+manuscript without relying on the internal rationale, checking sentence-level language, directness,
+terminology, logic, overclaiming, and defensive repetition. Handoff then goes to writing, polish, or
+another affected upstream stage.

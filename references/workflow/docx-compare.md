@@ -9,11 +9,11 @@ manuscript Word handoff that matches the author's preferred working arrangement.
 flowchart TD
     A[Confirm final Manuscript and Response Markdown] --> B{Manuscript Word handoff}
     B -->|Codex edits| C[Two-Gate editing and QA]
-    B -->|Author edits| D[Author edits and sends current-page screenshot]
-    C --> E[Page-by-page completion]
+    B -->|Author backfill| D[Author reviews revisions and converts formulas]
+    C --> E[Batch manuscript QA]
     D --> E
     E --> F[Update Response DOCX]
-    F --> G[Page-by-page screenshot QA]
+    F --> G[Batch Response QA and cross-check]
     G --> H[Final delivery]
 ```
 
@@ -23,7 +23,7 @@ Use the Per-Unit Two-Gate Workflow below when Codex applies confirmed revisions 
 DOCX. This branch uses the existing Word COM, Track Changes, field, formula-conversion, and
 screenshot-verification rules.
 
-### Author Editing with Codex Screenshot QA
+### Author Incremental Editing
 
 Use this branch when the author applies confirmed final content in the manuscript Word. The author
 renders formulas manually and provides one current-page screenshot at a time.
@@ -38,6 +38,19 @@ figure and table numbering, revision marks, and layout.
 
 After all manuscript Word pages are complete, begin the Response Word final-delivery workflow in
 `references/review/response-letter.md`.
+
+## P5. Batch Manuscript Final QA
+
+Begin after P4: the author has reviewed the tracked revisions and completed formula conversion.
+Treat the frozen manuscript Markdown as the content authority.
+
+1. Call `scripts/export_word_pdf_pages.ps1` twice in new temporary directories: once with `-View Final` and once with `-View Markup`. The script exports with Word and renders every PDF page to a 600 DPI PNG.
+2. Compare every Final page with the corresponding manuscript Markdown for visible text, numbers, units, formulas, symbols, figures, tables, captions, numbering, and layout.
+3. Inspect every Markup page for revision placement, line breaks, formula alignment, page breaks, and table overflow.
+4. Review an affected page in Word only when the PDF cannot show a MathType object, field, comment, or revision state clearly.
+5. Correct a Word transfer error in P3. Update Markdown and matching Response text in P2 before changing confirmed content. Repeat P5 after correction.
+
+Complete P5 when every page has passed and the manuscript Word file's final visible content matches the frozen Markdown.
 
 Keep the submitted source DOCX immutable. Create one field-cleaned baseline and one cumulative tracked
 DOCX from it. Enable Word Track Changes only in the cumulative tracked DOCX after the common

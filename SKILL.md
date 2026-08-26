@@ -64,6 +64,26 @@ work and keep the position visible when useful:
 Current: 05 Review -> Response R3 -> R1C03
 ```
 
+For an external-review-to-submission cycle, first confirm one phase below. At session start, state
+the current phase, this session's action, its completion condition, and the next phase. Work through
+the confirmed phase before advancing.
+
+| Phase | Action |
+|-------|--------|
+| P0 | Lock the submitted manuscript, reviewer comments, and working Markdown paths. |
+| P1 | Process one reviewer comment through intake, a confirmed Response Contract, any required investigation, execution, and independent PASS verification. |
+| P2 | Cross-check and freeze the final manuscript and Response Markdown. |
+| P3 | Backfill the frozen manuscript Markdown into the cumulative tracked DOCX. |
+| P4 | Review tracked revisions and convert formulas in Word; update Markdown before any confirmed-text change. |
+| P5 | Run batch final QA of the manuscript Word file against the frozen Markdown. |
+| P6 | Update and check the Response Word file, then cross-check every response claim against the locked manuscript. |
+
+Within P1, Codex compiles and investigates project evidence, executes confirmed changes, and
+performs consistency checks. ChatGPT is used at two explicit checkpoints: response-strategy
+discussion before execution and independent verification after execution. The researcher confirms
+the Response Contract and the final PASS. Do not mark a comment resolved before that PASS. Process
+comments separately even when tightly coupled comments share a technical implementation.
+
 For project-content changes, follow:
 
 ```text
@@ -191,7 +211,7 @@ Load one stage workflow on entry and templates only when generating project file
 | abstract drafting | `references/workflow/writing-abstract.md` | load with writing |
 | review | `references/workflow/review.md` | `05` templates; load focused review modules only when needed |
 | response letter | `references/review/response-letter.md` | `05_response-letter.md` and DOCX asset for final assembly |
-| DOCX final handoff | `references/workflow/docx-compare.md` | Choose Codex-led DOCX modification or author editing with page-by-page screenshot QA |
+| DOCX final handoff | `references/workflow/docx-compare.md` | Apply tracked revisions or run batch final QA after author backfill |
 | polish | `references/workflow/polish.md` | focused naturalization module when selected |
 | abstract polish | `references/workflow/polish-abstract.md` | load with polish |
 | cover letter | `references/workflow/cover-letter.md` | `references/templates/06_cover-letter.md` |
@@ -236,11 +256,10 @@ to configured upstream storage such as HPC, a remote server, or an Obsidian vaul
 Review decisions follow the Backpropagation Gate in `references/workflow/review.md`; version creation
 then follows the global manuscript versioning rule above.
 
-For final DOCX delivery, confirm the final manuscript and Response Markdown, then choose Codex-led
-DOCX modification or author editing with Codex page-by-page screenshot QA for the manuscript Word.
-After the manuscript Word is complete, update and QA the Response Word. Continue updating an
-existing Response DOCX when available; use `scripts/build_response_docx_template.py` or
-`assets/response_template.docx` when a new document is needed. Follow
+For final DOCX delivery, confirm P2 before P3. After P4, complete P5 batch final QA of the manuscript
+Word file, then complete P6 for the Response Word file. Continue updating an existing Response DOCX
+when available; use `scripts/build_response_docx_template.py` or `assets/response_template.docx`
+when a new document is needed. Follow
 `references/workflow/docx-compare.md` and `references/review/response-letter.md` for the detailed
 workflow.
 

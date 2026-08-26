@@ -18,14 +18,28 @@
 |----|----------|------|--------|----------|---------|----------|--------|-------------|
 | | | | | | | | | |
 
-## Revision Contract
+## Response Contract - [Issue ID]
 
+- reviewer actually asks:
+- direct answer:
+- confirmed facts:
+- required code/analysis/manuscript actions:
+- must not be claimed or added:
+- expected response length:
+- verification criteria:
 - backpropagation level: [hard / soft-architecture / none]
 - affected authoritative files:
-- confirmed scientific change:
-- section or figure change:
-- terminology change:
 - manuscript version to create:
+
+## Investigation and Verification
+
+- factual findings, if needed:
+- Chinese response logic:
+- English response:
+- original manuscript text/location:
+- revised manuscript text/location:
+- ChatGPT result: [PENDING / PASS / REVISE]
+- researcher confirmed PASS: [yes / no]
 
 ## Patch List
 

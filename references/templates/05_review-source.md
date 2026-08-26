@@ -39,3 +39,15 @@
 - current manuscript:
 - relevant project files:
 - reference-reading brief, if used:
+
+## Comment Dependencies
+
+- related issue IDs and shared implementation:
+- separate response required for each issue: yes
+
+## ChatGPT Strategy Packet
+
+- original comment:
+- relevant original manuscript text and context:
+- supporting files needed:
+- files to upload to ChatGPT:
