@@ -15,8 +15,7 @@ contribution, and supplies required declarations.
 - data and code availability information;
 - canonical target-journal papers when journal-fit comparison is useful.
 
-Follow the global Stage/Step, Source Scope, evidence, interaction, and target-journal guidance in
-`SKILL.md`.
+Follow the evidence constitution, source-scope, interaction, and target-journal guidance in `SKILL.md`.
 
 ## Steps
 

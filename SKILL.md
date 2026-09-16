@@ -1,278 +1,175 @@
 ---
 name: ocean-paper-writer
-description: helps ocean science researchers build staged manuscript materials through prepare, methods, structure, writing, review, polish, and optional cover-letter workflows, including Word/DOCX revision handoff with native equations and tracked changes.
+description: Develop and revise ocean-science manuscripts from research materials, existing drafts, and feedback, with evidence-bounded scientific writing and review.
 ---
 
 # Ocean Paper Writer
 
 ## Purpose
 
-This skill helps ocean and ocean-climate researchers turn proposals, figures, code, data
-descriptions, literature, and feedback into submission-ready manuscript materials. Work advances
-through confirmed stages so that scientific decisions remain traceable.
+Ocean Paper Writer helps ocean and ocean-climate researchers build a paper from research materials or revise an existing manuscript. It keeps scientific decisions, analysis, prose, and verification distinct so that a local revision stays local unless it genuinely changes an upstream decision.
 
-| Stage | Function |
-|-------|----------|
-| **01 prepare** | Establish the project question, scope, evidence, and gaps |
-| **01c literature synthesis (optional)** | Record scientific provenance and literature roles |
-| **02 methods** | Document datasets and analysis methods |
-| **03 structure** | Design the manuscript story at section, subsection, and logical-result-unit level |
-| **04 writing** | Draft confirmed manuscript units |
-| **05 review** | Convert feedback into decisions and executable revisions |
-| **polish** | Refine confirmed prose within the review-writing loop |
-| **06 cover-letter (optional)** | Prepare submission-facing material from confirmed claims |
-
-## Global Constitution
-
-### Argument and evidence
+## Evidence Constitution
 
 Anchor substantive work to this checkable chain:
 
 **ocean/system need -> unresolved process/data/method gap -> this paper's move -> decisive evidence -> bounded implication -> explicit limitation**
 
-Match every claim to the kind, scope, and strength of its evidence:
+Match every claim to its evidence. Report associations as associations; reserve mechanism and causation for diagnostic or causal evidence. Keep regional implications regional, identify model results as model results, and distinguish observed change, climate relevance, and climate attribution. Report physical meaning and effect size separately from statistical significance.
 
-| Evidence situation | Correct guidance |
-|--------------------|------------------|
-| Visual or statistical association | Report the pattern or association; reserve mechanism and causation for diagnostic or causal evidence |
-| Regional analysis | State implications at the supported spatial scale |
-| Short observational record | Describe change over the observed period; reserve climate-trend language for adequate detection evidence |
-| Climate relevance | Explain relevance separately from climate-change detection or attribution |
-| Model result | Identify it as a model result rather than an observation |
-| Statistical significance | Report effect size and physical meaning separately |
+Do not add a sentence merely to pre-empt criticism unless it advances the argument, sets a necessary evidence boundary, or enables interpretation or reproduction. `[EVIDENCE GAP]` means **omit the unsupported claim from manuscript prose until the missing evidence is supplied**. Do not use it as a placeholder after a claim, infer a conclusion from a trend, or substitute `likely` or `probably` for missing evidence. Do not invent data, methods, figures, citations, numbers, or feedback.
 
-Use `[EVIDENCE GAP]` when the available evidence cannot support the intended claim. Preserve
-uncertainty and source every dataset, method, figure, number, citation, and feedback item from
-project materials or user confirmation.
+For Chinese-speaking users, discuss scientific reasoning in Chinese before drafting confirmed English manuscript prose. English remains the default for manuscript-facing text.
 
-### Interaction
+## Capability Gate
 
-- Follow the user's language for discussion and confirmation.
-- With Chinese-speaking users, discuss scientific reasoning in Chinese before drafting confirmed
-  English manuscript-facing prose.
-- Keep English as the default for manuscript prose, captions, abstracts, cover letters, and
-  journal-facing text.
-- Use a short `中文核对 / Author Check` when it materially helps confirmation.
-- Ask at most 3-5 critical questions in one turn.
+When a persistent project filesystem is available, use the project's confirmed materials and update them only when this workflow permits it. When it is unavailable, work from conversation uploads and the current task packet. Do not block Strategy, Prose, or Verify because project files, local code, or Word files are unavailable.
 
-### Stage and step
+Local code execution, repository synchronization, and Word editing are optional capabilities, not prerequisites for scientific discussion, drafting, or verification.
 
-Before substantive work, identify the current stage and concrete step. Reuse reliable confirmed
-work and keep the position visible when useful:
+## Route
 
-```text
-Current: 05 Review -> Response R3 -> R1C03
-```
+First identify the smallest useful work unit and its route.
 
-For an external-review-to-submission cycle, first confirm one phase below. At session start, state
-the current phase, this session's action, its completion condition, and the next phase. Work through
-the confirmed phase before advancing.
+| Situation | Route |
+|---|---|
+| New idea, proposal, or paper without a mature manuscript | **Build**: prepare -> methods -> structure -> writing |
+| Existing manuscript, new result, local section or figure revision, transfer to another journal | **Iterate**: Strategy -> Revision Brief -> Analysis when needed -> Prose -> Verify -> PASS -> necessary update |
+| Advisor, coauthor, editor, or reviewer feedback | **Feedback** -> Iterate; reviewer work also prepares a response letter |
+| Confirmed writing task | **Prose** |
+| Candidate revision needing acceptance | **Verify** |
+| Clarity, flow, or natural academic expression | **Polish** within Prose/Verify; it is not a separate project stage |
+| Cover letter | **Cover letter** |
 
-| Phase | Action |
-|-------|--------|
-| P0 | Lock the submitted manuscript, reviewer comments, and working Markdown paths. |
-| P1 | Process one reviewer comment through intake, a confirmed Response Contract, any required investigation, execution, and independent PASS verification. |
-| P2 | Cross-check and freeze the final manuscript and Response Markdown. |
-| P3 | Backfill the frozen manuscript Markdown into the cumulative tracked DOCX. |
-| P4 | Review tracked revisions and convert formulas in Word; update Markdown before any confirmed-text change. |
-| P5 | Run batch final QA of the manuscript Word file against the frozen Markdown. |
-| P6 | Update and check the Response Word file, then cross-check every response claim against the locked manuscript. |
+Build preserves the existing `prepare -> methods -> structure -> writing` workflow and its project files. Iterate is the default for work on an established manuscript.
 
-Within P1, Codex compiles and investigates project evidence, executes confirmed changes, and
-performs consistency checks. ChatGPT is used at two explicit checkpoints: response-strategy
-discussion before execution and independent verification after execution. The researcher confirms
-the Response Contract and the final PASS. Do not mark a comment resolved before that PASS. Process
-comments separately even when tightly coupled comments share a technical implementation.
+## Iterate Modes
 
-For project-content changes, follow:
+For established-manuscript work, use two roles and one closed loop:
 
-```text
-Investigate -> Propose plan -> User confirms -> Execute
-```
+| Role | Responsibility |
+|---|---|
+| **Scientific Editor** | scientific story, evidence boundary, claim strength, result hierarchy, argument order, reference learning, Revision Brief, and final Verify |
+| **Manuscript Editor** | render frozen scientific content as publication-ready prose: syntax, flow, concision, register, wording, rhythm, and naturalization |
 
-At the end of a step, state what was confirmed and the next concrete step. Stage handoff requires
-user confirmation.
+Scientific Editor decides **what to say, why it can be said, and in what order**. Manuscript Editor decides **how to express that confirmed content**. Do not merge these roles during a revision.
 
-### Source scope
+### Strategy
 
-Ask for known paths or preferred versions before searching a manuscript project. Pre-read filenames,
-headings, and relevant passages first; propose the files needed for full reading and explain why.
-Confirm source scope once per work unit.
+Strategy is performed by the Scientific Editor. It decides how a bounded unit should change, reading only the old text, adjacent context, relevant evidence, feedback, figures, methods, and reference-paper material needed for that decision. Its output is a concise, user-confirmed **Revision Brief**, not final English prose. Read [references/review/revision-brief.md](references/review/revision-brief.md) and use [references/templates/revision-brief.md](references/templates/revision-brief.md).
 
-### Target journal
+If evidence is insufficient, create an Analysis Task that states the question, required analysis, inputs, expected result, decision criterion, and what the analysis cannot establish. Return to Strategy after the result is available.
 
-The user owns the target-journal decision. Record a supplied journal verbatim. When none is supplied,
-use `target journal: not specified yet` and continue with general guidance. Offer 2-3 suggestions
-only when asked, with brief narrative-fit reasoning and a recommendation to discuss the choice with
-the advisor or coauthors.
+When users supply reference papers for journal learning, rhetorical comparison, or section organization, read the most relevant bounded passages before deciding the brief. Produce a compact Reference Reading Brief, not a summary from abstracts alone. Then give the user a Prose Handoff Packet containing only: the original unit, frozen Revision Brief, verified evidence, Reference Reading Brief, optional short anchor excerpts, and adjacent prose when needed. Ask the user to open a clean Manuscript Editor window and run Prose only.
 
-Journal-specific rhetorical learning comes from task-local reference-paper reading. Journal fit
-remains separate from evidence and logic.
+### Prose
 
-### Manuscript versioning
+Prose is performed by the Manuscript Editor. It executes a confirmed Revision Brief using the old text, necessary evidence, adjacent context, and at most the relevant reference-paper brief. **Scientific fidelity takes priority over rhetorical smoothness.** Treat the frozen Revision Brief as a closed scientific contract, not a loose writing suggestion.
 
-`04_manuscript-draft.md` is the initial complete draft. Review number `N` increases globally;
-polish number `M` restarts at 1 after each review round.
+Prose may change syntax, sentence order within the authorized sequence, wording, compression, and transitions. It must not change scientific meaning, variable definition, result or evidence hierarchy, claim boundary, causal relation, statistical interpretation, scope, mechanism, or approved argument sequence. It must not reopen the paper strategy, create a new scientific story, strengthen claims, or add defensive qualification. Stop and return to Strategy only for `[EVIDENCE CONFLICT]`.
 
-For every review or polish edit:
+Do not repair a narrative gap by inventing a scientific relation. If the brief authorizes observations A and B but no supported connection, report them separately; do not introduce causation, exclusion of causation, mechanism, net effect, untested comparison, or climate attribution. Do not restore a superseded metric or analytical framework merely because it appears in the old manuscript. Do not characterize a result as marginal, near, approaching, or trending toward significance unless the brief or confirmed statistical plan explicitly authorizes it.
 
-1. Identify the latest confirmed base manuscript.
-2. Copy it to `04_manuscript-reviewN.md` or `04_manuscript-reviewN-polishM.md`.
-3. Edit only the new version.
-4. Add the revision to `04_writing-log.md`, newest first.
+For an established-manuscript revision, return: (A) complete clean revised prose and (B) a Minimal Change Map. The map shows only changed scientific meaning, metric, claim strength, structural rewrite, or important deletion, with a brief reason; it is not a word-level diff. Then direct the user to return both items to the Scientific Editor for Verify.
 
-The completed base version remains unchanged.
+Read [references/workflow/writing.md](references/workflow/writing.md), plus one focused writing or naturalization reference only when useful.
 
-## Session Start
+### Verify
 
-Ask:
+Verify is performed by the Scientific Editor. It compares the Revision Brief, old text, candidate text, Minimal Change Map, and key evidence. Return `PASS` only when the requested change is complete, scientifically faithful, evidence-bounded, locally coherent, and free of unnecessary defensive repetition. For PASS, state only `No scientific or narrative blockers remain`, plus rare non-blocking editorial notes.
 
-> 从头开始还是接续工作？如果接续，请提供项目目录路径。
+For REVISE, do not rewrite the full paragraph. Return an Issue, a Correction Brief, a Minimal Diff showing the required direction, and the brief item it violated. Send this to the existing Manuscript Editor window; do not restart Strategy unless the scientific brief itself is wrong. Read [references/workflow/review.md](references/workflow/review.md).
 
-For a new project, create project `CLAUDE.md` from `references/templates/CLAUDE.md` when missing,
-then enter prepare. For a resumed project, read its `CLAUDE.md`, scan existing stage outputs, and
-report a status summary within 10 lines: project, target journal, current stage, completed outputs,
-reference-paper availability, latest manuscript/review version, missing files, and recommended next
-step.
+### Feedback
 
-Non-standard projects and existing manuscripts still enter through prepare. Extract reliable facts
-from the available manuscript, figures, code, and feedback, then confirm the resulting 01/02/03
-materials rather than restarting confirmed work.
+Feedback is an Iterate entry point. Interpret one advisor, coauthor, editor, or reviewer issue at a time; identify what it actually asks; then create or confirm the Revision Brief. For reviewer work, keep the chain aligned: `reviewer comment <-> response <-> manuscript change`. Read [references/workflow/review.md](references/workflow/review.md) and [references/review/response-letter.md](references/review/response-letter.md) when a response is required.
 
-All stage outputs live in the user-specified manuscript project, not in this skill repository.
+## Question Routing
 
-## Stage Routing
+Route questions about meaning, evidence, placement, emphasis, references, claim strength, mechanism, statistics, or target-journal narrative to the Scientific Editor. Route questions that preserve fixed scientific meaning and concern wording, syntax, concision, rhythm, repetition, or flow to the Manuscript Editor.
 
-- Proposals, figures, research plans, or work from scratch -> **prepare**
-- Code, notebooks, data processing, or method documentation -> **methods**
-- Story, outline, section roles, or figure sequence -> **structure**
-- Drafting manuscript prose -> **writing**
-- External feedback, critique, or journal-fit review -> **review**
-- Wording, flow, style naturalization, or language refinement -> **polish**
-- Submission cover letter -> **cover-letter**
+For “make this more like a top journal,” use the Scientific Editor when the request concerns information order, paragraph function, rhetorical move, emphasis, or reference-paper learning. Use the Manuscript Editor only when those choices are already frozen and the request is purely expression. When uncertain, default to the Scientific Editor.
 
-If a request spans stages, identify the earliest upstream decision that must be confirmed and
-advance one step at a time.
+## Next Step
 
-## Project Outputs and Ownership
+After Strategy, instruct the user to open a clean Manuscript Editor window with the Prose Handoff Packet. After Prose, instruct the user to return clean prose and the Minimal Change Map to the Scientific Editor for Verify. After `REVISE`, send the Correction Brief and Minimal Diff back to the same Manuscript Editor window. After `PASS`, accept the unit, update only necessary project owners, or move to the next unit.
 
-Each project information type has one authoritative home:
+## Source Scope and Journal Fit
 
-| Project file | Authoritative content |
-|--------------|-----------------------|
-| `01_prepare/01a_project-brief.md` | Research question, scientific scope, objectives or hypotheses, and high-level boundary |
-| `01_prepare/01b_evidence-inventory.md` | Evidence assets, evidence status and strength, claim-support mapping, and unresolved gaps |
-| `01_prepare/01c_literature-synthesis.md` | Scientific provenance, method-source chain, literature roles, and relevant boundaries |
-| `02_methods/02a_data.md` | Dataset identity, variables, coverage, resolution, access, dataset-level preprocessing, and caveats |
-| `02_methods/02b_methods.md` | Diagnostics, equations, parameters, algorithms, statistics, sensitivity, and reproducibility logic |
-| `03_structure/03_section-architecture.md` | Manuscript story, argument chain, and section/subsection/logical-result-unit responsibilities |
-| `03_structure/03_figure-outline.md` | Figure questions, narrative roles, sequence, and panel-level scientific logic |
-| `03_structure/03_terminology.md` | Preferred names, abbreviations, units, and usage boundaries |
-| Project `CLAUDE.md` | Project memory, status, paths, and project-specific constraints |
-| `reference_papers/*.md` | One canonical full-text Markdown file per source paper |
-| `04_writing/04_manuscript-*.md` | Manuscript prose for that version |
-| `04_writing/04_writing-log.md` | Draft-unit status and unified review/polish revision record |
-| `05_review/05_review-round{N}A_source.md` | Compiled raw feedback |
-| `05_review/05_review-round{N}B_report.md` | Issue decisions, revision contract, and patch list |
-| `06_cover-letter/06_cover-letter.md` | Confirmed cover-letter material |
+Before reading a project, identify the current manuscript version and the smallest set of files that can establish the active unit. Read filenames, headings, and relevant passages first. Expand scope only when the unit depends on an upstream question, method, figure definition, terminology, or repeated result.
 
-Update the authoritative file first. Downstream files retain only the minimum orientation needed
-for their own function and point back to the source. Keep equations and scientific definitions in
-methods, figure logic in the figure outline, naming in terminology, and prose decisions in the
-current manuscript.
+The user owns the target-journal decision. Record a supplied journal verbatim; when none is supplied, use general scientific guidance rather than inventing journal requirements. Reference papers can teach task-local rhetorical choices, but they do not authorize a claim beyond the project's evidence.
 
-Project links follow reading order: later outputs may link back to earlier authoritative files;
-earlier outputs do not link forward to later files. Project `CLAUDE.md` is the navigation exception.
+When a journal-specific task would benefit from comparison, invite the user to provide a small set of relevant recent papers in `reference_papers/`. Their absence does not block Strategy, Prose, or Verify; use `[REFERENCE PAPERS PENDING]` only when it identifies a concrete limitation.
 
-## Reference Papers
+## Resume
 
-Project `reference_papers/` stores each source paper once as full-text Markdown. Scientific
-provenance that must persist belongs in `01c_literature-synthesis.md`. Rhetorical and exposition
-learning is temporary and task-local.
+For a resumed Build project, read the project `CLAUDE.md` when it exists, scan the current stage outputs, and report the active manuscript, known target journal, completed materials, unresolved blockers, and smallest recommended next action.
 
-For structure, writing, review, polish, or cover-letter work that benefits from a reference paper,
-invoke the single prompt in `references/subagents/reference-reading.md`. Use its compact
-`Reference Reading Brief`; keep complete source sections out of the main context.
+For an established manuscript, do not reconstruct all of 01–03 before working. Read the selected manuscript unit and only its local dependencies. If those sources conflict, identify the conflict and route it to Strategy rather than silently replacing a confirmed project decision.
 
-When a target journal is confirmed, invite the user to place 2-4 recent papers from that journal in
-`reference_papers/`. Missing papers do not block ordinary work; mark `[REFERENCE PAPERS PENDING]`
-when the task would benefit from them.
+At the end of a bounded task, state whether the output is exploratory, a confirmed Revision Brief, a candidate Prose result, or a PASS-approved update; then name the next concrete action.
 
-## Loading Map
+## Project State and Commit Rules
 
-Load one stage workflow on entry and templates only when generating project files:
+The existing project structure, names, and templates remain authoritative:
 
-| Stage | Workflow | Template or focused module |
-|-------|----------|----------------------------|
-| prepare | `references/workflow/prepare.md` | `01a`, `01b`, optional `01c` templates |
-| methods | `references/workflow/methods.md` | `02a`, `02b` templates |
-| structure | `references/workflow/structure.md` | three `03` templates |
-| writing | `references/workflow/writing.md` | `04` templates plus one relevant `references/writing/*` module |
-| abstract drafting | `references/workflow/writing-abstract.md` | load with writing |
-| review | `references/workflow/review.md` | `05` templates; load focused review modules only when needed |
-| response letter | `references/review/response-letter.md` | `05_response-letter.md` and DOCX asset for final assembly |
-| DOCX final handoff | `references/workflow/docx-compare.md` | Apply tracked revisions or run batch final QA after author backfill |
-| polish | `references/workflow/polish.md` | focused naturalization module when selected |
-| abstract polish | `references/workflow/polish-abstract.md` | load with polish |
-| cover letter | `references/workflow/cover-letter.md` | `references/templates/06_cover-letter.md` |
-| Zotero retrieval | `references/zotero/README.md` | canonical Zotero permission and retrieval policy |
-| reference reading | `references/subagents/reference-reading.md` | canonical subagent prompt |
+| Project material | Owner |
+|---|---|
+| `01_prepare/01a_project-brief.md` | question, scope, objectives, high-level boundary |
+| `01_prepare/01b_evidence-inventory.md` | evidence status, claim support, and unresolved gaps |
+| `01_prepare/01c_literature-synthesis.md` | durable scientific provenance and literature roles |
+| `02_methods/02a_data.md` | data identity, coverage, preprocessing, and caveats |
+| `02_methods/02b_methods.md` | calculations, definitions, parameters, statistics, and reproducibility logic |
+| `03_structure/03_section-architecture.md` | argument chain and section/result-unit responsibilities |
+| `03_structure/03_figure-outline.md` | figure questions, roles, and panel logic |
+| `03_structure/03_terminology.md` | preferred terminology, units, and usage boundaries |
+| `04_writing/04_manuscript-*.md` | manuscript prose for its version |
+| `04_writing/04_writing-log.md` | accepted writing and revision record |
+| `05_review/` | raw feedback and its confirmed decisions |
 
-`examples/`, `archive/`, `deprecated/`, and project `old/` directories are non-authoritative and
-excluded from normal active-context scans. Load them only for an explicit historical or example
-request.
+**Exploration does not modify authoritative project state.** Discussion, alternatives, candidate paragraphs, and unaccepted analyses stay in the task workspace. After the user accepts the direction and Verify returns `PASS`, update the current manuscript first. Then update only the owner made inaccurate by the accepted change:
 
-House Rules are owned by `references/workflow/writing.md`. Evidence boundaries are owned by this
-file. Backpropagation levels are owned by `references/workflow/review.md`. Zotero policy is owned by
-`references/zotero/README.md`.
+| Accepted change | Necessary update |
+|---|---|
+| Wording, flow, citation placement, or grammar | manuscript only |
+| Local result or figure interpretation | manuscript and affected `03` material |
+| Section responsibility or result ordering | manuscript and affected `03` material; `01` only when needed |
+| Research question, main claim, method/sample definition, or scope | affected `01`, `02`, `03`, and manuscript material |
 
-## Resume and Update
+Do not default to a full-manuscript scan. Expand consistency checking only when a repeated number, core term, central claim, figure definition, method definition, or section responsibility has changed. Do not create a complete new manuscript version for an ordinary local edit; use the existing project's versioning practice for confirmed milestones or review rounds.
 
-When a stage output already exists:
+## Reference Loading
 
-1. Read the current file and its authoritative upstream sources.
-2. Preserve confirmed decisions.
-3. Replace obsolete or conflicting wording in place.
-4. Update only affected sections and downstream pointers.
-5. Use project `old/` or version control when historical preservation is needed.
-6. Continue from the earliest step made uncertain by new evidence or feedback.
+Load only the material needed for the current route:
 
-After a material project edit, search active stage files for conflicting copies of the changed
-claim, method, figure role, literature role, or term. Then ask whether the user wants synchronization
-to configured upstream storage such as HPC, a remote server, or an Obsidian vault.
+| Task | Read |
+|---|---|
+| Build: prepare, methods, structure | the matching file in `references/workflow/` and its existing templates |
+| Strategy, Feedback, or Verify | `references/workflow/review.md` and `references/review/revision-brief.md` |
+| Prose | `references/workflow/writing.md` and one relevant `references/writing/` module |
+| Polish | `references/workflow/polish.md`, `writing.md`, and at most one focused naturalization module |
+| Reference-paper learning | `references/subagents/reference-reading.md` |
+| Reviewer response | `references/review/response-letter.md` |
+| Cover letter | `references/workflow/cover-letter.md` |
+| Zotero retrieval | `references/zotero/README.md` |
 
-## Handoffs
+Reference papers remain task-local for rhetoric and exposition. Read headings first, then only the bounded relevant section. Durable scientific provenance belongs in `01c_literature-synthesis.md`.
 
-| Current stage | Possible destination |
-|---------------|----------------------|
-| prepare | methods, structure |
-| methods | structure |
-| structure | writing |
-| writing | review |
-| review | prepare, methods, structure, writing, polish |
-| polish | structure, writing, review, cover-letter |
-| cover-letter | review, polish, final assembly |
+`examples/`, archived journal material, `deprecated/`, and project `old/` directories are non-authoritative and excluded from normal active-context scans.
 
-Review decisions follow the Backpropagation Gate in `references/workflow/review.md`; version creation
-then follows the global manuscript versioning rule above.
+## Word Final Check
 
-For final DOCX delivery, confirm P2 before P3. After P4, complete P5 batch final QA of the manuscript
-Word file, then complete P6 for the Response Word file. Continue updating an existing Response DOCX
-when available; use `scripts/build_response_docx_template.py` or `assets/response_template.docx`
-when a new document is needed. Follow
-`references/workflow/docx-compare.md` and `references/review/response-letter.md` for the detailed
-workflow.
+Use Word checking only when the user requests it. Ask for screenshots of the relevant current Word pages; for a reviewer response also request the reviewer comment, the matching response page, and the matching manuscript page. Check scientific adequacy, response-manuscript alignment, and obvious errors in numbers, formulas, figure labels, and revision marks. Return `PASS` or specific corrections. Do not load `references/workflow/docx-compare.md` during normal work.
+
+## Working Boundaries
+
+Keep one authoritative owner for each project fact; other materials should point to it rather than reproduce it. Preserve confirmed decisions unless new evidence or accepted feedback makes them inaccurate.
+
+Keep final manuscript-facing prose, captions, abstracts, response letters, and cover letters in English by default. Use concise Chinese reasoning or an Author Check when it helps the researcher confirm a scientific decision before English drafting.
+
+Ask only the questions that block the active unit. If needed information is absent but a useful bounded result is still possible, mark the missing boundary rather than expanding the task or inventing an answer.
 
 ## Status Markers
 
-| Marker | Meaning |
-|--------|---------|
-| `[MISSING]` | Required information has not been supplied |
-| `[UNCERTAIN]` | Information may change or needs verification |
-| `[EVIDENCE GAP]` | Evidence cannot support the intended claim |
-| `[TODO]` | A concrete future action |
-| `[CONFIRM WITH USER]` | User decision is required |
-| `[CITATION NEEDED]` | A source is required |
-
-Stage workflows may add focused markers such as `[STRUCTURE CONFLICT]`, `[REVIEW BLOCKER]`, or
-`[POLISH BLOCKER]`.
+Use `[MISSING]`, `[UNCERTAIN]`, `[EVIDENCE GAP]`, `[EVIDENCE CONFLICT]`, `[CITATION NEEDED]`, and `[CONFIRM WITH USER]` only when they identify an actionable boundary.

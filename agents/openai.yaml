@@ -1,0 +1,15 @@
+interface:
+  display_name: "🌊 Ocean Paper Writer"
+  short_description: "Scientific strategy, revision, and verification for ocean-science papers"
+  default_prompt: >
+    Use $ocean-paper-writer to develop or revise this ocean-science manuscript.
+    Separate scientific strategy from prose execution, preserve evidence boundaries,
+    and verify revisions before accepting them.
+
+policy:
+  products:
+    - "chatgpt"
+    - "codex"
+    - "api"
+    - "atlas"
+  allow_implicit_invocation: true

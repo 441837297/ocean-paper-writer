@@ -17,26 +17,16 @@ Apply these to every response, regardless of comment type or length.
 
 ## Per-Comment Workflow
 
-Follow the A-E workflow in `references/workflow/review.md`. Handle one comment at a time and preserve
-it verbatim. Codex prepares the strategy packet, investigates project facts, and executes only a
-researcher-confirmed Response Contract. ChatGPT discusses the strategy before execution and verifies
-the completed work afterward. Shared implementation does not imply shared explanation.
+Follow the Feedback -> Strategy -> Revision Brief -> Prose -> Verify path in
+`references/workflow/review.md`. Handle one comment at a time and preserve it verbatim. Shared
+implementation does not imply shared explanation.
 
-The Response Contract records:
+The confirmed Revision Brief records the issue, direct answer, verified facts, required analysis or
+manuscript actions, prohibited claims, and acceptance criteria. It is scientific working context,
+not response prose.
 
-```text
-Issue ID:
-Reviewer actually asks:
-Direct answer:
-Confirmed facts:
-Required code/analysis/manuscript actions:
-What must not be claimed or added:
-Expected response length:
-Verification criteria:
-```
-
-Do not treat the internal scientific rationale or the contract as response prose. If investigation
-changes a material fact, revise and reconfirm the contract before drafting. Do not invent theory,
+Do not treat the internal scientific rationale or the brief as response prose. If investigation
+changes a material fact, revise and reconfirm the brief before drafting. Do not invent theory,
 terminology, literature discussion, or defensive explanation to fill a gap.
 
 After execution, write the Chinese response logic at near-final information density, then render the
@@ -45,9 +35,8 @@ terminology table, original manuscript text, and completed revision for exact te
 actions and objects: `corrected`, `added`, `calculated`, `recalculated`, `revised`, `clarified
 [object]`, `removed`, `defined`, and `moved`.
 
-Prepare the independent verification packet with the original comment, Response Contract, relevant
-result, Chinese logic, English response, original manuscript text, revised text or concise diff, and
-verification criteria. Ask ChatGPT to read the chain sentence by sentence and check that:
+Verify against the original comment, confirmed Revision Brief, relevant result, Chinese logic, English
+response, original manuscript text, revised text or concise diff, and acceptance criteria. Check that:
 
 - the Chinese logic directly answers the original comment;
 - every English sentence has a clear source and function in the Chinese logic;
@@ -127,9 +116,11 @@ interpretation, revise the manuscript as well.
 
 ## DOCX Format
 
-For a Word response letter, update an existing Response DOCX when one exists. Otherwise, run
-`scripts/build_response_docx_template.py` or copy `assets/response_template.docx`, then replace
-the placeholders without changing the styles. Preserve the existing styles when updating.
+For a Word response letter, update an existing Response DOCX when one exists. If the current
+environment supports local scripts, it may run `scripts/build_response_docx_template.py` or copy
+`assets/response_template.docx`, then replace placeholders without changing styles. Otherwise,
+generate the confirmed response content only; the user can place it in Word and verify it by
+screenshot. Preserve the existing styles when updating.
 
 - Use Times New Roman throughout, including tables, headers, footers and page numbers.
 - Keep editor and reviewer comments as regular black text, preserving them verbatim.
@@ -142,26 +133,13 @@ the placeholders without changing the styles. Preserve the existing styles when 
   out of the reusable template.
 - Separate response units with whitespace only. Do not use dashed separators or a table of contents.
 
-## P6. Response Word Final Delivery
+## Word Check
 
-Begin after P5 has locked the manuscript Word file. Treat `response0806.md`, or the corresponding
-final Response Markdown, as the content authority.
-
-Update the existing Response DOCX when the project provides one. Preserve reviewer-comment original
-text, established styles and colors, and each `Revised text` and `Location` structure. When the
-project has no Response DOCX, create one with the existing script or template.
-
-Call `scripts/export_word_pdf_pages.ps1` with `-View Final` in a new temporary directory. Compare
-every page with the final Response Markdown for response content, formulas, colors, verbatim comments,
-`Revised text`, and `Location`.
-
-Then cross-check every Response declaration and revised-text excerpt against the locked manuscript:
-every stated revision, number, result, and conclusion must be present in the manuscript at the same
-evidence strength. Update Markdown before a content change, update the Response Word file for a
-transfer error, then repeat P6.
-
-This final delivery step verifies the confirmed response and its presentation. Scientific decisions
-remain governed by the established review and response-letter workflow.
+Use Word checking only when the user asks for it. Request screenshots of the relevant response and
+manuscript pages, together with the matching reviewer comment. Check whether the reply remains
+scientifically adequate, the promised manuscript change is present, and numbers, formulas, figure
+labels, and revision marks are visibly correct. Return `PASS` or specific corrections. Do not use the
+legacy automated Word comparison workflow for normal response work.
 
 ## Revision Workflow
 
@@ -169,8 +147,8 @@ When revising an existing response:
 
 1. Preserve each reviewer comment verbatim.
 2. Compare it with the confirmed scientific decision and final manuscript change.
-3. Resume from the earliest uncertain A-E stage. Do not directly polish English when the contract,
-   Chinese logic, evidence, or manuscript action is uncertain.
+3. Resume from the earliest uncertain Feedback, Strategy, Prose, or Verify step. Do not directly
+   polish English when the Revision Brief, Chinese logic, evidence, or manuscript action is uncertain.
 4. Once those are confirmed, update the English response, revised text, and location from the final
    manuscript version.
 

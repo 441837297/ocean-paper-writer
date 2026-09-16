@@ -12,7 +12,23 @@ git clone https://github.com/441837297/ocean-paper-writer.git ~/.claude/skills/o
 
 重启 Claude Code。升级时在 skill 目录运行 `git pull`。详见 [INSTALL.md](INSTALL.md)。
 
-## 工作流程
+## ChatGPT Web
+
+在支持 Skills 上传的 ChatGPT 工作空间中，可直接上传本仓库的 ZIP 包。Web 环境没有本地项目目录或脚本时，仍可基于用户上传的材料完成 Strategy、Prose 和 Verify；本地代码、Word 文件和 Zotero 都是可选增强能力。
+
+## 两条工作通道
+
+从零建立研究或论文时，保留原有的 `prepare → methods → structure → writing`。它负责把研究问题、数据方法和文章结构建立为可确认的项目状态。
+
+已有成熟手稿时，默认使用迭代通道：
+
+```text
+Strategy → Revision Brief → 必要分析 → Prose → Verify → PASS → 更新必要文件
+```
+
+导师、合作者、编辑和 reviewer 意见通过 Feedback 进入这条通道；reviewer 场景额外生成 response letter。讨论、候选段落和未接受的分析不修改正式项目文件；仅在用户接受且 Verify 为 PASS 后，更新手稿及确有必要的 01–03 文件。
+
+## 从零建立论文
 
 | Stage | 作用 | 主要输出 |
 |-------|------|----------|
@@ -21,7 +37,7 @@ git clone https://github.com/441837297/ocean-paper-writer.git ~/.claude/skills/o
 | 03 Structure | 设计 section、subsection 和 logical result unit 架构 | `03_section-architecture.md`, `03_figure-outline.md`, `03_terminology.md` |
 | 04 Writing | 从已确认架构和证据起草正文 | `04_manuscript-draft.md`, `04_writing-log.md` |
 | 05 Review | 将外部反馈转为决策、修订合同和 patch | `05_review-round{N}A_source.md`, `05_review-round{N}B_report.md` |
-| Polish | 精修已确认的局部文本 | 新 manuscript 版本与统一 writing log |
+| Polish | 在 Prose / Verify 内精修已确认的局部文本 | 当前 manuscript 的局部候选修改 |
 | 06 Cover Letter | 从已确认手稿生成投稿信 | `06_cover-letter/06_cover_letter.md` |
 
 Structure 规定各 section、subsection 或结果单元承担什么任务。Writing 根据局部科学逻辑和相邻正文自然决定段落边界，不预先固定段落数量或句子顺序。
@@ -55,9 +71,9 @@ JIT 阅读先扫描标题，只读取与当前任务有关的 bounded section。
 
 写作默认处理一个段落，最大处理一个小节。`references/workflow/writing.md` 是 House Rules 的唯一来源。
 
-完整 review 的分工为：ClaudeCode 编译原始意见，GPT 形成 Issue Log、Revision Contract 和 Patch List，用户确认，ClaudeCode 执行。Backpropagation 的唯一规则在 `references/workflow/review.md`。
+Strategy 只讨论怎么改，并产生简短的 `Revision Brief`；Prose 只执行已确认的修改意图；Verify 独立检查候选稿是否完成任务、保持科学含义且不越过证据边界。Feedback 是导师、合作者、编辑和 reviewer 意见的入口。
 
-Review 和 polish 都先复制最新确认稿，再编辑新版本。统一修订记录写入 `04_writing-log.md`。
+普通局部修改不默认复制完整手稿，也不默认全篇同步。通过后先更新当前 manuscript；只有数字、术语、中心主张、图件或方法定义、章节职责受影响时，才扩大一致性检查和必要同步。
 
 ## 目标期刊
 
@@ -67,7 +83,7 @@ Review 和 polish 都先复制最新确认稿，再编辑新版本。统一修�
 
 ## Zotero
 
-Zotero MCP 是可选文献检索层。完整的权限、确认、只读和 full-text retrieval 规则只在 `references/zotero/README.md` 维护。项目没有 Zotero 也可以运行，缺失引用标记为 `[CITATION NEEDED]`。
+Zotero MCP 是可选文献检索层。完整的权限、确认、只读和 full-text retrieval 规则只在 `references/zotero/README.md` 维护。当前环境没有 Zotero connector 时，不调用该集成，改用用户上传的论文或其他可用来源。项目没有 Zotero 也可以运行，缺失引用标记为 `[CITATION NEEDED]`。
 
 ## 仓库结构
 
@@ -89,7 +105,7 @@ assets/                           response-letter asset
 
 ## 开始使用
 
-告诉 skill：从头开始还是接续工作；接续时给出项目目录。新项目从 prepare 开始，已有手稿也先从现有材料提取并确认 01/02/03 的权威状态。
+告诉 skill：你是从零建立论文，还是要修改已有手稿；如可访问项目目录，也提供路径。新项目从 prepare 开始；已有手稿直接进入 Strategy，按当前单元组织 Revision Brief。
 
 每个 substantive step 遵循：
 

@@ -7,6 +7,10 @@ Zotero supports literature retrieval, citation grounding, annotation reading, an
 This integration is the **literature support layer** of the Ocean Paper Writer workflow —
 it feeds real, user-curated references into writing and review rather than relying on fabricated or generic citations.
 
+If the current environment has no Zotero connector, do not attempt this integration. Work from
+user-uploaded papers or another available source instead; Zotero is an optional enhancement, not a
+requirement for the workflow.
+
 ## Default Mode: Read-only
 
 The Zotero MCP exposes 22 tools including write-capable ones. By default, only read operations are used:

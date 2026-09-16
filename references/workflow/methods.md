@@ -12,7 +12,7 @@ scientific results.
 - code, notebooks, README files, and figure-producing scripts;
 - user confirmation of final versus exploratory analyses.
 
-Follow the global Stage/Step, Source Scope, interaction, and target-journal guidance in `SKILL.md`.
+Follow the evidence constitution, Build route, source-scope, and target-journal guidance in `SKILL.md`.
 
 ## Outputs
 

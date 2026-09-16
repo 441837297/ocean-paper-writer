@@ -1,84 +1,58 @@
-# Writing Workflow
+# Writing and Prose Workflow
 
 ## Purpose
 
-Writing turns confirmed architecture and evidence into manuscript prose. It works one locally
-coherent unit at a time and lets paragraph boundaries emerge from the scientific logic and adjacent
-text.
+Prose turns confirmed scientific intent into manuscript text. For a new paper, it drafts from confirmed structure and evidence. For an established manuscript, it executes a confirmed Revision Brief. It works one locally coherent unit at a time.
 
 ## Inputs
 
-- current `03_section-architecture.md`, `03_figure-outline.md`, and relevant terminology rows
-- authoritative evidence or method material needed for the selected unit
-- adjacent confirmed manuscript text
-- a task-local `Reference Reading Brief` when reference-paper learning is useful
+- the selected section, logical result unit, or confirmed Revision Brief;
+- verified evidence, numbers, and relevant method or figure material;
+- adjacent confirmed manuscript text;
+- relevant terminology entries;
+- a compact Reference Reading Brief only when rhetorical learning is useful.
 
-Follow the global Stage/Step, Source Scope, evidence, confirmation, and version rules in `SKILL.md`.
+The default unit is one paragraph; the maximum final-prose unit is one subsection. Larger requests first need a confirmed section plan or several briefs.
 
-## Unit Scope
+## Scientific Editing Priorities
 
-The default unit is one paragraph; the maximum final-prose unit is one subsection. Larger requests
-become a provisional section plan followed by unit-by-unit drafting. Stay within one manuscript
-section in a turn.
+Preserve this order of priority:
 
-Default drafting order: Methods -> Results -> Introduction -> Discussion -> Conclusion when used ->
-Abstract.
+**scientific meaning -> logical relationship -> paragraph function -> claim strength -> academic expression -> sentence rhythm**
 
-## House Rules
+**Scientific fidelity takes priority over rhetorical smoothness.** A frozen Revision Brief is a
+closed scientific contract. Fluency must never introduce unsupported scientific relations.
 
-These are the canonical prose rules for writing, review, and polish:
+Never make prose smoother by changing a number, direction, causal strength, spatial or temporal scope, limitation, mechanism, statistical interpretation, evidence hierarchy, or approved argument sequence. Each paragraph has one controlling function and each sentence one main scientific judgment.
 
-1. Open with the unit's scientific or rhetorical job: result-first in Results, claim-first in
-   interpretive Discussion, rhetorical-move-first in Introduction, and operation-first in Methods.
-2. Give each paragraph one controlling function and each sentence one main scientific judgment.
-3. Match verbs to evidence: direct diagnostics can `show` or `find`; association can be
-   `associated with` or `consistent with`; bounded inference can `suggest`; tentative physical
-   interpretation can `may reflect` or `could help explain`.
-4. State the scientific object, direction, domain, and period needed to interpret a result.
-5. Present observation first, interpretation second, and implication at the supported scale.
-6. Place useful scope and uncertainty where readers can interpret the claim without obscuring the
-   main result.
-7. Define terminology once in `03_terminology.md` and use it consistently.
-8. Prefer direct sentences and content-driven transitions.
-9. Keep technical detail where it serves the section: reproducibility detail in Methods and the
-   main evidence in Results.
+Match verbs to evidence. Diagnostics may `show` or `find`; associations remain `associated with` or `consistent with`; bounded inferences may `suggest`; tentative physical interpretations may `may reflect` or `could help explain`.
 
-Focused files in `references/writing/` add section-specific guidance. They inherit these House Rules
-and the evidence boundaries in `SKILL.md`.
+State observation before interpretation and implication at the supported scale. Prefer direct syntax, precise verbs, useful content-driven transitions, and deletion of repetition over elevated vocabulary or mechanical synonym replacement. Do not create a causal or comparative bridge merely to make two authorized observations flow together.
+
+## Section Playbooks
+
+- **Title:** state the central finding or contribution without overclaiming.
+- **Abstract:** problem -> gap -> approach -> decisive results -> bounded implication.
+- **Introduction:** establish the scientific problem, current knowledge, exact gap, and this paper's move.
+- **Results:** question or objective -> main finding -> decisive evidence -> necessary robustness -> local interpretation.
+- **Discussion:** core finding -> scientific significance -> relation to prior work -> mechanism at supported strength -> boundary -> broader implication.
+- **Methods:** operation and definition first; retain the details needed to reproduce the result.
+- **Conclusion:** synthesize the supported contribution without reopening every result.
 
 ## Steps
 
-1. Select a section, subsection, or logical result unit from `03_section-architecture.md`.
-2. Build a compact context packet:
-   - the unit's role and claim boundary;
-   - relevant figure role or method source;
-   - relevant terminology rows;
-   - verified facts and numbers;
-   - adjacent confirmed prose.
-3. When rhetorical learning is useful, invoke `references/subagents/reference-reading.md` and add
-   only its compact brief to the packet.
-4. Discuss the intended scientific logic with the user and confirm the direction.
-5. Draft the English prose using the House Rules.
-6. Return the draft, evidence used, claim boundary, and a short Chinese author check when useful.
-7. After user confirmation, place the unit in the current manuscript and update
-   `04_writing-log.md`.
+1. Build a compact context packet from only the inputs needed for the unit.
+2. For an Iterate task, confirm the Revision Brief and execute it without reopening strategy.
+3. For Build, confirm the unit's role, evidence, and claim boundary before drafting.
+4. Draft the English prose.
+5. For an established manuscript, return clean revised prose plus a Minimal Change Map that identifies only substantive changes and their reasons.
+6. Return the draft with its evidence basis and claim boundary; include a short Chinese author check when useful.
+7. Route a candidate revision to Verify. Only accepted PASS work updates the current manuscript and any necessary upstream owner.
 
-Drafting pauses when a required fact is missing, an intended claim has an evidence gap, or the
-selected unit conflicts with the confirmed architecture. Route the issue to its authoritative
-upstream file.
+Pause and return to Strategy when evidence conflicts with the confirmed intent. Do not create a new scientific story, add unsupported explanation, or use Prose to resolve missing analysis.
 
-## Outputs
+## Focused Resources
 
-- `04_writing/04_manuscript-draft.md`
-- `04_writing/04_writing-log.md`
-
-The writing log records unit status and revisions; it does not reproduce architecture contracts.
-
-## Self-Check and Handoff
-
-Confirm that the unit performs its assigned role, uses verified evidence, follows current
-terminology, preserves claim boundaries, and connects naturally to adjacent text. A confirmed draft
-may hand off to review. Review-originated revisions follow `references/workflow/review.md` and the
-global version rule.
+Load one relevant file in `references/writing/` for section-specific guidance. For language refinement, use `references/workflow/polish.md` and at most one focused naturalization module. Reference-paper learning uses `references/subagents/reference-reading.md`.
 
 Abstract drafting additionally loads `references/workflow/writing-abstract.md`.

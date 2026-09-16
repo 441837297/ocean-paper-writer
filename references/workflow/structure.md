@@ -16,8 +16,7 @@ this architecture and the local prose context.
 - user-confirmed story direction and target journal status
 - canonical full-text papers in `reference_papers/`, when available
 
-Follow the global Stage/Step, Source Scope, confirmation, evidence, and target-journal guidance in
-`SKILL.md`.
+Follow the evidence constitution, Build route, source-scope, confirmation, and target-journal guidance in `SKILL.md`.
 
 ## Outputs
 
@@ -72,9 +71,8 @@ resolve them with the user before drafting the affected unit.
 On resume, preserve confirmed architecture and update only the decisions affected by new evidence,
 new feedback, or a changed journal target. Replace obsolete wording in place.
 
-Review-originated structural changes follow the Backpropagation Gate in
-`references/workflow/review.md`. This workflow receives the affected upstream fields, updates them
-from coarse to fine, and returns the confirmed architecture to writing.
+After a revision passes Verify, update only the affected architecture fields as directed by
+`references/workflow/review.md`; preserve unrelated confirmed structure.
 
 ## Templates
 

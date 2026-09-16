@@ -1,137 +1,68 @@
-# Review Workflow
+# Review, Feedback, and Verification
 
 ## Purpose
 
-Review converts author, advisor, coauthor, or external-review feedback into confirmed revision
-decisions and executable patches. Codex manages project evidence and execution; ChatGPT supports
-strategy discussion before execution and independent verification afterward; the researcher makes
-the final decision.
+Use this workflow for advisor, coauthor, editor, reviewer, or internal feedback, and for independent acceptance of a candidate manuscript revision. It routes feedback into the normal Iterate path rather than treating feedback as a separate manuscript-development system.
 
-## Full Review Pipeline
+## Feedback
 
-### A. Intake
+Work on one issue or tightly coupled technical unit at a time.
 
-1. Codex compiles feedback into `05_review-round{N}A_source.md` without changing its meaning.
-2. Identify the reviewed manuscript version and locate only the relevant decision records,
-   terminology, figures, tables, code, analyses, and previous responses.
-3. Record dependencies between comments without merging their responses.
-4. Prepare a compact ChatGPT strategy packet and tell the user exactly which files to upload. Include
-   the original comment, the relevant original manuscript text and context, and only the supporting
-   files needed to understand the issue. Include the full manuscript only for manuscript-wide issues.
+1. Preserve the original feedback without changing its meaning.
+2. Read only the affected old text, adjacent context, relevant evidence, figures, methods, and prior response material.
+3. State what the feedback actually asks, what is already known, and whether analysis is required.
+4. Discuss the scientific direction with the user and create a confirmed, frozen Revision Brief using [revision-brief.md](../review/revision-brief.md) and `references/templates/revision-brief.md`.
+5. When facts are unresolved, create an Analysis Task. Do not draft manuscript prose until its result returns to Strategy.
+6. Send the confirmed brief to Prose, then Verify the candidate revision.
 
-### B. ChatGPT Strategy Discussion
+Reviewer work also prepares a direct response from confirmed facts and completed changes. Each response must remain independently understandable and agree with the associated manuscript revision.
 
-The user discusses one comment at a time with ChatGPT and brings back a confirmed Response Contract.
-Record it in `05_review-round{N}B_report.md` with: Issue ID, what the reviewer actually asks, direct
-answer, confirmed facts, required code/analysis/manuscript actions, prohibited claims or additions,
-expected response length, and verification criteria. Internal scientific reasoning may remain
-detailed, but it is not final response prose. Wait for researcher confirmation before execution.
+Use `05_review/05_review-round{N}A_source.md` for raw feedback and `05_review/05_review-round{N}B_report.md` for confirmed issue decisions when persistent review records are useful. A bounded internal or advisor issue may remain task-local until it passes verification.
 
-### C. Investigation
+## Verify
 
-When facts remain unresolved, Codex checks the relevant code, formulas, units, implementation, or
-results before editing prose. Report factual findings without inventing an explanation. If findings
-materially change the Response Contract, stop and ask the user to take them back to ChatGPT, then
-confirm the revised contract.
+Compare the confirmed Revision Brief, old text, candidate text, and the evidence needed for the unit. Check:
 
-### D. Execution
+- the required change is complete;
+- no required result or connection was lost;
+- scientific meaning, numbers, terminology, and claim strength remain justified;
+- no unsupported mechanism, causal claim, or broader scope was added;
+- defensive or repetitive qualification was not introduced;
+- the unit connects naturally to its context;
+- for reviewer work, the reviewer comment, response, and manuscript revision agree.
 
-Apply the Backpropagation Gate below, create the next manuscript version under the global version
-rule, and execute one comment or tightly coupled technical unit at a time. Shared calculations or
-code changes may serve multiple comments, but each comment retains its own direct response. Update
-code, analyses, figures, tables, manuscript, terminology, and `04_writing-log.md` only as required by
-the contract. Draft the concise response from the confirmed facts and completed revision.
-
-### E. Independent ChatGPT Verification
-
-Do not mark execution as resolution. For each completed comment, prepare a compact verification
-packet containing the original comment, confirmed Response Contract, relevant result, Chinese
-response logic, English response, relevant original manuscript text, revised text or concise diff,
-and the verification criteria. Ask ChatGPT to check the chain sentence by sentence:
-`original comment -> Chinese logic -> English response -> original text -> revised text`.
-ChatGPT returns `PASS` or `REVISE` with specific reasons. Codex applies required corrections and
-repeats verification. Mark the issue resolved only after the researcher confirms PASS.
-
-## Inputs
-
-- raw review input
-- current manuscript
-- relevant `01`, `02`, and `03` authoritative files
-- project `CLAUDE.md`
-- task-local reference-reading briefs when journal comparison is requested
-
-For journal-specific review, invoke `references/subagents/reference-reading.md` with the exact
-review question. Include the compact brief in the review packet rather than full reference-paper
-sections.
-
-## Review Dimensions
-
-- argument and evidence support;
-- claim strength and scientific scope;
-- section and logical-unit function;
-- figure and data logic;
-- terminology and citation needs;
-- target-journal narrative fit, when specified;
-- language risk, diagnosed after scientific issues are resolved.
-
-Apply the global evidence boundaries in `SKILL.md` and the House Rules in
-`references/workflow/writing.md`; this workflow does not restate them.
-
-## Backpropagation Gate
-
-This is the canonical three-level classification used after the Revision Contract and before any
-manuscript edit:
-
-| Level | Use when | Action |
-|-------|----------|--------|
-| **Hard Backpropagation** | The accepted change alters the research question, main gap, central claim, method definition, evidence chain, figure scientific question, or manuscript-wide story | Update affected `01/02/03` owners from upstream to downstream, confirm the new state, then revise `04` |
-| **Soft Architecture Update** | The accepted change adjusts a local section, subsection, or logical-result-unit responsibility without changing the manuscript-wide story | Update the affected part of `03_section-architecture.md`, confirm once, then revise `04` |
-| **No Backpropagation** | The accepted change affects prose, citation placement, local claim wording, or grammar without changing upstream decisions | Revise the new `04` version directly |
-
-Record the selected level in B_report as `hard`, `soft-architecture`, or `none`. Archive affected
-upstream project files for hard changes when historical preservation is needed. Soft updates keep
-unrelated architecture unchanged.
-
-## Lightweight Unit Review
-
-For one paragraph or one writing unit, a local review may diagnose logic, domain usage, advisor-like
-concerns, and language without creating 05 files. It returns:
-
-- the main issue and evidence;
-- recommended destination;
-- a proposed correction direction;
-- items requiring user confirmation.
-
-Structural findings still use the Backpropagation Gate before project files change.
-
-## Reference and Advisor Handling
-
-Focused review modules are loaded only for the selected task:
-
-- `references/review/tutor-review-checklist.md` for advisor-perspective interpretation;
-- `references/review/style-naturalization.md` and one relevant leaf for language diagnosis;
-- `references/review/response-letter.md` for editor or reviewer responses.
-
-Existing advisor comments remain the review source. Focused modules help interpret them and locate
-the affected manuscript function.
-
-## Outputs
+Return exactly one of:
 
 ```text
-05_review/05_review-round{N}A_source.md
-05_review/05_review-round{N}B_report.md
+PASS
 ```
 
-Use `references/templates/05_review-source.md` and `05_review-report.md`. Response letters use one
-persistent project-defined draft and the dedicated response-letter workflow.
+or
 
-## Completion
+```text
+REVISE
+```
 
-A review round is complete when every accepted issue has a researcher-confirmed PASS, deferred and
-rejected issues retain reasons, upstream changes are confirmed, and the writing log records the
-completed patches. Codex then checks that all comments are covered and that manuscript and response
-agree on equations, symbols, figures, tables, units, terminology, values, locations, and cross-section
-claims. Finally, the user or external ChatGPT cold-reads the complete response letter and revised
-manuscript without relying on the internal rationale, checking sentence-level language, directness,
-terminology, logic, overclaiming, and defensive repetition. Handoff then goes to writing, polish, or
-another affected upstream stage.
+For `REVISE`, do not write another full paragraph. Name the Issue, provide a Correction Brief and Minimal Diff, and identify the violated Revision Brief item. Return this material to the existing Prose window. Return to Strategy only when the frozen scientific decision itself is wrong. Do not treat an issue as resolved before the user accepts a PASS result.
+
+## Necessary Update After PASS
+
+After user acceptance and PASS, update the current manuscript. Then classify the accepted change:
+
+| Change | Update |
+|---|---|
+| wording, flow, grammar, or citation placement | manuscript only |
+| local result, figure interpretation, or supporting finding | manuscript and affected `03` content |
+| result order, section role, or local architecture | manuscript and affected `03` content; `01` only if its high-level framing changed |
+| question, central claim, method/sample definition, evidence chain, or scope | affected `01`, `02`, `03`, and manuscript content |
+
+Check only local dependencies by default. Expand the check only for a repeated number, core term, central claim, figure definition, method definition, or section responsibility.
+
+## Focused Resources
+
+- `references/review/response-letter.md` for formal reviewer and editor responses;
+- `references/review/tutor-review-checklist.md` for advisor-style interpretation;
+- `references/review/style-naturalization.md` plus one leaf module for a focused language diagnosis;
+- `references/subagents/reference-reading.md` for a bounded journal or exposition question.
+
+The evidence constitution in `SKILL.md` and the prose rules in `references/workflow/writing.md` remain authoritative.

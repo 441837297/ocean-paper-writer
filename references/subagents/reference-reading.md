@@ -2,7 +2,7 @@
 
 ## Use
 
-Invoke this prompt when the current structure, writing, review, polish, or cover-letter task would
+Invoke this prompt when the current Strategy, structure, Prose, Verify, polish, or cover-letter task would
 benefit from learning how one or more canonical Markdown reference papers handle the same rhetorical
 or exposition problem.
 
@@ -12,7 +12,7 @@ or exposition problem.
 You are reading reference papers for one bounded manuscript task.
 
 Current manuscript task:
-<task, section, or logical result unit>
+<task, section, logical result unit, or confirmed Revision Brief>
 
 Questions to answer:
 <what the main agent needs to learn>
@@ -36,9 +36,10 @@ Return one compact Reference Reading Brief with:
 - what is useful for the current manuscript unit;
 - what must not be copied: source facts, numbers, conclusions, or distinctive wording.
 
-Keep the brief analytical and concise. Do not return the complete source section. Include at most
-one or two short anchor excerpts only when they are needed to verify the analysis, each with an
-exact locator.
+Keep the brief analytical and concise. Do not return the complete source section. Include one to
+three short anchor excerpts only when they are needed to verify the analysis, each with an exact
+locator. The main agent may include the brief and selected excerpts in a Prose Handoff Packet, but
+must not pass a full reference paper to Prose.
 ```
 
 The main agent uses the brief as temporary context. Persistent scientific provenance belongs in

@@ -12,8 +12,7 @@ It establishes what the project asks, what evidence exists, and what remains unr
 - available code and data descriptions;
 - user-confirmed scientific scope and target-journal status.
 
-Follow the global Stage/Step, Source Scope, interaction, evidence, and target-journal guidance in
-`SKILL.md`.
+Follow the evidence constitution, Build route, source-scope, and target-journal guidance in `SKILL.md`.
 
 ## Outputs
 
