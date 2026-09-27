@@ -1,6 +1,6 @@
 ---
 name: ocean-paper-writer
-description: Develop and revise ocean-science manuscripts from research materials, existing drafts, and feedback, with evidence-bounded scientific writing and review.
+description: Build and revise ocean-science manuscripts from research materials, drafts, and advisor or reviewer feedback. Control evidence-bounded writing, local revision, and Verify; recommend separate story architecture or whole-manuscript preflight when needed.
 ---
 
 # Ocean Paper Writer
@@ -17,6 +17,8 @@ Anchor substantive work to this checkable chain:
 
 Match every claim to its evidence. Report associations as associations; reserve mechanism and causation for diagnostic or causal evidence. Keep regional implications regional, identify model results as model results, and distinguish observed change, climate relevance, and climate attribution. Report physical meaning and effect size separately from statistical significance.
 
+State the finding directly whenever plain language can carry the scientific meaning. Do not replace a concrete result with a coined label, umbrella phrase, nominalized summary, or abstract category merely to make the prose sound more conceptual. Introduce a term only when it is established in the field or removes real repeated complexity without obscuring the underlying observation.
+
 Do not add a sentence merely to pre-empt criticism unless it advances the argument, sets a necessary evidence boundary, or enables interpretation or reproduction. `[EVIDENCE GAP]` means **omit the unsupported claim from manuscript prose until the missing evidence is supplied**. Do not use it as a placeholder after a claim, infer a conclusion from a trend, or substitute `likely` or `probably` for missing evidence. Do not invent data, methods, figures, citations, numbers, or feedback.
 
 For Chinese-speaking users, discuss scientific reasoning in Chinese before drafting confirmed English manuscript prose. English remains the default for manuscript-facing text.
@@ -31,10 +33,14 @@ Local code execution, repository synchronization, and Word editing are optional 
 
 First identify the smallest useful work unit and its route.
 
+For scientific story architecture or a complete-manuscript preflight, diagnose the need, recommend Nature Story or Ocean Paper Reviewer, explain the handoff, and ask the user to confirm before invoking another Skill. Keep ordinary local revision acceptance in OPW Verify. Read [references/workflow/routing.md](references/workflow/routing.md) when cross-Skill routing or a returned packet/report is involved.
+
 | Situation | Route |
 |---|---|
-| New idea, proposal, or paper without a mature manuscript | **Build**: prepare -> methods -> structure -> writing |
+| New idea or proposal with an unsettled scientific question or competing stories | Recommend **Nature Story**; begin Build only after the user confirms its scientific direction |
+| New paper with a settled scientific direction but no mature manuscript | **Build**: prepare -> methods -> structure -> writing |
 | Existing manuscript, new result, local section or figure revision, transfer to another journal | **Iterate**: Strategy -> Revision Brief -> Analysis when needed -> Prose -> Verify -> PASS -> necessary update |
+| Complete draft needing whole-manuscript system checks | Recommend **Ocean Paper Reviewer** after user confirmation |
 | Advisor, coauthor, editor, or reviewer feedback | **Feedback** -> Iterate; reviewer work also prepares a response letter |
 | Confirmed writing task | **Prose** |
 | Candidate revision needing acceptance | **Verify** |
@@ -49,7 +55,7 @@ For established-manuscript work, use two roles and one closed loop:
 
 | Role | Responsibility |
 |---|---|
-| **Scientific Editor** | scientific story, evidence boundary, claim strength, result hierarchy, argument order, reference learning, Revision Brief, and final Verify |
+| **Scientific Editor** | evidence boundary, claim strength, local result hierarchy and argument order within an accepted story, reference learning, Revision Brief, and final Verify |
 | **Manuscript Editor** | render frozen scientific content as publication-ready prose: syntax, flow, concision, register, wording, rhythm, and naturalization |
 
 Scientific Editor decides **what to say, why it can be said, and in what order**. Manuscript Editor decides **how to express that confirmed content**. Do not merge these roles during a revision.
@@ -79,6 +85,8 @@ Read [references/workflow/writing.md](references/workflow/writing.md), plus one 
 Verify is performed by the Scientific Editor. It compares the Revision Brief, old text, candidate text, Minimal Change Map, and key evidence. Return `PASS` only when the requested change is complete, scientifically faithful, evidence-bounded, locally coherent, and free of unnecessary defensive repetition. For PASS, state only `No scientific or narrative blockers remain`, plus rare non-blocking editorial notes.
 
 For REVISE, do not rewrite the full paragraph. Return an Issue, a Correction Brief, a Minimal Diff showing the required direction, and the brief item it violated. Send this to the existing Manuscript Editor window; do not restart Strategy unless the scientific brief itself is wrong. Read [references/workflow/review.md](references/workflow/review.md).
+
+When the Manuscript Editor returns candidate prose, check terminology against the current manuscript and information density against the surrounding unit before PASS. Present accepted changes against the original with **bold additions** and ~~struck deletions~~ after PASS; keep the clean prose available separately. Do not present a candidate as accepted before Verify passes.
 
 ### Feedback
 
@@ -147,6 +155,7 @@ Load only the material needed for the current route:
 |---|---|
 | Build: prepare, methods, structure | the matching file in `references/workflow/` and its existing templates |
 | Strategy, Feedback, or Verify | `references/workflow/review.md` and `references/review/revision-brief.md` |
+| Cross-Skill recommendation or returned packet/report | `references/workflow/routing.md` |
 | Prose | `references/workflow/writing.md` and one relevant `references/writing/` module |
 | Polish | `references/workflow/polish.md`, `writing.md`, and at most one focused naturalization module |
 | Reference-paper learning | `references/subagents/reference-reading.md` |

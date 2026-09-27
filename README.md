@@ -4,6 +4,31 @@
 
 研究者负责科学判断与最终文字；skill 负责组织材料、提示证据边界、辅助写作和执行已确认的修订。
 
+## Skill Ecosystem
+
+### Ocean Paper Writer
+
+[Ocean Paper Writer](https://github.com/441837297/ocean-paper-writer) is the controller for paper development, scientific writing, advisor/reviewer/editor Feedback, and confirmed local revision. Its revision loop is Strategy -> Revision Brief -> Prose -> Verify.
+
+### Ocean Paper Reviewer
+
+[Ocean Paper Reviewer](https://github.com/441837297/ocean-paper-reviewer) performs whole-manuscript preflight after a complete draft: section function, claim-evidence alignment, Introduction-Results-Discussion closure, cross-manuscript consistency, and manuscript readiness diagnostics. It does not replace OPW Verify for a known local revision.
+
+### Nature Story
+
+[Nature Story](https://github.com/haohuresearch/nature-story) is an independently installed scientific-story skill for question and tension, novelty, mechanism, evidence architecture, research programme, and Figure/Results architecture. It does not replace Ocean Paper Reviewer.
+
+```text
+research idea / unstable scientific story
+  -> user confirms route -> Nature Story -> Story Handoff Packet
+  -> user confirms scientific decisions -> Ocean Paper Writer
+  -> Build / Strategy -> Prose -> Verify -> complete manuscript
+  -> user confirms route -> Ocean Paper Reviewer -> issue list
+  -> user selects issue -> Ocean Paper Writer: Strategy -> Prose -> Verify
+```
+
+Cross-skill routing is advisory and always requires explicit user confirmation.
+
 ## 安装
 
 ```bash

@@ -61,7 +61,6 @@ Check only local dependencies by default. Expand the check only for a repeated n
 ## Focused Resources
 
 - `references/review/response-letter.md` for formal reviewer and editor responses;
-- `references/review/tutor-review-checklist.md` for advisor-style interpretation;
 - `references/review/style-naturalization.md` plus one leaf module for a focused language diagnosis;
 - `references/subagents/reference-reading.md` for a bounded journal or exposition question.
 
