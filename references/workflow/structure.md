@@ -14,7 +14,7 @@ this architecture and the local prose context.
 - `02_methods/02a_data.md`
 - `02_methods/02b_methods.md`
 - user-confirmed story direction and target journal status
-- canonical full-text papers in `reference_papers/`, when available
+- project core full-text papers in `reference/`, or relevant full text from Zotero / user uploads, when available
 
 Follow the evidence constitution, Build route, source-scope, confirmation, and target-journal guidance in `SKILL.md`.
 

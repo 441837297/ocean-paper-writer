@@ -4,6 +4,8 @@
 
 Zotero supports literature retrieval, citation grounding, annotation reading, and claim-context comparison. It does not replace the user's evidence, figures, data, or scientific judgment.
 
+Zotero 保留 PDF 和一份清理后的阅读 Markdown，不额外保留原始转换 Markdown。项目 `reference/` 仅保留核心论文 Markdown 全文及兼作索引的 `文献阅读笔记.md`；方法依据和一般背景文献不默认复制到该目录。项目阅读记录的确认和写入流程以 `SKILL.md` 的 Project Reference Reading Notes 为准。
+
 This integration is the **literature support layer** of the Ocean Paper Writer workflow —
 it feeds real, user-curated references into writing and review rather than relying on fabricated or generic citations.
 
@@ -21,7 +23,7 @@ The Zotero MCP exposes 22 tools including write-capable ones. By default, only r
 - get_item_details (metadata, authors, DOI, etc.)
 - get_item_abstract
 - get_annotations / search_annotations
-- get_content (PDF/text preview if available)
+- get_content (prefer reading Markdown; consult relevant PDF content when needed for verification)
 - search_fulltext
 - get_subcollections / get_collection_details
 - fulltext_database (read-only actions: list, search, get, stats)
@@ -198,22 +200,17 @@ Recommended user input:
 - Notes or annotations
 - Target topic (e.g., "Southern Ocean fronts", "mesoscale eddies", "air-sea CO2 flux")
 
-Search priority:
-1. Project-specific collection first
-2. User-provided key papers
-3. `search_library` → candidate titles (fast, token-minimal)
-4. `get_item_details(mode="preview")` → abstract filtering (cheap per paper)
-5. Haiku subagent → targeted evidence extraction (only when depth needed)
-6. PDF full text (only on explicit user request, not routine)
+检索先限定用户给定的集合或论文，查看元数据后定位相关阅读 Markdown。文献提取由低价子代理执行，模型确认、读取范围和主代理核验遵循 `SKILL.md` 与 `references/subagents/reference-reading.md`，不固定模型名称。
 
-Always explain the search intent to the user before querying.
-Confirm after each level before going deeper.
+## Markdown 来源与 paper2md
 
-**Hard rule — full-text searches require user opt-in for subagent + haiku:**
-Before any operation that would pull full-text content (get_content on PDFs, search_fulltext with large context, or extracting Methods/Results paragraphs), explicitly ask the user: "是否使用 subagent + haiku 调研此文？" State what will be read and why. Do not proceed without confirmation. This prevents full papers from entering the main conversation context.
+日常阅读优先使用 Zotero 中清理后的阅读 Markdown，不在每次阅读前重复转换 PDF。缺少 Markdown 时，使用 `paper2md` 转换：读取该技能 → 定位 PDF 与父条目 → MinerU 转换 → 已确认的低价子代理定位需清理区块 → 删除明确的非正文内容 → 将一份阅读 Markdown 关联到原 Zotero 条目。转换过程中的原始 Markdown 仅为临时文件，不作为另一份文献附件保留。
 
-**Hard rule — prefer user's mineru MD over MCP PDF extraction:**
-When the skill needs paper text for style reference, method comparison, or narrative analysis, **do not use `get_content` with `include pdf:true`**. Instead: (1) ask the user if they have pre-converted MD files from zotero-mineru-plugin; (2) mineru-converted `output.md` files in Zotero storage are the primary source (complete full-text MD from zotero-mineru-plugin); (3) PDF binary reading via MCP is prohibited for text extraction. The user's established pipeline (zotero-mineru-plugin → MD → Zotero attachment) produces clean full-text MD that should be the primary source.
+清理删除文末参考文献列表、重复页眉页脚、页码和出版杂项，保留摘要、完整正文、方法、公式、图表说明、数据与代码可用性声明及正文内引用标记；不摘要化或改写科学内容。边界不明确的内容保留。原 PDF 不修改，图表、公式、遗漏或提取异常需要核实时可直接查阅相关 PDF 内容，不禁止 PDF 核验。
+
+`paper2md` 的发现优先使用当前环境技能列表或技能目录；未列出时检查 CC-Switch 管理目录。当前已确认来源为 `C:/Users/zhisheng/.cc-switch/skills/paper2md/SKILL.md`，可显式读取后按其流程执行。其旧版固定 Haiku 的清理步骤，按本次用户确认的可用低价模型执行。读取技能文件不等于已安装到 Codex，也不等于已完成转换。
+
+转换、关联附件或批量处理必须在用户授权的范围内执行；普通文献阅读不自动触发全库转换。全库补齐及新增 PDF 的增量处理沿用同一 `paper2md` 流程，不另建转换机制。
 
 ## Citation Handling Rules
 

@@ -108,7 +108,7 @@ Before reading a project, identify the current manuscript version and the smalle
 
 The user owns the target-journal decision. Record a supplied journal verbatim; when none is supplied, use general scientific guidance rather than inventing journal requirements. Reference papers can teach task-local rhetorical choices, but they do not authorize a claim beyond the project's evidence.
 
-When a journal-specific task would benefit from comparison, invite the user to provide a small set of relevant recent papers in `reference_papers/`. Their absence does not block Strategy, Prose, or Verify; use `[REFERENCE PAPERS PENDING]` only when it identifies a concrete limitation.
+期刊适配需要比较时，请用户提供少量相关近期论文，可来自 `reference/` 中的核心全文、Zotero 或用户上传材料；不要求为即时比较将论文复制到项目目录。材料缺失不阻塞 Strategy、Prose 或 Verify；仅在指出具体限制时使用 `[REFERENCE PAPERS PENDING]`。
 
 ## Resume
 
@@ -136,7 +136,7 @@ The existing project structure, names, and templates remain authoritative:
 | `04_writing/04_writing-log.md` | accepted writing and revision record |
 | `05_review/` | raw feedback and its confirmed decisions |
 
-**Exploration does not modify authoritative project state.** Discussion, alternatives, candidate paragraphs, and unaccepted analyses stay in the task workspace. After the user accepts the direction and Verify returns `PASS`, update the current manuscript first. Then update only the owner made inaccurate by the accepted change:
+**探索不修改权威项目状态。** 讨论、备选方案、候选段落和未接受的分析留在任务工作区。文献阅读笔记围绕原论文及已确认的阅读问题独立记录，按下述逐篇确认、原文核验和预览接受流程写入。手稿修订在用户接受方向且 Verify 返回 `PASS` 后，先更新当前手稿，再仅更新被该修改影响的权威文件：
 
 | Accepted change | Necessary update |
 |---|---|
@@ -146,6 +146,32 @@ The existing project structure, names, and templates remain authoritative:
 | Research question, main claim, method/sample definition, or scope | affected `01`, `02`, `03`, and manuscript material |
 
 Do not default to a full-manuscript scan. Expand consistency checking only when a repeated number, core term, central claim, figure definition, method definition, or section responsibility has changed. Do not create a complete new manuscript version for an ordinary local edit; use the existing project's versioning practice for confirmed milestones or review rounds.
+
+## Project Reference Reading Notes
+
+项目文献入口为 `reference/`，用于查阅项目核心论文和已确认的阅读记录。目录包含核心论文的 Markdown 全文与一个 `文献阅读笔记.md`。Zotero 保留 PDF 和一份清理后的阅读 Markdown，不额外保留原始转换 Markdown；方法依据和一般背景文献不默认复制到项目核心全文目录，除非用户确认其也属于项目核心论文。核心论文全文命名为 `作者_期刊简称_年份_标题.md`。保留已有文件；只有用户要求迁移时才移动或重命名。
+
+所有项目阅读笔记统一写入 `reference/文献阅读笔记.md`，每篇文章一个小节。该文件同时承担文献索引：通过文章标题、作者、年份、期刊定位条目；项目保留核心全文时，在对应条目中链接该文件。不另建 `文献索引.md`，不为每篇文章建立独立笔记。条目使用以下结构：
+
+1. **Article title.**
+2. **Authors, year, and journal.**
+3. **Concise abstract overview:** explain the paper's question, approach, and key findings, verified against the source.
+4. **Why we read:** record the reading purpose confirmed through discussion with the user, starting from the user's current question, needs, and requested change.
+5. **What we learned:** include only learning points and insights confirmed through discussion with the user. For each point, use this order:
+   - **Learning-point title:** what the user confirmed they want to learn.
+   - **What the authors did:** explain the paper's specific analysis or argument and how its evidence supports its conclusion, focused on that learning point.
+   - **Complete original text and location:** quote at least one complete original sentence for every learning point; use consecutive sentences or a coherent paragraph when the reasoning needs context. Identify the section, figure, or page. Do not use clipped fragments or ellipses that remove the reasoning, or use one excerpt as a substitute for the other points' source text.
+   - **Confirmed insight:** record the understanding or inspiration accepted in discussion with the user; do not independently extend it.
+
+文献阅读默认由低价子代理提取信息，主代理核验相关原文并与用户讨论。每次启动阅读委派前，说明本次问题、读取范围和当前可用模型，与用户确认所用模型；优先考虑 Luna 或 Haiku，但不固定模型名称。若没有合适的低价模型，与用户讨论替代方案后再执行，不静默改用其他模型。同一已确认阅读任务的后续提取沿用该选择；更换模型或扩大任务范围时重新确认。
+
+流程为：用户提出阅读问题 → 确认子代理模型和读取范围 → 子代理返回关键信息、完整原句、位置与必要上下文 → 主代理对照相关原文核验并讨论 → 逐篇确认阅读目的、各学习点及启发 → 起草笔记 → 预览接受后按项目写入约定记录。一次讨论一篇文章，不仅凭论文内容自行决定阅读目的、学习点或启发。提取细则见 `references/subagents/reference-reading.md`。
+
+阅读笔记围绕原论文及已确认的阅读问题展开，应能脱离当前手稿独立阅读和使用。不要求建立与当前手稿的对应关系，不写入随手稿变化的项目结果、结构、分析计划或修订方案；这些内容在项目文献综合或相应项目文件中另行处理。 Do not add DOI or routine link/status fields. Write in plain Chinese that remains understandable when revisited. Keep each entry concise and concrete, avoiding compressed jargon and unnecessary defensive qualifications. Place every excerpt beside the point it supports and preserve source wording, allowing only obvious extraction-spacing and mathematical-format normalization.
+
+For reading notes, remove generic cautionary maxims such as “名称服务于发现，不代替证据” and unprompted contrastive disclaimers. Each sentence should explain a specific source finding, its reasoning, or a user-confirmed insight. State a limitation only when it materially changes interpretation, and attach it to the exact result or method. Explain mechanisms through concrete examples (for example, cold-core CCE cooling lowers seawater pCO2, while DIC enrichment raises it), rather than abstract labels alone. When the user distinguishes bidirectional processes from their net result, keep absorption and release separate and explain how cancellation produces the net effect; distinguish these exchange components from the causal physical or biogeochemical processes that generate them. Before returning a note, delete sentences that merely say something is not a substitute for evidence, does not guarantee importance, or should not be overinterpreted unless the specific reading question requires them.
+
+需要 Zotero 收录的论文，在对话中提供出版方或 PDF 链接；未经核验不声称已下载或导入。阅读笔记保存围绕原论文确认的阅读目的、学习点、原文和启发，其中可包含科学理解或修辞学习。`01_prepare/01c_literature-synthesis.md` 保存文献在本项目中的科学作用、方法来源链、主张支持与适用边界，按需链接阅读笔记或来源，不重复阅读条目。`Reference Reading Brief` 指当前问题的临时文献提取结果，可包含科学信息、方法依据或论证与表达分析，通常在对话中使用，不另建持久文档；需要保留的学习点仍须完成逐篇讨论与预览接受。阅读笔记不自动修改研究计划或手稿主张。
 
 ## Reference Loading
 
@@ -163,7 +189,7 @@ Load only the material needed for the current route:
 | Cover letter | `references/workflow/cover-letter.md` |
 | Zotero retrieval | `references/zotero/README.md` |
 
-Reference papers remain task-local for rhetoric and exposition. Read headings first, then only the bounded relevant section. Durable scientific provenance belongs in `01c_literature-synthesis.md`.
+按当前问题先读标题，再读相关的有界章节。当前问题的关键信息与原文提取使用临时 `Reference Reading Brief`；已确认的逐篇学习记录归入 `reference/文献阅读笔记.md`；文献对本项目的持久科学支持关系归入 `01c_literature-synthesis.md`。
 
 `examples/`, archived journal material, `deprecated/`, and project `old/` directories are non-authoritative and excluded from normal active-context scans.
 

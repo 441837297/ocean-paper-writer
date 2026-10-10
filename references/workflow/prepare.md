@@ -38,9 +38,7 @@ evidence would be needed for a broader claim. Apply the global evidence boundari
 
 ## Literature Synthesis
 
-`01c` records scientific knowledge that should persist across stages: what each paper contributes,
-which method or claim it supports, and relevant limitations. Rhetorical learning from a paper is a
-temporary JIT task handled by `references/subagents/reference-reading.md` and does not enter `01c`.
+`01c` 保存文献对本项目的持久科学支持关系：科学作用、方法来源链、支持的主张及适用边界，按需链接来源或已确认的阅读笔记，不复制逐篇阅读条目。逐篇讨论确认的阅读目的、学习点、原文和启发归入 `reference/文献阅读笔记.md`，按 `SKILL.md` 的流程预览接受后记录。当前问题的科学信息、方法或论证与表达提取由 `references/subagents/reference-reading.md` 生成临时结果；已确认且值得保留的修辞学习也可进入阅读笔记。
 
 ## Completion
 

@@ -18,7 +18,8 @@
 - prepare files:
 - methods files:
 - structure files:
-- reference papers:
+- 项目文献入口: `reference/`（核心论文 Markdown 全文）
+- 阅读记录与索引: `reference/文献阅读笔记.md`
 - current manuscript:
 - review files:
 - code and data:

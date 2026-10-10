@@ -51,7 +51,7 @@ git clone https://github.com/441837297/ocean-paper-writer.git ~/.claude/skills/o
 Strategy → Revision Brief → 必要分析 → Prose → Verify → PASS → 更新必要文件
 ```
 
-导师、合作者、编辑和 reviewer 意见通过 Feedback 进入这条通道；reviewer 场景额外生成 response letter。讨论、候选段落和未接受的分析不修改正式项目文件；仅在用户接受且 Verify 为 PASS 后，更新手稿及确有必要的 01–03 文件。
+导师、合作者、编辑和 reviewer 意见通过 Feedback 进入这条通道；reviewer 场景额外生成 response letter。讨论、候选段落和未接受的分析不修改正式项目文件；仅在用户接受且 Verify 为 PASS 后，更新手稿及确有必要的 01–03 文件。阅读笔记围绕原论文及已确认的阅读问题独立记录，不要求与当前手稿建立联系。
 
 ## 从零建立论文
 
@@ -69,12 +69,13 @@ Structure 规定各 section、subsection 或结果单元承担什么任务。Wri
 
 ## Reference Papers
 
-项目 `reference_papers/` 中每篇来源论文只保存一份完整 Markdown。两种文献用途分开处理：
+项目文献入口为 `reference/`，包含项目核心论文的 Markdown 全文和一个同时承担索引的 `文献阅读笔记.md`，不另建 `文献索引.md`。Zotero 保留 PDF 和一份清理后的阅读 Markdown，不额外保留原始转换 Markdown；方法依据和一般背景文献不默认复制到项目核心全文目录。全文命名与阅读条目结构以 `SKILL.md` 的 Project Reference Reading Notes 为准。
 
-- 科学来源、方法继承和 literature role 持久记录在 `01c_literature-synthesis.md`。
-- 修辞与论述学习按当前任务即时进行，由 `references/subagents/reference-reading.md` 返回简短 `Reference Reading Brief`。
+- 阅读笔记保存逐篇讨论确认的阅读目的、学习点、原文及启发，预览接受后记录，可包含科学理解与修辞学习。
+- `01c_literature-synthesis.md` 保存文献在本项目中的科学作用、方法来源链、主张支持和适用边界，按需链接笔记或来源。
+- `Reference Reading Brief` 是当前问题的临时文献提取结果，可涉及科学信息、方法或论证与表达，通常只在对话中使用。低价子代理提取，主代理核验并讨论；每次启动委派前与用户确认可用模型，规则见主技能。
 
-JIT 阅读先扫描标题，只读取与当前任务有关的 bounded section。Brief 说明论证推进、证据到主张的关系及可学习的表达功能，不把整节原文注入主上下文，也不保存第二份 section copy。
+即时阅读先扫描标题，只读取相关章节。提取结果保留支持信息的完整原句和必要上下文，阅读笔记按主技能流程预览接受后记录，并能脱离当前手稿独立使用。
 
 ## 项目信息归属
 
@@ -102,11 +103,13 @@ Strategy 只讨论怎么改，并产生简短的 `Revision Brief`；Prose 只执
 
 ## 目标期刊
 
-用户决定目标期刊。未指定时仍可按通用流程推进。确认期刊后，可把 2-4 篇近期论文的完整 MD 放入 `reference_papers/`，供具体任务的 JIT 阅读使用。
+用户决定目标期刊。未指定时仍可按通用流程推进。确认期刊后，可提供少量相关近期论文供具体任务即时阅读；只有确认属于项目核心论文的全文才保留到 `reference/`。
 
 期刊适配与证据判断分开：参考论文帮助理解论述惯例，项目证据决定本文能主张什么。
 
 ## Zotero
+
+日常优先读取库内阅读 Markdown；缺失时用 `paper2md` 转换，只保留一份清理后的阅读 Markdown，必要时直接查阅 PDF。转换调用与清理边界见 `references/zotero/README.md`。
 
 Zotero MCP 是可选文献检索层。完整的权限、确认、只读和 full-text retrieval 规则只在 `references/zotero/README.md` 维护。当前环境没有 Zotero connector 时，不调用该集成，改用用户上传的论文或其他可用来源。项目没有 Zotero 也可以运行，缺失引用标记为 `[CITATION NEEDED]`。
 

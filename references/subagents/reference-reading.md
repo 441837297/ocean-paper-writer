@@ -1,46 +1,36 @@
-# Reference Reading Subagent
+# 文献阅读子代理
 
-## Use
+## 用途与模型确认
 
-Invoke this prompt when the current Strategy, structure, Prose, Verify, polish, or cover-letter task would
-benefit from learning how one or more canonical Markdown reference papers handle the same rhetorical
-or exposition problem.
+按当前阅读问题提取科学发现、方法、证据、适用边界或论证与表达信息，不要求问题关联当前手稿。模型选择与用户确认遵循 `SKILL.md` 的 Project Reference Reading Notes；不固定 Haiku 或其他模型名称。
 
-## Prompt
+## 委派内容
 
-```text
-You are reading reference papers for one bounded manuscript task.
+向子代理提供：
 
-Current manuscript task:
-<task, section, logical result unit, or confirmed Revision Brief>
+- 用户当前阅读问题与待查信息；
+- 来源文件或 Zotero 条目，以及相关章节范围；
+- 当前已确认的学习点（如有）；
+- 只有问题确实涉及手稿时，才提供必要的局部手稿上下文。
 
-Questions to answer:
-<what the main agent needs to learn>
+来源优先使用 Zotero 中清理后的阅读 Markdown、项目 `reference/` 的核心全文或用户提供的材料。先扫描标题，再读取相关章节；信息不足时指出缺失，不凭摘要补全正文结论。
 
-Source papers:
-<canonical full-text Markdown paths in reference_papers/>
+## 返回结果
 
-For each useful source paper:
-1. Scan headings first.
-2. Select only the section or bounded subsection relevant to the current task.
-3. Read only that bounded material.
-4. Analyze its rhetorical logic and scientific exposition. Do not draft the user's manuscript.
+返回简洁的文献提取结果（`Reference Reading Brief`），逐项包含：
 
-Return one compact Reference Reading Brief with:
-- source paper and exact heading or line locator;
-- rhetorical function and sequence;
-- how the argument advances;
-- evidence-to-claim progression;
-- opening, transition, caveat, or closing patterns that matter for this task;
-- claim-strength observations;
-- what is useful for the current manuscript unit;
-- what must not be copied: source facts, numbers, conclusions, or distinctive wording.
+1. 来源论文及章节、Markdown 行号或其他可核验位置；仅在实际核实 PDF 页码后提供页码。
+2. 与当前问题相关的关键信息，区分作者结果、作者解释与子代理分析。
+3. 支持该信息的完整原句和必要的连续上下文；推理依赖一段文字时保留该段，不截断为孤立片段。
+4. 影响该信息解释的具体方法、条件或边界。
+5. 尚未找到或需要主代理核验的内容。
 
-Keep the brief analytical and concise. Do not return the complete source section. Include one to
-three short anchor excerpts only when they are needed to verify the analysis, each with an exact
-locator. The main agent may include the brief and selected excerpts in a Prose Handoff Packet, but
-must not pass a full reference paper to Prose.
-```
+只有问题涉及论证与表达时，才分析段落功能、推进顺序、证据到主张的关系及可学习的表达方式。不要返回整篇论文，不替用户确认学习点或启发，不起草手稿或修改项目文件。
 
-The main agent uses the brief as temporary context. Persistent scientific provenance belongs in
-`01_prepare/01c_literature-synthesis.md`, not in this brief.
+## 主代理处理
+
+主代理对照相关原文核验提取结果，再与用户逐篇讨论阅读目的、学习点和启发。提取结果通常只在对话中使用，不自动持久化。
+
+阅读笔记按主技能流程预览接受后写入 `reference/文献阅读笔记.md`，围绕原论文独立表达。文献对本项目的科学作用、方法来源链和主张支持归入 `01_prepare/01c_literature-synthesis.md`，按需链接笔记或来源。
+
+用于 Prose 交接时，只携带已核验且与局部任务相关的信息及必要原句，不传递整篇论文。交接的精简不改变阅读笔记保留完整原文的要求。
