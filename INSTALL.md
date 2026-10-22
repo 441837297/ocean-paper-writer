@@ -1,38 +1,9 @@
-# 安装 Ocean Paper Writer
+# 安装与更新
 
-## 一行安装
+将仓库根目录放入客户端技能目录，文件夹名为 `ocean-paper-writer`，保留相对路径。Codex 通常使用 `$CODEX_HOME/skills/`，未设置时为 `~/.codex/skills/`；Claude Code 通常使用 `~/.claude/skills/`。按客户端要求刷新或重启后，选择技能或调用 `$ocean-paper-writer`，直接提供任务和材料。
 
-```bash
-git clone https://github.com/441837297/ocean-paper-writer.git ~/.claude/skills/ocean-paper-writer/
-```
+若技能由 Magpie 管理，应在管理主库修改后同步到客户端；否则更新前保留本地改动。普通写作不依赖附带脚本、Word 或其他技能。
 
-重启 Claude Code 即可。之后输入 **"start ocean paper writer"** 或直接描述你的研究材料，skill 会自动激活。
+写作与局部、全文对照审查已统一在 `ocean-paper-writer`，无需另装 Ocean Paper Reviewer。
 
-## ChatGPT Web
-
-在支持 Skills 上传的 ChatGPT 工作空间中，进入 Skills 后选择创建并从电脑上传本 skill 的 ZIP 包。上传后等待平台扫描完成即可使用；没有本地项目目录、脚本或 Zotero connector 时，直接上传当前任务所需的手稿、证据和参考材料。
-
-## 验证
-
-启动 Claude Code 后输入：
-
-```
-I want to write a paper. I have figures, code, and a target journal in mind.
-```
-
-如果你提供新研究材料，助手应将你路由到 **prepare**。如果你提供已有手稿及明确修改目标，助手应先进入 **Strategy** 并形成 Revision Brief，而不是直接重写整篇论文。
-
-## 可选：Zotero 文献支持
-
-如需从你的 Zotero 文献库检索引用：
-
-1. 按上游文档安装 [cookjohn/zotero-mcp](https://github.com/cookjohn/zotero-mcp)。
-2. 将项目相关论文导入一个 Zotero 集合。
-
-Skill 完全可以在没有 Zotero 的情况下工作。缺失引用标记为 `[CITATION NEEDED]`，你可稍后手动补上。
-
-## 升级
-
-```bash
-cd ~/.claude/skills/ocean-paper-writer && git pull
-```
+Kimi 使用其实际加载的技能目录；本机由 Magpie 同步到共享目录 `~/.agents/skills/ocean-paper-writer/`。更新后在新会话调用，避免沿用旧上下文。Web 提供 `SKILL.md`、按任务使用的专项资源及可访问的项目材料，保留包内相对路径；不能读取压缩包时解压后提供所需文件。是否支持原生安装以平台能力为准，不承诺上传 ZIP 即可安装。用途见 [README](README.md)，修改后的行为需在各自客户端测试。

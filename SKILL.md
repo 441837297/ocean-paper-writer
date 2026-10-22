@@ -1,212 +1,53 @@
 ---
 name: ocean-paper-writer
-description: Build and revise ocean-science manuscripts from research materials, drafts, and advisor or reviewer feedback. Control evidence-bounded writing, local revision, and Verify; recommend separate story architecture or whole-manuscript preflight when needed.
+description: Draft, revise, polish, or review ocean-science manuscripts using project evidence and relevant reference papers; prepare feedback responses and submission text.
 ---
 
 # Ocean Paper Writer
 
-## Purpose
+在当前会话直接完成用户要求的写作、修改或审查。任务决定找什么材料，材料决定如何处理；独立文字任务使用当前文本与必要上下文，项目内任务还须核对相关项目材料。
 
-Ocean Paper Writer helps ocean and ocean-climate researchers build a paper from research materials or revise an existing manuscript. It keeps scientific decisions, analysis, prose, and verification distinct so that a local revision stays local unless it genuinely changes an upstream decision.
+首次使用且任务尚不清楚时，依据已有信息建议当前最值得做的一件事，说明必要材料和交付，只问阻塞问题。任务与材料明确时，简短说明范围就直接执行；需要了解已有项目状态时，从现有入口导航定位必要信息，不为引导扫描全库。
 
-## Evidence Constitution
+## 项目材料使用
 
-Anchor substantive work to this checkable chain:
+项目内任务首次先实际读取可用的 `AGENTS.md` 或项目说明中的现有导航，确认当前稿和当前有效决定；没有入口文件时根据现有材料与用户说明定位，不要求补建。按任务必须读下列相关内容，而不是全读 `01–05`；编号表示材料角色，其他文件名跟随项目导航，不新建或重组目录。独立粘贴文本、无项目的任务不要求这些文件。
 
-**ocean/system need -> unresolved process/data/method gap -> this paper's move -> decisive evidence -> bounded implication -> explicit limitation**
-
-Match every claim to its evidence. Report associations as associations; reserve mechanism and causation for diagnostic or causal evidence. Keep regional implications regional, identify model results as model results, and distinguish observed change, climate relevance, and climate attribution. Report physical meaning and effect size separately from statistical significance.
-
-State the finding directly whenever plain language can carry the scientific meaning. Do not replace a concrete result with a coined label, umbrella phrase, nominalized summary, or abstract category merely to make the prose sound more conceptual. Introduce a term only when it is established in the field or removes real repeated complexity without obscuring the underlying observation.
-
-Do not add a sentence merely to pre-empt criticism unless it advances the argument, sets a necessary evidence boundary, or enables interpretation or reproduction. `[EVIDENCE GAP]` means **omit the unsupported claim from manuscript prose until the missing evidence is supplied**. Do not use it as a placeholder after a claim, infer a conclusion from a trend, or substitute `likely` or `probably` for missing evidence. Do not invent data, methods, figures, citations, numbers, or feedback.
-
-For Chinese-speaking users, discuss scientific reasoning in Chinese before drafting confirmed English manuscript prose. English remains the default for manuscript-facing text.
-
-## Capability Gate
-
-When a persistent project filesystem is available, use the project's confirmed materials and update them only when this workflow permits it. When it is unavailable, work from conversation uploads and the current task packet. Do not block Strategy, Prose, or Verify because project files, local code, or Word files are unavailable.
-
-Local code execution, repository synchronization, and Word editing are optional capabilities, not prerequisites for scientific discussion, drafting, or verification.
-
-## Route
-
-First identify the smallest useful work unit and its route.
-
-For scientific story architecture or a complete-manuscript preflight, diagnose the need, recommend Nature Story or Ocean Paper Reviewer, explain the handoff, and ask the user to confirm before invoking another Skill. Keep ordinary local revision acceptance in OPW Verify. Read [references/workflow/routing.md](references/workflow/routing.md) when cross-Skill routing or a returned packet/report is involved.
-
-| Situation | Route |
+| 材料角色 | 何时读什么 |
 |---|---|
-| New idea or proposal with an unsettled scientific question or competing stories | Recommend **Nature Story**; begin Build only after the user confirms its scientific direction |
-| New paper with a settled scientific direction but no mature manuscript | **Build**: prepare -> methods -> structure -> writing |
-| Existing manuscript, new result, local section or figure revision, transfer to another journal | **Iterate**: Strategy -> Revision Brief -> Analysis when needed -> Prose -> Verify -> PASS -> necessary update |
-| Complete draft needing whole-manuscript system checks | Recommend **Ocean Paper Reviewer** after user confirmation |
-| Advisor, coauthor, editor, or reviewer feedback | **Feedback** -> Iterate; reviewer work also prepares a response letter |
-| Confirmed writing task | **Prose** |
-| Candidate revision needing acceptance | **Verify** |
-| Clarity, flow, or natural academic expression | **Polish** within Prose/Verify; it is not a separate project stage |
-| Cover letter | **Cover letter** |
+| 01 研究问题、范围、证据支持与文献作用 | 起草或检查论证、解释意义、改变主张时，读相关依据和边界。 |
+| 02 数据与方法 | 写到、解释或检查变量、方法、结果时，读相关定义、参数和统计说明。 |
+| 03 术语、结构与图件 | 任何项目写作、润色或相应检查都须读取相关术语条目并遵守；涉及论证顺序、章节职责或图文时，另读对应结构、图件约定。 |
+| 04 当前稿 | 读取当前待改、待查文字及必要前后文，不默认采用旧稿。 |
+| 05 当前修订的意见与决定 | 处理反馈、检查反馈落实或已知有新决定时，读相关已接受意见和科学决定，区分原始意见与作者接受的决定。 |
 
-Build preserves the existing `prepare -> methods -> structure -> writing` workflow and its project files. Iterate is the default for work on an established manuscript.
+只读当前关联段落或条目；同一会话已读且仍有效的内容可复用，文件名和索引不等于已核对。最新决定与旧稿或 `01–03` 冲突时，按明确的项目权威规则定位；优先级不清就询问，不私自选择。参考论文或文风不能覆盖项目科学定义、已接受决定及 03 约定。
 
-## Iterate Modes
+缺少术语、方法等材料时，说明哪些项目约定未核实，区分可先给的有边界草稿、判断与真正阻塞的问题，不用常识假装读过。交付可简注关键实际依据的文件及章节或条目，不附固定读取报告。文件同步按项目顺序和写入授权，润色不自动修改上游材料。
 
-For established-manuscript work, use two roles and one closed loop:
+需要科学依据或文献学习、对照时，使用实际项目文件夹内或用户指定、上传的真实参考材料，利用已有索引和笔记定位相关原文，按问题读取。不要求目录名为 `reference`；沿用项目的组织方式，没有本地目录也可工作。不为普通润色额外检索文献或扫描全项目。
 
-| Role | Responsibility |
+普通润色依据已有文本和相关项目约定，理解研究对象、证据与解释的关系，使表达更准确、清晰、自然，并保持原有科学含义。写作与修改中准确呈现数字、定义、统计含义、范围与必要限定，让主张与证据相符。参考论文可启发科学理解、方法、论证与表达，但不能变成本项目未做的结果。重要判断注明可追溯的来源；涉及图像证据时查看相关图页，未查看就说明。
+
+材料充分直接写；关键材料冲突、科学含义不清或拟改变核心主张时，再提出最少的必要问题。证据不足的部分如实指出，不编造结果、方法、引用或已完成的工作。
+
+默认对话交付，语言按用户要求。遵循项目 `AGENTS.md` 和已有约定，仅在授权范围写入文件。
+
+## 按需资源
+
+根据当前任务需要选用下列资源；一个请求包含多类工作时，结合各项工作的对应资源，在同一会话完成。普通写作、润色和单篇局部引用核查通常可直接完成。专项文件保存按需使用的操作经验，与项目真实参考素材各有用途，无须依次加载。
+
+| 当前需要 | 读取资源 |
 |---|---|
-| **Scientific Editor** | evidence boundary, claim strength, local result hierarchy and argument order within an accepted story, reference learning, Revision Brief, and final Verify |
-| **Manuscript Editor** | render frozen scientific content as publication-ready prose: syntax, flow, concision, register, wording, rhythm, and naturalization |
+| 深入文献学习、多篇比较、整理阅读笔记或委派阅读 | [文献阅读与对照](operations/literature.md) |
+| 起草、修改或核查审稿回复 | [审稿回复](operations/response.md) |
+| 编辑或核验 Word、修订记录及最终交付文件 | [文档交付](operations/document-delivery.md) |
+| 用户要求初始化或整理尚未建档的项目 | [最小建档参考](templates/project-starter.md)；不用于重建成熟项目 |
 
-Scientific Editor decides **what to say, why it can be said, and in what order**. Manuscript Editor decides **how to express that confirmed content**. Do not merge these roles during a revision.
+## 对照审查（按需）
 
-### Strategy
+用户要求局部或全文检查时才开展，不默认每次写后审，也不依赖独立 Reviewer。优先通过现有文献索引和笔记定位实际项目材料中相关顶刊或目标期刊真实论文原文，围绕同类科学问题、证据和段落功能，对照论证、证据组织与表达。只读当前范围，区分原论文的发现、解释与本稿的延伸；期刊地位或旧稿已有表述不构成引用准确性的证据，借鉴不覆盖本项目证据、范围及已接受决定。
 
-Strategy is performed by the Scientific Editor. It decides how a bounded unit should change, reading only the old text, adjacent context, relevant evidence, feedback, figures, methods, and reference-paper material needed for that decision. Its output is a concise, user-confirmed **Revision Brief**, not final English prose. Read [references/review/revision-brief.md](references/review/revision-brief.md) and use [references/templates/revision-brief.md](references/templates/revision-brief.md).
+用户明确只查数字、术语等内部一致性时，直接核对相关项目材料，不强制读文献。没有论文或只有摘要时，说明外部原文对照未完成，可做有边界的内部检查，不装作读过。未给附件不判为稿件缺失，文字检查不冒充数据或统计验证，也不预测接受率。
 
-If evidence is insufficient, create an Analysis Task that states the question, required analysis, inputs, expected result, decision criterion, and what the analysis cannot establish. Return to Strategy after the result is available.
-
-When users supply reference papers for journal learning, rhetorical comparison, or section organization, read the most relevant bounded passages before deciding the brief. Produce a compact Reference Reading Brief, not a summary from abstracts alone. Then give the user a Prose Handoff Packet containing only: the original unit, frozen Revision Brief, verified evidence, Reference Reading Brief, optional short anchor excerpts, and adjacent prose when needed. Ask the user to open a clean Manuscript Editor window and run Prose only.
-
-### Prose
-
-Prose is performed by the Manuscript Editor. It executes a confirmed Revision Brief using the old text, necessary evidence, adjacent context, and at most the relevant reference-paper brief. **Scientific fidelity takes priority over rhetorical smoothness.** Treat the frozen Revision Brief as a closed scientific contract, not a loose writing suggestion.
-
-Prose may change syntax, sentence order within the authorized sequence, wording, compression, and transitions. It must not change scientific meaning, variable definition, result or evidence hierarchy, claim boundary, causal relation, statistical interpretation, scope, mechanism, or approved argument sequence. It must not reopen the paper strategy, create a new scientific story, strengthen claims, or add defensive qualification. Stop and return to Strategy only for `[EVIDENCE CONFLICT]`.
-
-Do not repair a narrative gap by inventing a scientific relation. If the brief authorizes observations A and B but no supported connection, report them separately; do not introduce causation, exclusion of causation, mechanism, net effect, untested comparison, or climate attribution. Do not restore a superseded metric or analytical framework merely because it appears in the old manuscript. Do not characterize a result as marginal, near, approaching, or trending toward significance unless the brief or confirmed statistical plan explicitly authorizes it.
-
-For an established-manuscript revision, return: (A) complete clean revised prose and (B) a Minimal Change Map. The map shows only changed scientific meaning, metric, claim strength, structural rewrite, or important deletion, with a brief reason; it is not a word-level diff. Then direct the user to return both items to the Scientific Editor for Verify.
-
-Read [references/workflow/writing.md](references/workflow/writing.md), plus one focused writing or naturalization reference only when useful.
-
-### Verify
-
-Verify is performed by the Scientific Editor. It compares the Revision Brief, old text, candidate text, Minimal Change Map, and key evidence. Return `PASS` only when the requested change is complete, scientifically faithful, evidence-bounded, locally coherent, and free of unnecessary defensive repetition. For PASS, state only `No scientific or narrative blockers remain`, plus rare non-blocking editorial notes.
-
-For REVISE, do not rewrite the full paragraph. Return an Issue, a Correction Brief, a Minimal Diff showing the required direction, and the brief item it violated. Send this to the existing Manuscript Editor window; do not restart Strategy unless the scientific brief itself is wrong. Read [references/workflow/review.md](references/workflow/review.md).
-
-When the Manuscript Editor returns candidate prose, check terminology against the current manuscript and information density against the surrounding unit before PASS. Present accepted changes against the original with **bold additions** and ~~struck deletions~~ after PASS; keep the clean prose available separately. Do not present a candidate as accepted before Verify passes.
-
-### Feedback
-
-Feedback is an Iterate entry point. Interpret one advisor, coauthor, editor, or reviewer issue at a time; identify what it actually asks; then create or confirm the Revision Brief. For reviewer work, keep the chain aligned: `reviewer comment <-> response <-> manuscript change`. Read [references/workflow/review.md](references/workflow/review.md) and [references/review/response-letter.md](references/review/response-letter.md) when a response is required.
-
-## Question Routing
-
-Route questions about meaning, evidence, placement, emphasis, references, claim strength, mechanism, statistics, or target-journal narrative to the Scientific Editor. Route questions that preserve fixed scientific meaning and concern wording, syntax, concision, rhythm, repetition, or flow to the Manuscript Editor.
-
-For “make this more like a top journal,” use the Scientific Editor when the request concerns information order, paragraph function, rhetorical move, emphasis, or reference-paper learning. Use the Manuscript Editor only when those choices are already frozen and the request is purely expression. When uncertain, default to the Scientific Editor.
-
-## Next Step
-
-After Strategy, instruct the user to open a clean Manuscript Editor window with the Prose Handoff Packet. After Prose, instruct the user to return clean prose and the Minimal Change Map to the Scientific Editor for Verify. After `REVISE`, send the Correction Brief and Minimal Diff back to the same Manuscript Editor window. After `PASS`, accept the unit, update only necessary project owners, or move to the next unit.
-
-## Source Scope and Journal Fit
-
-Before reading a project, identify the current manuscript version and the smallest set of files that can establish the active unit. Read filenames, headings, and relevant passages first. Expand scope only when the unit depends on an upstream question, method, figure definition, terminology, or repeated result.
-
-The user owns the target-journal decision. Record a supplied journal verbatim; when none is supplied, use general scientific guidance rather than inventing journal requirements. Reference papers can teach task-local rhetorical choices, but they do not authorize a claim beyond the project's evidence.
-
-期刊适配需要比较时，请用户提供少量相关近期论文，可来自 `reference/` 中的核心全文、Zotero 或用户上传材料；不要求为即时比较将论文复制到项目目录。材料缺失不阻塞 Strategy、Prose 或 Verify；仅在指出具体限制时使用 `[REFERENCE PAPERS PENDING]`。
-
-## Resume
-
-For a resumed Build project, read the project `CLAUDE.md` when it exists, scan the current stage outputs, and report the active manuscript, known target journal, completed materials, unresolved blockers, and smallest recommended next action.
-
-For an established manuscript, do not reconstruct all of 01–03 before working. Read the selected manuscript unit and only its local dependencies. If those sources conflict, identify the conflict and route it to Strategy rather than silently replacing a confirmed project decision.
-
-At the end of a bounded task, state whether the output is exploratory, a confirmed Revision Brief, a candidate Prose result, or a PASS-approved update; then name the next concrete action.
-
-## Project State and Commit Rules
-
-The existing project structure, names, and templates remain authoritative:
-
-| Project material | Owner |
-|---|---|
-| `01_prepare/01a_project-brief.md` | question, scope, objectives, high-level boundary |
-| `01_prepare/01b_evidence-inventory.md` | evidence status, claim support, and unresolved gaps |
-| `01_prepare/01c_literature-synthesis.md` | durable scientific provenance and literature roles |
-| `02_methods/02a_data.md` | data identity, coverage, preprocessing, and caveats |
-| `02_methods/02b_methods.md` | calculations, definitions, parameters, statistics, and reproducibility logic |
-| `03_structure/03_section-architecture.md` | argument chain and section/result-unit responsibilities |
-| `03_structure/03_figure-outline.md` | figure questions, roles, and panel logic |
-| `03_structure/03_terminology.md` | preferred terminology, units, and usage boundaries |
-| `04_writing/04_manuscript-*.md` | manuscript prose for its version |
-| `04_writing/04_writing-log.md` | accepted writing and revision record |
-| `05_review/` | raw feedback and its confirmed decisions |
-
-旧手稿、旧审稿回复及一般历史文档归所属阶段/版本目录下 `old/`，不另用 `history/`、`source/` 命名归档。已弃用或被替代的科学主张、研究框架及对应方案归项目根 `old/YYYY-MM-DD/`；无法确定材料日期时用归档日期并明确。归档前按内容判断用途，与现行权威材料区分，保留独有版本并同步修正引用；旧目录不进入默认活动上下文。
-
-**探索不修改权威项目状态。** 讨论、备选方案、候选段落和未接受的分析留在任务工作区。文献阅读笔记围绕原论文及已确认的阅读问题独立记录，按下述逐篇确认、原文核验和预览接受流程写入。手稿修订在用户接受方向且 Verify 返回 `PASS` 后，先更新当前手稿，再仅更新被该修改影响的权威文件：
-
-| Accepted change | Necessary update |
-|---|---|
-| Wording, flow, citation placement, or grammar | manuscript only |
-| Local result or figure interpretation | manuscript and affected `03` material |
-| Section responsibility or result ordering | manuscript and affected `03` material; `01` only when needed |
-| Research question, main claim, method/sample definition, or scope | affected `01`, `02`, `03`, and manuscript material |
-
-Do not default to a full-manuscript scan. Expand consistency checking only when a repeated number, core term, central claim, figure definition, method definition, or section responsibility has changed. Do not create a complete new manuscript version for an ordinary local edit; use the existing project's versioning practice for confirmed milestones or review rounds.
-
-## Project Reference Reading Notes
-
-项目文献入口为 `reference/`，用于查阅项目核心论文和已确认的阅读记录。目录包含核心论文的 Markdown 全文与一个 `文献阅读笔记.md`。项目 reference/ 只保存 Markdown 全文和统一阅读笔记，不保存图片、PDF 或转换图像资源，不建立 images/ 等图片目录。Markdown 仅作为论文的文字版，因此不需要保留任何图片；保留完整图表说明、表格文字、公式及正文图表引用，移除图片嵌入和图片链接。Zotero 保留 PDF 和一份清理后的纯文字阅读 Markdown，不额外保留原始转换 Markdown或转换图像资源；阅读 Markdown 用于与 AI 进行文字交互，不以缺少图像资源判定 Markdown 不可用；方法依据和一般背景文献不默认复制到项目核心全文目录，除非用户确认其也属于项目核心论文。核心论文全文命名为 `作者_期刊简称_年份_标题.md`。保留已有文件；只有用户要求迁移时才移动或重命名。
-
-所有项目阅读笔记统一写入 `reference/文献阅读笔记.md`，每篇文章一个小节。该文件同时承担文献索引：通过文章标题、作者、年份、期刊定位条目；项目保留核心全文时，在对应条目中链接该文件。不另建 `文献索引.md`，不为每篇文章建立独立笔记。条目使用以下结构：
-
-1. **Article title.**
-2. **Authors, year, and journal.**
-3. **Concise abstract overview:** explain the paper's question, approach, and key findings, verified against the source.
-4. **Why we read:** record the reading purpose confirmed through discussion with the user, starting from the user's current question, needs, and requested change.
-5. **What we learned:** include only learning points and insights confirmed through discussion with the user. For each point, use this order:
-   - **Learning-point title:** what the user confirmed they want to learn.
-   - **What the authors did:** explain the paper's specific analysis or argument and how its evidence supports its conclusion, focused on that learning point.
-   - **Complete original text and location:** quote at least one complete original sentence for every learning point; use consecutive sentences or a coherent paragraph when the reasoning needs context. Identify the section, figure, or page. Do not use clipped fragments or ellipses that remove the reasoning, or use one excerpt as a substitute for the other points' source text.
-   - **Confirmed insight:** record the understanding or inspiration accepted in discussion with the user; do not independently extend it.
-
-文献阅读默认由低价子代理提取信息，主代理核验相关原文并与用户讨论。每次启动阅读委派前，说明本次问题、读取范围和当前可用模型，与用户确认所用模型；优先考虑 Luna 或 Haiku，但不固定模型名称。若没有合适的低价模型，与用户讨论替代方案后再执行，不静默改用其他模型。同一已确认阅读任务的后续提取沿用该选择；更换模型或扩大任务范围时重新确认。
-
-流程为：用户提出阅读问题 → 确认子代理模型和读取范围 → 子代理返回关键信息、完整原句、位置与必要上下文 → 主代理对照相关原文核验并讨论 → 逐篇确认阅读目的、各学习点及启发 → 起草笔记 → 预览接受后按项目写入约定记录。一次讨论一篇文章，不仅凭论文内容自行决定阅读目的、学习点或启发。提取细则见 `references/subagents/reference-reading.md`。
-
-阅读笔记围绕原论文及已确认的阅读问题展开，应能脱离当前手稿独立阅读和使用。不要求建立与当前手稿的对应关系，不写入随手稿变化的项目结果、结构、分析计划或修订方案；这些内容在项目文献综合或相应项目文件中另行处理。 Do not add DOI or routine link/status fields. Write in plain Chinese that remains understandable when revisited. Keep each entry concise and concrete, avoiding compressed jargon and unnecessary defensive qualifications. Place every excerpt beside the point it supports and preserve source wording, allowing only obvious extraction-spacing and mathematical-format normalization.
-
-For reading notes, remove generic cautionary maxims such as “名称服务于发现，不代替证据” and unprompted contrastive disclaimers. Each sentence should explain a specific source finding, its reasoning, or a user-confirmed insight. State a limitation only when it materially changes interpretation, and attach it to the exact result or method. Explain mechanisms through concrete examples (for example, cold-core CCE cooling lowers seawater pCO2, while DIC enrichment raises it), rather than abstract labels alone. When the user distinguishes bidirectional processes from their net result, keep absorption and release separate and explain how cancellation produces the net effect; distinguish these exchange components from the causal physical or biogeochemical processes that generate them. Before returning a note, delete sentences that merely say something is not a substitute for evidence, does not guarantee importance, or should not be overinterpreted unless the specific reading question requires them.
-
-需要 Zotero 收录的论文，在对话中提供出版方或 PDF 链接；未经核验不声称已下载或导入。阅读笔记保存围绕原论文确认的阅读目的、学习点、原文和启发，其中可包含科学理解或修辞学习。`01_prepare/01c_literature-synthesis.md` 保存文献在本项目中的科学作用、方法来源链、主张支持与适用边界，按需链接阅读笔记或来源，不重复阅读条目。`Reference Reading Brief` 指当前问题的临时文献提取结果，可包含科学信息、方法依据或论证与表达分析，通常在对话中使用，不另建持久文档；需要保留的学习点仍须完成逐篇讨论与预览接受。阅读笔记不自动修改研究计划或手稿主张。
-
-## Reference Loading
-
-Load only the material needed for the current route:
-
-| Task | Read |
-|---|---|
-| Build: prepare, methods, structure | the matching file in `references/workflow/` and its existing templates |
-| Strategy, Feedback, or Verify | `references/workflow/review.md` and `references/review/revision-brief.md` |
-| Cross-Skill recommendation or returned packet/report | `references/workflow/routing.md` |
-| Prose | `references/workflow/writing.md` and one relevant `references/writing/` module |
-| Polish | `references/workflow/polish.md`, `writing.md`, and at most one focused naturalization module |
-| Reference-paper learning | `references/subagents/reference-reading.md` |
-| Reviewer response | `references/review/response-letter.md` |
-| Cover letter | `references/workflow/cover-letter.md` |
-| Zotero retrieval | `references/zotero/README.md` |
-
-按当前问题先读标题，再读相关的有界章节。当前问题的关键信息与原文提取使用临时 `Reference Reading Brief`；已确认的逐篇学习记录归入 `reference/文献阅读笔记.md`；文献对本项目的持久科学支持关系归入 `01c_literature-synthesis.md`。
-
-`examples/`, archived journal material, `deprecated/`, and project `old/` directories are non-authoritative and excluded from normal active-context scans.
-
-## Word Final Check
-
-Use Word checking only when the user requests it. Ask for screenshots of the relevant current Word pages; for a reviewer response also request the reviewer comment, the matching response page, and the matching manuscript page. Check scientific adequacy, response-manuscript alignment, and obvious errors in numbers, formulas, figure labels, and revision marks. Return `PASS` or specific corrections. Do not load `references/workflow/docx-compare.md` during normal work.
-
-## Working Boundaries
-
-Keep one authoritative owner for each project fact; other materials should point to it rather than reproduce it. Preserve confirmed decisions unless new evidence or accepted feedback makes them inaccurate.
-
-Keep final manuscript-facing prose, captions, abstracts, response letters, and cover letters in English by default. Use concise Chinese reasoning or an Author Check when it helps the researcher confirm a scientific decision before English drafting.
-
-Ask only the questions that block the active unit. If needed information is absent but a useful bounded result is still possible, mark the missing boundary rather than expanding the task or inventing an answer.
-
-## Status Markers
-
-Use `[MISSING]`, `[UNCERTAIN]`, `[EVIDENCE GAP]`, `[EVIDENCE CONFLICT]`, `[CITATION NEEDED]`, and `[CONFIRM WITH USER]` only when they identify an actionable boundary.
+先给有依据的重要问题，简明指出稿件位置、来源位置或证据、问题及最小修复；未发现问题就直说。只要求检查时不自动改稿，明确要求修改时在同一会话附改文。完整稿可另开会话、换模型获取第二意见，但不是必经步骤。
