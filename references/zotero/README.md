@@ -204,7 +204,7 @@ Recommended user input:
 
 ## Markdown 来源与 paper2md
 
-日常阅读优先使用 Zotero 中清理后的阅读 Markdown，不在每次阅读前重复转换 PDF。缺少 Markdown 时，使用 `paper2md` 转换：读取该技能 → 定位 PDF 与父条目 → MinerU 转换 → 已确认的低价子代理定位需清理区块 → 删除明确的非正文内容 → 将一份阅读 Markdown 关联到原 Zotero 条目。转换过程中的原始 Markdown 仅为临时文件，不作为另一份文献附件保留。
+日常阅读优先使用 Zotero 中清理后的阅读 Markdown，不在每次阅读前重复转换 PDF。缺少 Markdown 时，使用 `paper2md` 转换：读取该技能 → 定位 PDF 与父条目 → MinerU 转换 → 已确认的低价子代理定位需清理区块 → 删除明确的非正文内容 → 将一份纯文字阅读 Markdown 关联到原 Zotero 条目。图像资源的取舍遵循 `SKILL.md` 的 Project Reference Reading Notes：保留图表说明与正文引用，移除图片标记，不导入转换图片；需要图片时由用户手动上传。转换过程中的原始 Markdown 仅为临时文件，不作为另一份文献附件保留。
 
 清理删除文末参考文献列表、重复页眉页脚、页码和出版杂项，保留摘要、完整正文、方法、公式、图表说明、数据与代码可用性声明及正文内引用标记；不摘要化或改写科学内容。边界不明确的内容保留。原 PDF 不修改，图表、公式、遗漏或提取异常需要核实时可直接查阅相关 PDF 内容，不禁止 PDF 核验。
 

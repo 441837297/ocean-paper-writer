@@ -136,6 +136,8 @@ The existing project structure, names, and templates remain authoritative:
 | `04_writing/04_writing-log.md` | accepted writing and revision record |
 | `05_review/` | raw feedback and its confirmed decisions |
 
+旧手稿、旧审稿回复及一般历史文档归所属阶段/版本目录下 `old/`，不另用 `history/`、`source/` 命名归档。已弃用或被替代的科学主张、研究框架及对应方案归项目根 `old/YYYY-MM-DD/`；无法确定材料日期时用归档日期并明确。归档前按内容判断用途，与现行权威材料区分，保留独有版本并同步修正引用；旧目录不进入默认活动上下文。
+
 **探索不修改权威项目状态。** 讨论、备选方案、候选段落和未接受的分析留在任务工作区。文献阅读笔记围绕原论文及已确认的阅读问题独立记录，按下述逐篇确认、原文核验和预览接受流程写入。手稿修订在用户接受方向且 Verify 返回 `PASS` 后，先更新当前手稿，再仅更新被该修改影响的权威文件：
 
 | Accepted change | Necessary update |
@@ -149,7 +151,7 @@ Do not default to a full-manuscript scan. Expand consistency checking only when 
 
 ## Project Reference Reading Notes
 
-项目文献入口为 `reference/`，用于查阅项目核心论文和已确认的阅读记录。目录包含核心论文的 Markdown 全文与一个 `文献阅读笔记.md`。Zotero 保留 PDF 和一份清理后的阅读 Markdown，不额外保留原始转换 Markdown；方法依据和一般背景文献不默认复制到项目核心全文目录，除非用户确认其也属于项目核心论文。核心论文全文命名为 `作者_期刊简称_年份_标题.md`。保留已有文件；只有用户要求迁移时才移动或重命名。
+项目文献入口为 `reference/`，用于查阅项目核心论文和已确认的阅读记录。目录包含核心论文的 Markdown 全文与一个 `文献阅读笔记.md`。项目 reference/ 只保存 Markdown 全文和统一阅读笔记，不保存图片、PDF 或转换图像资源，不建立 images/ 等图片目录。Markdown 仅作为论文的文字版，因此不需要保留任何图片；保留完整图表说明、表格文字、公式及正文图表引用，移除图片嵌入和图片链接。Zotero 保留 PDF 和一份清理后的纯文字阅读 Markdown，不额外保留原始转换 Markdown或转换图像资源；阅读 Markdown 用于与 AI 进行文字交互，不以缺少图像资源判定 Markdown 不可用；方法依据和一般背景文献不默认复制到项目核心全文目录，除非用户确认其也属于项目核心论文。核心论文全文命名为 `作者_期刊简称_年份_标题.md`。保留已有文件；只有用户要求迁移时才移动或重命名。
 
 所有项目阅读笔记统一写入 `reference/文献阅读笔记.md`，每篇文章一个小节。该文件同时承担文献索引：通过文章标题、作者、年份、期刊定位条目；项目保留核心全文时，在对应条目中链接该文件。不另建 `文献索引.md`，不为每篇文章建立独立笔记。条目使用以下结构：
 
